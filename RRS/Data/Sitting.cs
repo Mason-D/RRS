@@ -13,5 +13,8 @@
         public Restaurant Restaurant { get; set; }
         public List<Reservation> Reservations { get; set; }
 
+        public SittingType sitting { get; set; }
+        public int SittingTypeId { get; set; }
+
     }
 }
