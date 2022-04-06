@@ -5,11 +5,6 @@ VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RRS", "RRS\RRS.csproj", "{E3D897C4-288A-4DE0-87D0-ACBD205E9AA0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{03288BCF-30F7-4877-B976-DDC5E0B0AA7B}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\..\..\Petersham Diploma Programming\Git\ClassDataDictionary.xlsx = ..\..\..\..\..\..\Petersham Diploma Programming\Git\ClassDataDictionary.xlsx
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
