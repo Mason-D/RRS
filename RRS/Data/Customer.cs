@@ -10,5 +10,7 @@
 
         public string Hello2 = "Hello from Atif!";
         public int something { get; set; }
+
+        public int number = 123;
     }
 }
