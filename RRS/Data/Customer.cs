@@ -7,5 +7,7 @@
         public bool IsNotAVIP { get; set; }
 
         public string Hello = "Hello from Atif!";
+
+        public int number = 456;
     }
 }
