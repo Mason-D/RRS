@@ -1,6 +1,6 @@
 ﻿namespace RRS.Data
 {
-    public class Employee
+    public class Employee : Person
     {
         public int EmployeeId { get; set; }
     }
