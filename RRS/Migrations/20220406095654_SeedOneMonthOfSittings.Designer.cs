@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RRS.Data;
 
@@ -11,9 +12,10 @@ using RRS.Data;
 namespace RRS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220406095654_SeedOneMonthOfSittings")]
+    partial class SeedOneMonthOfSittings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -244,26 +246,6 @@ namespace RRS.Migrations
                     b.HasIndex("RestaurantId");
 
                     b.ToTable("Areas");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Main",
-                            RestaurantId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Outside",
-                            RestaurantId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Balcony",
-                            RestaurantId = 1
-                        });
                 });
 
             modelBuilder.Entity("RRS.Data.Person", b =>
@@ -352,23 +334,6 @@ namespace RRS.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ReservationOrigins");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "In-person"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Email"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Phone"
-                        });
                 });
 
             modelBuilder.Entity("RRS.Data.ReservationStatus", b =>
@@ -386,33 +351,6 @@ namespace RRS.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ReservationStatuses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Pending"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Confirmed"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Cancelled"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Description = "Seated"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Description = "Completed"
-                        });
                 });
 
             modelBuilder.Entity("RRS.Data.Restaurant", b =>
@@ -1370,188 +1308,6 @@ namespace RRS.Migrations
                     b.HasIndex("AreaId");
 
                     b.ToTable("Tables");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AreaId = 1,
-                            Description = "M1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AreaId = 1,
-                            Description = "M2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AreaId = 1,
-                            Description = "M3"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            AreaId = 1,
-                            Description = "M4"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            AreaId = 1,
-                            Description = "M5"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            AreaId = 1,
-                            Description = "M6"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            AreaId = 1,
-                            Description = "M7"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            AreaId = 1,
-                            Description = "M8"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            AreaId = 1,
-                            Description = "M9"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            AreaId = 1,
-                            Description = "M10"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            AreaId = 2,
-                            Description = "O1"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            AreaId = 2,
-                            Description = "O2"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            AreaId = 2,
-                            Description = "O3"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            AreaId = 2,
-                            Description = "O4"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            AreaId = 2,
-                            Description = "O5"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            AreaId = 2,
-                            Description = "O6"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            AreaId = 2,
-                            Description = "O7"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            AreaId = 2,
-                            Description = "O8"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            AreaId = 2,
-                            Description = "O9"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            AreaId = 2,
-                            Description = "O10"
-                        },
-                        new
-                        {
-                            Id = 21,
-                            AreaId = 3,
-                            Description = "B1"
-                        },
-                        new
-                        {
-                            Id = 22,
-                            AreaId = 3,
-                            Description = "B2"
-                        },
-                        new
-                        {
-                            Id = 23,
-                            AreaId = 3,
-                            Description = "B3"
-                        },
-                        new
-                        {
-                            Id = 24,
-                            AreaId = 3,
-                            Description = "B4"
-                        },
-                        new
-                        {
-                            Id = 25,
-                            AreaId = 3,
-                            Description = "B5"
-                        },
-                        new
-                        {
-                            Id = 26,
-                            AreaId = 3,
-                            Description = "B6"
-                        },
-                        new
-                        {
-                            Id = 27,
-                            AreaId = 3,
-                            Description = "B7"
-                        },
-                        new
-                        {
-                            Id = 28,
-                            AreaId = 3,
-                            Description = "B8"
-                        },
-                        new
-                        {
-                            Id = 29,
-                            AreaId = 3,
-                            Description = "B9"
-                        },
-                        new
-                        {
-                            Id = 30,
-                            AreaId = 3,
-                            Description = "B10"
-                        });
                 });
 
             modelBuilder.Entity("RRS.Data.Customer", b =>

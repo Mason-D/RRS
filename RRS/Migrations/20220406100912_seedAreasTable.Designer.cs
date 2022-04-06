@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RRS.Data;
 
@@ -11,9 +12,10 @@ using RRS.Data;
 namespace RRS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220406100912_seedAreasTable")]
+    partial class seedAreasTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -352,23 +354,6 @@ namespace RRS.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ReservationOrigins");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "In-person"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Email"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Phone"
-                        });
                 });
 
             modelBuilder.Entity("RRS.Data.ReservationStatus", b =>
@@ -386,33 +371,6 @@ namespace RRS.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ReservationStatuses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Pending"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Confirmed"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Cancelled"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Description = "Seated"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Description = "Completed"
-                        });
                 });
 
             modelBuilder.Entity("RRS.Data.Restaurant", b =>

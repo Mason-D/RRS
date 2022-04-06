@@ -6,7 +6,7 @@
         public DateTime Start { get; set; }
         public int Duration { get; set; }
         public DateTime End { get => Start.AddMinutes(Duration); }
-        public bool IsClosed { get; set; }
+        public bool IsOpen { get; set; }
         public int Capacity { get; set; }
         public int RestaurantId { get; set; }
         public Restaurant Restaurant { get; set; }
