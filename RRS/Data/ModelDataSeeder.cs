@@ -22,7 +22,7 @@ namespace RRS.Data
         private void seedRestaurant()
         {
             _builder.Entity<Restaurant>().HasData(
-                new Restaurant { Id = 1, Name = "Bean Scene" }
+                new Restaurant { Id = 1, Name = "Bean Scene", Email = "Bean@Scene.com", Address="123 Bean St, Sydney", PhoneNumber="123-456-789" }
             );
         }
 
