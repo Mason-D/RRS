@@ -3,9 +3,12 @@
     public class Customer : Person
     {
         public List<Reservation> Reservations { get; set; }
-
+        public bool IsAVIP { get; set; }
         public bool IsNotAVIP { get; set; }
 
-        public string Hello = "Hello from Atif!";
+        public string Hello1 = "Yo";
+
+        public string Hello2 = "Hello from Atif!";
+        public int something { get; set; }
     }
 }
