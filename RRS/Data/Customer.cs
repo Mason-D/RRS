@@ -3,5 +3,6 @@
     public class Customer : Person
     {
         public List<Reservation> Reservations { get; set; } = new List<Reservation>();
+        public bool IsVIP { get; set; }
     }
 }

@@ -12,5 +12,6 @@
         public ReservationStatus ReservationStatus { get; set; }
         public int ReservationOriginId { get; set; }
         public ReservationOrigin ReservationOrigin { get; set; }
+        public string CustomerNotes { get; set; }
     }
 }
