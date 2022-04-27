@@ -67,7 +67,7 @@ namespace RRS.Controllers.API
         {
             var customer = _context.People.Where(p => p.Email == resDto.Email).ToList();
 
-            return customer.Any() ? 
+            return customer.Count > 0 ? 
                 (Customer) customer.First()
                 : new Customer
                 {
