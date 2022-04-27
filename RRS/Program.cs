@@ -33,6 +33,13 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// global cors policy
+app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true)); // allow any origin - bypass react api request blocked by CORS policy - Atif
+                                          // possible HACK, review prior to publishing application
+
 app.UseAuthentication();
 app.UseAuthorization();
 
