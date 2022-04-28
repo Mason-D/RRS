@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RRS.Comparers;
 using RRS.Data;
 using RRS.Models;
 
@@ -58,6 +57,8 @@ namespace RRS.Controllers.API
                         .ToList();
         }
 
+
+        // Returns all days in month that have any open sittings 
         [HttpGet]
         [Route("distinct-available/{month}")]
         public ActionResult<IEnumerable<DateTime>> DistinctAvailable(int month)
@@ -66,6 +67,16 @@ namespace RRS.Controllers.API
                 .Where(s => s.IsOpen && s.Start.Month == month)
                 .Select(s => s.Start.Date)
                 .Distinct()
+                .ToList();
+        }
+
+        // Returns all sittings in day
+        [HttpGet]
+        [Route("available-by-day/{date}")]
+        public ActionResult<IEnumerable<Sitting>> AvailableByDay(DateTime date)
+        {
+            return _context.Sittings
+                .Where(s => s.IsOpen && s.Start == date)
                 .ToList();
         }
     }
