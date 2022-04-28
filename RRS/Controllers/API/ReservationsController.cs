@@ -7,11 +7,11 @@ namespace RRS.Controllers.API
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ReservationController : ControllerBase
+    public class ReservationsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public ReservationController(ApplicationDbContext context)
+        public ReservationsController(ApplicationDbContext context)
         {
             _context = context;
         }
