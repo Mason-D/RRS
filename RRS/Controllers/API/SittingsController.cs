@@ -44,7 +44,7 @@ namespace RRS.Controllers.API
 
             return _context.Sittings
                         .Where(s => s.IsOpen)
-                        .Where(s => DateTime.Compare(s.Start, startDate) >= 0 && DateTime.Compare(s.Start, endDate) <= 0 )
+                        .Where(s => DateTime.Compare(s.Start, startDate) >= 0 && DateTime.Compare(s.Start, endDate) <= 0)
                         .Select(s => new SittingDto
                         {
                             Id = s.Id,
@@ -57,6 +57,32 @@ namespace RRS.Controllers.API
                         .ToList();
         }
 
+        [HttpGet]
+        [Route("available-soon/{earliest}")]
+        //NOT IMPLEMENTED
+        public ActionResult<IEnumerable<SittingDto>> AvailableSoon(DateTime earliest)
+        {
+            return _context.Sittings
+                        .Where(s => s.IsOpen)
+                        .Where(s => isAvailableSoon(s.Start, earliest))
+                        .Select(s => new SittingDto
+                        {
+                            Id = s.Id,
+                            Start = s.Start,
+                            Duration = s.Duration,
+                            Capacity = s.Capacity,
+                            IsOpen = s.IsOpen,
+                            SittingTypeDescription = s.SittingType.Description
+                        })
+                        .ToList();
+        }
+
+        private bool isAvailableSoon(DateTime sitting, DateTime earliest)
+        {
+            return sitting >= earliest
+                && sitting.Year == earliest.Year 
+                && (sitting.Month == earliest.Month || sitting.Month == earliest.Month + 1);
+        }
 
         // Returns all days in month that have any open sittings 
         [HttpGet]
