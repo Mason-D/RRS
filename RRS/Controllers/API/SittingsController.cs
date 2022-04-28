@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RRS.Comparers;
 using RRS.Data;
 using RRS.Models;
 
@@ -36,6 +37,7 @@ namespace RRS.Controllers.API
 
         [HttpGet]
         [Route("available/{year}-{month}-{day}")]
+        //HACK, use iso-string
         public ActionResult<IEnumerable<SittingDto>> Available(int year, int month, int day)
         {
             var startDate = new DateTime(year, month, day);
@@ -54,6 +56,17 @@ namespace RRS.Controllers.API
                             SittingTypeDescription = s.SittingType.Description
                         })
                         .ToList();
+        }
+
+        [HttpGet]
+        [Route("distinct-available/{month}")]
+        public ActionResult<IEnumerable<DateTime>> DistinctAvailable(int month)
+        {
+            return _context.Sittings
+                .Where(s => s.IsOpen && s.Start.Month == month)
+                .Select(s => s.Start.Date)
+                .Distinct()
+                .ToList();
         }
     }
 }
