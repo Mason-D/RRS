@@ -18,6 +18,7 @@ namespace RRS.Controllers.API
 
         [HttpGet]
         [Route("available/{start}/{end?}")]
+        // Programmatically get current date. 
         public ActionResult<IEnumerable<SittingDto>> Available(DateTime start, DateTime end)
         {
             var startLocal = start.ToLocalTime();
