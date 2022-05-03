@@ -17,7 +17,7 @@ namespace RRS.Controllers.API
         }
 
         [HttpPost]
-        public ReservationDto CreateReservation(ReservationDto resDTO)
+        public ReservationDto Create(ReservationDto resDTO)
         {
             var customer = findOrCreateCustomer(resDTO);
 
