@@ -114,7 +114,9 @@ namespace RRS.Controllers.API
         public ActionResult<IEnumerable<SittingByDayDto>> DayTypes(DateTime date)
         {
             return _context.Sittings
-                        .Where(s => s.Start.Date == date.Date)
+                        
+                        .Where(s => s.IsOpen
+                                && s.Start.Date == date.Date)
                         .Select(s => new SittingByDayDto { Id = s.Id, Type = s.SittingType.Description, Duration = s.Duration})
                         .ToList();
         }
