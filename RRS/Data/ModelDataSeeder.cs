@@ -191,7 +191,8 @@ namespace RRS.Data
             _builder.Entity<ReservationOrigin>().HasData(
                 new ReservationOrigin { Id = 1, Description = "In-person" },
                 new ReservationOrigin { Id = 2, Description = "Email" },
-                new ReservationOrigin { Id = 3, Description = "Phone" }
+                new ReservationOrigin { Id = 3, Description = "Phone" },
+                new ReservationOrigin { Id = 3, Description = "Online" }
             );
         }
     }
