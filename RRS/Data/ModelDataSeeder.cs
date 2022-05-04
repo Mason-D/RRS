@@ -192,7 +192,7 @@ namespace RRS.Data
                 new ReservationOrigin { Id = 1, Description = "In-person" },
                 new ReservationOrigin { Id = 2, Description = "Email" },
                 new ReservationOrigin { Id = 3, Description = "Phone" },
-                new ReservationOrigin { Id = 3, Description = "Online" }
+                new ReservationOrigin { Id = 4, Description = "Online" }
             );
         }
     }
