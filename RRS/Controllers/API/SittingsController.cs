@@ -82,8 +82,8 @@ namespace RRS.Controllers.API
             return _context.Sittings
                         
                         .Where(s => s.IsOpen
-                                && s.Start.Date == dateLocal.Date)
-                        .Select(s => new SittingByDayDto { Id = s.Id, Type = s.SittingType.Description, Duration = s.Duration})
+                                && s.Start.Date == date.Date)
+                        .Select(s => new SittingByDayDto { Id = s.Id, Type = s.SittingType.Description, Duration = s.Duration, Start = s.Start.ToString("HH:mm") })
                         .ToList();
         }
 
