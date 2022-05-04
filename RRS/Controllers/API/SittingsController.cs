@@ -21,7 +21,7 @@ namespace RRS.Controllers.API
         public ActionResult<IEnumerable<SittingDto>> Available(DateTime start, DateTime end = new DateTime())
         {
             var startLocal = start.ToLocalTime();
-            var endLocal = end == new DateTime() ? startLocal.AddMonths(3) : end.ToLocalTime();
+            var endLocal = end == new DateTime() ? startLocal.AddDays(28 * 3) : end.ToLocalTime();
 
                 return _context.Sittings
                             .Where(s => s.IsOpen
@@ -44,7 +44,7 @@ namespace RRS.Controllers.API
         public ActionResult<Dictionary<int, List<int>>> DistinctAvailable(DateTime start, DateTime end = new DateTime())
         {          
             var startLocal = start.ToLocalTime();
-            var endLocal = end == new DateTime() ? startLocal.AddMonths(3) : end.ToLocalTime();
+            var endLocal = end == new DateTime() ? startLocal.AddDays(28 * 3) : end.ToLocalTime();
             var dict = new Dictionary<int, List<int>>();
 
             var sittings = _context.Sittings
