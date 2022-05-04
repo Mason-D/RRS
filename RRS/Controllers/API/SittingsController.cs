@@ -117,7 +117,7 @@ namespace RRS.Controllers.API
                         
                         .Where(s => s.IsOpen
                                 && s.Start.Date == date.Date)
-                        .Select(s => new SittingByDayDto { Id = s.Id, Type = s.SittingType.Description, Duration = s.Duration})
+                        .Select(s => new SittingByDayDto { Id = s.Id, Type = s.SittingType.Description, Duration = s.Duration , Start = s.Start.ToString("HH:mm")})
                         .ToList();
         }
 
