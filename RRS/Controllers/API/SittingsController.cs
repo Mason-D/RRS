@@ -49,69 +49,87 @@ namespace RRS.Controllers.API
             var monthDayDict = new Dictionary<int, List<int>>();
 
             var sittings = _context.Sittings
-                        .Where(s => s.IsOpen
-                                    && s.Start >= startLocal
-                                    && s.Start < endLocal)
-                        .Select(s => new { Year = s.Start.Year, Month = s.Start.Month, Day = s.Start.Day })
-                        .ToList();
+                        .Where(s => s.IsOpen&& s.Start >= startLocal&& s.Start < endLocal).ToArray();
 
-            foreach (var sitting in sittings)
+                    
+                       
+            var groups = sittings.GroupBy(s => s.Start.Year);
+            foreach (var yg in groups)
             {
-
-                if (yearMonthDict.ContainsKey(sitting.Year))
+                int year = yg.Key;
+                var monthGroups = yg.GroupBy(s => s.Start.Month);
+                foreach (var mg in monthGroups)
                 {
-                    if (!yearMonthDict[sitting.Year].Contains(sitting.Month))
-                    {
-                        yearMonthDict[sitting.Year].Add(sitting.Month);
-                    }
+                    int month = mg.Key;
+                    var dayGroups = mg.GroupBy(s => s.Start.Day);
                 }
-                else
-                {
-                    yearMonthDict.Add(sitting.Year, new List<int>());
-                    yearMonthDict[sitting.Year].Add(sitting.Month);
-                }
+             
             }
 
-            foreach (var sitting in sittings)
-            {
-                if (monthDayDict.ContainsKey(sitting.Month))
-                {
-                    if (!monthDayDict[sitting.Month].Contains(sitting.Day))
-                    {
-                        monthDayDict[sitting.Month].Add(sitting.Day);
-                    }
-                }
-                else
-                {
-                    monthDayDict.Add(sitting.Month, new List<int>());
-                    monthDayDict[sitting.Month].Add(sitting.Day);
-                }
-            }
 
-            var fusedDict = new Dictionary<int, List<Dictionary<int, List<int>>>>();
+                                     
 
-            foreach (var yearMonth in yearMonthDict)
-            {
-                foreach (var monthDay in monthDayDict)
-                {
-                    if (fusedDict.TryGetValue(yearMonth.Key, out var oldMonthDayDict))
-                    {
-                        var temp = new Dictionary<int, List<int>>();
-                        temp.Add(monthDay.Key, monthDay.Value);
 
-                        fusedDict[yearMonth.Key].Add(temp);
-                    }
-                    else
-                    {
-                        var temp1 = new List<Dictionary<int, List<int>>>();
-                        var temp2 = new Dictionary<int, List<int>>();
-                        temp2.Add(monthDay.Key, monthDay.Value);
-                        fusedDict.Add(yearMonth.Key, temp1);
-                    }
-                }
-            }
+            //.Select(s => new { Year = s.Start.Year, Month = s.Start.Month, Day = s.Start.Day })
+            int temp = 1;
 
-            return fusedDict;
+            //foreach (var sitting in sittings)
+            //{
+
+            //    if (yearMonthDict.ContainsKey(sitting.Year))
+            //    {
+            //        if (!yearMonthDict[sitting.Year].Contains(sitting.Month))
+            //        {
+            //            yearMonthDict[sitting.Year].Add(sitting.Month);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        yearMonthDict.Add(sitting.Year, new List<int>());
+            //        yearMonthDict[sitting.Year].Add(sitting.Month);
+            //    }
+            //}
+
+            //foreach (var sitting in sittings)
+            //{
+            //    if (monthDayDict.ContainsKey(sitting.Month))
+            //    {
+            //        if (!monthDayDict[sitting.Month].Contains(sitting.Day))
+            //        {
+            //            monthDayDict[sitting.Month].Add(sitting.Day);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        monthDayDict.Add(sitting.Month, new List<int>());
+            //        monthDayDict[sitting.Month].Add(sitting.Day);
+            //    }
+            //}
+
+            //var fusedDict = new Dictionary<int, List<Dictionary<int, List<int>>>>();
+
+            //foreach (var yearMonth in yearMonthDict)
+            //{
+            //    foreach (var monthDay in monthDayDict)
+            //    {
+            //        if (fusedDict.TryGetValue(yearMonth.Key, out var oldMonthDayDict))
+            //        {
+            //            var temp = new Dictionary<int, List<int>>();
+            //            temp.Add(monthDay.Key, monthDay.Value);
+
+            //            fusedDict[yearMonth.Key].Add(temp);
+            //        }
+            //        else
+            //        {
+            //            var temp1 = new List<Dictionary<int, List<int>>>();
+            //            var temp2 = new Dictionary<int, List<int>>();
+            //            temp2.Add(monthDay.Key, monthDay.Value);
+            //            fusedDict.Add(yearMonth.Key, temp1);
+            //        }
+            //    }
+            //}
+
+            return null;
         }
 
         [HttpGet]
