@@ -24,9 +24,7 @@ namespace RRS.Controllers.API
             var endLocal = end == new DateTime() ? startLocal.AddDays(28 * 3) : end.ToLocalTime();
 
                 return _context.Sittings
-                            .Where(s => s.IsOpen
-                                        && s.Start >= startLocal
-                                        && s.Start < endLocal)
+                            .Where(s => s.IsOpen && s.Start.Date >= startLocal.Date && s.Start.Date <= endLocal.Date)
                             .Select(s => new SittingDto
                             {
                                 Id = s.Id,
@@ -41,95 +39,18 @@ namespace RRS.Controllers.API
 
         [HttpGet]
         [Route("distinct-available/{start}/{end?}")]
-        public ActionResult<Dictionary<int, List<Dictionary<int, List<int>>>>> DistinctAvailable(DateTime start, DateTime end = new DateTime())
+        public ActionResult<Dictionary<int, Dictionary<int, IEnumerable<int>>>> DistinctAvailable(DateTime start, DateTime end = new DateTime())
         {          
             var startLocal = start.ToLocalTime();
             var endLocal = end == new DateTime() ? startLocal.AddDays(28 * 3) : end.ToLocalTime();
-            var yearMonthDict = new Dictionary<int, List<int>>();
-            var monthDayDict = new Dictionary<int, List<int>>();
 
-            var sittings = _context.Sittings
-                        .Where(s => s.IsOpen&& s.Start >= startLocal&& s.Start < endLocal).ToArray();
+            var sittings = _context.Sittings.Where(s => s.IsOpen && s.Start.Date >= startLocal.Date && s.Start.Date <= endLocal.Date)
+                .Select( s => new { Start = s.Start})
+                .ToArray();
 
-                    
-                       
-            var groups = sittings.GroupBy(s => s.Start.Year);
-            foreach (var yg in groups)
-            {
-                int year = yg.Key;
-                var monthGroups = yg.GroupBy(s => s.Start.Month);
-                foreach (var mg in monthGroups)
-                {
-                    int month = mg.Key;
-                    var dayGroups = mg.GroupBy(s => s.Start.Day);
-                }
-             
-            }
-
-
-                                     
-
-
-            //.Select(s => new { Year = s.Start.Year, Month = s.Start.Month, Day = s.Start.Day })
-            int temp = 1;
-
-            //foreach (var sitting in sittings)
-            //{
-
-            //    if (yearMonthDict.ContainsKey(sitting.Year))
-            //    {
-            //        if (!yearMonthDict[sitting.Year].Contains(sitting.Month))
-            //        {
-            //            yearMonthDict[sitting.Year].Add(sitting.Month);
-            //        }
-            //    }
-            //    else
-            //    {
-            //        yearMonthDict.Add(sitting.Year, new List<int>());
-            //        yearMonthDict[sitting.Year].Add(sitting.Month);
-            //    }
-            //}
-
-            //foreach (var sitting in sittings)
-            //{
-            //    if (monthDayDict.ContainsKey(sitting.Month))
-            //    {
-            //        if (!monthDayDict[sitting.Month].Contains(sitting.Day))
-            //        {
-            //            monthDayDict[sitting.Month].Add(sitting.Day);
-            //        }
-            //    }
-            //    else
-            //    {
-            //        monthDayDict.Add(sitting.Month, new List<int>());
-            //        monthDayDict[sitting.Month].Add(sitting.Day);
-            //    }
-            //}
-
-            //var fusedDict = new Dictionary<int, List<Dictionary<int, List<int>>>>();
-
-            //foreach (var yearMonth in yearMonthDict)
-            //{
-            //    foreach (var monthDay in monthDayDict)
-            //    {
-            //        if (fusedDict.TryGetValue(yearMonth.Key, out var oldMonthDayDict))
-            //        {
-            //            var temp = new Dictionary<int, List<int>>();
-            //            temp.Add(monthDay.Key, monthDay.Value);
-
-            //            fusedDict[yearMonth.Key].Add(temp);
-            //        }
-            //        else
-            //        {
-            //            var temp1 = new List<Dictionary<int, List<int>>>();
-            //            var temp2 = new Dictionary<int, List<int>>();
-            //            temp2.Add(monthDay.Key, monthDay.Value);
-            //            fusedDict.Add(yearMonth.Key, temp1);
-            //        }
-            //    }
-            //}
-
-            return null;
+            return sittings.GroupBy(s => s.Start.Year).ToDictionary(x => x.Key, 
+                        x => x.GroupBy(s => s.Start.Month).ToDictionary(x => x.Key, 
+                            x => x.GroupBy(s => s.Start.Day).Select(x => x.Key)));
         }
 
         [HttpGet]
