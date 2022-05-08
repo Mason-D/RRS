@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RRS.Data;
 using RRS.Models;
+using RRS.Services;
 
 namespace RRS.Controllers.API
 {
@@ -10,16 +11,20 @@ namespace RRS.Controllers.API
     public class ReservationsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly PersonService _personService;
 
-        public ReservationsController(ApplicationDbContext context)
+        public ReservationsController(ApplicationDbContext context, PersonService personService)
         {
             _context = context;
+            _personService = personService;
         }
 
         [HttpPost]
         public ReservationDto Create(ReservationDto resDTO)
         {
-            var customer = findOrCreateCustomer(resDTO);
+            //var customer = findOrCreateCustomer(resDTO);
+            var customer = _personService.FindOrCreatePerson<Customer>(
+                resDTO.FirstName, resDTO.LastName, resDTO.Email, resDTO.PhoneNumber, resDTO.RestaurantId);
 
             var reservation = new Reservation
             {
@@ -28,7 +33,7 @@ namespace RRS.Controllers.API
                 SittingId = resDTO.SittingId,
                 ReservationOriginId = resDTO.ReservationOriginId,
                 ReservationStatusId = 1,
-                Customer = customer,
+                Customer = (Customer) customer,
                 CustomerId = customer.Id
             };
 
@@ -42,20 +47,22 @@ namespace RRS.Controllers.API
             return resDTO;
         }
 
-        private Customer findOrCreateCustomer(ReservationDto resDto)
-        {
-            var customer = _context.People.Where(p => p.Email == resDto.Email).ToList();
+        //private Customer findOrCreateCustomer(ReservationDto resDto)
+        //{
+        //    var customer = _context.People.Where(p => p.Email == resDto.Email).ToList();
 
-            return customer.Count > 0 ? 
-                (Customer) customer.First()
-                : new Customer
-                {
-                    FirstName = resDto.FirstName,
-                    LastName = resDto.LastName,
-                    Email = resDto.Email,
-                    PhoneNumber = resDto.PhoneNumber,
-                    RestaurantId = resDto.RestaurantId
-                };
-        }
+        //    return customer.Count > 0 ? 
+        //        (Customer) customer.First()
+        //        : new Customer
+        //        {
+        //            FirstName = resDto.FirstName,
+        //            LastName = resDto.LastName,
+        //            Email = resDto.Email,
+        //            PhoneNumber = resDto.PhoneNumber,
+        //            RestaurantId = resDto.RestaurantId
+        //        };
+        //}
+
+
     }
 }
