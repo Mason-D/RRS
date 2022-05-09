@@ -14,7 +14,7 @@ namespace RRS.Services
         public Person FindOrCreatePerson<T>(string firstName, string lastName, string email, string phoneNumber, int restaurantId)
             where T : Person, new()
         {
-            var result = _context.People.Where(p => p.Email == p.Email).ToList();
+            var result = _context.People.Where(p => p.Email == email).ToList();
 
             return result.Count > 0 ?
                 (T) result.First()
