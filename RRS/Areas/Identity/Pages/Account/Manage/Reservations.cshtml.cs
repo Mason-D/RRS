@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RRS.Data;
+using RRS.Services;
 
 namespace RRS.Areas.Identity.Pages.Account.Manage
 {
@@ -33,7 +34,7 @@ namespace RRS.Areas.Identity.Pages.Account.Manage
             public List<Reservation>? PastReservations { get; set; }
         }
         private async Task LoadAsync(IdentityUser user)
-        {
+        {          
             var currentDate = DateTime.Now;
             var reservations = await _context.Reservations.Include(r => r.Sitting).Where(r => "93a658ff-1307-471d-a810-695a7a76587c" == user.Id).ToListAsync();
             var past = reservations.Where(r => r.Sitting.Start < currentDate).ToList();
