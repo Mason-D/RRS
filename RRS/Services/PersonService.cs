@@ -1,4 +1,5 @@
 ﻿using RRS.Data;
+using RRS.Models;
 
 namespace RRS.Services
 {
@@ -10,56 +11,33 @@ namespace RRS.Services
         {
             _context = context;
         }
-         
-        public Person FindOrCreatePerson<T>(string firstName, string lastName, string email, string? phoneNumber, int restaurantId)
+
+        public Person FindOrCreatePerson<T>(PersonVM personVM)
             where T : Person, new()
         {
-            bool namesMatch;
-            var result = _context.People.Where(p => p.Email == email).ToList();
-            var person = result.Count > 0 ? result.First() : null;
-
-            if (person != null) // Existing person first & last name must match name arguments 
+            var result = _context.People.Where(p => p.Email == personVM.Email).ToList();
+            Person person;
+            if (result.Count > 0)
             {
-                if (validNames(firstName, lastName, person))
-                {
-                    return person;
-                }
-                else
-                {
-                    throw new ArgumentException("First and/or last name doesn't match existing records with this email.");
-                }
+                person = (T)result.First();
+                person.FirstName ??= personVM.FirstName;
+                person.LastName ??= personVM.LastName;
+                person.PhoneNumber ??= personVM.PhoneNumber;
+                return person;
             }
-            else // If a person doesn't exist, names matching validation not required.
+            else
             {
                 person = new T
                 {
-                    FirstName = firstName,
-                    LastName = lastName,
-                    Email = email,
-                    PhoneNumber = phoneNumber,
-                    RestaurantId = restaurantId
+                    FirstName = personVM.FirstName,
+                    LastName = personVM.LastName,
+                    Email = personVM.Email,
+                    PhoneNumber = personVM.PhoneNumber,
+                    RestaurantId = personVM.RestaurantId
                 };
+                _context.People.Add(person);
                 return person;
             }
-
-            // Previous code. Works.
-            //var result = _context.People.Where(p => p.Email == email).ToList();
-
-            //return result.Count > 0 ?
-            //    (T) result.First()
-            //    : new T
-            //    {
-            //        FirstName = firstName,
-            //        LastName = lastName,
-            //        Email = email,
-            //        PhoneNumber = phoneNumber,
-            //        RestaurantId = restaurantId
-            //    };
-        }
-
-        private bool validNames(string firstName, string lastName, Person person)
-        {
-            return person.FirstName == firstName && person.LastName == lastName;
         }
     }
 }

@@ -15,14 +15,10 @@ namespace RRS.Attributes
 
         public string GetErrorMessage() => $"{Name} doesn't match {NameType} with exisiting email";
 
-        public override ValidationResult? IsValid(object? value)
-        {
-            //if ((string) value )
-            //{
-
-            //}
-            return ValidationResult.Success;
-        }
+        //public override ValidationResult? IsValid(object? value)
+        //{
+        //    return ValidationResult.Success;
+        //}
     }
 
     public enum NameType

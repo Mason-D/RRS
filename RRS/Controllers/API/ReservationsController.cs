@@ -24,7 +24,14 @@ namespace RRS.Controllers.API
         {
             //var customer = findOrCreateCustomer(resDTO);
             var customer = _personService.FindOrCreatePerson<Customer>(
-                resDTO.FirstName, resDTO.LastName, resDTO.Email, resDTO.PhoneNumber, resDTO.RestaurantId);
+                new PersonVM
+                {
+                    Email = resDTO.Email,
+                    FirstName = resDTO.FirstName,
+                    LastName = resDTO.LastName,
+                    PhoneNumber = resDTO.PhoneNumber,
+                    RestaurantId = resDTO.RestaurantId
+                });
 
             var reservation = new Reservation
             {

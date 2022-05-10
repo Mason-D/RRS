@@ -1,10 +1,3 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
-#nullable disable
-
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -14,10 +7,13 @@ using Microsoft.AspNetCore.WebUtilities;
 using RRS.Data;
 using RRS.Models;
 using RRS.Services;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Text.Encodings.Web;
 
 namespace RRS.Areas.Identity.Pages.Account
 {
-    public class RegisterModel : PageModel
+    public class RegisterPersonalInformationModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
@@ -28,7 +24,7 @@ namespace RRS.Areas.Identity.Pages.Account
         private readonly ApplicationDbContext _context;
         private readonly PersonService _personService;
 
-        public RegisterModel(
+        public RegisterPersonalInformationModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
@@ -52,11 +48,25 @@ namespace RRS.Areas.Identity.Pages.Account
 
         public string ReturnUrl { get; set; }
 
-        public bool PersonExists { get; set; } = false;
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         public class InputModel
         {
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
+            [DataType(DataType.Text)]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
+            [DataType(DataType.Text)]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            [StringLength(10, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 10)]
+            [DataType(DataType.PhoneNumber)]
+            [Display(Name = "Phone Number")]
+            public string PhoneNumber { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -76,10 +86,7 @@ namespace RRS.Areas.Identity.Pages.Account
 
 
         public async Task OnGetAsync(string returnUrl = null)
-        {
-            //NOT IMPLEMENTED, throws error
-            //Input.Email not initialised yet
-            bool PersonExists = _context.People.Where(p => p.Email == Input.Email).ToList().Count > 0;
+        {          
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
@@ -91,19 +98,11 @@ namespace RRS.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-
-                //bool personExists = _context.People.Where(p => p.Email == Input.Email).ToList().Count > 0;
-                //if (!personExists)
-                //{
-                //    return RedirectToPage("RegisterPersonalInformation", new { Email = Input.Email, RestaurantId = 1 });
-                //}
-
                 var user = CreateUser();
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password); //WON'T create duplicate user
-
 
                 if (result.Succeeded)
                 {
