@@ -27,7 +27,11 @@
                 <label asp-for="Input.ConfirmPassword"></label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <div id="partialPersonalInformation"></div>
+            @if((bool)ViewData["PersonExists"] == false)
+            {
+                <span class="small text-danger">*First time customers must provide personal information</span>
+                <partial name="_PersonalInformation.cshtml" />
+            }
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
         </form>
     </div>
@@ -61,20 +65,8 @@
             }
         </section>
     </div>
-
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-    <script>
-        $(() => {
-            debugger;
-            $("registerSubmit").on("submit", (e) => {
-                if(@Model.!PersonExists){
-                    e.preventDefault();
-                    $(partialPersonalInformation).append("<partial name="_PersonalInformation.cshtml" />")
-                }
-            });
-        })
-    </script>
 }
