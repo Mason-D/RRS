@@ -23,10 +23,11 @@ namespace RRS.Areas.Admin.Controllers
         // GET: Admin/Reservation
         public async Task<IActionResult> Index(DateTime date)
         {
-            
+            ViewData["getReservationsByDate"] = date.ToString("yyyy-MM-dd");
+
             if (date == new DateTime())
             {
-                date = new DateTime(2022, 4, 6, 0 ,0 ,0);
+                date = DateTime.Now.Date;
             }
             var applicationDbContext = _context.Reservations
                 .Include(r => r.Customer)
@@ -35,9 +36,9 @@ namespace RRS.Areas.Admin.Controllers
                 .Include(r => r.Sitting)
                     .ThenInclude(s => s.SittingType)
                 .Where(r => r.Sitting.Start.Date == date.Date)
+                .AsNoTracking()
                 .ToArrayAsync();
 
-         
 
             return View(await applicationDbContext);
         }

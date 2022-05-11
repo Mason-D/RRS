@@ -12,9 +12,12 @@
     <a asp-action="Create">Create New</a>
 </p>
 
+<form method="get" asp-action="Index">
+    <label for="selectDate">Date:</label>
+    <input type="date" id="selectDate" value="@ViewData["getReservationsByDate"]" name="date" onchange="submit" />
+    <input type="submit" value="Search" class="btn btn-primary" />
+</form>
 
-
-<input asp-action="Index" asp-route-id={value} type="date" id="datePicker" />
 
 <table class="table">
     <thead>
