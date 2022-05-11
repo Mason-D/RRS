@@ -23,8 +23,19 @@ namespace RRS.Areas.Admin.Controllers
         // GET: Admin/Reservation
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Reservations.Include(r => r.Customer).Include(r => r.ReservationOrigin).Include(r => r.ReservationStatus).Include(r => r.Sitting);
-            return View(await applicationDbContext.ToListAsync());
+            DateTime selectDate = new DateTime(2022, 4, 6, 0, 0, 0);
+
+            var applicationDbContext = _context.Reservations
+                .Include(r => r.Customer)
+                .Include(r => r.ReservationOrigin)
+                .Include(r => r.ReservationStatus)
+                .Include(r => r.Sitting)
+                    .ThenInclude(s => s.SittingType)
+                    .Where(r => r.Sitting.Start.Date == selectDate.Date)
+                .ToArrayAsync();
+
+
+            return View(await applicationDbContext);
         }
 
         // GET: Admin/Reservation/Details/5

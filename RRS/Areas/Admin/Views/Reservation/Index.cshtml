@@ -13,53 +13,81 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NoOfGuests)
+                Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Customer)
+                Type
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Sitting)
+                Customer
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ReservationStatus)
+                Contact
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ReservationOrigin)
+                Guests
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CustomerNotes)
+                Status
+            </th>
+            <th>
+                Origin
+            </th>
+            <th>
+                Notes
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var res in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.NoOfGuests)
+                @res.Sitting.Start.ToString("dd/MM/yyyy")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.Id)
+                @res.Sitting.SittingType.Description
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Sitting.Id)
+                @res.Customer.FirstName
+                @res.Customer.LastName
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ReservationStatus.Id)
+                @res.Customer.PhoneNumber
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ReservationOrigin.Id)
+                @res.NoOfGuests
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CustomerNotes)
+                @res.ReservationStatus.Description
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                @res.ReservationOrigin.Description
+            </td>
+            <td>
+                @res.CustomerNotes
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@res.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@res.Id">Details</a>
+                @*| <a asp-action="Delete" asp-route-id="@res.Id">Delete</a>*@
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+        $(".datepicker").datepicker({
+            dateFormat: "dd-mm-yy",
+            changemonth: true,
+            changeyear: true
+            });
+        });
+    </script>
+}
