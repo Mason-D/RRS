@@ -23,12 +23,13 @@ namespace RRS.Areas.Admin.Controllers
         // GET: Admin/Reservation
         public async Task<IActionResult> Index(DateTime date)
         {
-            ViewData["getReservationsByDate"] = date.ToString("yyyy-MM-dd");
-
             if (date == new DateTime())
             {
                 date = DateTime.Now.Date;
             }
+
+            ViewData["getReservationsByDate"] = date.ToString("yyyy-MM-dd");
+
             var applicationDbContext = _context.Reservations
                 .Include(r => r.Customer)
                 .Include(r => r.ReservationOrigin)
