@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RRS.Data.Sitting>
+﻿@model RRS.Data.Sitting
 
 @{
     ViewData["Title"] = "Index";
@@ -15,6 +15,7 @@
     <div class="col-sm-6 m-5">
         <label for="dateControl">Start date:</label>
         <input type="date" id="dateControl" name="trip-start" value=@reversedDatePart> @*Min & Max attributes available*@
+        <select id="selectTypes"></select>
     </div>
 
     <div class="col-sm-6 m-5">
@@ -30,6 +31,7 @@
                     <th scope="col">Is Open</th>
                     <th scope="col">Type</th>
                     <th scope="col">Interval</th>
+                    <th scope="col">Selected</th>
                 </tr>
             </thead>
             <tbody id="sittingsTBody"></tbody>
@@ -44,9 +46,13 @@
         Must be persisted in sitting entity to be configured*
     </div>
 
-    <div class="col-sm-12 text-center m-5">
+    <div class="col-sm-12 m-5">
         @*Not Implemented*@
         <form method="post">
+            <input disabled asp-for="Id" value="81" />
+            <input disabled asp-for="Start" />
+            <input asp-for="Duration" value="180" />
+            <input asp-for="Capacity" value="40" />
             <button asp-area="Admin" asp-controller="Sitting" asp-action="Edit"
                 id="updateBttn" class="btn btn-primary">
                 Update
@@ -55,7 +61,6 @@
                 id="deleteBttn" class="btn btn-primary">
                 Delete
             </button>
-            <input type="hidden" value="81" />
         </form>
     </div>
 </div>
@@ -63,7 +68,7 @@
 @section Scripts{
         <script>
         $(() => {
-            $('#dateControl').on("click", (e) => {
+            $("#dateControl").on("click", (e) => {
                 $(this).change(() => {
 
                     const newDate = e.target.value;
@@ -71,10 +76,10 @@
                     //Sittings by selected day
                     $.get(`https://localhost:7271/api/Sittings/any/${newDate}/${newDate}`, null, function (data) {
 
-                        $("#sittingsTBody").empty();
+                        $("#sittingsTBody").empty(); //Clashing with checkbox
                         $("#selectTypes").empty();
 
-                        data.forEach((item) => {
+                        data.forEach((item, index) => {
 
                             $("#sittingsTBody").append(
                                 `<tr>
@@ -83,13 +88,14 @@
                                     <td>${item.isOpen}</td>
                                     <td>${item.sittingTypeDescription}</td>
                                     <td>(Not yet in entity)</td>
+                                    <td><input type="checkbox" class="radio" value="${index}" id="type${index}" name="type${index}" /></td>
                                 </tr>`
                             );
 
-                            $("#selectTypes").append(
-                                //value should be id so no conflict possibility, e.g., what if same day had multiple of 'x' type sittings
-                                `<option value="${item.sittingTypeDescription}">${item.sittingTypeDescription}</option>`
-                            );
+                            //$("#selectTypes").append(
+                            //    //value should be id so no conflict possibility, e.g., what if same day had multiple of 'x' type sittings
+                            //    `<option value="${item.sittingTypeDescription}">${item.sittingTypeDescription}</option>`
+                            //);
 
                         })
 
@@ -97,11 +103,16 @@
                 });
             });
 
+            $("#sittingsTBody").on('change',"input[type='checkbox']",function (e) {
+                let temp = e.target.value;
+                $(`#type${temp}.radio`).prop("checked", true);
+            });
+
+
+
             //$("#updateBttn").on("click", (e) => {
             //    e.preventDefault();
-            //    debugger;
-                
-
+            //    debugger;             
                 //AJAX Post doesn't hit action
                 //jqXHR (jQuery XMLHttpRequest)
                 //$.post("https://localhost:7271/Admin/Sitting/Edit?id=81", 81)               
