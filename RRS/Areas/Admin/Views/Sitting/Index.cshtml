@@ -15,8 +15,14 @@
 <input type="date" id="dateControl" name="trip-start"
        value=@reversedDatePart> @*Min & Max attributes available*@
 
+<h3>Sitting On Selected Day:</h3>
 <div id="displaySittings">
     Dummy Sittings
+</div>
+
+<h3>Sitting Types On Selected Day:</h3>
+<div id="displayTypes">
+    Dummy Types
 </div>
 
 <a asp-action="ByDate" asp-controller="Sitting" asp-area="Admin" asp-route-date="@reversedDatePart">Details Action</a>
@@ -26,21 +32,38 @@
         $(() => {
             $('#dateControl').on("click", (e) => {
                 $(this).change(() => {
-                    let newDate = e.target.value; 
-                    $("#dateDisplay").text(`${newDate}`)
 
+                    //Sittings on selected day
                     $.get(`https://localhost:7271/api/Sittings/any/${newDate}/${newDate}`, null, function (data) {    
                         $("#displaySittings").empty();
                         data.forEach((item) => {
                             $("#displaySittings").append(
-                                `<div>
+                                `<div>                                   
                                     <p>Sitting ID:${item.id}</p>
                                 </div>`
                             );
-                        })
+                        });
+                    });
+
+                    //Types on selected day
+                    $.get(`https://localhost:7271/api/Sittings/any/${newDate}/${newDate}`, null, function (data) {    
+                        $("#displaySittings").empty();
+                        data.forEach((item) => {
+                            $("#displaySittings").append(
+                                `<div>                                   
+                                    <p>Sitting ID:${item.id}</p>
+                                </div>`
+                            );
+                        });
                     });
                 });
             });
         })
     </script>
 }
+
+                            $("#displayTypes").append(
+                                `<div>                                   
+                                    <p>Type:${item.id}</p>
+                                </div>`
+                            );
