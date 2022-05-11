@@ -9,6 +9,11 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+
+
+<input type="date" name="" class="datepicker" />
+
 <table class="table">
     <thead>
         <tr>
@@ -77,17 +82,3 @@
     </tbody>
 </table>
 
-
-
-
-@section scripts{
-    <script>
-        $(document).ready(function () {
-        $(".datepicker").datepicker({
-            dateFormat: "dd-mm-yy",
-            changemonth: true,
-            changeyear: true
-            });
-        });
-    </script>
-}
