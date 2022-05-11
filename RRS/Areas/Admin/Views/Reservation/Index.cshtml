@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Index";
+
+    string sittingDate;
 }
 
 <h1>Index</h1>
@@ -12,7 +14,7 @@
 
 
 
-<input asp-action="Index" asp-route-id={value} type="date" name="date" />
+<input asp-action="Index" asp-route-id={value} type="date" id="datePicker" />
 
 <table class="table">
     <thead>
@@ -73,12 +75,21 @@
                 @res.CustomerNotes
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@res.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@res.Id">Details</a>
-                @*| <a asp-action="Delete" asp-route-id="@res.Id">Delete</a>*@
+                <a type="button" class="btn btn-primary" asp-action="Edit" asp-route-id="@res.Id"> Edit </a>
+                <a type="button" class="btn btn-primary" asp-action="Details" asp-route-id="@res.Id">Details</a>   
             </td>
         </tr>
 }
     </tbody>
 </table>
 
+@section Scripts{
+    <script>
+        $(()=>{
+            $("#datePicker").on("click", (e) =>{
+                $(this.onchange(()=>
+                ))
+            })
+        })
+    </script>
+}
