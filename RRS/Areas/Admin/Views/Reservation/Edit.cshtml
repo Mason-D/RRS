@@ -13,39 +13,46 @@
         <form asp-action="Edit" method="POST">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+
+            <h4 class="mb-2">Customer: @Model.Customer.FirstName @Model.Customer.LastName</h4>
+
             <div class="form-group">
-                <label asp-for="CustomerId" class="control-label"></label>
-                <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
+                <input type="hidden" asp-for="CustomerId" class="form-control" />
                 <span asp-validation-for="CustomerId" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="NoOfGuests" class="control-label"></label>
                 <input asp-for="NoOfGuests" class="form-control" />
                 <span asp-validation-for="NoOfGuests" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="SittingId" class="control-label"></label>
                 <select asp-for="SittingId" class="form-control" asp-items="ViewBag.SittingId"></select>
                 <span asp-validation-for="SittingId" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="ReservationStatusId" class="control-label"></label>
                 <select asp-for="ReservationStatusId" class="form-control" asp-items="ViewBag.ReservationStatusId"></select>
                 <span asp-validation-for="ReservationStatusId" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="ReservationOriginId" class="control-label"></label>
                 <select asp-for="ReservationOriginId" class="form-control" asp-items="ViewBag.ReservationOriginId"></select>
                 <span asp-validation-for="ReservationOriginId" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="CustomerNotes" class="control-label"></label>
-                <input asp-for="CustomerNotes" class="form-control" />
+                <textarea asp-for="CustomerNotes" class="form-control"></textarea>
                 <span asp-validation-for="CustomerNotes" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Update" class="btn btn-primary" />
+                <input type="submit" value="Update" class="btn btn-primary mt-2" />
             </div>
         </form>
     </div>

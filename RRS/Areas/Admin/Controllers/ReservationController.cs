@@ -115,7 +115,6 @@ namespace RRS.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["CustomerId"] = new SelectList(_context.Set<Customer>(), "Id", "Id", reservation.CustomerId);
             ViewData["ReservationOriginId"] = new SelectList(_context.ReservationOrigins, "Id", "Id", reservation.ReservationOriginId);
             ViewData["ReservationStatusId"] = new SelectList(_context.ReservationStatuses, "Id", "Id", reservation.ReservationStatusId);
             ViewData["SittingId"] = new SelectList(_context.Sittings, "Id", "Id", reservation.SittingId);
