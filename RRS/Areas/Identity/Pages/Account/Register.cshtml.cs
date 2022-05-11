@@ -106,7 +106,7 @@ namespace RRS.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                if (Input.NewFormReturned) //State does not persist
+                if (Input.NewFormReturned)
                 {
                     if (!_personService.NamesAreValid(Input.FirstName, Input.LastName))
                     {

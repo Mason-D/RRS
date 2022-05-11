@@ -3,11 +3,11 @@
 @{
     ViewData["Title"] = "Register";
     
-    bool firstLoad = Model.Input == null ? true : false ;
-    if(!firstLoad) 
-    { 
-        Model.Input.NewFormReturned = (bool)ViewData["PersonExists"] ? false : true; 
-    };
+    //bool firstLoad = Model.Input == null ? true : false ;
+    //if(!firstLoad) 
+    //{ 
+    //    Model.Input.NewFormReturned = (bool)ViewData["PersonExists"] ? false : true; 
+    //};
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -33,12 +33,18 @@
                 <label asp-for="Input.ConfirmPassword"></label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            @if((bool)ViewData["PersonExists"] == false)
+            @if((bool)ViewData["PersonExists"])
+            {
+
+                <input type="hidden" asp-for="Input.NewFormReturned" value="false"/>
+            }
+            else
             {
                 <span class="small text-danger">*First time customers must provide personal information</span>
                 <partial name="_PersonalInformation.cshtml" />
+                <input type="hidden" asp-for="Input.NewFormReturned" value="true"/>
             }
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>          
         </form>
     </div>
     <div class="col-md-6 col-md-offset-2">
