@@ -104,7 +104,13 @@ namespace RRS.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var reservation = await _context.Reservations.FindAsync(id);
+            var reservation = await _context.Reservations
+                .Include(r => r.Customer)
+                .Include(r => r.ReservationOrigin)
+                .Include(r => r.ReservationStatus)
+                .Include(r => r.Sitting)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
             if (reservation == null)
             {
                 return NotFound();
@@ -121,7 +127,7 @@ namespace RRS.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NoOfGuests,CustomerId,SittingId,ReservationStatusId,ReservationOriginId,CustomerNotes")] Reservation reservation)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NoOfGuests,CustomerId,SittingId,ReservationStatusId,ReservationOriginId,CustomerNotes,Customer,ReservationOrigin,ReservationStatus,Sitting")] Reservation reservation)
         {
             if (id != reservation.Id)
             {
@@ -129,26 +135,24 @@ namespace RRS.Areas.Admin.Controllers
             }
 
 
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    _context.Update(reservation);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ReservationExists(reservation.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _context.Update(reservation);
+                await _context.SaveChangesAsync();
             }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ReservationExists(reservation.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
+            
             ViewData["CustomerId"] = new SelectList(_context.Set<Customer>(), "Id", "Id", reservation.CustomerId);
             ViewData["ReservationOriginId"] = new SelectList(_context.ReservationOrigins, "Id", "Id", reservation.ReservationOriginId);
             ViewData["ReservationStatusId"] = new SelectList(_context.ReservationStatuses, "Id", "Id", reservation.ReservationStatusId);
