@@ -78,8 +78,6 @@ namespace RRS.Controllers.API
         [Route("day-types/{year}/{month}/{day}")]
         public ActionResult<IEnumerable<SittingByDayDto>> DayTypes(int year, int month, int day )
         {
-
-
             DateTime reservationDate = new DateTime(year, month, day);
             //var dateLocal = reservationDate.ToLocalTime();
 
@@ -90,15 +88,5 @@ namespace RRS.Controllers.API
                         .Select(s => new SittingByDayDto { Id = s.Id, Type = s.SittingType.Description, Duration = s.Duration, Start = s.Start.ToString("HH:mm") })
                         .ToList();
         }
-
-        // Returns all sittings in day
-        //[HttpGet]
-        //[Route("available-by-day/{date}")]
-        //public ActionResult<IEnumerable<Sitting>> AvailableByDay(DateTime date)
-        //{
-        //    return _context.Sittings
-        //        .Where(s => s.IsOpen && s.Start == date)
-        //        .ToList();
-        //}
     }
 }

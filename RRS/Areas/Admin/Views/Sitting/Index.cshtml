@@ -8,36 +8,83 @@
     string reversedDatePart = $"{dateParts[2]}-{dateParts[1]}-{dateParts[0]}";
 }
 
-<h1>Index</h1>
-<h2 id="dateDisplay">@reversedDatePart</h2>
+<h1>Index - Manage Sittings</h1>
 
-<label for="dateControl">Start date:</label>
-<input type="date" id="dateControl" name="trip-start"
-       value=@reversedDatePart> @*Min & Max attributes available*@
+<div class="row">
 
-<div id="displaySittings">
-    Dummy Sittings
+    <div class="col-sm-6 m-5">
+        <label for="dateControl">Start date:</label>
+        <input type="date" id="dateControl" name="trip-start" value=@reversedDatePart> @*Min & Max attributes available*@
+    </div>
+
+    <div class="col-sm-6 m-5">
+        <select id="selectTypes"></select>
+    </div>
+
+    <div class="col-sm-6 m-5">
+        <table id="sittingsT" class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Capacity</th>
+                    <th scope="col">Is Open</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Interval</th>
+                </tr>
+            </thead>
+            <tbody id="sittingsTBody"></tbody>
+        </table>
+    </div>
+
+    <div class="col-sm-6 m-5">
+        <label for="checkAllGroup">Select all group</label>
+        <input id="checkAllGroup" type="checkbox" />
+        <br/>
+        *Group ID Not Implemented. <br/>
+        Must be persisted in sitting entity to be configured*
+
+    </div>
+
+    <div class="col-sm-12 text-center m-5">
+        @*Not Implemented*@
+        <button class="btn btn-primary">Update</button>
+        <button class="btn btn-primary">Delete</button>
+    </div>
 </div>
-
-<a asp-action="ByDate" asp-controller="Sitting" asp-area="Admin" asp-route-date="@reversedDatePart">Details Action</a>
 
 @section Scripts{
     <script>
         $(() => {
             $('#dateControl').on("click", (e) => {
                 $(this).change(() => {
-                    let newDate = e.target.value; 
-                    $("#dateDisplay").text(`${newDate}`)
 
+                    const newDate = e.target.value; 
+
+                    //Sittings by selected day
                     $.get(`https://localhost:7271/api/Sittings/any/${newDate}/${newDate}`, null, function (data) {    
-                        $("#displaySittings").empty();
+
+                        $("#sittingsTBody").empty();
+                        $("#selectTypes").empty();
+
                         data.forEach((item) => {
-                            $("#displaySittings").append(
-                                `<div>
-                                    <p>Sitting ID:${item.id}</p>
-                                </div>`
+
+                            $("#sittingsTBody").append(                               
+                                `<tr>
+                                    <td>${item.id}</td>
+                                    <td>${item.capacity}</td>
+                                    <td>${item.isOpen}</td>
+                                    <td>${item.sittingTypeDescription}</td>
+                                    <td>(Not yet in entity)</td>
+                                </tr>`
                             );
+
+                            $("#selectTypes").append(
+                                //value should be id so no conflict possibility, e.g., what if same day had multiple of 'x' type sittings
+                                `<option value="${item.sittingTypeDescription}">${item.sittingTypeDescription}</option>`
+                            );
+
                         })
+
                     });
                 });
             });
