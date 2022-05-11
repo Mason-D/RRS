@@ -42,33 +42,41 @@
         <br/>
         *Group ID Not Implemented. <br/>
         Must be persisted in sitting entity to be configured*
-
     </div>
 
     <div class="col-sm-12 text-center m-5">
         @*Not Implemented*@
-        <button class="btn btn-primary">Update</button>
-        <button class="btn btn-primary">Delete</button>
+        <form method="post">
+            <button asp-area="Admin" asp-controller="Sitting" asp-action="Edit"
+                id="updateBttn" class="btn btn-primary">
+                Update
+            </button>
+            <button asp-area="Admin" asp-controller="Sitting" asp-action="Delete" asp-route-id="100"
+                id="deleteBttn" class="btn btn-primary">
+                Delete
+            </button>
+            <input type="hidden" value="81" />
+        </form>
     </div>
 </div>
 
 @section Scripts{
-    <script>
+        <script>
         $(() => {
             $('#dateControl').on("click", (e) => {
                 $(this).change(() => {
 
-                    const newDate = e.target.value; 
+                    const newDate = e.target.value;
 
                     //Sittings by selected day
-                    $.get(`https://localhost:7271/api/Sittings/any/${newDate}/${newDate}`, null, function (data) {    
+                    $.get(`https://localhost:7271/api/Sittings/any/${newDate}/${newDate}`, null, function (data) {
 
                         $("#sittingsTBody").empty();
                         $("#selectTypes").empty();
 
                         data.forEach((item) => {
 
-                            $("#sittingsTBody").append(                               
+                            $("#sittingsTBody").append(
                                 `<tr>
                                     <td>${item.id}</td>
                                     <td>${item.capacity}</td>
@@ -88,6 +96,22 @@
                     });
                 });
             });
+
+            //$("#updateBttn").on("click", (e) => {
+            //    e.preventDefault();
+            //    debugger;
+                
+
+                //AJAX Post doesn't hit action
+                //jqXHR (jQuery XMLHttpRequest)
+                //$.post("https://localhost:7271/Admin/Sitting/Edit?id=81", 81)               
+                //    .done((response, status, jqxhr) => {
+                //        debugger;
+                //    })
+                //    .fail((jqxhr, status, response) => {
+                //        debugger;
+                //    });
+            //});
         })
-    </script>
+        </script>
 }

@@ -154,7 +154,18 @@ namespace RRS.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
             var sitting = await _context.Sittings.FindAsync(id);
+
+            if (sitting == null)
+            {
+                return NotFound();
+            }
+
             _context.Sittings.Remove(sitting);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
