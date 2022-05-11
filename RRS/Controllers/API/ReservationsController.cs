@@ -23,7 +23,7 @@ namespace RRS.Controllers.API
         public ReservationDto Create(ReservationDto resDTO)
         {
             //var customer = findOrCreateCustomer(resDTO);
-            var customer = _personService.FindOrCreatePerson<Customer>(
+            var obj = _personService.FindOrCreatePerson<Customer>(
                 new PersonVM
                 {
                     Email = resDTO.Email,
@@ -33,6 +33,10 @@ namespace RRS.Controllers.API
                     RestaurantId = resDTO.RestaurantId
                 });
 
+            //Unpack anonymouse object
+            Type type = obj.GetType();
+            var customer = (Person)type.GetProperty("Person").GetValue(obj, null);
+
             var reservation = new Reservation
             {
                 CustomerNotes = resDTO.CustomerNotes,
@@ -41,7 +45,7 @@ namespace RRS.Controllers.API
                 ReservationOriginId = resDTO.ReservationOriginId,
                 ReservationStatusId = 1,
                 Customer = (Customer) customer,
-                CustomerId = customer.Id
+                //CustomerId = customer.Id
             };
 
             _context.Reservations

@@ -12,7 +12,7 @@ namespace RRS.Services
             _context = context;
         }
 
-        public Person FindOrCreatePerson<T>(PersonVM personVM)
+        public Object FindOrCreatePerson<T>(PersonVM personVM)
             where T : Person, new()
         {
             var result = _context.People.Where(p => p.Email == personVM.Email).ToList();
@@ -20,10 +20,7 @@ namespace RRS.Services
             if (result.Count > 0)
             {
                 person = (T)result.First();
-                person.FirstName ??= personVM.FirstName;
-                person.LastName ??= personVM.LastName;
-                person.PhoneNumber ??= personVM.PhoneNumber;
-                return person;
+                return new { Person = person, WasCreated = false };
             }
             else
             {
@@ -35,9 +32,13 @@ namespace RRS.Services
                     PhoneNumber = personVM.PhoneNumber,
                     RestaurantId = personVM.RestaurantId
                 };
-                _context.People.Add(person);
-                return person;
+                return new { Person = person, WasCreated = true };
             }
+        }
+
+        public bool NamesAreValid(string firstName, string lastName)
+        {
+            return firstName != null && lastName != null;
         }
     }
 }

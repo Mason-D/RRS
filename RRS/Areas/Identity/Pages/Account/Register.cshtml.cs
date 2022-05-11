@@ -54,6 +54,7 @@ namespace RRS.Areas.Identity.Pages.Account
         public string ReturnUrl { get; set; }
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
+
         public class InputModel
         {
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
@@ -86,6 +87,8 @@ namespace RRS.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            public bool NewFormReturned { get; set; } = false;
         }
 
 
@@ -103,25 +106,48 @@ namespace RRS.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                ViewData["PersonExists"] = _context.People.Where(p => p.Email == Input.Email).ToList().Count > 0;
-                if (!(bool)ViewData["PersonExists"])
+                if (Input.NewFormReturned) //State does not persist
                 {
-                    //Return form with personal info (e.g., first name request), now that PersonExists equals false
-                    return Page();
+                    if (!_personService.NamesAreValid(Input.FirstName, Input.LastName))
+                    {
+                        return Page();
+                    }
+                }
+                else
+                {
+                    ViewData["PersonExists"] = _context.People.Where(p => p.Email == Input.Email).ToList().Count > 0;
+                    if (!(bool)ViewData["PersonExists"])
+                    {
+                        return Page(); //Return form with personal info fields (e.g., first name)
+                    }
                 }
 
                 var user = CreateUser();
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, Input.Password); //WON'T create duplicate user
-
+                var result = await _userManager.CreateAsync(user, Input.Password); //this process won't create duplicate user                
 
                 if (result.Succeeded)
                 {
-                    //HACK: Hardcoded RestaurantId
-                    var person = _personService.FindOrCreatePerson<Customer>(new PersonVM { Email = Input.Email, RestaurantId = 1 });
+                    //POSSIBLE ISSUE: Application closed after user is created but before person is created
+                    Object obj = _personService.FindOrCreatePerson<Customer>(
+                        new PersonVM 
+                        { 
+                            Email = Input.Email,
+                            FirstName = Input.FirstName, 
+                            LastName = Input.LastName,
+                            PhoneNumber = Input.PhoneNumber,
+                            RestaurantId = 1 
+                        });
+
+                    //Unpack anonymous object
+                    Type type = obj.GetType();
+                    bool wasCreated = (bool) type.GetProperty("WasCreated").GetValue(obj, null);
+                    var person = (Person) type.GetProperty("Person").GetValue(obj, null);
                     person.UserId = user.Id;
+
+                    if (wasCreated) { _context.People.Add(person); } //Existing person is already tracked, New person must be added
                     await _context.SaveChangesAsync();
 
                     _logger.LogInformation("User created a new account with password.");

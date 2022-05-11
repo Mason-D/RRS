@@ -108,7 +108,7 @@ namespace RRS.Areas.Identity.Pages.Account
                 {
                     //HACK: Hardcoded RestaurantId
                     var person = _personService.FindOrCreatePerson<Customer>(new PersonVM { Email = Input.Email, RestaurantId = 1 });
-                    person.UserId = user.Id;
+                    //person.UserId = user.Id;
                     await _context.SaveChangesAsync();
 
                     _logger.LogInformation("User created a new account with password.");
