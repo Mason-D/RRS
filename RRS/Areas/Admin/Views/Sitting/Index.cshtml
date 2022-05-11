@@ -15,7 +15,11 @@
 <input type="date" id="dateControl" name="trip-start"
        value=@reversedDatePart> @*Min & Max attributes available*@
 
-<a asp-action="Details" asp-controller="Sitting" asp-area="Admin">Details Action</a>
+<div id="displaySittings">
+    Dummy Sittings
+</div>
+
+<a asp-action="ByDate" asp-controller="Sitting" asp-area="Admin" asp-route-date="@reversedDatePart">Details Action</a>
 
 @section Scripts{
     <script>
@@ -24,6 +28,17 @@
                 $(this).change(() => {
                     let newDate = e.target.value; 
                     $("#dateDisplay").text(`${newDate}`)
+
+                    $.get(`https://localhost:7271/api/Sittings/any/${newDate}/${newDate}`, null, function (data) {    
+                        $("#displaySittings").empty();
+                        data.forEach((item) => {
+                            $("#displaySittings").append(
+                                `<div>
+                                    <p>Sitting ID:${item.id}</p>
+                                </div>`
+                            );
+                        })
+                    });
                 });
             });
         })
