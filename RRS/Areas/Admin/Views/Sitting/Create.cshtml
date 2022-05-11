@@ -1,53 +1,108 @@
-﻿@model RRS.Data.Sitting
+﻿@model RRS.Areas.Admin.Models.Sittings.SittingsVm
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Create Sitting </h1>
 
-<h4>Sitting</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="container" >
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Start" class="control-label"></label>
-                <input asp-for="Start" class="form-control" />
-                <span asp-validation-for="Start" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Duration" class="control-label"></label>
-                <input asp-for="Duration" class="form-control" />
-                <span asp-validation-for="Duration" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsOpen" /> @Html.DisplayNameFor(model => model.IsOpen)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="Capacity" class="control-label"></label>
-                <input asp-for="Capacity" class="form-control" />
-                <span asp-validation-for="Capacity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RestaurantId" class="control-label"></label>
-                <select asp-for="RestaurantId" class ="form-control" asp-items="ViewBag.RestaurantId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="SittingTypeId" class="control-label"></label>
-                <select asp-for="SittingTypeId" class ="form-control" asp-items="ViewBag.SittingTypeId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+        <div class="row">
+@*column*@
+            <div class="col-8">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Start" class="control-label"></label>
+                        <input id="StartTime" asp-for="Start" class="form-control" />
+                        <span asp-validation-for="Start" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Duration" class="control-label"></label>
+                        <input asp-for="Duration" class="form-control" />
+                        <span asp-validation-for="Duration" class="text-danger"></span>
+                    </div>
+         
+                    <div class="form-group">
+                        <label asp-for="Capacity" class="control-label"></label>
+                        <input asp-for="Capacity" class="form-control" />
+                        <span asp-validation-for="Capacity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Interval" class="control-label"></label>
+                        <input asp-for="Interval" class="form-control" />
+                        <span asp-validation-for="Interval" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CutOff" class="control-label"></label>
+                        <input asp-for="CutOff" class="form-control" />
+                        <span asp-validation-for="CutOff" class="text-danger"></span>
+                    </div>
 
+                    <div>
+                        <input id="RepeatSittingBtn" class="btn btn-primary"  value="Repeat Sitting"  /> 
+                    </div>
+
+
+                    <div id="RepeatDaysContainer" class="form-group">
+                        <input type="checkbox" class="btn-check" id="btn-check-Sunday" autocomplete="off">
+                        <label class="btn btn-outline-primary m-1" for="btn-check-Sunday">Sun</label>
+                        <input type="checkbox" class="btn-check" id="btn-check-Monday" autocomplete="off">
+                        <label class="btn btn-outline-primary m-1" for="btn-check-Monday">Mon</label>
+                        <input type="checkbox" class="btn-check" id="btn-check-Tuesday" autocomplete="off">
+                        <label class="btn btn-outline-primary m-1" for="btn-check-Tuesday">Tues</label>
+                        <input type="checkbox" class="btn-check" id="btn-check-Wednesday" autocomplete="off">
+                        <label class="btn btn-outline-primary m-1" for="btn-check-Wednesday">Wed</label>
+                        <input type="checkbox" class="btn-check" id="btn-check-Thursday" autocomplete="off">
+                        <label class="btn btn-outline-primary m-1" for="btn-check-Thursday">Thur</label>
+                        <input type="checkbox" class="btn-check" id="btn-check-Friday" autocomplete="off">
+                        <label class="btn btn-outline-primary m-1" for="btn-check-Friday">Fri</label>
+                        <input type="checkbox" class="btn-check" id="btn-check-Saturday" autocomplete="off">
+                        <label class="btn btn-outline-primary m-1" for="btn-check-Saturday">Sat</label>
+
+            
+
+                    </div>
+                    <div class="form-group">
+
+
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+          
+                
+
+                <div>@ViewBag.RestaurantId</div>
+            </div>
+@*new column*@
+            <div class="col-4">
+                <div class="form-group" id="SittingTypeSelect">
+                    <label asp-for="SittingTypeId" class="control-label"></label>
+                    <select asp-for="SittingTypeId" class ="form-control" asp-items="ViewBag.SittingTypeId"></select>
+                    <div>
+                        <input id="NewSittingBtn" type="button" class="btn-primary btn" value="New" />
+                    </div>
+                </div>
+            <div id="NewSittingArea">
+                    <label asp-for="NewSittingName" class="control-label"></label>
+                    <input id="NewSittingAreaInput"  asp-for="NewSittingName" class="form-control" />
+                    <span asp-validation-for="NewSittingName" class="text-danger"></span>
+                    <div>
+                        <input id="OldSittingBtn" type="button" class="btn-primary btn" value="Back" />
+                    </div>
+            </div>
+                </div>
+        </div>
+                <input type="hidden" asp-for="RestaurantId" value="1"/> 
+                <input type="hidden" asp-for="Group" value="null" />
+        </form>
+
+</div>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
 
+@section Scripts{
+    
+    <script src= "~/js/Admin/Sitting/CreateSittingScripts.js"></script>
+}

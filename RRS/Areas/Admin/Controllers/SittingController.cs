@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using RRS.Areas.Admin.Models.Sittings;
 using RRS.Data;
 
 namespace RRS.Areas.Admin.Controllers
@@ -51,8 +52,9 @@ namespace RRS.Areas.Admin.Controllers
         // GET: Admin/Sitting/Create
         public IActionResult Create()
         {
-            ViewData["RestaurantId"] = new SelectList(_context.Restaurants, "Id", "Id");
-            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Id");
+            //ViewData["RestaurantId"] = new SelectList(_context.Restaurants, "Id", "Name");
+            ViewData["RestaurantId"] = 1;
+            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
             return View();
         }
 
@@ -61,16 +63,30 @@ namespace RRS.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Start,Duration,IsOpen,Capacity,RestaurantId,SittingTypeId")] Sitting sitting)
+        public async Task<IActionResult> Create([Bind("Id,Start,Duration,Capacity,RestaurantId,SittingTypeId,Interval,CutOff, NewSitting, NewSittingName")] SittingsVm sitting)
         {
-            if (ModelState.IsValid)
+ 
+            
+            if(sitting.NewSittingName !=null)
+            {
+                SittingType st = new SittingType { Description = sitting.NewSittingName };
+                _context.Add(st);
+                await _context.SaveChangesAsync();
+            }
+            // probs going to have to add a way to remove sitting types 
+
+
+
+
+            if(sitting.Group == true)
             {
                 _context.Add(sitting);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+
             }
-            ViewData["RestaurantId"] = new SelectList(_context.Restaurants, "Id", "Id", sitting.RestaurantId);
-            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Id", sitting.SittingTypeId);
+            
+            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description", sitting.SittingTypeId);
             return View(sitting);
         }
 
