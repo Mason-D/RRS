@@ -18,9 +18,9 @@
         <select id="selectTypes"></select>
     </div>
 
-    <div class="col-sm-6 m-5">
+@*    <div class="col-sm-6 m-5">
         <select id="selectTypes"></select>
-    </div>
+    </div>*@
 
     <div class="col-sm-6 m-5">
         <table id="sittingsT" class="table table-striped">
@@ -32,6 +32,7 @@
                     <th scope="col">Type</th>
                     <th scope="col">Interval</th>
                     <th scope="col">Selected</th>
+                    <th scope="col">SelectedBttn</th>
                 </tr>
             </thead>
             <tbody id="sittingsTBody"></tbody>
@@ -66,63 +67,5 @@
 </div>
 
 @section Scripts{
-        <script>
-        $(() => {
-            $("#dateControl").on("click", (e) => {
-                $(this).change(() => {
-
-                    const newDate = e.target.value;
-
-                    //Sittings by selected day
-                    $.get(`https://localhost:7271/api/Sittings/any/${newDate}/${newDate}`, null, function (data) {
-
-                        $("#sittingsTBody").empty(); //Clashing with checkbox
-                        $("#selectTypes").empty();
-
-                        data.forEach((item, index) => {
-
-                            $("#sittingsTBody").append(
-                                `<tr>
-                                    <td>${item.id}</td>
-                                    <td>${item.capacity}</td>
-                                    <td>${item.isOpen}</td>
-                                    <td>${item.sittingTypeDescription}</td>
-                                    <td>(Not yet in entity)</td>
-                                    <td><input type="checkbox" class="radio" value="${index}" id="type${index}" name="type${index}" /></td>
-                                </tr>`
-                            );
-
-                            //$("#selectTypes").append(
-                            //    //value should be id so no conflict possibility, e.g., what if same day had multiple of 'x' type sittings
-                            //    `<option value="${item.sittingTypeDescription}">${item.sittingTypeDescription}</option>`
-                            //);
-
-                        })
-
-                    });
-                });
-            });
-
-            $("#sittingsTBody").on('change',"input[type='checkbox']",function (e) {
-                let temp = e.target.value;
-                $(`#type${temp}.radio`).prop("checked", true);
-            });
-
-
-
-            //$("#updateBttn").on("click", (e) => {
-            //    e.preventDefault();
-            //    debugger;             
-                //AJAX Post doesn't hit action
-                //jqXHR (jQuery XMLHttpRequest)
-                //$.post("https://localhost:7271/Admin/Sitting/Edit?id=81", 81)               
-                //    .done((response, status, jqxhr) => {
-                //        debugger;
-                //    })
-                //    .fail((jqxhr, status, response) => {
-                //        debugger;
-                //    });
-            //});
-        })
-        </script>
+        <script src=~/js/admin.sitting.index.js></script>
 }
