@@ -24,8 +24,9 @@ namespace RRS.Areas.Admin.Controllers
         // GET: Admin/Sitting
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Sittings.Include(s => s.Restaurant).Include(s => s.SittingType);
-            return View(await applicationDbContext.ToListAsync());
+            //var applicationDbContext = _context.Sittings.Include(s => s.Restaurant).Include(s => s.SittingType);
+            //return View(await applicationDbContext.ToListAsync());
+            return View(new Sitting());
         }
 
         // GET: Admin/Sitting/Details/5
@@ -154,7 +155,18 @@ namespace RRS.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
             var sitting = await _context.Sittings.FindAsync(id);
+
+            if (sitting == null)
+            {
+                return NotFound();
+            }
+
             _context.Sittings.Remove(sitting);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

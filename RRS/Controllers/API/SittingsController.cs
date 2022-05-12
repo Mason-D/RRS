@@ -38,6 +38,27 @@ namespace RRS.Controllers.API
         }
 
         [HttpGet]
+        [Route("any/{start}/{end?}")]
+        public ActionResult<IEnumerable<SittingDto>> Any(DateTime start, DateTime end = new DateTime())
+        {
+            var startLocal = start.ToLocalTime();
+            var endLocal = end == new DateTime() ? startLocal.AddDays(28 * 3) : end.ToLocalTime();
+
+            return _context.Sittings
+                        .Where(s => s.Start.Date >= startLocal.Date && s.Start.Date <= endLocal.Date)
+                        .Select(s => new SittingDto
+                        {
+                            Id = s.Id,
+                            Start = s.Start,
+                            Duration = s.Duration,
+                            Capacity = s.Capacity,
+                            IsOpen = s.IsOpen,
+                            SittingTypeDescription = s.SittingType.Description
+                        })
+                        .ToList();
+        }
+
+        [HttpGet]
         [Route("distinct-available/{start}/{end?}")]
         public ActionResult<Dictionary<int, Dictionary<int, IEnumerable<int>>>> DistinctAvailable(DateTime start, DateTime end = new DateTime())
         {          
@@ -57,8 +78,6 @@ namespace RRS.Controllers.API
         [Route("day-types/{year}/{month}/{day}")]
         public ActionResult<IEnumerable<SittingByDayDto>> DayTypes(int year, int month, int day )
         {
-
-
             DateTime reservationDate = new DateTime(year, month, day);
             //var dateLocal = reservationDate.ToLocalTime();
 
@@ -69,15 +88,5 @@ namespace RRS.Controllers.API
                         .Select(s => new SittingByDayDto { Id = s.Id, Type = s.SittingType.Description, Duration = s.Duration, Start = s.Start.ToString("HH:mm") })
                         .ToList();
         }
-
-        // Returns all sittings in day
-        //[HttpGet]
-        //[Route("available-by-day/{date}")]
-        //public ActionResult<IEnumerable<Sitting>> AvailableByDay(DateTime date)
-        //{
-        //    return _context.Sittings
-        //        .Where(s => s.IsOpen && s.Start == date)
-        //        .ToList();
-        //}
     }
 }
