@@ -20,12 +20,10 @@
                             <td>${item.sittingTypeDescription}</td>
                             <td>(Not yet in entity)</td>
                             <td><input type="checkbox" data-sitting-id="${item.id}" class="radio select-sitting-cb " value="${index}" id="type${index}" name="type${index}" /></td>
-                            <td><button class="selectSittingBttn">Select</button></td>
                         </tr>`
                     );
                     $("#sittingsTBody").find('.select-sitting-cb').click((e) => {
                         let x = $(e.target).data('sitting-id');
-
                     });
 
 
