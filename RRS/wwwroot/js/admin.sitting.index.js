@@ -6,7 +6,7 @@
             const newDate = e.target.value;
 
             //Sittings by selected day
-            $.get(`https://localhost:7271/api/Sittings/any/${newDate}/${newDate}`, null, function (data) {
+            $.get(`https://localhost:7271/api/Sittings/any/${newDate}`, null, function (data) {
 
                 $("#sittingsTBody").empty();
 
