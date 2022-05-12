@@ -2,10 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
-
-    string[] currentDateTime = DateTime.Now.Date.ToString().Split(' ');
-    string[] dateParts = currentDateTime[0].Split('/');
-    string reversedDatePart = $"{dateParts[2]}-{dateParts[1]}-{dateParts[0]}";
+    string reversedDatePart = DateTime.Now.Date.ToString("yyyy-MM-dd");
 }
 
 <h1>Index - Manage Sittings</h1>
@@ -20,6 +17,8 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
+                    <th scope="col">Start</th>
+                    <th scope="col">Duration</th>
                     <th scope="col">Capacity</th>
                     <th scope="col">Is Open</th>
                     <th scope="col">Type</th>
@@ -33,10 +32,24 @@
 
     <div class="col-sm-12 m-5">
         <form method="post">
+            <label for="idInput" class="form-label">Id: </label>
             <input class="form-control" disabled id="idInput" />
+
+            <label for="startInput" class="form-label">Start: </label>
             <input class="form-control" id="startInput" />
+
+            <label for="durationInput" class="form-label">Duration: </label>
             <input class="form-control" id="durationInput" />
+
+            <label for="capacityInput" class="form-label">Capacity: </label>
             <input class="form-control" id="capacityInput" />
+
+            <label for="isOpenInput" class="form-label">Is Open: </label>
+            <input class="form-control" id="isOpenInput" />
+
+            <label for="typeDescriptionInput" class="form-label">Type: </label>
+            <input class="form-control" id="typeDescriptionInput" />
+
             <button asp-area="Admin" asp-controller="Sitting" asp-action="Edit"
                 id="updateBttn" class="btn btn-primary">
                 Update
