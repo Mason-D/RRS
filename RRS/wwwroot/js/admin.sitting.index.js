@@ -1,20 +1,19 @@
 ﻿$(() => {
-    $("#dateControl").on('change', (e) => getSitting(e.target.value)); 
-    getSitting($("#dateControl").val()); //ONLOAD
-});
+    $("#dateControl").on('change', (e) => populateSittingsTable(e.target.value));
+    populateSittingsTable($("#dateControl").val()); //ONLOAD
 
-const populateSittingsTable = (e) => {
-    const newDate = e.target.value;
+    function populateSittingsTable(e){
+        const newDate = e.target.value;
 
-    //Sittings by selected day
-    $.get(`https://localhost:7271/api/Sittings/any/${newDate}`, null, function (data) {
+        //Sittings by selected day
+        $.get(`https://localhost:7271/api/Sittings/any/${newDate}`, null, function (data) {
 
-        $("#sittingsTBody").empty();
+            $("#sittingsTBody").empty();
 
-        data.forEach((item, index) => {
+            data.forEach((item, index) => {
 
-            $("#sittingsTBody").append(
-                `<tr>
+                $("#sittingsTBody").append(
+                    `<tr>
                     <td>${item.id}</td>
                     <td>${item.start}</td>
                     <td>${item.duration}</td>
@@ -37,22 +36,23 @@ const populateSittingsTable = (e) => {
                             name="type${index}" />
                     </td>
                 </tr>`
-            );
-            /*$("#sittingsTBody").find('.select-sitting-cb').click((e) => {});*/
-        })
+                );
+                /*$("#sittingsTBody").find('.select-sitting-cb').click((e) => {});*/
+            })
 
-    });
+        });
 
-    $("#sittingsTBody").on('change', "input[type='checkbox']", function (e) {
+        $("#sittingsTBody").on('change', "input[type='checkbox']", function (e) {
 
-        $("#sittingsTBody input[type='checkbox']").not(e.target).prop('checked', false);
+            $("#sittingsTBody input[type='checkbox']").not(e.target).prop('checked', false);
 
-        $("#idInput").val(`${$(e.target).data('sitting-id')}`)
-        $("#startInput").val(`${$(e.target).data('sitting-start')}`)
-        $("#durationInput").val(`${$(e.target).data('sitting-duration')}`)
-        $("#capacityInput").val(`${$(e.target).data('sitting-capacity')}`)
-        $("#isOpenInput").val(`${$(e.target).data('sitting-is-open')}`)
-        $("#typeDescriptionInput").val(`${$(e.target).data('sitting-type-description')}`)
-    });
-};
+            $("#idInput").val(`${$(e.target).data('sitting-id')}`)
+            $("#startInput").val(`${$(e.target).data('sitting-start')}`)
+            $("#durationInput").val(`${$(e.target).data('sitting-duration')}`)
+            $("#capacityInput").val(`${$(e.target).data('sitting-capacity')}`)
+            $("#isOpenInput").val(`${$(e.target).data('sitting-is-open')}`)
+            $("#typeDescriptionInput").val(`${$(e.target).data('sitting-type-description')}`)
+        });
+    };
+});
 
