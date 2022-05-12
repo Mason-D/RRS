@@ -5,13 +5,13 @@
     string reversedDatePart = DateTime.Now.Date.ToString("yyyy-MM-dd");
 }
 
-<h1>Index - Manage Sittings</h1>
+<h1>Index - Manage Sitting</h1>
 
 <div class="row">
 
     <div class="col-sm-12 m-5">
         <label for="dateControl">Start date:</label>
-        <input type="date" id="dateControl" name="trip-start" value="2022-04-06"> @*Min & Max attributes available*@
+        <input type="date" id="dateControl" name="trip-start" value="@reversedDatePart"> @*Min & Max attributes available*@
 
         <table id="sittingsT" class="table table-striped">
             <thead>
@@ -20,7 +20,7 @@
                     <th scope="col">Start</th>
                     <th scope="col">Duration</th>
                     <th scope="col">Capacity</th>
-                    <th scope="col">Is Open</th>
+                    <th scope="col">Open</th>
                     <th scope="col">Type</th>
                     <th scope="col">Interval</th>
                     <th scope="col">Selected</th>
@@ -33,7 +33,8 @@
     <div class="col-sm-12 m-5">
         <form method="post">
             <label for="idInput" class="form-label">Id: </label>
-            <input class="form-control" disabled id="idInput" />
+            <input asp-for="@Model.Id" class="form-control" disabled />
+            @*<input class="form-control" disabled id="idInput" />*@
 
             <label for="startInput" class="form-label">Start: </label>
             <input class="form-control" id="startInput" />
@@ -44,7 +45,7 @@
             <label for="capacityInput" class="form-label">Capacity: </label>
             <input class="form-control" id="capacityInput" />
 
-            <label for="isOpenInput" class="form-label">Is Open: </label>
+            <label for="isOpenInput" class="form-label">Open: </label>
             <input class="form-control" id="isOpenInput" />
 
             <label for="typeDescriptionInput" class="form-label">Type: </label>
