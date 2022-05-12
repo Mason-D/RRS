@@ -13,5 +13,6 @@
         public int SittingTypeId { get; set; }
         public SittingType SittingType { get; set; }
         public List<Reservation> Reservations { get; set; } = new List<Reservation>();
+        public int TotalGuests => Reservations.Sum(r => r.NoOfGuests);
     }
 }
