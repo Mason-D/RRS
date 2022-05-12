@@ -59,6 +59,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" asp-route-date=@Model.Sitting.Start.Date.ToString("MM-dd-yyyy")>Back to List</a>
 </div>
 
