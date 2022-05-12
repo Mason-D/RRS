@@ -28,8 +28,8 @@
                                     data-sitting-start="${item.start}"
                                     data-sitting-duration="${item.duration}"
                                     data-sitting-capacity="${item.capacity}"
-                                    data-sitting-isopen="${item.isOpen}"
-                                    data-sitting-typedescription="${item.sittingTypeDescription}"
+                                    data-sitting-is-open="${item.isOpen}"
+                                    data-sitting-type-description="${item.sittingTypeDescription}"
                                     class="radio select-sitting-cb "
                                     value="${index}" 
                                     id="type${index}" 
@@ -52,8 +52,8 @@
                 $("#startInput").val(`${$(e.target).data('sitting-start')}`)
                 $("#durationInput").val(`${$(e.target).data('sitting-duration')}`)
                 $("#capacityInput").val(`${$(e.target).data('sitting-capacity')}`)
-                $("#isOpenInput").val(`${$(e.target).data('sitting-isopen')}`)
-                $("#typeDescriptionInput").val(`${$(e.target).data('sitting-typedescription')}`)
+                $("#isOpenInput").val(`${$(e.target).data('sitting-is-open')}`)
+                $("#typeDescriptionInput").val(`${$(e.target).data('sitting-type-description')}`)
             });
         });
     });
