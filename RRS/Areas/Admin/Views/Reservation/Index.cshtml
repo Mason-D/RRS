@@ -23,7 +23,7 @@
     <thead>
         <tr>
             <th>
-                Date
+                Time(Sitting)
             </th>
             <th>
                 Type
@@ -53,7 +53,7 @@
 @foreach (var res in Model) {
         <tr>
             <td>
-                @res.Sitting.Start.ToString("dd/MM/yyyy")
+                @res.Sitting.Start.TimeOfDay
             </td>
             <td>
                 @res.Sitting.SittingType.Description

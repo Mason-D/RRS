@@ -37,6 +37,7 @@ namespace RRS.Areas.Admin.Controllers
                 .Include(r => r.Sitting)
                     .ThenInclude(s => s.SittingType)
                 .Where(r => r.Sitting.Start.Date == date.Date)
+                .OrderBy(r=>r.Sitting.Start)
                 .AsNoTracking()
                 .ToArrayAsync();
 
@@ -115,8 +116,8 @@ namespace RRS.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["ReservationOriginId"] = new SelectList(_context.ReservationOrigins, "Id", "Id", reservation.ReservationOriginId);
-            ViewData["ReservationStatusId"] = new SelectList(_context.ReservationStatuses, "Id", "Id", reservation.ReservationStatusId);
+            ViewData["ReservationOriginId"] = new SelectList(_context.ReservationOrigins, "Id", "Description", reservation.ReservationOrigin);
+            ViewData["ReservationStatusId"] = new SelectList(_context.ReservationStatuses, "Id", "Description", reservation.ReservationStatus);
             ViewData["SittingId"] = new SelectList(_context.Sittings, "Id", "Id", reservation.SittingId);
             return View(reservation);
         }
