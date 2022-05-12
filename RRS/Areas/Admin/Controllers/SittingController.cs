@@ -63,7 +63,7 @@ namespace RRS.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Start,Duration,Capacity,RestaurantId,SittingTypeId,Interval,CutOff, NewSitting, NewSittingName")] SittingsVm sitting)
+        public async Task<IActionResult> Create([Bind("Id,Start,Duration,Capacity,RestaurantId,SittingTypeId,Interval,CutOff, NewSitting, NewSittingName, Group, DaysToRepeat, WeeksToRepeat")] SittingsVm sitting)
         {
  
             
@@ -72,19 +72,55 @@ namespace RRS.Areas.Admin.Controllers
                 SittingType st = new SittingType { Description = sitting.NewSittingName };
                 _context.Add(st);
                 await _context.SaveChangesAsync();
+                var newSittingName =  await _context.SittingTypes.Where(s => s.Description == sitting.NewSittingName).FirstOrDefaultAsync();
+                sitting.SittingTypeId = newSittingName.Id;
             }
             // probs going to have to add a way to remove sitting types 
 
-
-
-
-            if(sitting.Group == true)
+            if(sitting.Group  == null)
             {
-                _context.Add(sitting);
+                var SingleSitting = new Sitting()
+                {
+                    RestaurantId = sitting.RestaurantId,
+                    Start = sitting.Start,
+                    Duration = sitting.Duration,
+                    IsOpen = sitting.IsOpen,
+                    Capacity = sitting.Capacity,
+                    SittingTypeId = sitting.SittingTypeId
+                };
+
+                _context.Add(SingleSitting);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
+
+            if(sitting.Group == "Days")
+            {
+
+                for(int i = 0; i < sitting.DaysToRepeat; i++)
+                {
+                    var NewSitting = new Sitting() 
+                    {
+                        RestaurantId = sitting.RestaurantId,
+                        Start = sitting.Start.AddDays(i),
+                        Duration = sitting.Duration,
+                        IsOpen = sitting.IsOpen,
+                        Capacity = sitting.Capacity,
+                        SittingTypeId = sitting.SittingTypeId
+                        //add group id here
+                    };
+                    _context.Add(NewSitting);
+                }
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
 
             }
+            if(sitting.Group == "Weeks")
+            {
+
+            }
+
             
             ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description", sitting.SittingTypeId);
             return View(sitting);
