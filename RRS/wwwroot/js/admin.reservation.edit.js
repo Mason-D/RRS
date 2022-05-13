@@ -5,6 +5,13 @@
     getSitting($("#dateControl").val()); 
 
 
+    $("#sittingsTBody").on('change', "input[type='checkbox']", function (e) {
+
+        $("#sittingsTBody input[type='checkbox']").not(e.target).prop('checked', false);
+
+        $("#idInput").val(`${$(e.target).data('sitting-id')}`)
+    });
+
 });
 
 
@@ -22,12 +29,11 @@ function getSitting(newDate) {
 
                 `<tr>
                             <td>${item.id}</td>
-                            <td>${item.start}</td>
-                            <td>${item.duration}</td>
+                            <td>${formatTime(item.start)}</td>
+                            <td>${formatTime(item.start,item.duration)}</td>
                             <td>${item.capacity}</td>
                             <td>${item.isOpen}</td>
                             <td>${item.sittingTypeDescription}</td>
-                            <td>(Not yet in entity)</td>
                             <td>
                                 <input
                                     type="checkbox"
@@ -42,12 +48,15 @@ function getSitting(newDate) {
         })
 
     });
-
-    $("#sittingsTBody").on('change', "input[type='checkbox']", function (e) {
-
-        $("#sittingsTBody input[type='checkbox']").not(e.target).prop('checked', false);
-
-        $("#idInput").val(`${$(e.target).data('sitting-id')}`)
-    });
 }
 
+function formatTime(dateString, addMins) {
+    let date = new Date(dateString)
+    if (addMins) {
+        date.setMinutes(date.getMinutes() + addMins);
+    }
+    let hours = date.getHours() % 12 || 12;
+    let mins = date.getMinutes();
+    let ampm = date.getHours() < 12 ? "AM" : "PM";
+    return `${hours}:${mins<=9?'0'+mins:mins} ${ampm}`;
+}

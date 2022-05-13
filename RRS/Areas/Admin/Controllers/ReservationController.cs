@@ -25,7 +25,7 @@ namespace RRS.Areas.Admin.Controllers
         {
             if (date == new DateTime())
             {
-                date = DateTime.Now.Date;
+                date = DateTime.Now;
             }
 
             ViewData["getReservationsByDate"] = date.ToString("yyyy-MM-dd");
@@ -110,7 +110,7 @@ namespace RRS.Areas.Admin.Controllers
                 .Include(r => r.ReservationOrigin)
                 .Include(r => r.ReservationStatus)
                 .Include(r => r.Sitting)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(r => r.Id == id);
 
             if (reservation == null)
             {
@@ -118,7 +118,7 @@ namespace RRS.Areas.Admin.Controllers
             }
             ViewData["ReservationOriginId"] = new SelectList(_context.ReservationOrigins, "Id", "Description", reservation.ReservationOrigin);
             ViewData["ReservationStatusId"] = new SelectList(_context.ReservationStatuses, "Id", "Description", reservation.ReservationStatus);
-            ViewData["SittingId"] = new SelectList(_context.Sittings, "Id", "Start", reservation.Sitting);
+            //ViewData["SittingId"] = new SelectList(_context.Sittings, "Id", "Start", reservation.Sitting);
             return View(reservation);
         }
 
@@ -127,14 +127,12 @@ namespace RRS.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NoOfGuests,CustomerId,SittingId,ReservationStatusId,ReservationOriginId,CustomerNotes,Customer,ReservationOrigin,ReservationStatus,Sitting")] Reservation reservation)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NoOfGuests,CustomerId,SittingId,ReservationStatusId,ReservationOriginId,CustomerNotes")] Reservation reservation)
         {
             if (id != reservation.Id)
             {
                 return NotFound();
             }
-
-
             try
             {
                 _context.Update(reservation);
@@ -151,46 +149,15 @@ namespace RRS.Areas.Admin.Controllers
                     throw;
                 }
             }
-            return RedirectToAction(nameof(Index));
+            var sitting = await _context.Sittings
+                .FirstOrDefaultAsync(r => r.Id == reservation.SittingId);
+            return RedirectToAction("Index", new {date = sitting.Start});
             
             ViewData["CustomerId"] = new SelectList(_context.Set<Customer>(), "Id", "Id", reservation.CustomerId);
             ViewData["ReservationOriginId"] = new SelectList(_context.ReservationOrigins, "Id", "Id", reservation.ReservationOriginId);
             ViewData["ReservationStatusId"] = new SelectList(_context.ReservationStatuses, "Id", "Id", reservation.ReservationStatusId);
             ViewData["SittingId"] = new SelectList(_context.Sittings, "Id", "Id", reservation.SittingId);
             return View(reservation);
-        }
-
-        // GET: Admin/Reservation/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var reservation = await _context.Reservations
-                .Include(r => r.Customer)
-                .Include(r => r.ReservationOrigin)
-                .Include(r => r.ReservationStatus)
-                .Include(r => r.Sitting)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (reservation == null)
-            {
-                return NotFound();
-            }
-
-            return View(reservation);
-        }
-
-        // POST: Admin/Reservation/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var reservation = await _context.Reservations.FindAsync(id);
-            _context.Reservations.Remove(reservation);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
 
         private bool ReservationExists(int id)
