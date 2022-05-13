@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RRS.Data;
+using RRS.Models;
 
 namespace RRS.Areas.Admin.Controllers
 {
@@ -26,7 +27,7 @@ namespace RRS.Areas.Admin.Controllers
         {
             //var applicationDbContext = _context.Sittings.Include(s => s.Restaurant).Include(s => s.SittingType);
             //return View(await applicationDbContext.ToListAsync());
-            return View(new Sitting());
+            return View(new SittingDto());
         }
 
         // GET: Admin/Sitting/Details/5
@@ -98,9 +99,12 @@ namespace RRS.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Start,Duration,IsOpen,Capacity,RestaurantId,SittingTypeId")] Sitting sitting)
+        //Add Bind[()]
+        public async Task<IActionResult> Edit(SittingDto sittingDto)
         {
-            if (id != sitting.Id)
+            var s = _context.Sittings.Where(s => s.Id == sittingDto.Id).FirstOrDefaultAsync();
+
+            if (s == null)
             {
                 return NotFound();
             }
@@ -109,12 +113,19 @@ namespace RRS.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(sitting);
+                    s.Result.Start = sittingDto.Start;
+                    s.Result.Duration = sittingDto.Duration;
+                    s.Result.Capacity = sittingDto.Capacity;
+                    s.Result.IsOpen = sittingDto.IsOpen;
+
+                    //Sitting Type ID not implemented, requires select list in index.cshtml
+                    s.Result.SittingTypeId= sittingDto.SittingTypeDescriptionId;
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SittingExists(sitting.Id))
+                    if (!SittingExists(s.Result.Id))
                     {
                         return NotFound();
                     }
@@ -125,9 +136,9 @@ namespace RRS.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RestaurantId"] = new SelectList(_context.Restaurants, "Id", "Id", sitting.RestaurantId);
-            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Id", sitting.SittingTypeId);
-            return View(sitting);
+            //ViewData["RestaurantId"] = new SelectList(_context.Restaurants, "Id", "Id", sitting.RestaurantId);
+            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Id", sittingDto.SittingTypeDescriptionId);
+            return View(sittingDto);
         }
 
         // GET: Admin/Sitting/Delete/5

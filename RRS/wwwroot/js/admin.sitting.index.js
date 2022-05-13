@@ -1,6 +1,16 @@
 ﻿$(() => {
     $("#dateControl").on('change', (e) => populateSittingsTable(e.target.value));
     populateSittingsTable($("#dateControl").val()); //ONLOAD  
+
+    $("input[type='submit']").on("click", (e) => {
+        let bttn = e.target.value;
+        if (bttn == "Edit") {
+            $("#form").attr("action", `Sitting/${bttn}`);
+        }
+        else if (bttn == "Delete") {
+            $("#form").attr("action", `Sitting/${bttn}`);
+        }
+    });
 });
 
 function populateSittingsTable(newDate) {
@@ -28,6 +38,7 @@ function populateSittingsTable(newDate) {
                             data-sitting-duration="${item.duration}"
                             data-sitting-capacity="${item.capacity}"
                             data-sitting-is-open="${item.isOpen}"
+                            data-sitting-type-description-id="${item.sittingTypeDescriptionId}"
                             data-sitting-type-description="${item.sittingTypeDescription}"
                             class="radio select-sitting-cb "
                             value="${index}" 
@@ -45,13 +56,14 @@ function populateSittingsTable(newDate) {
 
         $("#sittingsTBody input[type='checkbox']").not(e.target).prop('checked', false);
 
-        /*$("#idInput").val(`${$(e.target).data('sitting-id')}`)*/
-        $("#Id").val(`${$(e.target).data('sitting-id')}`)
-        $("#startInput").val(`${$(e.target).data('sitting-start')}`)
-        $("#durationInput").val(`${$(e.target).data('sitting-duration')}`)
-        $("#capacityInput").val(`${$(e.target).data('sitting-capacity')}`)
-        $("#isOpenInput").val(`${$(e.target).data('sitting-is-open')}`)
-        $("#typeDescriptionInput").val(`${$(e.target).data('sitting-type-description')}`)
+        $("#hiddenIdInput").val(`${$(e.target).data('sitting-id')}`);
+        $("#idInput").val(`${$(e.target).data('sitting-id')}`);
+        $("#startInput").val(`${$(e.target).data('sitting-start')}`);
+        $("#durationInput").val(`${$(e.target).data('sitting-duration')}`);
+        $("#capacityInput").val(`${$(e.target).data('sitting-capacity')}`);
+        $("#isOpenInput").val(`${$(e.target).data('sitting-is-open')}`);
+        $("#typeDescriptionInput").val(`${$(e.target).data('sitting-type-description')}`);
+        $("#hiddenTypeDescriptionInput").val(`${$(e.target).data('sitting-type-description-id')}`);
     });
 };
 

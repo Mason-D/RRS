@@ -53,7 +53,8 @@ namespace RRS.Controllers.API
                             Duration = s.Duration,
                             Capacity = s.Capacity,
                             IsOpen = s.IsOpen,
-                            SittingTypeDescription = s.SittingType.Description
+                            SittingTypeDescription = s.SittingType.Description,
+                            SittingTypeDescriptionId = s.SittingType.Id
                         })
                         .ToList();
         }

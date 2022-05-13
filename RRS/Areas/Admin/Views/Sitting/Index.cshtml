@@ -1,4 +1,4 @@
-﻿@model RRS.Data.Sitting
+﻿@model RRS.Models.SittingDto
 
 @{
     ViewData["Title"] = "Index";
@@ -31,34 +31,34 @@
     </div>
 
     <div class="col-sm-12 m-5">
-        <form method="post">
+        <form method="post" id="form">
             <label for="idInput" class="form-label">Id: </label>
-            <input asp-for="Id" class="form-control" disabled />
-            @*<input class="form-control" disabled id="idInput" />*@
+            <input class="form-control" disabled id="idInput" value="" />
 
             <label for="startInput" class="form-label">Start: </label>
-            <input class="form-control" id="startInput" />
+            <input asp-for="Start" class="form-control" id="startInput" value="" />
 
             <label for="durationInput" class="form-label">Duration: </label>
-            <input class="form-control" id="durationInput" />
+            <input asp-for="Duration" class="form-control" id="durationInput" value="" />
 
             <label for="capacityInput" class="form-label">Capacity: </label>
-            <input class="form-control" id="capacityInput" />
+            <input asp-for="Capacity" class="form-control" id="capacityInput" value="" />
 
             <label for="isOpenInput" class="form-label">Open: </label>
-            <input class="form-control" id="isOpenInput" />
+            <input type="text" asp-for="IsOpen" class="form-control" id="isOpenInput" value="" />
 
             <label for="typeDescriptionInput" class="form-label">Type: </label>
-            <input class="form-control" id="typeDescriptionInput" />
+            <input asp-for="SittingTypeDescription" class="form-control" id="typeDescriptionInput" />
 
-            <button asp-area="Admin" asp-controller="Sitting" asp-action="Edit"
-                id="updateBttn" class="btn btn-primary">
-                Update
-            </button>
-            <button asp-area="Admin" asp-controller="Sitting" asp-action="Delete" asp-route-id="100"
+            <input type="submit" value="Edit" class="btn btn-primary" />
+            <input type="submit" value="Delete" class="btn btn-primary" />
+@*            <button asp-area="Admin" asp-controller="Sitting" asp-action="Delete" asp-route-id="100"
                 id="deleteBttn" class="btn btn-primary">
                 Delete
-            </button>
+            </button>*@
+
+            <input asp-for="Id" type="hidden" id="hiddenIdInput"/>
+            <input asp-for="SittingTypeDescriptionId" type="hidden" id="hiddenTypeDescriptionInput"/>
         </form>
     </div>
 </div>
