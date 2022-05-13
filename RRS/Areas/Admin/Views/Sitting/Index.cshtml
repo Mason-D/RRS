@@ -9,7 +9,7 @@
 
 <div class="row">
 
-    <div class="col-sm-12 m-5">
+    <div class="col-md-12 m-2">
         <label for="dateControl">Start date:</label>
         <input type="date" id="dateControl" name="trip-start" value="@reversedDatePart"> @*Min & Max attributes available*@
 
@@ -30,35 +30,50 @@
         </table>
     </div>
 
-    <div class="col-sm-12 m-5">
+    <div class="col-md-4 m-2">
         <form method="post" id="form">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <label for="idInput" class="form-label">Id: </label>
             <input class="form-control" disabled id="idInput" value="" />
 
-            <label for="startInput" class="form-label">Start: </label>
-            <input asp-for="Start" class="form-control" id="startInput" value="" />
+            <div class="form-group">
+                <label for="startInput" class="form-label">Start: </label>
+                <input asp-for="Start" class="form-control" id="startInput" value="" />
+                <span asp-validation-for="Start" class="text-danger"></span>
+            </div>
 
-            <label for="durationInput" class="form-label">Duration: </label>
-            <input asp-for="Duration" class="form-control" id="durationInput" value="" />
+            <div class="form-group">
+                <label for="durationInput" class="form-label">Duration: </label>
+                <input asp-for="Duration" class="form-control" id="durationInput" value="" />
+                <span asp-validation-for="Duration" class="text-danger"></span>
+            </div>
 
-            <label for="capacityInput" class="form-label">Capacity: </label>
-            <input asp-for="Capacity" class="form-control" id="capacityInput" value="" />
+            <div class="form-group">              
+                <label for="capacityInput" class="form-label">Capacity: </label>
+                <input asp-for="Capacity" class="form-control" id="capacityInput" value="" />
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </div>
 
-            <label for="isOpenInput" class="form-label">Open: </label>
-            <input type="text" asp-for="IsOpen" class="form-control" id="isOpenInput" value="" />
+            <div class="form-group form-check">
+                <label for="isOpenInput" class="form-check-label">                   
+                    <input type="checkbox" asp-for="IsOpen" class="form-check-input" id="isOpenInput" value="" /> 
+                    Open: 
+                </label>
+            </div>
 
-            <label for="typeDescriptionInput" class="form-label">Type: </label>
-            <input asp-for="SittingTypeDescription" class="form-control" id="typeDescriptionInput" />
+@*            <label for="typeDescriptionInput" class="form-label">Type: </label>
+            <input asp-for="SittingTypeDescription" class="form-control" id="typeDescriptionInput" />*@
+
+            <div class="form-group">
+                <label asp-for="SittingTypeId" class="control-label">Types: </label>
+                <select asp-for="SittingTypeId" class ="form-control" asp-items="ViewBag.SittingTypeId"></select>
+            </div>
 
             <input type="submit" value="Edit" class="btn btn-primary" />
             <input type="submit" value="Delete" class="btn btn-primary" />
-@*            <button asp-area="Admin" asp-controller="Sitting" asp-action="Delete" asp-route-id="100"
-                id="deleteBttn" class="btn btn-primary">
-                Delete
-            </button>*@
 
             <input asp-for="Id" type="hidden" id="hiddenIdInput"/>
-            <input asp-for="SittingTypeDescriptionId" type="hidden" id="hiddenTypeDescriptionInput"/>
+            <input asp-for="SittingTypeId" type="hidden" id="hiddenTypeIdInput"/>
         </form>
     </div>
 </div>

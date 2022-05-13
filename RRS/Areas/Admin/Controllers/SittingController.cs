@@ -27,6 +27,7 @@ namespace RRS.Areas.Admin.Controllers
         {
             //var applicationDbContext = _context.Sittings.Include(s => s.Restaurant).Include(s => s.SittingType);
             //return View(await applicationDbContext.ToListAsync());
+            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
             return View(new SittingDto());
         }
 
@@ -47,6 +48,7 @@ namespace RRS.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Id");
             return View(sitting);
         }
 
@@ -99,8 +101,7 @@ namespace RRS.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //Add Bind[()]
-        public async Task<IActionResult> Edit(SittingDto sittingDto)
+        public async Task<IActionResult> Edit([Bind("Id,Start,Duration,Capacity,IsOpen,SittingTypeId")] SittingDto sittingDto)
         {
             var s = _context.Sittings.Where(s => s.Id == sittingDto.Id).FirstOrDefaultAsync();
 
@@ -119,7 +120,7 @@ namespace RRS.Areas.Admin.Controllers
                     s.Result.IsOpen = sittingDto.IsOpen;
 
                     //Sitting Type ID not implemented, requires select list in index.cshtml
-                    s.Result.SittingTypeId= sittingDto.SittingTypeDescriptionId;
+                    s.Result.SittingTypeId= sittingDto.SittingTypeId;
 
                     await _context.SaveChangesAsync();
                 }
@@ -137,7 +138,7 @@ namespace RRS.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             //ViewData["RestaurantId"] = new SelectList(_context.Restaurants, "Id", "Id", sitting.RestaurantId);
-            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Id", sittingDto.SittingTypeDescriptionId);
+            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Id", sittingDto.SittingTypeId);
             return View(sittingDto);
         }
 

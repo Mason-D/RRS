@@ -38,8 +38,8 @@ function populateSittingsTable(newDate) {
                             data-sitting-duration="${item.duration}"
                             data-sitting-capacity="${item.capacity}"
                             data-sitting-is-open="${item.isOpen}"
-                            data-sitting-type-description-id="${item.sittingTypeDescriptionId}"
-                            data-sitting-type-description="${item.sittingTypeDescription}"
+                            data-sitting-type-id="${item.sittingTypeId}"
+                            /*data-sitting-type-description="${item.sittingTypeDescription}"*/
                             class="radio select-sitting-cb "
                             value="${index}" 
                             id="type${index}" 
@@ -61,9 +61,13 @@ function populateSittingsTable(newDate) {
         $("#startInput").val(`${$(e.target).data('sitting-start')}`);
         $("#durationInput").val(`${$(e.target).data('sitting-duration')}`);
         $("#capacityInput").val(`${$(e.target).data('sitting-capacity')}`);
-        $("#isOpenInput").val(`${$(e.target).data('sitting-is-open')}`);
-        $("#typeDescriptionInput").val(`${$(e.target).data('sitting-type-description')}`);
-        $("#hiddenTypeDescriptionInput").val(`${$(e.target).data('sitting-type-description-id')}`);
+
+        let open = true == $(e.target).data('sitting-is-open');
+        $("#isOpenInput").prop('checked', open);
+        $("#isOpenInput").val(`${open}`);
+
+/*        $("#typeDescriptionInput").val(`${$(e.target).data('sitting-type-description')}`);*/
+        $("#hiddenTypeIdInput").val(`${$(e.target).data('sitting-type-id')}`);
     });
 };
 
