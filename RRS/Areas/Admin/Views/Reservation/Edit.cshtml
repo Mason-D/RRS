@@ -11,8 +11,8 @@
 <h4>Reservation</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit" method="POST">
+    <div class="col-md-6">
+        <form id="resForm" asp-action="Edit" method="POST">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
 
@@ -28,7 +28,7 @@
 
             <div class="form-group">
                 <label asp-for="NoOfGuests" class="control-label"></label>
-                <input asp-for="NoOfGuests" class="form-control" />
+                <input asp-for="NoOfGuests" class="form-control" min="1"/>
                 <span asp-validation-for="NoOfGuests" class="text-danger"></span>
             </div>
 
@@ -55,9 +55,6 @@
                 <span asp-validation-for="CustomerNotes" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <input type="submit" value="Update" class="btn btn-primary mt-2 px-4" />
-            </div>
         </form>
     </div>
 
@@ -82,7 +79,8 @@
 </div>
 
 <div>
-    <a asp-action="Index" asp-route-date="@Model.Sitting.Start.Date.ToString("MM-dd-yyyy")" class="btn btn-danger mt-2 px-4">Back to List</a>
+    <input type="submit" form="resForm" value="Update" class="btn btn-primary mt-2 w-25" />
+    <a asp-action="Index" asp-route-date="@Model.Sitting.Start.ToString("MM-dd-yyyy")" class="btn btn-danger mt-2 w-25">Cancel</a>
 </div>
 
 @section Scripts{
