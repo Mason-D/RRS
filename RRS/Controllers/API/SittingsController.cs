@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RRS.Data;
 using RRS.Models;
 
@@ -45,6 +46,8 @@ namespace RRS.Controllers.API
             var endLocal = end == new DateTime() ? startLocal : end.ToLocalTime();
 
             return _context.Sittings
+                        .Include(s => s.Reservations)
+                            .ThenInclude(r => r.ReservationStatus)
                         .Where(s => s.Start.Date >= startLocal.Date && s.Start.Date <= endLocal.Date)
                         .Select(s => new SittingDto
                         {
@@ -53,9 +56,11 @@ namespace RRS.Controllers.API
                             Duration = s.Duration,
                             Capacity = s.Capacity,
                             IsOpen = s.IsOpen,
-                            SittingTypeDescription = s.SittingType.Description
+                            SittingTypeDescription = s.SittingType.Description,
+                            TotalGuests = s.TotalGuests
                         })
                         .ToList();
+
         }
 
         [HttpGet]

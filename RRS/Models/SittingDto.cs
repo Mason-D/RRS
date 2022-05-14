@@ -11,5 +11,6 @@
         public bool IsOpen { get; set; }
         public int Capacity { get; set; }
         public string SittingTypeDescription { get; set; }
+        public int TotalGuests { get; set; }
     }
 }

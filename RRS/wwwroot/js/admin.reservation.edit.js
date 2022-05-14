@@ -31,7 +31,7 @@ function getSitting(newDate) {
                             <td>${item.id}</td>
                             <td>${formatTime(item.start)}</td>
                             <td>${formatTime(item.start,item.duration)}</td>
-                            <td>${item.capacity}</td>
+                            <td>${item.totalGuests}/${item.capacity}</td>
                             <td>${item.isOpen}</td>
                             <td>${item.sittingTypeDescription}</td>
                             <td>
