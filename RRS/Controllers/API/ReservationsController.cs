@@ -17,6 +17,7 @@ namespace RRS.Controllers.API
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ReservationDto Create(ReservationDto resDTO)
         {
             var customer = findOrCreateCustomer(resDTO);
