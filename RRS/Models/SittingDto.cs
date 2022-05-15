@@ -4,7 +4,7 @@ namespace RRS.Models
 {
     public class SittingDto
     {
-        [Range(1, int.MaxValue, ErrorMessage = "Id must be a valid number")]
+        [Range(1, uint.MaxValue, ErrorMessage = "Id must be a valid number")]
         public int Id { get; set; }
         public DateTime Start { get; set; }
         public int Year { get => Start.Year; }
