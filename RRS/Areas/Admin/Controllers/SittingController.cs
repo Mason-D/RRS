@@ -78,22 +78,13 @@ namespace RRS.Areas.Admin.Controllers
             return View(sitting);
         }
 
-        // GET: Admin/Sitting/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Admin/Sitting/Edit
+        [HttpGet]
+        public async Task<IActionResult> Edit(string? lastSelectedDate)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var sitting = await _context.Sittings.FindAsync(id);
-            if (sitting == null)
-            {
-                return NotFound();
-            }
-            ViewData["RestaurantId"] = new SelectList(_context.Restaurants, "Id", "Id", sitting.RestaurantId);
-            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Id", sitting.SittingTypeId);
-            return View(sitting);
+            ViewData["LastSelectedDate"] = lastSelectedDate == null ? null : lastSelectedDate;
+            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
+            return View(new SittingDto());
         }
 
         // POST: Admin/Sitting/Edit/5
@@ -103,17 +94,18 @@ namespace RRS.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit([Bind("Id,Start,Duration,Capacity,IsOpen,SittingTypeId")] SittingDto sittingDto)
         {
-            var s = _context.Sittings.Where(s => s.Id == sittingDto.Id).FirstOrDefaultAsync();
-
-            if (s == null)
-            {
-                return NotFound();
-            }
 
             if (ModelState.IsValid)
             {
                 try
                 {
+                    var s = _context.Sittings.Where(s => s.Id == sittingDto.Id).FirstOrDefaultAsync();
+
+                    if (s.Result == null) // When disabled id input is manipulated to a non-existent id
+                    {
+                        return NotFound();
+                    }
+
                     s.Result.Start = sittingDto.Start;
                     s.Result.Duration = sittingDto.Duration;
                     s.Result.Capacity = sittingDto.Capacity;
@@ -126,7 +118,7 @@ namespace RRS.Areas.Admin.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SittingExists(s.Result.Id))
+                    if (!SittingExists(sittingDto.Id))
                     {
                         return NotFound();
                     }
@@ -135,11 +127,11 @@ namespace RRS.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Edit), "Sitting", new { LastSelectedDate = sittingDto.Start.ToString("yyyy-MM-dd") });
             }
-            //ViewData["RestaurantId"] = new SelectList(_context.Restaurants, "Id", "Id", sitting.RestaurantId);
-            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Id", sittingDto.SittingTypeId);
-            return View(sittingDto);
+
+            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
+            return View("Edit");
         }
 
         // GET: Admin/Sitting/Delete/5
@@ -165,7 +157,7 @@ namespace RRS.Areas.Admin.Controllers
         // POST: Admin/Sitting/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id, DateTime start)
         {
             if (id == null)
             {
@@ -181,7 +173,7 @@ namespace RRS.Areas.Admin.Controllers
 
             _context.Sittings.Remove(sitting);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Edit), "Sitting", new { LastSelectedDate = start.ToString("yyyy-MM-dd") });
         }
 
         private bool SittingExists(int id)

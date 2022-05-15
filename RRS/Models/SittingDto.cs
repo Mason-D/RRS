@@ -1,7 +1,10 @@
-﻿namespace RRS.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RRS.Models
 {
     public class SittingDto
     {
+        [Range(1, int.MaxValue, ErrorMessage = "Id must be a valid number")]
         public int Id { get; set; }
         public DateTime Start { get; set; }
         public int Year { get => Start.Year; }
@@ -11,6 +14,6 @@
         public bool IsOpen { get; set; }
         public int Capacity { get; set; }
         public int SittingTypeId { get; set; }
-        public string SittingTypeDescription { get; set; }
+        public string? SittingTypeDescription { get; set; }
     }
 }

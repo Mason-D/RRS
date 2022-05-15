@@ -1,14 +1,22 @@
 ﻿$(() => {
-    $("#dateControl").on('change', (e) => populateSittingsTable(e.target.value));
+    $("#dateControl").on('change', (e) => {
+        populateSittingsTable(e.target.value);
+        clearForm();
+    });
     populateSittingsTable($("#dateControl").val()); //ONLOAD  
 
     $("input[type='submit']").on("click", (e) => {
         let bttn = e.target.value;
         if (bttn == "Edit") {
-            $("#form").attr("action", `Sitting/${bttn}`);
+            $("#form").attr("action", `${bttn}`);
         }
         else if (bttn == "Delete") {
-            $("#form").attr("action", `Sitting/${bttn}`);
+            if (confirm("Are you sure you want to delete the selected sitting?")) {
+                $("#form").attr("action", `${bttn}`);
+            }
+            else {
+                e.preventDefault();
+            }
         }
     });
 });
@@ -20,11 +28,13 @@ function populateSittingsTable(newDate) {
         $("#sittingsTBody").empty();
 
         data.forEach((item, index) => {
+            
+            let formattedStart = new Date(item.start).toLocaleTimeString("en-US");
 
             $("#sittingsTBody").append(
                 `<tr>
                     <td>${item.id}</td>
-                    <td>${item.start}</td>
+                    <td>${formattedStart}</td>
                     <td>${item.duration}</td>
                     <td>${item.capacity}</td>
                     <td>${item.isOpen}</td>
@@ -56,19 +66,31 @@ function populateSittingsTable(newDate) {
 
         $("#sittingsTBody input[type='checkbox']").not(e.target).prop('checked', false);
 
+        //Posted
         $("#hiddenIdInput").val(`${$(e.target).data('sitting-id')}`);
-        $("#idInput").val(`${$(e.target).data('sitting-id')}`);
+        $("#hiddenTypeIdInput").val(`${$(e.target).data('sitting-type-id')}`);
         $("#startInput").val(`${$(e.target).data('sitting-start')}`);
         $("#durationInput").val(`${$(e.target).data('sitting-duration')}`);
         $("#capacityInput").val(`${$(e.target).data('sitting-capacity')}`);
-
-        let open = true == $(e.target).data('sitting-is-open');
+        $("#typeSelectList").val(`${$(e.target).data('sitting-type-id')}`);
+        // Match checkbox state to selected sitting isOpen value
+        let open = true == $(e.target).data('sitting-is-open'); //String to bool
         $("#isOpenInput").prop('checked', open);
         $("#isOpenInput").val(`${open}`);
+        //Posted End
 
-/*        $("#typeDescriptionInput").val(`${$(e.target).data('sitting-type-description')}`);*/
-        $("#hiddenTypeIdInput").val(`${$(e.target).data('sitting-type-id')}`);
+        //Purely Visual
+        $("#idInput").val(`${$(e.target).data('sitting-id')}`);
     });
 };
 
+function clearForm() {
+    $("#hiddenIdInput").val("");
+    $("#hiddenTypeIdInput").val("");
+    $("#startInput").val("");
+    $("#durationInput").val("");
+    $("#capacityInput").val("");
+    $("#isOpenInput").val("");
+    $("#idInput").val("");
+}
 
