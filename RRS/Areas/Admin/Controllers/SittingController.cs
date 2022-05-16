@@ -23,7 +23,7 @@ namespace RRS.Areas.Admin.Controllers
 
 
         // GET: Admin/Sitting
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             //var applicationDbContext = _context.Sittings.Include(s => s.Restaurant).Include(s => s.SittingType);
             //return View(await applicationDbContext.ToListAsync());
@@ -80,7 +80,7 @@ namespace RRS.Areas.Admin.Controllers
 
         // GET: Admin/Sitting/Edit
         [HttpGet]
-        public async Task<IActionResult> Edit(string? lastSelectedDate)
+        public IActionResult Edit(string? lastSelectedDate)
         {
             ViewData["LastSelectedDate"] = lastSelectedDate == null ? null : lastSelectedDate;
             ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
@@ -94,6 +94,10 @@ namespace RRS.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit([Bind("Id,Start,Duration,Capacity,IsOpen,SittingTypeId")] SittingDto sittingDto)
         {
+            if (sittingDto.Id <= 0)
+            {
+                return NotFound();
+            }
 
             if (ModelState.IsValid)
             {
@@ -159,7 +163,7 @@ namespace RRS.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id, DateTime start)
         {
-            if (id == null)
+            if (id <= 0)
             {
                 return NotFound();
             }
