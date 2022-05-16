@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RRS.Data;
 using RRS.Models;
 
@@ -18,9 +19,9 @@ namespace RRS.Controllers.API
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ReservationDto Create(ReservationDto resDTO)
+        public async Task<ReservationDto> Create(ReservationDto resDTO)
         {
-            var customer = findOrCreateCustomer(resDTO);
+            var customer = await findOrCreateCustomer(resDTO);
 
             var reservation = new Reservation
             {
@@ -33,19 +34,19 @@ namespace RRS.Controllers.API
                 CustomerId = customer.Id
             };
 
-            _context.Reservations
-                .Add(reservation);
+            await _context.Reservations
+                .AddAsync(reservation);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             resDTO.ReferenceNo = reservation.Id;
 
             return resDTO;
         }
 
-        private Customer findOrCreateCustomer(ReservationDto resDto)
+        private async Task<Customer> findOrCreateCustomer(ReservationDto resDto)
         {
-            var customer = _context.People.Where(p => p.Email == resDto.Email).ToList();
+            var customer = await _context.People.Where(p => p.Email == resDto.Email).ToListAsync();
 
             return customer.Count > 0 ? 
                 (Customer) customer.First()
