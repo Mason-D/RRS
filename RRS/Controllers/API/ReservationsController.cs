@@ -18,7 +18,7 @@ namespace RRS.Controllers.API
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken] //- Token blocks requests from 'Make Reservation' SPA on seperate server
         public async Task<ReservationDto> Create(ReservationDto resDTO)
         {
             var customer = await findOrCreateCustomer(resDTO);
