@@ -27,7 +27,7 @@ function getSitting(newDate) {
 
             $("#sittingsTBody").append(
 
-                `<tr>
+                `<tr id="$SittingTableRow{index}">
                             <td>${item.id}</td>
                             <td>${formatTime(item.start)}</td>
                             <td>${formatTime(item.start,item.duration)}</td>
