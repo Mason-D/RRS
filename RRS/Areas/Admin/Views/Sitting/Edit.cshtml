@@ -2,7 +2,9 @@
 
 @{
     ViewData["Title"] = "Index";
-    string reversedDatePart = ViewData["LastSelectedDate"] == null ? DateTime.Now.Date.ToString("yyyy-MM-dd") : ViewData["LastSelectedDate"] as string;
+    string currentDate = DateTime.Now.Date.ToString("yyyy-MM-dd");
+    string currentDateTime = DateTime.Now.Date.ToString("yyyy-MM-ddT00:00");
+    string reversedDatePart = ViewData["LastSelectedDate"] == null ? currentDate : ViewData["LastSelectedDate"] as string;
 }
 
 <h1>Index - Manage Sitting</h1>
@@ -11,7 +13,7 @@
 
     <div class="col-md-12 m-2">
         <label for="dateControl">Start date:</label>
-        <input type="date" id="dateControl" name="trip-start" value="@reversedDatePart"> @*Min & Max attributes available*@
+        <input type="date" id="dateControl" name="trip-start" value="@reversedDatePart" min="@currentDate">
 
         <table id="sittingsT" class="table table-striped">
             <thead>
@@ -42,7 +44,7 @@
 
             <div class="form-group">
                 <label for="startInput" class="form-label">Start: </label>
-                <input asp-for="Start" class="form-control" id="startInput" value="" />
+                <input asp-for="Start" class="form-control" id="startInput" value="" min="@currentDateTime" />
                 <span asp-validation-for="Start" class="text-danger"></span>
             </div>
 
