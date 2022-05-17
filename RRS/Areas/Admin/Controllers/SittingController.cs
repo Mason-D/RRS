@@ -96,7 +96,7 @@ namespace RRS.Areas.Admin.Controllers
         {
             if (sittingDto.Id <= 0)
             {
-                return NotFound();
+                return View("Edit");
             }
 
             if (ModelState.IsValid)
@@ -133,12 +133,6 @@ namespace RRS.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Edit), "Sitting", new { LastSelectedDate = sittingDto.Start.ToString("yyyy-MM-dd") });
             }
-            //ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
-            //if (ModelState["Start"].ValidationState.ToString() == "Valid")
-            //{
-            //    return RedirectToAction(nameof(Edit), "Sitting", new { LastSelectedDate = sittingDto.Start.ToString("yyyy-MM-dd") });
-            //}
-            //return View("Edit");
             ViewData["LastSelectedDate"] = ModelState["Start"].ValidationState.ToString() == "Valid" ? sittingDto.Start.ToString("yyyy-MM-dd") : null;
             ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
             return View("Edit");
