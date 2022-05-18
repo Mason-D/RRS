@@ -47,6 +47,21 @@ function populateSittingsTable(newDate) {
 
         $("#sittingsTBody").empty();
 
+        //let columnCount = $("#sittingsT th").length; // Validation msg spans entire table
+        //if (data.length == 0) {
+        //    $("#sittingsTBody").append(
+        //        `<tr>
+        //            <td colspan="${columnCount}">No sittings exist on this day...</td>
+        //        </tr>`
+        //    );
+        //    return;
+        //}
+
+        if (data.length == 0) {
+            validateTable();
+            return;
+        }
+
         data.forEach((item, index) => {
 
             let formattedStart = new Date(item.start).toLocaleTimeString("en-US");
@@ -111,5 +126,14 @@ function onRowSelect(row) {
     //Highlight selected row
     $(row).addClass('bg-secondary');
     $(row).addClass('text-white');
+}
+
+function validateTable() {
+    let columnCount = $("#sittingsT th").length; // Validation msg spans entire table
+    $("#sittingsTBody").append(
+        `<tr>
+            <td colspan="${columnCount}">No sittings exist on this day...</td>
+        </tr>`
+    );
 }
 
