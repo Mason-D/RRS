@@ -110,12 +110,15 @@ function clearForm() {
 }
 
 function onRowSelect(row) {
+    //
+    $('#sittingsTBody').find('.bg-secondary').attr('role', 'button');
     //Deselect any highlighted rows
     $('#sittingsTBody').find('.bg-secondary').removeClass('bg-secondary');
     $('#sittingsTBody').find('.text-white').removeClass('text-white');
     //Highlight selected row
     $(row).addClass('bg-secondary');
     $(row).addClass('text-white');
+    $(row).removeAttr('role');
 }
 
 function validateTable() {
