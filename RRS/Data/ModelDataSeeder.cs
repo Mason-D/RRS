@@ -15,7 +15,8 @@ namespace RRS.Data
             seedSittings();
             seedReservationStatuses();
             seedReservationOrigins();
-            // All data excluding reservations are seeded
+            seedPeople();
+            seedReservation();
         }
 
 
@@ -172,7 +173,28 @@ namespace RRS.Data
                 new Sitting { Interval=15, Cutoff=30, Id = 82, SittingTypeId = 1, RestaurantId = 1, Capacity = 40, IsOpen = true, Start = new DateTime(2022, 5, 3, 7, 0, 0), Duration = 240 },
                 new Sitting { Interval=15, Cutoff=30, Id = 83, SittingTypeId = 2, RestaurantId = 1, Capacity = 60, IsOpen = true, Start = new DateTime(2022, 5, 3, 13, 0, 0), Duration = 180 },
                 new Sitting { Interval=15, Cutoff=30, Id = 84, SittingTypeId = 3, RestaurantId = 1, Capacity = 80, IsOpen = true, Start = new DateTime(2022, 5, 3, 18, 0, 0), Duration = 300 }
-                );
+            );
+
+            int id = 85;
+            for (int i = 5; i <= 8; i++)
+            {
+                for (int j = 1; j <= 28; j++)
+                {
+                    _builder.Entity<Sitting>().HasData(new Sitting
+                    {
+                        Interval = 15,
+                        Cutoff = 30,
+                        Id = id,
+                        SittingTypeId = 1,
+                        RestaurantId = 1,
+                        Capacity = 20,
+                        IsOpen = true,
+                        Start = new DateTime(2022, i, j, 9, 0, 0),
+                        Duration = 240
+                    });
+                    id++;
+                }
+            }
         }
 
         private void seedReservationStatuses()
@@ -194,6 +216,45 @@ namespace RRS.Data
                 new ReservationOrigin { Id = 3, Description = "Phone" },
                 new ReservationOrigin { Id = 4, Description = "Online" }
             );
+        }
+
+        private void seedPeople()
+        {
+            for (int i = 1; i <= 3; i++)
+            {
+                _builder.Entity<Customer>().HasData(new Customer
+                {
+                    Id = i,
+                    FirstName = $"SeedPersonFN{i}",
+                    LastName = $"SeedPersonLN{i}",
+                    PhoneNumber = $"04{i}00{i}00",
+                    Email = $"Seed@Person{i}.com",
+                    IsVIP = true,
+                    RestaurantId = 1
+                });
+            }
+        }
+
+        private void seedReservation()
+        {
+            int id = 85;
+            int month = 5;
+            int day = 18;
+            for (int i = 1; i <= 10; i++)
+            {
+                _builder.Entity<Reservation>().HasData(new Reservation
+                {
+                    SittingId = id,
+                    StartTime = new DateTime(2022, month, day, 9, 30, 0),
+                    CustomerId = i > 3 ? 1 : i,
+                    NoOfGuests = i * 2,
+                    ReservationOriginId = 4,
+                    Id = i,
+                    ReservationStatusId = 1
+                });
+                id++;
+                day++;
+            }
         }
     }
 }
