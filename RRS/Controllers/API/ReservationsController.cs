@@ -63,5 +63,45 @@ namespace RRS.Controllers.API
 
             return resDTO;
         }
+
+
+        [HttpGet]
+        [Route("any/{start}/{end?}")]
+        public async Task<ActionResult<IEnumerable<ReservationDto>>> Any(DateTime start, DateTime end = new DateTime())
+        {
+            var startLocal = start;
+            var endLocal = end == new DateTime() ? startLocal : end;
+
+            return await _context.Reservations
+                            .Include(r => r.Customer)
+                            .Include(r => r.ReservationOrigin)
+                            .Include(r => r.ReservationStatus)
+                            .Include(r => r.Sitting)
+                                .ThenInclude(s => s.SittingType)
+                            //Change to res Start Time
+                            //.Where(r => r.StartTime >= startLocal.Date && r.StartTime <= endLocal.Date.AddDays(1))
+                            .Where(r => r.Sitting.Start.Date >= startLocal.Date && r.Sitting.Start.Date <= endLocal.Date)
+                            .OrderBy(r => r.StartTime)
+                            //.AsNoTracking()
+                            .Select(r => new ReservationDto
+                            {
+                                ReferenceNo = r.Id,
+                                NoOfGuests = r.NoOfGuests,
+                                SittingId = r.SittingId,
+                                ReservationOriginId = r.ReservationOriginId,
+                                CustomerNotes = r.CustomerNotes,
+                                FirstName = r.Customer.FirstName,
+                                LastName = r.Customer.LastName,
+                                PhoneNumber = r.Customer.PhoneNumber,
+                                Email = r.Customer.Email,
+                                RestaurantId = r.Sitting.RestaurantId,
+                                StartTime = r.StartTime,
+                                ResStatus = r.ReservationStatus.Description,
+                                ResOrigin = r.ReservationOrigin.Description,
+                                ResType = r.Sitting.SittingType.Description
+
+                            })
+                            .ToListAsync();
+        }
     }
 }

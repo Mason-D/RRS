@@ -48,13 +48,13 @@ async function getSitting(newDate) {
             $("#sittingsTBody").append(
 
                 `<tr id="STB${item.id}" role="button">
-                            <td>${item.id}</td>
-                            <td>${formatTime(item.start)}</td>
-                            <td>${formatTime(item.start,item.duration)}</td>
-                            <td>${item.totalGuests}/${item.capacity}</td>
-                            <td>${item.isOpen}</td>
-                            <td>${item.sittingTypeDescription}</td>
-                        </tr>`
+                    <td>${item.id}</td>
+                    <td>${formatTime(item.start)}</td>
+                    <td>${formatTime(item.start,item.duration)}</td>
+                    <td>${item.totalGuests}/${item.capacity}</td>
+                    <td>${item.isOpen}</td>
+                    <td>${item.sittingTypeDescription}</td>
+                </tr>`
             );
         })
 

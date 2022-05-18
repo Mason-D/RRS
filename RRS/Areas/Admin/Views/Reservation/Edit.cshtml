@@ -3,11 +3,7 @@
 @{
     ViewData["Title"] = "Edit";
     string reversedDatePart = Model.Sitting.Start.Date.ToString("yyyy-MM-dd");
-
 }
-@*@section Styles {
-    <link href="@Url.Content("~/css/admin.reservation.edit.css")" rel="stylesheet" type="text/css" />
-}*@
 
 <h1>Edit</h1>
 
@@ -21,9 +17,6 @@
             
             <h4 class="mb-2">Customer: @Model.Customer.FirstName @Model.Customer.LastName</h4>
             <h4 class="mb-2">Contact: @Model.Customer.PhoneNumber</h4>
-
-            <label for="dateControl">Start date:</label>
-            <input type="date" id="dateControl" name="trip-start" value=@reversedDatePart>
 
             <div class="form-group">
                 <input type="hidden" asp-for="CustomerId" class="form-control" />
@@ -69,6 +62,9 @@
     </div>
 
     <div class="col-md-6">
+            <label class="fw-bold" for="dateControl">Sitting date:</label>
+            <input type="date" id="dateControl" name="trip-start" value=@reversedDatePart />
+
         <table id="sittingsT" class="table table-hover">
             <thead>
                 <tr>

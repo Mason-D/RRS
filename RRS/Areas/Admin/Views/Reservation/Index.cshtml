@@ -1,9 +1,8 @@
-﻿@model IEnumerable<RRS.Data.Reservation>
+﻿@model RRS.Data.Reservation
 
 @{
     ViewData["Title"] = "Index";
-
-    string sittingDate;
+    var reversedDatePart = ViewData["getReservationsByDate"];
 }
 
 <h1>Index</h1>
@@ -12,14 +11,33 @@
     <a asp-action="Create">Create New</a>
 </p>
 
-<form method="get" asp-action="Index">
+@*<form method="get" asp-action="Index">
     <label for="selectDate">Date:</label>
-    <input type="date" id="selectDate" value="@ViewData["getReservationsByDate"]" name="date" onchange="submit" />
+    <input type="date" id="selectDate" value="@ViewData["getReservationsByDate"]" name="date" onchange="this.form.submit()" />
     <input type="submit" value="Search" class="btn btn-primary" />
-</form>
+</form>*@
 
 
-<table class="table container-fluid">
+<label class="fw-bold" for="dateControl">Sitting date:</label>
+<input type="date" id="dateControl" name="trip-start" value=@reversedDatePart />
+
+
+<table id="reservationsT" class="table table-striped container-fluid">
+            <thead>
+                <tr>
+                    <th scope="col">Time</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Guests</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Notes</th>
+                </tr>
+            </thead>
+            <tbody id="reservationsTBody"></tbody>
+        </table>
+
+@*<table class="table container-fluid">
     <thead>
         <tr>
             <th class="col-1">
@@ -91,8 +109,8 @@
         </tr>
 }
     </tbody>
-</table>
+</table>*@
 
 @section Scripts{
-
+    <script src=~/js/admin.reservation.index.js></script>
 }
