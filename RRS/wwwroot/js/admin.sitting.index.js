@@ -33,7 +33,6 @@
         $("#typeSelectList").val(`${$(e.currentTarget).data('sitting-type-id')}`);
         // Match checkbox state to selected sitting isOpen value
         let open = true == $(e.currentTarget).data('sitting-is-open');
-        $("#isOpenInput").prop('checked', open);
         $("#isOpenInput").val(`${open}`);
         //Posted End
 
@@ -89,8 +88,6 @@ function populateSittingsTable(newDate) {
                 $(`#sittingsTBody-row-bttn-${index}`).html(buttonHtml);
                 $(`#sittingsTBody-row-bttn-${index}`).removeClass(data.isOpen == true ? "btn-danger" : "btn-success");
                 $(`#sittingsTBody-row-bttn-${index}`).addClass(data.isOpen == true ? "btn-success" : "btn-danger");
-
-                $("#isOpenInput").prop('checked', data.isOpen);
                 $("#isOpenInput").val(`${data.isOpen}`);
             });
         });
