@@ -19,33 +19,32 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Duration" class="control-label"></label>
-                    <input asp-for="Duration" class="form-control" />
+                    <input id="Duration" type="number" asp-for="Duration" class="form-control" />
                     <span asp-validation-for="Duration" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
                     <label asp-for="Capacity" class="control-label"></label>
-                    <input asp-for="Capacity" class="form-control" />
+                    <input asp-for="Capacity" type="number" class="form-control" />
                     <span asp-validation-for="Capacity" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Interval" class="control-label"></label>
-                    <input asp-for="Interval" class="form-control" />
+                    <input asp-for="Interval" type="number" class="form-control" />
                     <span asp-validation-for="Interval" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="CutOff" class="control-label"></label>
-                    <input asp-for="CutOff" class="form-control" />
+                    <input asp-for="CutOff" type="number" class="form-control" />
                     <span asp-validation-for="CutOff" class="text-danger"></span>
                 </div>
 
                 <div>
-                    <input id="RepeatSittingBtnDays" class="btn btn-primary" value="Repeat Sitting by Days" />
                     <input id="RepeatSittingBtnWeeks" class="btn btn-primary" value="Repeat Sitting by Weeks" />
                 </div>
 
 
-                <div id="RepeatWeeksContainer" class="form-group">
+                <div id="RepeatWeeksContainer"  style="display:none" class="form-group">
 
 
                     <div id="day-of-week-container">
@@ -57,14 +56,9 @@
                     </div>
 
                     <div>
-                        <label for="RepeatWeeksInput" class="control-label"> Repeat Until </label>
-                        <input type="date" id="RepeatWeeksInput" class="form-control" />
+                        <label for="EndDateInput" class="control-label"> Repeat Until </label>
+                        <input type="date" id="EndDateInput" class="form-control"/>
                     </div>
-
-                </div>
-                <div id="RepeatDaysContainer">
-                    <label for="RepeatDaysInput" class="control-label"> Repeat For Days</label>
-                    <input type="number" id="RepeatDaysInput" class="form-control" />
 
                 </div>
                 <div class="form-group">
@@ -78,24 +72,23 @@
                 <div class="form-group" id="SittingTypeSelect">
                     <label asp-for="SittingTypeId" class="control-label"></label>
                     <select asp-for="SittingTypeId" class="form-control" asp-items="ViewBag.SittingTypeId"></select>
+                </div>
+                <div id="NewSittingArea" style="display:none">
+                    <label asp-for="NewSittingName"  class="control-label"></label>
+                    <input id="NewSittingAreaInput" asp-for="NewSittingName" class="form-control" />
+                    <span asp-validation-for="NewSittingName" class="text-danger"></span>
+                </div>
                     <div>
                         <input id="NewSittingBtn" type="button" class="btn-primary btn" value="New" />
                     </div>
-                </div>
-                <div id="NewSittingArea">
-                    <label asp-for="NewSittingName" class="control-label"></label>
-                    <input id="NewSittingAreaInput" asp-for="NewSittingName" class="form-control" />
-                    <span asp-validation-for="NewSittingName" class="text-danger"></span>
-                    <div>
-                        <input id="OldSittingBtn" type="button" class="btn-primary btn" value="Back" />
-                    </div>
-                </div>
             </div>
         </div>
+
+                                                                @*make this not hard coded*@
         <input type="hidden" asp-for="RestaurantId" value="1" />
-        <input id="Group" type="hidden" asp-for="Group" value="null" />
-        <input id="DaysToRepeat" asp-for="DaysToRepeat" type="hidden" value="null" />
-        <input id="WeeksToRepeat" asp-for="WeeksToRepeat" type="hidden" value="null" />
+        <input type="hidden" asp-for="Group" id="Group"  value="null" />
+        <input type="hidden" asp-for="EndDate" id="EndDate" value="null" />
+        <input type="hidden" asp-for="SelectedDays" id="SelectedDays" value="null" />
     </form>
 
 </div>

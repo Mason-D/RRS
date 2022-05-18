@@ -20,10 +20,11 @@ namespace RRS.Areas.Admin.Models.Sittings
         public int Interval { get; set; }
         public int CutOff { get; set; }
         public string Group { get; set; }
-        public int DaysToRepeat { get; set; }
-        public int WeeksToRepeat { get; set; }
+        public DateTime EndDate { get; set; }
         [DisplayName("New Sitting Name")]
         public string  NewSittingName { get; set; }
+
+        public string SelectedDays { get; set; }
 
     }
 }

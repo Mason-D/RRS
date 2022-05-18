@@ -63,7 +63,7 @@ namespace RRS.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Start,Duration,Capacity,RestaurantId,SittingTypeId,Interval,CutOff, NewSitting, NewSittingName, Group, DaysToRepeat, WeeksToRepeat")] SittingsVm sitting)
+        public async Task<IActionResult> Create([Bind("Id,Start,Duration,Capacity,RestaurantId,SittingTypeId,Interval,CutOff, NewSitting, NewSittingName, Group, WeeksToRepeat ,SelectedDays , EndDate")] SittingsVm sitting)
         {
  
             
@@ -95,33 +95,39 @@ namespace RRS.Areas.Admin.Controllers
             }
 
 
-            if(sitting.Group == "Days")
-            {
-
-                for(int i = 0; i < sitting.DaysToRepeat; i++)
-                {
-                    var NewSitting = new Sitting() 
-                    {
-                        RestaurantId = sitting.RestaurantId,
-                        Start = sitting.Start.AddDays(i),
-                        Duration = sitting.Duration,
-                        IsOpen = sitting.IsOpen,
-                        Capacity = sitting.Capacity,
-                        SittingTypeId = sitting.SittingTypeId
-                        //add group id here
-                    };
-                    _context.Add(NewSitting);
-                }
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-
-            }
             if(sitting.Group == "Weeks")
             {
+                List<string> selectedDays = sitting.SelectedDays.Split(',').ToList();
+                var startDate = sitting.Start;
+                var endDate = sitting.EndDate;
+
+                var testOutPut = new List<DateTime>();
+
+                List<Sitting> sittings = new List<Sitting>();
+
+                for (DateTime date = startDate; date < endDate; date = date.AddDays(1))
+                {
+                    var dayOfTheWeek = date.DayOfWeek;
+
+                    if(selectedDays.Contains(dayOfTheWeek.ToString()))
+                    {
+                        sittings.Add(new Sitting()
+                        {
+                            RestaurantId = sitting.RestaurantId,
+                            Start = date,
+                            Duration = sitting.Duration,
+                            IsOpen = sitting.IsOpen,
+                            Capacity = sitting.Capacity,
+                            SittingTypeId = sitting.SittingTypeId
+                        });
+                    }
+                }
+                _context.Add(sittings);
+
 
             }
 
-            
+
             ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description", sitting.SittingTypeId);
             return View(sitting);
         }

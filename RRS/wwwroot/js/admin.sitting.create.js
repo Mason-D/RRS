@@ -1,46 +1,38 @@
-﻿    var ShowReapeatDays = false;
-    var ShowReapeatWeeks = false;
-
-
-
+﻿    var ShowReapeatWeeks = false;
 
 $(() => {
 
-    $('#day-of-week-container').find('.btn-check').change(e => {
 
-        console.log('selected days')
+    //check which days of the week are selected and return to controller
+    $('#day-of-week-container').find('.btn-check').change(e => {
+        let selectedDays = []
+
         for (let cb of $('#day-of-week-container').find(':checked')) {
-            console.log($(cb).data('day'));
+            selectedDays.push($(cb).data('day'));
         }
-      
+        $("#SelectedDays").val(selectedDays);
+        console.log("test")
 
     }); 
 
     //Show and Hide Toggle for new Sitting Type
-
-    $("#NewSittingArea").hide();
-    $("#RepeatWeeksContainer").hide();
-    $("#RepeatDaysContainer").hide();
-
-    //Show and Hide Toggle for new Sitting Type
-    $("#NewSittingBtn").click(function () {
-        $("#NewSittingArea").show();
-        $("#SittingTypeSelect").hide();
-    });
-    $("#OldSittingBtn").click(function () {
-        $("#NewSittingAreaInput").val(null);
-        $("#NewSittingArea").hide();
-        $("#SittingTypeSelect").show();
-    });
-   
-
-    //Show Repeat Weeks
-    $("#RepeatSittingBtnWeeks").click(function () {
-        if (ShowReapeatDays) {
-            $("#RepeatDaysInput").val(null);
-            $("#RepeatDaysContainer").hide();
-            ShowReapeatDays = false
+    $("#NewSittingBtn").click(function (e) {
+        let btnValue = e.target.value
+        if(btnValue === "New")
+        {
+            $("#NewSittingArea").show();
+            $("#SittingTypeSelect").hide();
+            e.target.value = 'Back'
+        }else{
+            $("#NewSittingArea").hide();
+            $("#SittingTypeSelect").show();
+            $("#NewSittingAreaInput").val("");
+            e.target.value = 'New'
         }
+    });
+
+    //Toggle Show Repeat Weeks
+    $("#RepeatSittingBtnWeeks").click(function () {
         if (!ShowReapeatWeeks) {
             $("#RepeatWeeksContainer").show();
             ShowReapeatWeeks = true;
@@ -53,52 +45,50 @@ $(() => {
         }
     });
 
-    //Show Repeat Days
-    $("#RepeatSittingBtnDays").click(function () {
-        if (ShowReapeatWeeks) {
-            $("#RepeatWeeksInput").val(null);
-            $("#RepeatWeeksContainer").hide();
-            ShowReapeatWeeks = false;
-        }
-        if (!ShowReapeatDays) {
-            $("#RepeatDaysContainer").show();
-            ShowReapeatDays = true
-            $("#Group").val("Days");
-        }
-        else if (ShowReapeatDays) {
-            $("#RepeatDaysContainer").hide();
-            ShowReapeatDays = false
-            $("#Group").val(null);
-        }
-    });
 
 
-    $("#RepeatDaysInput").change(function (e) {
-        $("#DaysToRepeat").val(e.target.value);
-    });
 
-    $
 
-    $("#RepeatWeeksInput").change(function (e) {
-        $("#WeeksToRepeat").val(e.target.value);
+    $("#EndDateInput").change(function (e) {
+        $("#EndDate").val(e.target.value);
+        console.log(e.target.value)
+
     });
 
 
 
 
+    //select the repeate sitting buttons and toggle for the selected day 
 
     $('#StartTime').change(function (e) {
-
         let startDate = new Date(e.target.value)
-        console.log(startDate)
+        
+        let selectedDay = startDate.toLocaleDateString('en-us', {weekday: 'long'})
+        $("#day-of-week-container").find(`:checked`).prop("checked", false);
+        $("#day-of-week-container").find(`#cb-day-${selectedDay}`).prop("checked", "checked");
+
+        //add display in a better way like duration 
 
     });
 
 
-    $("#btn-check-Sunday").click(function (e) {
-        console.log(e.target.value)
-    });
+    //create a display that show the duration in a more readable way 
 
+    $("#Duration").change(function (e) { 
+
+        // console.log($("#StartTime").val());
+
+        if($("#StartTime").val() != "")
+        {   
+           console.log(e.target.value)
+        }
+        
+    });
 
 
 });
+
+
+DisplayDuration = () => {
+    console.log("yeet");
+}
