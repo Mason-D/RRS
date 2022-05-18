@@ -29,7 +29,8 @@ namespace RRS.Controllers.API
                 ReservationOriginId = resDTO.ReservationOriginId,
                 ReservationStatusId = 1,
                 Customer = customer,
-                CustomerId = customer.Id
+                CustomerId = customer.Id,
+                StartTime = resDTO.StartTime
             };
 
             _context.Reservations
