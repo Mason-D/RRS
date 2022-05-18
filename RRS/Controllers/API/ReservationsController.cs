@@ -24,7 +24,6 @@ namespace RRS.Controllers.API
         //[ValidateAntiForgeryToken] //- Token blocks requests from 'Make Reservation' SPA on seperate server
         public async Task<ReservationDto> Create(ReservationDto resDTO)
         {
-            //var customer = findOrCreateCustomer(resDTO);
             var obj = _personService.FindOrCreatePerson<Customer>(
                 new PersonVM
                 {
@@ -35,7 +34,7 @@ namespace RRS.Controllers.API
                     RestaurantId = resDTO.RestaurantId
                 });
 
-            //Unpack anonymouse object
+            //Unpack anonymous object
             Type type = obj.GetType();
             var customer = (Person)type.GetProperty("Person").GetValue(obj, null);
             
@@ -48,7 +47,6 @@ namespace RRS.Controllers.API
                 ReservationOriginId = resDTO.ReservationOriginId,
                 ReservationStatusId = 1,
                 Customer = (Customer) customer,
-                //CustomerId = customer.Id
             };
 
             await _context.Reservations
@@ -60,8 +58,5 @@ namespace RRS.Controllers.API
 
             return resDTO;
         }
-
-
-
     }
 }
