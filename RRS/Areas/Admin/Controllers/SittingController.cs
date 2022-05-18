@@ -90,12 +90,15 @@ namespace RRS.Areas.Admin.Controllers
                     Duration = sitting.Duration,
                     IsOpen = sitting.IsOpen,
                     Capacity = sitting.Capacity,
-                    SittingTypeId = sitting.SittingTypeId
+                    SittingTypeId = sitting.SittingTypeId,
+                    Cutoff = sitting.CutOff,
+                    Interval = sitting.Interval,
+                    GroupId = null
                 };
 
                 _context.Add(SingleSitting);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Edit));
             }
 
 
@@ -122,13 +125,17 @@ namespace RRS.Areas.Admin.Controllers
                             Duration = sitting.Duration,
                             IsOpen = sitting.IsOpen,
                             Capacity = sitting.Capacity,
-                            SittingTypeId = sitting.SittingTypeId
-                        });
+                            SittingTypeId = sitting.SittingTypeId,
+                            Cutoff = sitting.CutOff,
+                            Interval = sitting.Interval,
+                            GroupId = null
+                            //change this 
+                        }); ;
                     }
                 }
-                _context.Add(sittings);
-
-
+                _context.AddRange(sittings);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Edit));
             }
 
 
