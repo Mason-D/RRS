@@ -1,0 +1,67 @@
+﻿@page
+@model RRS.Areas.Identity.Pages.Account.Manage.ReservationsModel
+@{
+    ViewData["Title"] = "Manage Reservations";
+    ViewData["ActivePage"] = ManageNavPages.Reservations;
+}
+
+<div class="row">
+    <div class="col-md-6 "> 
+        
+        <h5>Upcoming Reservations</h5>
+        @if(Model.UpcomingReservations.Count == 0)
+        {
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <p class="card-text">No upcoming reservations.</p>
+                </div>
+            </div>
+        }
+        else
+        {           
+            @foreach(var res in Model.UpcomingReservations)
+            {
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <p class="card-text">Reservation Id: @res.Id</p>
+                        <p class="card-text">Sitting Start: @res.Sitting.Start</p>
+                        <p class="card-text">Type: @res.Sitting.SittingType.Description</p>
+                        <p class="card-text">Guests: @res.NoOfGuests</p>
+                        <p class="card-text">Status: @res.ReservationStatus.Description</p>
+                    </div>
+                </div>
+            }
+        }
+
+        <h5>Past Reservations</h5>
+        @if(Model.PastReservations.Count == 0)
+        {
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <p class="card-text">No past reservations.</p>
+                </div>
+            </div>
+        }
+        else
+        {
+            @foreach(var res in Model.PastReservations)
+            {
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <p class="card-text">Reservation Id: @res.Id</p>
+                        <p class="card-text">Sitting Start: @res.Sitting.Start</p>
+                        <p class="card-text">Type: @res.Sitting.SittingType.Description</p>
+                        <p class="card-text">Guests: @res.NoOfGuests</p>
+                        <p class="card-text">Status: @res.ReservationStatus.Description</p>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

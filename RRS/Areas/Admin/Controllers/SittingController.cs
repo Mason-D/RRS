@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RRS.Areas.Admin.Models.Sittings;
 using RRS.Data;
+using RRS.Models;
 
 namespace RRS.Areas.Admin.Controllers
 {
@@ -23,10 +24,12 @@ namespace RRS.Areas.Admin.Controllers
 
 
         // GET: Admin/Sitting
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var applicationDbContext = _context.Sittings.Include(s => s.Restaurant).Include(s => s.SittingType);
-            return View(await applicationDbContext.ToListAsync());
+            //var applicationDbContext = _context.Sittings.Include(s => s.Restaurant).Include(s => s.SittingType);
+            //return View(await applicationDbContext.ToListAsync());
+            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
+            return View(new SittingDto());
         }
 
         // GET: Admin/Sitting/Details/5
@@ -46,6 +49,7 @@ namespace RRS.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Id");
             return View(sitting);
         }
 
@@ -132,22 +136,13 @@ namespace RRS.Areas.Admin.Controllers
             return View(sitting);
         }
 
-        // GET: Admin/Sitting/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Admin/Sitting/Edit
+        [HttpGet]
+        public IActionResult Edit(string? lastSelectedDate)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var sitting = await _context.Sittings.FindAsync(id);
-            if (sitting == null)
-            {
-                return NotFound();
-            }
-            ViewData["RestaurantId"] = new SelectList(_context.Restaurants, "Id", "Id", sitting.RestaurantId);
-            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Id", sitting.SittingTypeId);
-            return View(sitting);
+            ViewData["LastSelectedDate"] = lastSelectedDate == null ? null : lastSelectedDate;
+            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
+            return View(new SittingDto());
         }
 
         // POST: Admin/Sitting/Edit/5
@@ -155,23 +150,37 @@ namespace RRS.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Start,Duration,IsOpen,Capacity,RestaurantId,SittingTypeId")] Sitting sitting)
+        public async Task<IActionResult> Edit([Bind("Id,Start,Duration,Capacity,IsOpen,SittingTypeId")] SittingDto sittingDto)
         {
-            if (id != sitting.Id)
+            if (sittingDto.Id <= 0)
             {
-                return NotFound();
+                return View("Edit");
             }
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(sitting);
+                    var s = _context.Sittings.Where(s => s.Id == sittingDto.Id).FirstOrDefaultAsync();
+
+                    if (s.Result == null) // When disabled id input is manipulated to a non-existent id
+                    {
+                        return NotFound();
+                    }
+
+                    s.Result.Start = sittingDto.Start;
+                    s.Result.Duration = sittingDto.Duration;
+                    s.Result.Capacity = sittingDto.Capacity;
+                    s.Result.IsOpen = sittingDto.IsOpen;
+
+                    //Sitting Type ID not implemented, requires select list in index.cshtml
+                    s.Result.SittingTypeId= sittingDto.SittingTypeId;
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SittingExists(sitting.Id))
+                    if (!SittingExists(sittingDto.Id))
                     {
                         return NotFound();
                     }
@@ -180,11 +189,11 @@ namespace RRS.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Edit), "Sitting", new { LastSelectedDate = sittingDto.Start.ToString("yyyy-MM-dd") });
             }
-            ViewData["RestaurantId"] = new SelectList(_context.Restaurants, "Id", "Id", sitting.RestaurantId);
-            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Id", sitting.SittingTypeId);
-            return View(sitting);
+            ViewData["LastSelectedDate"] = ModelState["Start"].ValidationState.ToString() == "Valid" ? sittingDto.Start.ToString("yyyy-MM-dd") : null;
+            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
+            return View("Edit");
         }
 
         // GET: Admin/Sitting/Delete/5
@@ -210,12 +219,23 @@ namespace RRS.Areas.Admin.Controllers
         // POST: Admin/Sitting/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id, DateTime start)
         {
+            if (id <= 0)
+            {
+                return NotFound();
+            }
+
             var sitting = await _context.Sittings.FindAsync(id);
+
+            if (sitting == null)
+            {
+                return NotFound();
+            }
+
             _context.Sittings.Remove(sitting);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Edit), "Sitting", new { LastSelectedDate = start.ToString("yyyy-MM-dd") });
         }
 
         private bool SittingExists(int id)
