@@ -34,6 +34,19 @@ else
     app.UseHsts();
 }
 
+app.Use(async (context, next) =>
+{
+    await next();
+    //
+    string[] reactRoutes = {"/people","/date","/sitting","/details" ,"/Confirmation" }; 
+
+    if (context.Response.StatusCode == 404 && reactRoutes.Any(p => p.Equals(context.Request.Path)))
+    {
+        context.Request.Path = "/Home";
+        await next();
+    }
+});
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
