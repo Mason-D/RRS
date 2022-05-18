@@ -17,26 +17,18 @@
                 <label asp-for="Input.Email"></label>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
-            <div class="form-floating">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.Password"></label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-floating">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.ConfirmPassword"></label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            @if((bool)ViewData["PersonExists"])
+            @if(ViewData["PersonExists"] != null)
             {
-
-                <input type="hidden" asp-for="Input.NewFormReturned" value="false"/>
-            }
-            else
-            {
-                <span class="small text-danger">*First time customers must provide personal information</span>
-                <partial name="_PersonalInformation.cshtml" />
-                <input type="hidden" asp-for="Input.NewFormReturned" value="true"/>
+                @if((bool)ViewData["PersonExists"])
+                {
+                    <input type="hidden" asp-for="Input.NewFormReturned" value="true"/>
+                    <partial name="_ExistingCustRegistration.cshtml" />
+                }
+                else
+                {
+                    <partial name="_NewCustRegistration.cshtml" />
+                    <input type="hidden" asp-for="Input.NewFormReturned" value="true"/>
+                }   
             }
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>          
         </form>

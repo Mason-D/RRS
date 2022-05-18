@@ -93,7 +93,7 @@ namespace RRS.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            ViewData["PersonExists"] = true;
+            ViewData["PersonExists"] = null; //was true, testing
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
@@ -105,22 +105,6 @@ namespace RRS.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                if (Input.NewFormReturned)
-                {
-                    if (!_personService.NamesAreValid(Input.FirstName, Input.LastName))
-                    {
-                        return Page();
-                    }
-                }
-                else
-                {
-                    ViewData["PersonExists"] = _context.People.Where(p => p.Email == Input.Email).ToList().Count > 0;
-                    if (!(bool)ViewData["PersonExists"])
-                    {
-                        return Page(); //Return form with personal info fields (e.g., first name)
-                    }
-                }
-
                 var user = CreateUser();
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
@@ -179,6 +163,7 @@ namespace RRS.Areas.Identity.Pages.Account
                 }
             }
 
+            ViewData["PersonExists"] = _context.People.Where(p => p.Email == Input.Email).ToList().Count > 0;
             // If we got this far, something failed, redisplay form
             return Page();
         }
