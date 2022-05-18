@@ -47,16 +47,6 @@ function populateSittingsTable(newDate) {
 
         $("#sittingsTBody").empty();
 
-        //let columnCount = $("#sittingsT th").length; // Validation msg spans entire table
-        //if (data.length == 0) {
-        //    $("#sittingsTBody").append(
-        //        `<tr>
-        //            <td colspan="${columnCount}">No sittings exist on this day...</td>
-        //        </tr>`
-        //    );
-        //    return;
-        //}
-
         if (data.length == 0) {
             validateTable();
             return;
