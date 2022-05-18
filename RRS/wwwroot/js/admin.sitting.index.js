@@ -32,7 +32,7 @@
         $("#capacityInput").val(`${$(e.currentTarget).data('sitting-capacity')}`);
         $("#typeSelectList").val(`${$(e.currentTarget).data('sitting-type-id')}`);
         // Match checkbox state to selected sitting isOpen value
-        let open = true == $(e.currentTarget).data('sitting-is-open'); //String to bool
+        let open = true == $(e.currentTarget).data('sitting-is-open');
         $("#isOpenInput").prop('checked', open);
         $("#isOpenInput").val(`${open}`);
         //Posted End
@@ -51,7 +51,8 @@ function populateSittingsTable(newDate) {
         data.forEach((item, index) => {
 
             let formattedStart = new Date(item.start).toLocaleTimeString("en-US");
-            let buttonHtml = item.isOpen == true ? "Close" : "Open";
+            let buttonHtml = item.isOpen == true ? "Open" : "Closed";
+            let bttnBootstrap = item.isOpen == true ? "btn btn-success" : "btn btn-danger";
 
             $("#sittingsTBody").append(
                 `<tr    
@@ -71,10 +72,9 @@ function populateSittingsTable(newDate) {
                         <td>${formattedStart}</td>
                         <td>${item.duration}</td>
                         <td>${item.capacity}</td>
-                        <td id="sittingsTBody-row-cell-is-open-${index}">${item.isOpen}</td>
                         <td>${item.sittingTypeDescription}</td>
                         <td>(Not yet in entity)</td>
-                        <td><button class="sittingsTBody-row-bttn" id="sittingsTBody-row-bttn-${index}">${buttonHtml}</button></td>
+                        <td><button class="sittingsTBody-row-bttn ${bttnBootstrap}" id="sittingsTBody-row-bttn-${index}">${buttonHtml}</button></td>
                 </tr>`
             );
         });
@@ -85,9 +85,13 @@ function populateSittingsTable(newDate) {
             let sittingId = $(`#sittingsTBody-row-${index}`).data("sitting-id");
             
             $.get(`https://localhost:7271/api/Sittings/toggle-availability/${sittingId}`, null, function (data) {
-                let buttonHtml = data.isOpen == true ? "Close" : "Open";
-                $(`#sittingsTBody-row-cell-is-open-${index}`).html(`${data.isOpen}`);
+                let buttonHtml = data.isOpen == true ? "Open" : "Closed";
                 $(`#sittingsTBody-row-bttn-${index}`).html(buttonHtml);
+                $(`#sittingsTBody-row-bttn-${index}`).removeClass(data.isOpen == true ? "btn-danger" : "btn-success");
+                $(`#sittingsTBody-row-bttn-${index}`).addClass(data.isOpen == true ? "btn-success" : "btn-danger");
+
+                $("#isOpenInput").prop('checked', data.isOpen);
+                $("#isOpenInput").val(`${data.isOpen}`);
             });
         });
     });
@@ -105,10 +109,10 @@ function clearForm() {
 
 function onRowSelect(row) {
     //Deselect any highlighted rows
-    $('#sittingsTBody').find('.bg-primary').removeClass('bg-primary');
+    $('#sittingsTBody').find('.bg-secondary').removeClass('bg-secondary');
     $('#sittingsTBody').find('.text-white').removeClass('text-white');
     //Highlight selected row
-    $(row).addClass('bg-primary');
+    $(row).addClass('bg-secondary');
     $(row).addClass('text-white');
 }
 
