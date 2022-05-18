@@ -46,6 +46,8 @@ namespace RRS.Controllers.API
             var endLocal = end == new DateTime() ? startLocal : end.ToLocalTime();
 
             return await _context.Sittings
+                            .Include(s => s.Reservations)
+                                .ThenInclude(r => r.ReservationStatus)
                             .Where(s => s.Start.Date >= startLocal.Date && s.Start.Date <= endLocal.Date)
                             .Select(s => new SittingDto
                             {
@@ -55,7 +57,8 @@ namespace RRS.Controllers.API
                                 Capacity = s.Capacity,
                                 IsOpen = s.IsOpen,
                                 SittingTypeDescription = s.SittingType.Description,
-                                SittingTypeId = s.SittingType.Id
+                                SittingTypeId = s.SittingType.Id,
+                                TotalGuests = s.TotalGuests
                             })
                             .ToListAsync();
         }

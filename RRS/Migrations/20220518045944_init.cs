@@ -353,7 +353,8 @@ namespace RRS.Migrations
                     SittingId = table.Column<int>(type: "int", nullable: false),
                     ReservationStatusId = table.Column<int>(type: "int", nullable: false),
                     ReservationOriginId = table.Column<int>(type: "int", nullable: false),
-                    CustomerNotes = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    CustomerNotes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {

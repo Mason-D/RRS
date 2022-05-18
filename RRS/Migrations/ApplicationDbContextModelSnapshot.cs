@@ -329,6 +329,9 @@ namespace RRS.Migrations
                     b.Property<int>("SittingId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");

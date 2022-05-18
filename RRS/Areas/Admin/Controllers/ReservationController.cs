@@ -21,10 +21,28 @@ namespace RRS.Areas.Admin.Controllers
         }
 
         // GET: Admin/Reservation
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(DateTime date)
         {
-            var applicationDbContext = _context.Reservations.Include(r => r.Customer).Include(r => r.ReservationOrigin).Include(r => r.ReservationStatus).Include(r => r.Sitting);
-            return View(await applicationDbContext.ToListAsync());
+            if (date == new DateTime())
+            {
+                date = DateTime.Now;
+            }
+
+            ViewData["getReservationsByDate"] = date.ToString("yyyy-MM-dd");
+
+            var applicationDbContext = _context.Reservations
+                .Include(r => r.Customer)
+                .Include(r => r.ReservationOrigin)
+                .Include(r => r.ReservationStatus)
+                .Include(r => r.Sitting)
+                    .ThenInclude(s => s.SittingType)
+                .Where(r => r.Sitting.Start.Date == date.Date)
+                .OrderBy(r=>r.Sitting.Start)
+                .AsNoTracking()
+                .ToArrayAsync();
+
+
+            return View(await applicationDbContext);
         }
 
         // GET: Admin/Reservation/Details/5
@@ -87,15 +105,20 @@ namespace RRS.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var reservation = await _context.Reservations.FindAsync(id);
+            var reservation = await _context.Reservations
+                .Include(r => r.Customer)
+                .Include(r => r.ReservationOrigin)
+                .Include(r => r.ReservationStatus)
+                .Include(r => r.Sitting)
+                .FirstOrDefaultAsync(r => r.Id == id);
+
             if (reservation == null)
             {
                 return NotFound();
             }
-            ViewData["CustomerId"] = new SelectList(_context.Set<Customer>(), "Id", "Id", reservation.CustomerId);
-            ViewData["ReservationOriginId"] = new SelectList(_context.ReservationOrigins, "Id", "Id", reservation.ReservationOriginId);
-            ViewData["ReservationStatusId"] = new SelectList(_context.ReservationStatuses, "Id", "Id", reservation.ReservationStatusId);
-            ViewData["SittingId"] = new SelectList(_context.Sittings, "Id", "Id", reservation.SittingId);
+            ViewData["ReservationOriginId"] = new SelectList(_context.ReservationOrigins, "Id", "Description", reservation.ReservationOrigin);
+            ViewData["ReservationStatusId"] = new SelectList(_context.ReservationStatuses, "Id", "Description", reservation.ReservationStatus);
+            //ViewData["SittingId"] = new SelectList(_context.Sittings, "Id", "Start", reservation.Sitting);
             return View(reservation);
         }
 
@@ -110,65 +133,31 @@ namespace RRS.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    _context.Update(reservation);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ReservationExists(reservation.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _context.Update(reservation);
+                await _context.SaveChangesAsync();
             }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ReservationExists(reservation.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            var sitting = await _context.Sittings
+                .FirstOrDefaultAsync(r => r.Id == reservation.SittingId);
+            return RedirectToAction("Index", new {date = sitting.Start});
+            
             ViewData["CustomerId"] = new SelectList(_context.Set<Customer>(), "Id", "Id", reservation.CustomerId);
             ViewData["ReservationOriginId"] = new SelectList(_context.ReservationOrigins, "Id", "Id", reservation.ReservationOriginId);
             ViewData["ReservationStatusId"] = new SelectList(_context.ReservationStatuses, "Id", "Id", reservation.ReservationStatusId);
             ViewData["SittingId"] = new SelectList(_context.Sittings, "Id", "Id", reservation.SittingId);
             return View(reservation);
-        }
-
-        // GET: Admin/Reservation/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var reservation = await _context.Reservations
-                .Include(r => r.Customer)
-                .Include(r => r.ReservationOrigin)
-                .Include(r => r.ReservationStatus)
-                .Include(r => r.Sitting)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (reservation == null)
-            {
-                return NotFound();
-            }
-
-            return View(reservation);
-        }
-
-        // POST: Admin/Reservation/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var reservation = await _context.Reservations.FindAsync(id);
-            _context.Reservations.Remove(reservation);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
 
         private bool ReservationExists(int id)

@@ -17,5 +17,6 @@ namespace RRS.Models
         public int Capacity { get; set; }
         public int SittingTypeId { get; set; }
         public string? SittingTypeDescription { get; set; }
+        public int TotalGuests { get; set; }
     }
 }

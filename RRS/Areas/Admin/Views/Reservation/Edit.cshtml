@@ -2,55 +2,96 @@
 
 @{
     ViewData["Title"] = "Edit";
+    string reversedDatePart = Model.Sitting.Start.Date.ToString("yyyy-MM-dd");
+
 }
+@*@section Styles {
+    <link href="@Url.Content("~/css/admin.reservation.edit.css")" rel="stylesheet" type="text/css" />
+}*@
 
 <h1>Edit</h1>
 
 <h4>Reservation</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+    <div class="col-md-6">
+        <form id="resForm" asp-action="Edit" method="POST">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+            
+            <h4 class="mb-2">Customer: @Model.Customer.FirstName @Model.Customer.LastName</h4>
+            <h4 class="mb-2">Contact: @Model.Customer.PhoneNumber</h4>
+
+            <label for="dateControl">Start date:</label>
+            <input type="date" id="dateControl" name="trip-start" value=@reversedDatePart>
+
             <div class="form-group">
-                <label asp-for="NoOfGuests" class="control-label"></label>
-                <input asp-for="NoOfGuests" class="form-control" />
-                <span asp-validation-for="NoOfGuests" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerId" class="control-label"></label>
-                <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
+                <input type="hidden" asp-for="CustomerId" class="form-control" />
                 <span asp-validation-for="CustomerId" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
-                <label asp-for="SittingId" class="control-label"></label>
-                <select asp-for="SittingId" class="form-control" asp-items="ViewBag.SittingId"></select>
+                <label asp-for="NoOfGuests" class="control-label"></label>
+                <input asp-for="NoOfGuests" class="form-control" min="1"/>
+                <span asp-validation-for="NoOfGuests" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="StartTime" class="control-label"></label>
+                <input asp-for="StartTime" class="form-control"/>
+                <span asp-validation-for="StartTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="hidden" asp-for="SittingId" class="form-control" id="idInput"/>
                 <span asp-validation-for="SittingId" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="ReservationStatusId" class="control-label"></label>
                 <select asp-for="ReservationStatusId" class="form-control" asp-items="ViewBag.ReservationStatusId"></select>
                 <span asp-validation-for="ReservationStatusId" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="ReservationOriginId" class="control-label"></label>
                 <select asp-for="ReservationOriginId" class="form-control" asp-items="ViewBag.ReservationOriginId"></select>
                 <span asp-validation-for="ReservationOriginId" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="CustomerNotes" class="control-label"></label>
-                <input asp-for="CustomerNotes" class="form-control" />
+                <textarea asp-for="CustomerNotes" class="form-control"></textarea>
                 <span asp-validation-for="CustomerNotes" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+
         </form>
     </div>
+
+    <div class="col-md-6">
+        <table id="sittingsT" class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Start</th>
+                    <th scope="col">End</th>
+                    <th scope="col">Capacity</th>
+                    <th scope="col">Open</th>
+                    <th scope="col">Type</th>
+                </tr>
+            </thead>
+            <tbody id="sittingsTBody"></tbody>
+        </table>
+    </div>
+
+
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <input type="submit" form="resForm" value="Update" class="btn btn-primary mt-2 w-25" />
+    <a asp-action="Index" asp-route-date="@Model.Sitting.Start.ToString("MM-dd-yyyy")" class="btn btn-danger mt-2 w-25">Cancel</a>
 </div>
 
+@section Scripts{
+    <script src=~/js/admin.reservation.edit.js></script>
+}

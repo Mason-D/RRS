@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Index";
+
+    string sittingDate;
 }
 
 <h1>Index</h1>
@@ -9,57 +11,88 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+
+<form method="get" asp-action="Index">
+    <label for="selectDate">Date:</label>
+    <input type="date" id="selectDate" value="@ViewData["getReservationsByDate"]" name="date" onchange="submit" />
+    <input type="submit" value="Search" class="btn btn-primary" />
+</form>
+
+
+<table class="table container-fluid">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NoOfGuests)
+            <th class="col-1">
+                Time
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer)
+
+            <th class="col-1">
+                Type
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Sitting)
+
+            <th class="col-2">
+                Customer
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReservationStatus)
+
+            <th class="col-1">
+                Contact
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReservationOrigin)
+
+            <th class="col-1">
+                Guests
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CustomerNotes)
+
+            <th class="col-1">
+                Status
             </th>
-            <th></th>
+
+            <th class="col-1">
+                Origin
+            </th>
+
+            <th class="col-2">
+                Notes
+            </th>
+            <th class="col-2"></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var res in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.NoOfGuests)
+                @res.StartTime.ToString("h:mm tt")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.Id)
+                @res.Sitting.SittingType.Description
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Sitting.Id)
+                @res.Customer.FirstName
+                @res.Customer.LastName
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ReservationStatus.Id)
+                @res.Customer.PhoneNumber
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ReservationOrigin.Id)
+                @res.NoOfGuests
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CustomerNotes)
+                @res.ReservationStatus.Description
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                @res.ReservationOrigin.Description
+            </td>
+            <td>
+                @res.CustomerNotes
+            </td>
+            <td>
+                <a type="button" class="btn btn-primary" asp-action="Edit" asp-route-id="@res.Id"> Edit </a>
+                <a type="button" class="btn btn-success" asp-action="Details" asp-route-id="@res.Id">Details</a>   
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+@section Scripts{
+
+}
