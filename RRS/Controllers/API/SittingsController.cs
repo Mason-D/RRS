@@ -89,5 +89,15 @@ namespace RRS.Controllers.API
                             .Select(s => new SittingByDayDto { Id = s.Id, Type = s.SittingType.Description, Duration = s.Duration, Start = s.Start.ToString("HH:mm") })
                             .ToListAsync();
         }
+
+        //Anti forgery token attribute
+        [Route("toggle-availability/{id}")]
+        public async Task<ActionResult<IEnumerable<SittingByDayDto>>> ToggleAvailability(int id)
+        {
+            var sitting = await _context.Sittings.Where(s => s.Id == id).FirstOrDefaultAsync();
+            sitting.IsOpen = sitting.IsOpen == true ? false : true;
+            await _context.SaveChangesAsync();
+            return Ok(sitting);
+        }
     }
 }

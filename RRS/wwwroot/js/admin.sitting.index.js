@@ -49,8 +49,9 @@ function populateSittingsTable(newDate) {
         $("#sittingsTBody").empty();
 
         data.forEach((item, index) => {
-            
+
             let formattedStart = new Date(item.start).toLocaleTimeString("en-US");
+            let buttonHtml = item.isOpen == true ? "Close" : "Open";
 
             $("#sittingsTBody").append(
                 `<tr    
@@ -61,24 +62,34 @@ function populateSittingsTable(newDate) {
                     data-sitting-is-open="${item.isOpen}"
                     data-sitting-type-id="${item.sittingTypeId}"
                     data-sitting-type-description="${item.sittingTypeDescription}"
-                    class="radio select-sitting-cb "
+                    class="sittingsTBody-row"
                     value="${index}" 
-                    id="type${index}" 
-                    name="type${index}">
+                    id="sittingsTBody-row-${index}"
+                    name="sittingsTBody-row-${index}">
 
                         <td>${item.id}</td>
                         <td>${formattedStart}</td>
                         <td>${item.duration}</td>
                         <td>${item.capacity}</td>
-                        <td>${item.isOpen}</td>
+                        <td id="sittingsTBody-row-cell-is-open-${index}">${item.isOpen}</td>
                         <td>${item.sittingTypeDescription}</td>
                         <td>(Not yet in entity)</td>
-
+                        <td><button class="sittingsTBody-row-bttn" id="sittingsTBody-row-bttn-${index}">${buttonHtml}</button></td>
                 </tr>`
             );
-            /*$("#sittingsTBody").find('.select-sitting-cb').click((e) => {});*/
-        })
+        });
 
+
+        $(".sittingsTBody-row-bttn").click((e) => {
+            let index = e.currentTarget.id.split("-")[3];
+            let sittingId = $(`#sittingsTBody-row-${index}`).data("sitting-id");
+            
+            $.get(`https://localhost:7271/api/Sittings/toggle-availability/${sittingId}`, null, function (data) {
+                let buttonHtml = data.isOpen == true ? "Close" : "Open";
+                $(`#sittingsTBody-row-cell-is-open-${index}`).html(`${data.isOpen}`);
+                $(`#sittingsTBody-row-bttn-${index}`).html(buttonHtml);
+            });
+        });
     });
 };
 
@@ -96,7 +107,6 @@ function onRowSelect(row) {
     //Deselect any highlighted rows
     $('#sittingsTBody').find('.bg-primary').removeClass('bg-primary');
     $('#sittingsTBody').find('.text-white').removeClass('text-white');
-    console.log(temp);
     //Highlight selected row
     $(row).addClass('bg-primary');
     $(row).addClass('text-white');
