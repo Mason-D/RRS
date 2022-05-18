@@ -3,9 +3,22 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Admin Index</h1>
+<div class="container-fluid">
+    <div class="row justify-content-evenly">
+        <h1 class="col-3">Reservations</h1>
+        <h1 class="col-3">Sittings</h1>
+    </div>
+    
+    <div class="row justify-content-evenly py-2">
+        <a class="btn btn-primary col-3" asp-area="Admin" asp-controller="Reservation" asp-action="Index">Manage Reservations</a>
+        <a class="btn btn-primary col-3" asp-area="Admin" asp-controller="Sitting" asp-action="Edit">Manage Sittings</a>
+    </div>
+    
+    <div class="row justify-content-evenly">
+        <a class="btn btn-success col-3" asp-area="Admin" asp-controller="Reservation" asp-action="Create">Create Reservations</a>
+        <a class="btn btn-success col-3" asp-area="Admin" asp-controller="Sitting" asp-action="Create">Create Sittings</a>
+    </div>
 
-   <a class="nav-link text-dark" asp-area="Admin" asp-controller="Reservation" asp-action="Index">Manage Reservations</a>
-   <a class="nav-link text-dark" asp-area="Admin" asp-controller="Sitting" asp-action="Index">Manage Sittings</a>
-   <a class="nav-link text-dark" asp-area="Admin" asp-controller="Reservation" asp-action="Create">Create Reservations</a>
-   <a class="nav-link text-dark" asp-area="Admin" asp-controller="Sitting" asp-action="Create">Create Sittings</a>
+</div>
+
+

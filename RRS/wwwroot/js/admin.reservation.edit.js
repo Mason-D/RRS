@@ -1,49 +1,60 @@
 ﻿$(() => {
 
+    $("#dateControl").on('change', (e) => getSitting(
+        e.target.value).then(
+            ()=> highlightStart($("#idInput").val())
+        )
+    );
 
-    $("#dateControl").on('change', (e) => getSitting(e.target.value));
-    getSitting($("#dateControl").val()); 
+    getSitting($("#dateControl").val()).then(
+        ()=> highlightStart($("#idInput").val())
+    );
 
 
-    $("#sittingsTBody").on('change', "input[type='checkbox']", function (e) {
+    $("#sittingsTBody").on('click', 'tr', function (e) {
+        // working? I hope
+        $('#sittingsTBody').find('.bg-secondary').attr('role', 'button');
+        $('#sittingsTBody').find('.bg-secondary').removeClass('bg-secondary');
+        $('#sittingsTBody').find('.text-white').removeClass('text-white');
+        $(this).addClass('bg-secondary');
+        $(this).addClass('text-white');
+        $(this).removeAttr('role');
 
-        $("#sittingsTBody input[type='checkbox']").not(e.target).prop('checked', false);
-
-        $("#idInput").val(`${$(e.target).data('sitting-id')}`)
+        $("#idInput").val(e.currentTarget.children[0].innerHTML)
+        console.log(e.currentTarget)
+        $('#startTime').val($("#dateControl").val());
     });
+
+
 
 });
 
+function highlightStart(id){
+    $('#sittingsTBody').find(`#STB${id}`).addClass('bg-secondary');
+    $('#sittingsTBody').find(`#STB${id}`).addClass('text-white');
+    $('#sittingsTBody').find(`#STB${id}`).removeAttr('role');
+}
 
-function getSitting(newDate) {
+async function getSitting(newDate) {
 
 
     //Sittings by selected day
-    $.get(`https://localhost:7271/api/Sittings/any/${newDate}`, null, function (data) {
+    await $.get(`https://localhost:7271/api/Sittings/any/${newDate}`, null, function (data) {
 
         $("#sittingsTBody").empty();
 
-        data.forEach((item, index) => {
+        data.forEach((item) => {
 
             $("#sittingsTBody").append(
 
-                `<tr id="$SittingTableRow{index}">
-                            <td>${item.id}</td>
-                            <td>${formatTime(item.start)}</td>
-                            <td>${formatTime(item.start,item.duration)}</td>
-                            <td>${item.totalGuests}/${item.capacity}</td>
-                            <td>${item.isOpen}</td>
-                            <td>${item.sittingTypeDescription}</td>
-                            <td>
-                                <input
-                                    type="checkbox"
-                                    data-sitting-id="${item.id}"    
-                                    class="radio select-sitting-cb "
-                                    value="${index}" 
-                                    id="type${index}" 
-                                    name="type${index}" />
-                            </td>
-                        </tr>`
+                `<tr id="STB${item.id}" role="button">
+                    <td>${item.id}</td>
+                    <td>${formatTime(item.start)}</td>
+                    <td>${formatTime(item.start,item.duration)}</td>
+                    <td>${item.totalGuests}/${item.capacity}</td>
+                    <td>${item.isOpen}</td>
+                    <td>${item.sittingTypeDescription}</td>
+                </tr>`
             );
         })
 

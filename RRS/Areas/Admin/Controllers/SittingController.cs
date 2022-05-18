@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using RRS.Areas.Admin.Models.Sittings;
 using RRS.Data;
+using RRS.Models;
 
 namespace RRS.Areas.Admin.Controllers
 {
@@ -22,11 +24,12 @@ namespace RRS.Areas.Admin.Controllers
 
 
         // GET: Admin/Sitting
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             //var applicationDbContext = _context.Sittings.Include(s => s.Restaurant).Include(s => s.SittingType);
             //return View(await applicationDbContext.ToListAsync());
-            return View(new Sitting());
+            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
+            return View(new SittingDto());
         }
 
         // GET: Admin/Sitting/Details/5
@@ -46,14 +49,16 @@ namespace RRS.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Id");
             return View(sitting);
         }
 
         // GET: Admin/Sitting/Create
         public IActionResult Create()
         {
-            ViewData["RestaurantId"] = new SelectList(_context.Restaurants, "Id", "Id");
-            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Id");
+            //ViewData["RestaurantId"] = new SelectList(_context.Restaurants, "Id", "Name");
+            ViewData["RestaurantId"] = 1;
+            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
             return View();
         }
 
@@ -62,35 +67,82 @@ namespace RRS.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Start,Duration,IsOpen,Capacity,RestaurantId,SittingTypeId")] Sitting sitting)
+        public async Task<IActionResult> Create([Bind("Id,Start,Duration,Capacity,RestaurantId,SittingTypeId,Interval,CutOff, NewSitting, NewSittingName, Group, WeeksToRepeat ,SelectedDays , EndDate")] SittingsVm sitting)
         {
-            if (ModelState.IsValid)
+ 
+            
+            if(sitting.NewSittingName !=null)
             {
-                _context.Add(sitting);
+                SittingType st = new SittingType { Description = sitting.NewSittingName };
+                _context.Add(st);
+                await _context.SaveChangesAsync();
+                var newSittingName =  await _context.SittingTypes.Where(s => s.Description == sitting.NewSittingName).FirstOrDefaultAsync();
+                sitting.SittingTypeId = newSittingName.Id;
+            }
+            // probs going to have to add a way to remove sitting types 
+
+            if(sitting.Group  == null)
+            {
+                var SingleSitting = new Sitting()
+                {
+                    RestaurantId = sitting.RestaurantId,
+                    Start = sitting.Start,
+                    Duration = sitting.Duration,
+                    IsOpen = sitting.IsOpen,
+                    Capacity = sitting.Capacity,
+                    SittingTypeId = sitting.SittingTypeId
+                };
+
+                _context.Add(SingleSitting);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RestaurantId"] = new SelectList(_context.Restaurants, "Id", "Id", sitting.RestaurantId);
-            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Id", sitting.SittingTypeId);
+
+
+            if(sitting.Group == "Weeks")
+            {
+                List<string> selectedDays = sitting.SelectedDays.Split(',').ToList();
+                var startDate = sitting.Start;
+                var endDate = sitting.EndDate;
+
+                var testOutPut = new List<DateTime>();
+
+                List<Sitting> sittings = new List<Sitting>();
+
+                for (DateTime date = startDate; date < endDate; date = date.AddDays(1))
+                {
+                    var dayOfTheWeek = date.DayOfWeek;
+
+                    if(selectedDays.Contains(dayOfTheWeek.ToString()))
+                    {
+                        sittings.Add(new Sitting()
+                        {
+                            RestaurantId = sitting.RestaurantId,
+                            Start = date,
+                            Duration = sitting.Duration,
+                            IsOpen = sitting.IsOpen,
+                            Capacity = sitting.Capacity,
+                            SittingTypeId = sitting.SittingTypeId
+                        });
+                    }
+                }
+                _context.Add(sittings);
+
+
+            }
+
+
+            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description", sitting.SittingTypeId);
             return View(sitting);
         }
 
-        // GET: Admin/Sitting/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Admin/Sitting/Edit
+        [HttpGet]
+        public IActionResult Edit(string? lastSelectedDate)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var sitting = await _context.Sittings.FindAsync(id);
-            if (sitting == null)
-            {
-                return NotFound();
-            }
-            ViewData["RestaurantId"] = new SelectList(_context.Restaurants, "Id", "Id", sitting.RestaurantId);
-            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Id", sitting.SittingTypeId);
-            return View(sitting);
+            ViewData["LastSelectedDate"] = lastSelectedDate == null ? null : lastSelectedDate;
+            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
+            return View(new SittingDto());
         }
 
         // POST: Admin/Sitting/Edit/5
@@ -98,23 +150,37 @@ namespace RRS.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Start,Duration,IsOpen,Capacity,RestaurantId,SittingTypeId")] Sitting sitting)
+        public async Task<IActionResult> Edit([Bind("Id,Start,Duration,Capacity,IsOpen,SittingTypeId")] SittingDto sittingDto)
         {
-            if (id != sitting.Id)
+            if (sittingDto.Id <= 0)
             {
-                return NotFound();
+                return View("Edit");
             }
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(sitting);
+                    var s = _context.Sittings.Where(s => s.Id == sittingDto.Id).FirstOrDefaultAsync();
+
+                    if (s.Result == null) // When disabled id input is manipulated to a non-existent id
+                    {
+                        return NotFound();
+                    }
+
+                    s.Result.Start = sittingDto.Start;
+                    s.Result.Duration = sittingDto.Duration;
+                    s.Result.Capacity = sittingDto.Capacity;
+                    s.Result.IsOpen = sittingDto.IsOpen;
+
+                    //Sitting Type ID not implemented, requires select list in index.cshtml
+                    s.Result.SittingTypeId= sittingDto.SittingTypeId;
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SittingExists(sitting.Id))
+                    if (!SittingExists(sittingDto.Id))
                     {
                         return NotFound();
                     }
@@ -123,11 +189,11 @@ namespace RRS.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Edit), "Sitting", new { LastSelectedDate = sittingDto.Start.ToString("yyyy-MM-dd") });
             }
-            ViewData["RestaurantId"] = new SelectList(_context.Restaurants, "Id", "Id", sitting.RestaurantId);
-            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Id", sitting.SittingTypeId);
-            return View(sitting);
+            ViewData["LastSelectedDate"] = ModelState["Start"].ValidationState.ToString() == "Valid" ? sittingDto.Start.ToString("yyyy-MM-dd") : null;
+            ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
+            return View("Edit");
         }
 
         // GET: Admin/Sitting/Delete/5
@@ -153,9 +219,9 @@ namespace RRS.Areas.Admin.Controllers
         // POST: Admin/Sitting/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id, DateTime start)
         {
-            if (id == null)
+            if (id <= 0)
             {
                 return NotFound();
             }
@@ -169,7 +235,7 @@ namespace RRS.Areas.Admin.Controllers
 
             _context.Sittings.Remove(sitting);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Edit), "Sitting", new { LastSelectedDate = start.ToString("yyyy-MM-dd") });
         }
 
         private bool SittingExists(int id)

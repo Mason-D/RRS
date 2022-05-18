@@ -17,7 +17,7 @@ namespace RRS.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasAnnotation("ProductVersion", "6.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -275,6 +275,7 @@ namespace RRS.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
@@ -286,13 +287,14 @@ namespace RRS.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RestaurantId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -313,7 +315,6 @@ namespace RRS.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CustomerNotes")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NoOfGuests")
@@ -327,6 +328,9 @@ namespace RRS.Migrations
 
                     b.Property<int>("SittingId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -372,6 +376,11 @@ namespace RRS.Migrations
                         {
                             Id = 3,
                             Description = "Phone"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Online"
                         });
                 });
 
@@ -469,7 +478,16 @@ namespace RRS.Migrations
                     b.Property<int>("Capacity")
                         .HasColumnType("int");
 
+                    b.Property<int>("Cutoff")
+                        .HasColumnType("int");
+
                     b.Property<int>("Duration")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("GroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Interval")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsOpen")
@@ -497,7 +515,9 @@ namespace RRS.Migrations
                         {
                             Id = 1,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -507,7 +527,9 @@ namespace RRS.Migrations
                         {
                             Id = 2,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -517,7 +539,9 @@ namespace RRS.Migrations
                         {
                             Id = 3,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -527,7 +551,9 @@ namespace RRS.Migrations
                         {
                             Id = 4,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -537,7 +563,9 @@ namespace RRS.Migrations
                         {
                             Id = 5,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -547,7 +575,9 @@ namespace RRS.Migrations
                         {
                             Id = 6,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -557,7 +587,9 @@ namespace RRS.Migrations
                         {
                             Id = 7,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -567,7 +599,9 @@ namespace RRS.Migrations
                         {
                             Id = 8,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -577,7 +611,9 @@ namespace RRS.Migrations
                         {
                             Id = 9,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -587,7 +623,9 @@ namespace RRS.Migrations
                         {
                             Id = 10,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -597,7 +635,9 @@ namespace RRS.Migrations
                         {
                             Id = 11,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -607,7 +647,9 @@ namespace RRS.Migrations
                         {
                             Id = 12,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -617,7 +659,9 @@ namespace RRS.Migrations
                         {
                             Id = 13,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -627,7 +671,9 @@ namespace RRS.Migrations
                         {
                             Id = 14,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -637,7 +683,9 @@ namespace RRS.Migrations
                         {
                             Id = 15,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -647,7 +695,9 @@ namespace RRS.Migrations
                         {
                             Id = 16,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -657,7 +707,9 @@ namespace RRS.Migrations
                         {
                             Id = 17,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -667,7 +719,9 @@ namespace RRS.Migrations
                         {
                             Id = 18,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -677,7 +731,9 @@ namespace RRS.Migrations
                         {
                             Id = 19,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -687,7 +743,9 @@ namespace RRS.Migrations
                         {
                             Id = 20,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -697,7 +755,9 @@ namespace RRS.Migrations
                         {
                             Id = 21,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -707,7 +767,9 @@ namespace RRS.Migrations
                         {
                             Id = 22,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -717,7 +779,9 @@ namespace RRS.Migrations
                         {
                             Id = 23,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -727,7 +791,9 @@ namespace RRS.Migrations
                         {
                             Id = 24,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -737,7 +803,9 @@ namespace RRS.Migrations
                         {
                             Id = 25,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -747,7 +815,9 @@ namespace RRS.Migrations
                         {
                             Id = 26,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -757,7 +827,9 @@ namespace RRS.Migrations
                         {
                             Id = 27,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -767,7 +839,9 @@ namespace RRS.Migrations
                         {
                             Id = 28,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -777,7 +851,9 @@ namespace RRS.Migrations
                         {
                             Id = 29,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -787,7 +863,9 @@ namespace RRS.Migrations
                         {
                             Id = 30,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -797,7 +875,9 @@ namespace RRS.Migrations
                         {
                             Id = 31,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -807,7 +887,9 @@ namespace RRS.Migrations
                         {
                             Id = 32,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -817,7 +899,9 @@ namespace RRS.Migrations
                         {
                             Id = 33,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -827,7 +911,9 @@ namespace RRS.Migrations
                         {
                             Id = 34,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -837,7 +923,9 @@ namespace RRS.Migrations
                         {
                             Id = 35,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -847,7 +935,9 @@ namespace RRS.Migrations
                         {
                             Id = 36,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -857,7 +947,9 @@ namespace RRS.Migrations
                         {
                             Id = 37,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -867,7 +959,9 @@ namespace RRS.Migrations
                         {
                             Id = 38,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -877,7 +971,9 @@ namespace RRS.Migrations
                         {
                             Id = 39,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -887,7 +983,9 @@ namespace RRS.Migrations
                         {
                             Id = 40,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -897,7 +995,9 @@ namespace RRS.Migrations
                         {
                             Id = 41,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -907,7 +1007,9 @@ namespace RRS.Migrations
                         {
                             Id = 42,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -917,7 +1019,9 @@ namespace RRS.Migrations
                         {
                             Id = 43,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -927,7 +1031,9 @@ namespace RRS.Migrations
                         {
                             Id = 44,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -937,7 +1043,9 @@ namespace RRS.Migrations
                         {
                             Id = 45,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -947,7 +1055,9 @@ namespace RRS.Migrations
                         {
                             Id = 46,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -957,7 +1067,9 @@ namespace RRS.Migrations
                         {
                             Id = 47,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -967,7 +1079,9 @@ namespace RRS.Migrations
                         {
                             Id = 48,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -977,7 +1091,9 @@ namespace RRS.Migrations
                         {
                             Id = 49,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -987,7 +1103,9 @@ namespace RRS.Migrations
                         {
                             Id = 50,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -997,7 +1115,9 @@ namespace RRS.Migrations
                         {
                             Id = 51,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -1007,7 +1127,9 @@ namespace RRS.Migrations
                         {
                             Id = 52,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -1017,7 +1139,9 @@ namespace RRS.Migrations
                         {
                             Id = 53,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -1027,7 +1151,9 @@ namespace RRS.Migrations
                         {
                             Id = 54,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -1037,7 +1163,9 @@ namespace RRS.Migrations
                         {
                             Id = 55,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -1047,7 +1175,9 @@ namespace RRS.Migrations
                         {
                             Id = 56,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -1057,7 +1187,9 @@ namespace RRS.Migrations
                         {
                             Id = 57,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -1067,7 +1199,9 @@ namespace RRS.Migrations
                         {
                             Id = 58,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -1077,7 +1211,9 @@ namespace RRS.Migrations
                         {
                             Id = 59,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -1087,7 +1223,9 @@ namespace RRS.Migrations
                         {
                             Id = 60,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -1097,7 +1235,9 @@ namespace RRS.Migrations
                         {
                             Id = 61,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -1107,7 +1247,9 @@ namespace RRS.Migrations
                         {
                             Id = 62,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -1117,7 +1259,9 @@ namespace RRS.Migrations
                         {
                             Id = 63,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -1127,7 +1271,9 @@ namespace RRS.Migrations
                         {
                             Id = 64,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -1137,7 +1283,9 @@ namespace RRS.Migrations
                         {
                             Id = 65,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -1147,7 +1295,9 @@ namespace RRS.Migrations
                         {
                             Id = 66,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -1157,7 +1307,9 @@ namespace RRS.Migrations
                         {
                             Id = 67,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -1167,7 +1319,9 @@ namespace RRS.Migrations
                         {
                             Id = 68,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -1177,7 +1331,9 @@ namespace RRS.Migrations
                         {
                             Id = 69,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -1187,7 +1343,9 @@ namespace RRS.Migrations
                         {
                             Id = 70,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -1197,7 +1355,9 @@ namespace RRS.Migrations
                         {
                             Id = 71,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -1207,7 +1367,9 @@ namespace RRS.Migrations
                         {
                             Id = 72,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -1217,7 +1379,9 @@ namespace RRS.Migrations
                         {
                             Id = 73,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -1227,7 +1391,9 @@ namespace RRS.Migrations
                         {
                             Id = 74,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -1237,7 +1403,9 @@ namespace RRS.Migrations
                         {
                             Id = 75,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -1247,7 +1415,9 @@ namespace RRS.Migrations
                         {
                             Id = 76,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -1257,7 +1427,9 @@ namespace RRS.Migrations
                         {
                             Id = 77,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -1267,7 +1439,9 @@ namespace RRS.Migrations
                         {
                             Id = 78,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -1277,7 +1451,9 @@ namespace RRS.Migrations
                         {
                             Id = 79,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -1287,7 +1463,9 @@ namespace RRS.Migrations
                         {
                             Id = 80,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -1297,7 +1475,9 @@ namespace RRS.Migrations
                         {
                             Id = 81,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
@@ -1307,7 +1487,9 @@ namespace RRS.Migrations
                         {
                             Id = 82,
                             Capacity = 40,
+                            Cutoff = 30,
                             Duration = 240,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
@@ -1317,7 +1499,9 @@ namespace RRS.Migrations
                         {
                             Id = 83,
                             Capacity = 60,
+                            Cutoff = 30,
                             Duration = 180,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
@@ -1327,7 +1511,9 @@ namespace RRS.Migrations
                         {
                             Id = 84,
                             Capacity = 80,
+                            Cutoff = 30,
                             Duration = 300,
+                            Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
