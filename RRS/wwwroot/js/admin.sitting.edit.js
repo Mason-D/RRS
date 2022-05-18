@@ -75,7 +75,7 @@ function populateSittingsTable(newDate) {
                         <td>${item.id}</td>
                         <td>${formattedStart}</td>
                         <td>${item.duration}</td>
-                        <td>${item.capacity}</td>
+                        <td>${item.totalGuests}/${item.capacity}</td>
                         <td>${item.sittingTypeDescription}</td>
                         <td>(Not yet in entity)</td>
                         <td><button class="sittingsTBody-row-bttn ${bttnBootstrap}" id="sittingsTBody-row-bttn-${index}">${buttonHtml}</button></td>
