@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RRS.Data;
 using RRS.Models;
+using RRS.Services;
 
 namespace RRS.Controllers.API
 {
@@ -11,17 +12,33 @@ namespace RRS.Controllers.API
     public class ReservationsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly PersonService _personService;
 
-        public ReservationsController(ApplicationDbContext context)
+        public ReservationsController(ApplicationDbContext context, PersonService personService)
         {
             _context = context;
+            _personService = personService;
         }
 
         [HttpPost]
         //[ValidateAntiForgeryToken] //- Token blocks requests from 'Make Reservation' SPA on seperate server
         public async Task<ReservationDto> Create(ReservationDto resDTO)
         {
-            var customer = await findOrCreateCustomer(resDTO);
+            //var customer = findOrCreateCustomer(resDTO);
+            var obj = _personService.FindOrCreatePerson<Customer>(
+                new PersonVM
+                {
+                    Email = resDTO.Email,
+                    FirstName = resDTO.FirstName,
+                    LastName = resDTO.LastName,
+                    PhoneNumber = resDTO.PhoneNumber,
+                    RestaurantId = resDTO.RestaurantId
+                });
+
+            //Unpack anonymouse object
+            Type type = obj.GetType();
+            var customer = (Person)type.GetProperty("Person").GetValue(obj, null);
+            
 
             var reservation = new Reservation
             {
@@ -30,8 +47,8 @@ namespace RRS.Controllers.API
                 SittingId = resDTO.SittingId,
                 ReservationOriginId = resDTO.ReservationOriginId,
                 ReservationStatusId = 1,
-                Customer = customer,
-                CustomerId = customer.Id
+                Customer = (Customer) customer,
+                //CustomerId = customer.Id
             };
 
             await _context.Reservations
@@ -44,20 +61,7 @@ namespace RRS.Controllers.API
             return resDTO;
         }
 
-        private async Task<Customer> findOrCreateCustomer(ReservationDto resDto)
-        {
-            var customer = await _context.People.Where(p => p.Email == resDto.Email).ToListAsync();
 
-            return customer.Count > 0 ? 
-                (Customer) customer.First()
-                : new Customer
-                {
-                    FirstName = resDto.FirstName,
-                    LastName = resDto.LastName,
-                    Email = resDto.Email,
-                    PhoneNumber = resDto.PhoneNumber,
-                    RestaurantId = resDto.RestaurantId
-                };
-        }
+
     }
 }

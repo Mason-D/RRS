@@ -26,5 +26,6 @@ namespace RRS.Data
         public DbSet<Area> Areas { get; set; }
         public DbSet<Table> Tables { get; set; }
         public DbSet<Person> People { get; set; }
+        public DbSet<Customer> Customers { get; set; }
     }
 }
