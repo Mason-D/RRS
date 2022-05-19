@@ -15,6 +15,10 @@ function getReservation(newDate) {
 
         $("#reservationsTBody").empty();
 
+        if (data.length == 0) {
+
+        }
+
         data.forEach((item) => {
 
             $("#reservationsTBody").append(
