@@ -79,8 +79,8 @@ namespace RRS.Controllers.API
                             .Include(r => r.Sitting)
                                 .ThenInclude(s => s.SittingType)
                             //Change to res Start Time
-                            //.Where(r => r.StartTime >= startLocal.Date && r.StartTime <= endLocal.Date.AddDays(1))
-                            .Where(r => r.Sitting.Start.Date == startLocal.Date)
+                            .Where(r => r.StartTime >= startLocal.Date && r.StartTime <= endLocal.Date.AddDays(1))
+                            //.Where(r => r.Sitting.Start.Date == startLocal.Date)
                             .OrderBy(r => r.StartTime)
                             //.AsNoTracking()
                             .Select(r => new ReservationDto

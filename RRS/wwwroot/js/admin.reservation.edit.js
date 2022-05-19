@@ -21,13 +21,23 @@
         $(this).removeAttr('role');
 
         $("#idInput").val(e.currentTarget.children[0].innerHTML)
-        console.log(e.currentTarget)
-        //$('#startTime').val($("#dateControl").val());
+
+        console.log($("#dateControl").val())
+
+        $('#startTime').datepicker('setDate', new Date());
+        //$('#startTime').val(new Date);
+        $('#startDate')
+        console.log($('#startTime'))
     });
 
 
 
 });
+
+function resTimesToList() {
+
+}
+
 
 function highlightStart(id){
     $('#sittingsTBody').find(`#STB${id}`).addClass('bg-secondary');
@@ -47,7 +57,12 @@ async function getSitting(newDate) {
 
             $("#sittingsTBody").append(
 
-                `<tr id="STB${item.id}" role="button">
+                `<tr 
+                    id="STB${item.id}"
+                    role="button"
+                    data-reservation-start="${item.start}"
+                    data-reservation-duration="${item.duration}"
+                >
                     <td>${item.id}</td>
                     <td>${formatTime(item.start)}</td>
                     <td>${formatTime(item.start,item.duration)}</td>
