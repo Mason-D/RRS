@@ -22,7 +22,7 @@
 
         $("#idInput").val(e.currentTarget.children[0].innerHTML)
         console.log(e.currentTarget)
-        $('#startTime').val($("#dateControl").val());
+        //$('#startTime').val($("#dateControl").val());
     });
 
 

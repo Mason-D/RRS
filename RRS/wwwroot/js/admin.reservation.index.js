@@ -31,6 +31,10 @@ function getReservation(newDate) {
                     <td>${item.noOfGuests}</td>
                     <td>${item.resStatus}</td>
                     <td>${item.customerNotes}</td>
+                    <td>
+                        <a type="button" class="btn btn-primary" asp-action="Edit" asp-route-id="${item.id}"> Edit </a>
+                        <a type="button" class="btn btn-success" asp-action="Details" asp-route-id="${item.id}">Details</a>
+                    </td>
                 </tr>`
             );
         })
