@@ -59,7 +59,8 @@ function populateSittingsTable(newDate) {
             let bttnBootstrap = item.isOpen == true ? "btn btn-success" : "btn btn-danger";
 
             $("#sittingsTBody").append(
-                `<tr    
+                `<tr
+                    role="button"
                     data-sitting-id="${item.id}"
                     data-sitting-start="${item.start}"
                     data-sitting-duration="${item.duration}"

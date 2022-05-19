@@ -2,7 +2,8 @@
 
 @{
     ViewData["Title"] = "Index";
-    string currentDate = DateTime.Now.Date.ToString("yyyy-MM-dd");
+    //Uncomment currentDate in #dateControl to restrict management of sittings in the past. Note: this can be bypassed with direct typing.
+    string currentDate = DateTime.Now.Date.ToString("yyyy-MM-dd"); 
     string currentDateTime = DateTime.Now.Date.ToString("yyyy-MM-ddT00:00");
     string reversedDatePart = ViewData["LastSelectedDate"] == null ? currentDate : ViewData["LastSelectedDate"] as string;
 }
@@ -13,22 +14,24 @@
 
     <div class="col-md-12 m-2">
         <label for="dateControl">Start date:</label>
-        <input type="date" id="dateControl" name="trip-start" value="@reversedDatePart" min="@currentDate">
+        <input type="date" id="dateControl" name="trip-start" value="@reversedDatePart" @*min="@currentDate"*@>
 
-        <table id="sittingsT" class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Start</th>
-                    <th scope="col">Duration</th>
-                    <th scope="col">Capacity</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Interval</th>
-                    <th scope="col">Sitting Availability</th>
-                </tr>
-            </thead>
-            <tbody id="sittingsTBody"></tbody>
-        </table>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar my-3">
+            <table id="sittingsT" class="table table-hover">
+                <thead class="bg-info">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Start</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Capacity</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Interval</th>
+                        <th scope="col">Sitting Availability</th>
+                    </tr>
+                </thead>
+                <tbody id="sittingsTBody"></tbody>
+            </table>
+        </div>
     </div>
 
     <div class="col-md-4 m-2">
@@ -74,6 +77,10 @@
     </div>
 </div>
 
+@section Styles{
+    <link rel="stylesheet" href="~/css/admin.sitting.edit.css"/>
+}
+
 @section Scripts{
-        <script src=~/js/admin.sitting.edit.js></script>
+    <script src=~/js/admin.sitting.edit.js></script>
 }
