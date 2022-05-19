@@ -5,15 +5,16 @@
         populateSittingsTable(e.target.value);
         clearForm();
     });
-    populateSittingsTable($("#dateControl").val()); //ONLOAD  
-    //
+    populateSittingsTable($("#dateControl").val()); //ONLOAD 
+    
+    //MASON START
     let s = $("#lastSelectedSitting");
     if (s.val() != "") {
         toggleDisplayById("sittingsT", "form");
         //Posted
         $("#hiddenIdInput").val(`${s.data('sitting-id')}`);
         $("#hiddenTypeIdInput").val(`${s.data('sitting-type-id')}`);
-        $("#startInput").val(`${s.data('sitting-start')}`);
+        $("#startInput").val(`${s.data('sitting-start')}`); //START ISSUE
         $("#durationInput").val(`${s.data('sitting-duration')}`);
         $("#capacityInput").val(`${s.data('sitting-capacity')}`);
         $("#intervalInput").val(`${s.data('sitting-interval')}`);
@@ -27,7 +28,8 @@
         //Purely Visual
         $("#idInput").val(`${s.data('sitting-id')}`);
     }
-    //
+    //MASON END
+
     $(".formBtn").on("click", (e) => {
         let bttn = e.target.value;
         if (bttn == "Edit") {
