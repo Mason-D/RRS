@@ -22,22 +22,34 @@
 
         $("#idInput").val(e.currentTarget.children[0].innerHTML)
 
-        console.log($("#dateControl").val())
+        //console.log($("#dateControl").val())
 
-        $('#startTime').datepicker('setDate', new Date());
+        //$('#startTime').datepicker('setDate', new Date());
         //$('#startTime').val(new Date);
-        $('#startDate')
-        console.log($('#startTime'))
+        //$('#startDate')
+        //console.log($('#startTime'))
+        resDateTimeToList($("#idInput").val());
     });
-
-
 
 });
 
-function resTimesToList() {
+function resDateTimeToList(id) {
+    let startDT = new Date($("#sittingsTBody").find(`#STB${id}`).data('reservation-start')).getTime();
+    let duration = $("#sittingsTBody").find(`#STB${id}`).data('reservation-duration')*60000;
+    let endDT = duration + startDT
+    //let endDT = new Date(new Date(startDT).setMinutes(startDT.getMinutes()+duration)); gross
+    console.log(startDT);
+    console.log(endDT);
+    console.log(duration);
 
+    //$("#startTime").empty();
+
+    for(let i = startDT; i < endDT; i+=60000*15){
+        let dateOption = new Date(i);
+        $("#startTime").append(`<option value="1">${formatTime(dateOption)}</option>`)
+    }
+    console.log($("#startTime"));
 }
-
 
 function highlightStart(id){
     $('#sittingsTBody').find(`#STB${id}`).addClass('bg-secondary');
@@ -75,6 +87,7 @@ async function getSitting(newDate) {
 
     });
 }
+
 
 function formatTime(dateString, addMins) {
     let date = new Date(dateString)

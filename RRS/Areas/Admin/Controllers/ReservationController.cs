@@ -118,7 +118,7 @@ namespace RRS.Areas.Admin.Controllers
             }
             ViewData["ReservationOriginId"] = new SelectList(_context.ReservationOrigins, "Id", "Description", reservation.ReservationOrigin);
             ViewData["ReservationStatusId"] = new SelectList(_context.ReservationStatuses, "Id", "Description", reservation.ReservationStatus);
-            //ViewData["SittingId"] = new SelectList(_context.Sittings, "Id", "Start", reservation.Sitting);
+            ViewData["StartTime"] = new SelectList(Enumerable.Empty<SelectListItem>());
             return View(reservation);
         }
 
