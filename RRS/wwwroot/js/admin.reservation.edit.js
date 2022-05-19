@@ -34,8 +34,10 @@
 });
 
 function resDateTimeToList(id) {
-    let startDT = new Date($("#sittingsTBody").find(`#STB${id}`).data('reservation-start')).getTime();
-    let duration = $("#sittingsTBody").find(`#STB${id}`).data('reservation-duration')*60000;
+    let startDT = new Date($("#sittingsTBody").find(`#STB${id}`).data('sitting-start')).getTime();
+    let duration = $("#sittingsTBody").find(`#STB${id}`).data('sitting-duration') * 60000;
+    let interval = $("#sittingsTBody").find(`#STB${id}`).data('sitting-interval') * 60000;
+    let cutoff = $("#sittingsTBody").find(`#STB${id}`).data('sitting-cutoff') * 60000;
     let endDT = duration + startDT
     //let endDT = new Date(new Date(startDT).setMinutes(startDT.getMinutes()+duration)); gross
     console.log(startDT);
@@ -44,7 +46,7 @@ function resDateTimeToList(id) {
 
     //$("#startTime").empty();
 
-    for(let i = startDT; i < endDT; i+=60000*15){
+    for (let i = startDT; i <= endDT-cutoff; i += interval){
         let dateOption = new Date(i);
         $("#startTime").append(`<option value="1">${formatTime(dateOption)}</option>`)
     }
@@ -72,8 +74,10 @@ async function getSitting(newDate) {
                 `<tr 
                     id="STB${item.id}"
                     role="button"
-                    data-reservation-start="${item.start}"
-                    data-reservation-duration="${item.duration}"
+                    data-sitting-start="${item.start}"
+                    data-sitting-duration="${item.duration}"
+                    data-sitting-interval="${item.interval}"
+                    data-sitting-cutoff="${item.cutoff}"
                 >
                     <td>${item.id}</td>
                     <td>${formatTime(item.start)}</td>
