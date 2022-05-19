@@ -1,17 +1,17 @@
 ﻿    var ShowReapeatWeeks = false;
+    var selectedDays = [];
 
 $(() => {
 
 
     //check which days of the week are selected and return to controller
     $('#day-of-week-container').find('.btn-check').change(e => {
-        let selectedDays = []
 
         for (let cb of $('#day-of-week-container').find(':checked')) {
             selectedDays.push($(cb).data('day'));
+            console.log($(cb).data('day'));
         }
         $("#SelectedDays").val(selectedDays);
-        console.log("test")
 
     }); 
 
@@ -51,7 +51,6 @@ $(() => {
 
     $("#EndDateInput").change(function (e) {
         $("#EndDate").val(e.target.value);
-        console.log(e.target.value)
 
     });
 
@@ -64,6 +63,7 @@ $(() => {
         let startDate = new Date(e.target.value)
         
         let selectedDay = startDate.toLocaleDateString('en-us', {weekday: 'long'})
+        selectedDays = [selectedDay];
         $("#day-of-week-container").find(`:checked`).prop("checked", false);
         $("#day-of-week-container").find(`#cb-day-${selectedDay}`).prop("checked", "checked");
 

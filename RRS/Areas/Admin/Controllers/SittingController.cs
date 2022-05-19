@@ -112,7 +112,7 @@ namespace RRS.Areas.Admin.Controllers
 
                 List<Sitting> sittings = new List<Sitting>();
 
-                for (DateTime date = startDate; date < endDate; date = date.AddDays(1))
+                for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
                 {
                     var dayOfTheWeek = date.DayOfWeek;
 
