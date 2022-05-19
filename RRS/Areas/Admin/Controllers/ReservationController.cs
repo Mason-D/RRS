@@ -135,6 +135,8 @@ namespace RRS.Areas.Admin.Controllers
             }
             try
             {
+                //Converts UTC time recieved from JS into local time format
+                reservation.StartTime = reservation.StartTime.ToLocalTime();
                 _context.Update(reservation);
                 await _context.SaveChangesAsync();
             }

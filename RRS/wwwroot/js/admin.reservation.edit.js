@@ -48,7 +48,7 @@ function resDateTimeToList(id) {
 
     for (let i = startDT; i <= endDT-cutoff; i += interval){
         let dateOption = new Date(i);
-        $("#startTime").append(`<option value="1">${formatTime(dateOption)}</option>`)
+        $("#startTime").append(`<option value="${dateOption.toJSON()}">${formatTime(dateOption)}</option>`)
     }
     console.log($("#startTime"));
 }
