@@ -150,7 +150,7 @@ namespace RRS.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([Bind("Id,Start,Duration,Capacity,IsOpen,SittingTypeId")] SittingDto sittingDto)
+        public async Task<IActionResult> Edit([Bind("Id,Start,Duration,Capacity,IsOpen,SittingTypeId,Interval,Cutoff")] SittingDto sittingDto)
         {
             if (sittingDto.Id <= 0)
             {
@@ -172,8 +172,8 @@ namespace RRS.Areas.Admin.Controllers
                     s.Result.Duration = sittingDto.Duration;
                     s.Result.Capacity = sittingDto.Capacity;
                     s.Result.IsOpen = sittingDto.IsOpen;
-
-                    //Sitting Type ID not implemented, requires select list in index.cshtml
+                    s.Result.Interval = sittingDto.Interval;
+                    s.Result.Cutoff = sittingDto.Cutoff;
                     s.Result.SittingTypeId= sittingDto.SittingTypeId;
 
                     await _context.SaveChangesAsync();
@@ -192,6 +192,7 @@ namespace RRS.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Edit), "Sitting", new { LastSelectedDate = sittingDto.Start.ToString("yyyy-MM-dd") });
             }
             ViewData["LastSelectedDate"] = ModelState["Start"].ValidationState.ToString() == "Valid" ? sittingDto.Start.ToString("yyyy-MM-dd") : null;
+            ViewData["LastSelectedSitting"] = sittingDto == null ? null : sittingDto;
             ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
             return View("Edit");
         }

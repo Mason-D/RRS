@@ -1,10 +1,33 @@
 ﻿$(() => {
+
+
     $("#dateControl").on('change', (e) => {
         populateSittingsTable(e.target.value);
         clearForm();
     });
     populateSittingsTable($("#dateControl").val()); //ONLOAD  
+    //
+    let s = $("#lastSelectedSitting");
+    if (s.val() != "") {
+        toggleDisplayById("sittingsT", "form");
+        //Posted
+        $("#hiddenIdInput").val(`${s.data('sitting-id')}`);
+        $("#hiddenTypeIdInput").val(`${s.data('sitting-type-id')}`);
+        $("#startInput").val(`${s.data('sitting-start')}`);
+        $("#durationInput").val(`${s.data('sitting-duration')}`);
+        $("#capacityInput").val(`${s.data('sitting-capacity')}`);
+        $("#intervalInput").val(`${s.data('sitting-interval')}`);
+        $("#cutoffInput").val(`${s.data('sitting-cutoff')}`);
+        $("#typeSelectList").val(`${s.data('sitting-type-id')}`);
+        // Match checkbox state to selected sitting isOpen value
+        let open = true == s.data('sitting-is-open');
+        $("#isOpenInput").val(`${open}`);
+        //Posted End
 
+        //Purely Visual
+        $("#idInput").val(`${s.data('sitting-id')}`);
+    }
+    //
     $(".formBtn").on("click", (e) => {
         let bttn = e.target.value;
         if (bttn == "Edit") {
@@ -26,7 +49,7 @@
         }
     });
 
-    $("#sittingsTBody").on('click', 'tr', function (e) {
+    $("#sittingsTBody").on('dblclick', 'tr', function (e) {
 
         onRowSelect(this);
 
@@ -36,6 +59,8 @@
         $("#startInput").val(`${$(e.currentTarget).data('sitting-start')}`);
         $("#durationInput").val(`${$(e.currentTarget).data('sitting-duration')}`);
         $("#capacityInput").val(`${$(e.currentTarget).data('sitting-capacity')}`);
+        $("#intervalInput").val(`${$(e.currentTarget).data('sitting-interval')}`);
+        $("#cutoffInput").val(`${$(e.currentTarget).data('sitting-cutoff')}`);
         $("#typeSelectList").val(`${$(e.currentTarget).data('sitting-type-id')}`);
         // Match checkbox state to selected sitting isOpen value
         let open = true == $(e.currentTarget).data('sitting-is-open');
@@ -71,6 +96,8 @@ function populateSittingsTable(newDate) {
                     data-sitting-start="${item.start}"
                     data-sitting-duration="${item.duration}"
                     data-sitting-capacity="${item.capacity}"
+                    data-sitting-interval="${item.interval}"
+                    data-sitting-cutoff="${item.cutoff}"
                     data-sitting-is-open="${item.isOpen}"
                     data-sitting-type-id="${item.sittingTypeId}"
                     data-sitting-type-description="${item.sittingTypeDescription}"
@@ -78,13 +105,13 @@ function populateSittingsTable(newDate) {
                     value="${index}" 
                     id="sittingsTBody-row-${index}"
                     name="sittingsTBody-row-${index}">
-
                         <td>${item.id}</td>
                         <td>${formattedStart}</td>
                         <td>${item.duration}</td>
                         <td>${item.totalGuests}/${item.capacity}</td>
+                        <td>${item.interval}</td>
+                        <td>${item.cutoff}</td>
                         <td>${item.sittingTypeDescription}</td>
-                        <td>(Not yet in entity)</td>
                         <td><button class="sittingsTBody-row-bttn ${bttnBootstrap}" id="sittingsTBody-row-bttn-${index}">${buttonHtml}</button></td>
                 </tr>`
             );
@@ -112,6 +139,8 @@ function clearForm() {
     $("#startInput").val("");
     $("#durationInput").val("");
     $("#capacityInput").val("");
+    $("#intervalInput").val("");
+    $("#cutoffInput").val("");
     $("#isOpenInput").val("");
     $("#idInput").val("");
 }
