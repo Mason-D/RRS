@@ -226,11 +226,23 @@ namespace RRS.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var sitting = await _context.Sittings.FindAsync(id);
+            var sitting = await _context.Sittings
+                                    .Where(s => s.Id == id)
+                                    .FirstOrDefaultAsync();
 
             if (sitting == null)
             {
                 return NotFound();
+            }
+
+            var reservations = await _context.Reservations
+                                        .Include(r => r.ReservationStatus)
+                                        .Where(r => r.SittingId == id && r.ReservationStatus.Description != "Cancelled")
+                                        .ToListAsync();
+
+            if (reservations.Count > 0)
+            {
+                return View("SittingHasReservationError");
             }
 
             _context.Sittings.Remove(sitting);

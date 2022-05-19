@@ -5,7 +5,7 @@
     });
     populateSittingsTable($("#dateControl").val()); //ONLOAD  
 
-    $("input[type='submit']").on("click", (e) => {
+    $(".formBtn").on("click", (e) => {
         let bttn = e.target.value;
         if (bttn == "Edit") {
             $("#form").attr("action", `${bttn}`);
@@ -17,6 +17,12 @@
             else {
                 e.preventDefault();
             }
+        }
+        else if (bttn == "Back") {         
+            toggleDisplayById("form", "sittingsT");
+        }
+        else {
+            e.preventDefault();
         }
     });
 
@@ -111,7 +117,8 @@ function clearForm() {
 }
 
 function onRowSelect(row) {
-    //
+    toggleDisplayById("sittingsT", "form");
+    //Row hover cursor icon changes
     $('#sittingsTBody').find('.bg-secondary').attr('role', 'button');
     //Deselect any highlighted rows
     $('#sittingsTBody').find('.bg-secondary').removeClass('bg-secondary');
@@ -120,6 +127,11 @@ function onRowSelect(row) {
     $(row).addClass('bg-secondary');
     $(row).addClass('text-white');
     $(row).removeAttr('role');
+}
+
+function toggleDisplayById(hide, show) {
+    $(`#${hide}`).attr('hidden', true);
+    $(`#${show}`).removeAttr('hidden');
 }
 
 function validateTable() {
