@@ -434,6 +434,16 @@ namespace RRS.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "People",
+                columns: new[] { "Id", "Email", "FirstName", "LastName", "PhoneNumber", "RestaurantId", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "Seed@Person1.com", "SeedPersonFN1", "SeedPersonLN1", "04100100", 1, null },
+                    { 2, "Seed@Person2.com", "SeedPersonFN2", "SeedPersonLN2", "04200200", 1, null },
+                    { 3, "Seed@Person3.com", "SeedPersonFN3", "SeedPersonLN3", "04300300", 1, null }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Sittings",
                 columns: new[] { "Id", "Capacity", "Cutoff", "Duration", "GroupId", "Interval", "IsOpen", "RestaurantId", "SittingTypeId", "Start" },
                 values: new object[,]
@@ -473,10 +483,7 @@ namespace RRS.Migrations
                     { 33, 80, 30, 300, null, 15, true, 1, 3, new DateTime(2022, 4, 16, 18, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 34, 40, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 4, 17, 7, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 35, 60, 30, 180, null, 15, true, 1, 2, new DateTime(2022, 4, 17, 13, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 36, 80, 30, 300, null, 15, true, 1, 3, new DateTime(2022, 4, 17, 18, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 37, 40, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 4, 18, 7, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 38, 60, 30, 180, null, 15, true, 1, 2, new DateTime(2022, 4, 18, 13, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 39, 80, 30, 300, null, 15, true, 1, 3, new DateTime(2022, 4, 18, 18, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 36, 80, 30, 300, null, 15, true, 1, 3, new DateTime(2022, 4, 17, 18, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -484,6 +491,9 @@ namespace RRS.Migrations
                 columns: new[] { "Id", "Capacity", "Cutoff", "Duration", "GroupId", "Interval", "IsOpen", "RestaurantId", "SittingTypeId", "Start" },
                 values: new object[,]
                 {
+                    { 37, 40, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 4, 18, 7, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 38, 60, 30, 180, null, 15, true, 1, 2, new DateTime(2022, 4, 18, 13, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 39, 80, 30, 300, null, 15, true, 1, 3, new DateTime(2022, 4, 18, 18, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 40, 40, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 4, 19, 7, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 41, 60, 30, 180, null, 15, true, 1, 2, new DateTime(2022, 4, 19, 13, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 42, 80, 30, 300, null, 15, true, 1, 3, new DateTime(2022, 4, 19, 18, 0, 0, 0, DateTimeKind.Unspecified) },
@@ -522,26 +532,157 @@ namespace RRS.Migrations
                     { 75, 80, 30, 300, null, 15, true, 1, 3, new DateTime(2022, 4, 30, 18, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 76, 40, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 1, 7, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 77, 60, 30, 180, null, 15, true, 1, 2, new DateTime(2022, 5, 1, 13, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 78, 80, 30, 300, null, 15, true, 1, 3, new DateTime(2022, 5, 1, 18, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 79, 40, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 2, 7, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 80, 60, 30, 180, null, 15, true, 1, 2, new DateTime(2022, 5, 2, 13, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 81, 80, 30, 300, null, 15, true, 1, 3, new DateTime(2022, 5, 2, 18, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 78, 80, 30, 300, null, 15, true, 1, 3, new DateTime(2022, 5, 1, 18, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
                 table: "Sittings",
                 columns: new[] { "Id", "Capacity", "Cutoff", "Duration", "GroupId", "Interval", "IsOpen", "RestaurantId", "SittingTypeId", "Start" },
-                values: new object[] { 82, 40, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 3, 7, 0, 0, 0, DateTimeKind.Unspecified) });
+                values: new object[,]
+                {
+                    { 79, 40, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 2, 7, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 80, 60, 30, 180, null, 15, true, 1, 2, new DateTime(2022, 5, 2, 13, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 81, 80, 30, 300, null, 15, true, 1, 3, new DateTime(2022, 5, 2, 18, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 82, 40, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 3, 7, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 83, 60, 30, 180, null, 15, true, 1, 2, new DateTime(2022, 5, 3, 13, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 84, 80, 30, 300, null, 15, true, 1, 3, new DateTime(2022, 5, 3, 18, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 85, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 1, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 86, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 2, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 87, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 3, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 88, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 4, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 89, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 5, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 90, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 6, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 91, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 7, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 92, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 8, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 93, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 9, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 94, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 10, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 95, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 11, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 96, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 12, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 97, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 13, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 98, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 14, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 99, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 15, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 100, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 16, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 101, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 17, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 102, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 18, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 103, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 19, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 104, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 20, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 105, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 21, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 106, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 22, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 107, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 23, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 108, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 24, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 109, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 25, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 110, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 26, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 111, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 27, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 112, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 5, 28, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 113, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 1, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 114, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 2, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 115, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 3, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 116, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 4, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 117, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 5, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 118, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 6, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 119, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 7, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 120, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 8, 9, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
 
             migrationBuilder.InsertData(
                 table: "Sittings",
                 columns: new[] { "Id", "Capacity", "Cutoff", "Duration", "GroupId", "Interval", "IsOpen", "RestaurantId", "SittingTypeId", "Start" },
-                values: new object[] { 83, 60, 30, 180, null, 15, true, 1, 2, new DateTime(2022, 5, 3, 13, 0, 0, 0, DateTimeKind.Unspecified) });
+                values: new object[,]
+                {
+                    { 121, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 9, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 122, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 10, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 123, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 11, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 124, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 12, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 125, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 13, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 126, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 14, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 127, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 15, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 128, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 16, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 129, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 17, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 130, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 18, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 131, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 19, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 132, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 20, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 133, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 21, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 134, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 22, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 135, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 23, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 136, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 24, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 137, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 25, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 138, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 26, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 139, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 27, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 140, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 6, 28, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 141, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 1, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 142, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 2, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 143, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 3, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 144, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 4, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 145, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 5, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 146, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 6, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 147, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 7, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 148, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 8, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 149, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 9, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 150, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 10, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 151, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 11, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 152, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 12, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 153, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 13, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 154, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 14, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 155, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 15, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 156, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 16, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 157, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 17, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 158, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 18, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 159, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 19, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 160, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 20, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 161, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 21, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 162, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 22, 9, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
 
             migrationBuilder.InsertData(
                 table: "Sittings",
                 columns: new[] { "Id", "Capacity", "Cutoff", "Duration", "GroupId", "Interval", "IsOpen", "RestaurantId", "SittingTypeId", "Start" },
-                values: new object[] { 84, 80, 30, 300, null, 15, true, 1, 3, new DateTime(2022, 5, 3, 18, 0, 0, 0, DateTimeKind.Unspecified) });
+                values: new object[,]
+                {
+                    { 163, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 23, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 164, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 24, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 165, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 25, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 166, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 26, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 167, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 27, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 168, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 7, 28, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 169, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 1, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 170, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 2, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 171, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 3, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 172, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 4, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 173, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 5, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 174, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 6, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 175, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 7, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 176, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 8, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 177, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 9, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 178, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 10, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 179, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 11, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 180, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 12, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 181, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 13, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 182, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 14, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 183, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 15, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 184, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 16, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 185, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 17, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 186, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 18, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 187, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 19, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 188, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 20, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 189, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 21, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 190, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 22, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 191, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 23, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 192, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 24, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 193, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 25, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 194, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 26, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 195, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 27, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 196, 20, 30, 240, null, 15, true, 1, 1, new DateTime(2022, 8, 28, 9, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Customers",
+                columns: new[] { "Id", "IsVIP" },
+                values: new object[,]
+                {
+                    { 1, true },
+                    { 2, true },
+                    { 3, true }
+                });
 
             migrationBuilder.InsertData(
                 table: "Tables",
@@ -578,6 +719,23 @@ namespace RRS.Migrations
                     { 28, 3, "B8" },
                     { 29, 3, "B9" },
                     { 30, 3, "B10" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Reservations",
+                columns: new[] { "Id", "CustomerId", "CustomerNotes", "NoOfGuests", "ReservationOriginId", "ReservationStatusId", "SittingId", "StartTime" },
+                values: new object[,]
+                {
+                    { 1, 1, null, 2, 4, 1, 102, new DateTime(2022, 5, 18, 9, 30, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, 2, null, 4, 4, 1, 103, new DateTime(2022, 5, 19, 9, 30, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, 3, null, 6, 4, 1, 104, new DateTime(2022, 5, 20, 9, 30, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, 1, null, 8, 4, 1, 105, new DateTime(2022, 5, 21, 9, 30, 0, 0, DateTimeKind.Unspecified) },
+                    { 5, 1, null, 10, 4, 1, 106, new DateTime(2022, 5, 22, 9, 30, 0, 0, DateTimeKind.Unspecified) },
+                    { 6, 1, null, 12, 4, 1, 107, new DateTime(2022, 5, 23, 9, 30, 0, 0, DateTimeKind.Unspecified) },
+                    { 7, 1, null, 14, 4, 1, 108, new DateTime(2022, 5, 24, 9, 30, 0, 0, DateTimeKind.Unspecified) },
+                    { 8, 1, null, 16, 4, 1, 109, new DateTime(2022, 5, 25, 9, 30, 0, 0, DateTimeKind.Unspecified) },
+                    { 9, 1, null, 18, 4, 1, 110, new DateTime(2022, 5, 26, 9, 30, 0, 0, DateTimeKind.Unspecified) },
+                    { 10, 1, null, 20, 4, 1, 111, new DateTime(2022, 5, 27, 9, 30, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(

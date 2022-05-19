@@ -55,6 +55,8 @@ namespace RRS.Controllers.API
                                 Start = s.Start,
                                 Duration = s.Duration,
                                 Capacity = s.Capacity,
+                                Interval = s.Interval,
+                                Cutoff = s.Cutoff,
                                 IsOpen = s.IsOpen,
                                 SittingTypeDescription = s.SittingType.Description,
                                 SittingTypeId = s.SittingType.Id,
