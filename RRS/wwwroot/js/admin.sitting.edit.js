@@ -4,31 +4,16 @@
     $("#dateControl").on('change', (e) => {
         populateSittingsTable(e.target.value);
         clearForm();
+        toggleViewIfFormDateChange();
     });
+
     populateSittingsTable($("#dateControl").val()); //ONLOAD 
     
-    //MASON START
+
     let s = $("#lastSelectedSitting");
     if (s.val() != "") {
-        toggleDisplayById("sittingsT", "form");
-        //Posted
-        $("#hiddenIdInput").val(`${s.data('sitting-id')}`);
-        $("#hiddenTypeIdInput").val(`${s.data('sitting-type-id')}`);
-        $("#startInput").val(`${s.data('sitting-start')}`); //START ISSUE
-        $("#durationInput").val(`${s.data('sitting-duration')}`);
-        $("#capacityInput").val(`${s.data('sitting-capacity')}`);
-        $("#intervalInput").val(`${s.data('sitting-interval')}`);
-        $("#cutoffInput").val(`${s.data('sitting-cutoff')}`);
-        $("#typeSelectList").val(`${s.data('sitting-type-id')}`);
-        // Match checkbox state to selected sitting isOpen value
-        let open = true == s.data('sitting-is-open');
-        $("#isOpenInput").val(`${open}`);
-        //Posted End
-
-        //Purely Visual
-        $("#idInput").val(`${s.data('sitting-id')}`);
+        restoreInvalidForm(s);
     }
-    //MASON END
 
     $(".formBtn").on("click", (e) => {
         let bttn = e.target.value;
@@ -43,11 +28,17 @@
                 e.preventDefault();
             }
         }
-        else if (bttn == "Back") {         
+        else if (bttn == "Back") {
+            $(".field-validation-error").empty();
             toggleDisplayById("form", "sittingsT");
         }
         else {
             e.preventDefault();
+        }
+
+        //HACK: Refer to: Mason-D/RRS/issues/11
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
         }
     });
 
@@ -90,6 +81,7 @@ function populateSittingsTable(newDate) {
             let formattedStart = new Date(item.start).toLocaleTimeString("en-US");
             let buttonHtml = item.isOpen == true ? "Open" : "Closed";
             let bttnBootstrap = item.isOpen == true ? "btn btn-success" : "btn btn-danger";
+            let bttnTitle = item.isOpen == true ? "close sitting" : "open sitting";
 
             $("#sittingsTBody").append(
                 `<tr
@@ -114,7 +106,11 @@ function populateSittingsTable(newDate) {
                         <td>${item.interval}</td>
                         <td>${item.cutoff}</td>
                         <td>${item.sittingTypeDescription}</td>
-                        <td><button class="sittingsTBody-row-bttn ${bttnBootstrap}" id="sittingsTBody-row-bttn-${index}">${buttonHtml}</button></td>
+                        <td>
+                            <button class="sittingsTBody-row-bttn ${bttnBootstrap}" id="sittingsTBody-row-bttn-${index}" title="${bttnTitle}">
+                                ${buttonHtml}
+                            </button>
+                        </td>
                 </tr>`
             );
         });
@@ -127,9 +123,16 @@ function populateSittingsTable(newDate) {
             $.get(`https://localhost:7271/api/Sittings/toggle-availability/${sittingId}`, null, function (data) {
                 let buttonHtml = data.isOpen == true ? "Open" : "Closed";
                 $(`#sittingsTBody-row-bttn-${index}`).html(buttonHtml);
+
+                let bttnTitle = data.isOpen == true ? "close sitting" : "open sitting";
+                $(`#sittingsTBody-row-bttn-${index}`).attr("title", `${bttnTitle}`)
+
                 $(`#sittingsTBody-row-bttn-${index}`).removeClass(data.isOpen == true ? "btn-danger" : "btn-success");
                 $(`#sittingsTBody-row-bttn-${index}`).addClass(data.isOpen == true ? "btn-success" : "btn-danger");
+
                 $("#isOpenInput").val(`${data.isOpen}`);
+
+                setUserFeedback(`Sitting: ${sittingId} is now '${buttonHtml}'`);
             });
         });
     });
@@ -172,5 +175,40 @@ function validateTable() {
             <td colspan="${columnCount}">No sittings exist on this day...</td>
         </tr>`
     );
+}
+
+function toggleViewIfFormDateChange() {
+    let tableHiddenStatus = $("sittingsT").attr("hidden");
+    if (tableHiddenStatus == undefined || tableHiddenStatus == true) {
+        toggleDisplayById("form", "sittingsT")
+    }
+}
+
+function restoreInvalidForm(s) {
+    toggleDisplayById("sittingsT", "form");
+    //Posted
+    $("#hiddenIdInput").val(`${s.data('sitting-id')}`);
+    $("#hiddenTypeIdInput").val(`${s.data('sitting-type-id')}`);
+    $("#startInput").val(`${s.data('sitting-start')}`);
+    $("#durationInput").val(`${s.data('sitting-duration')}`);
+    $("#capacityInput").val(`${s.data('sitting-capacity')}`);
+    $("#intervalInput").val(`${s.data('sitting-interval')}`);
+    $("#cutoffInput").val(`${s.data('sitting-cutoff')}`);
+    $("#typeSelectList").val(`${s.data('sitting-type-id')}`);
+    // Match checkbox state to selected sitting isOpen value
+    let open = true == s.data('sitting-is-open');
+    $("#isOpenInput").val(`${open}`);
+    //Posted End
+
+    //Purely Visual
+    $("#idInput").val(`${s.data('sitting-id')}`);
+}
+
+function setUserFeedback(msg) {
+    let index = $("#user-feedback p").length;
+    $("#user-feedback").append(`<p id="user-feedback-item-${index}" class="alert alert-danger mb-0 p-1 border-top-0">${msg}</p>`);
+    setTimeout(() => {
+        $(`#user-feedback-item-${index}`).remove();
+    }, 5000);
 }
 

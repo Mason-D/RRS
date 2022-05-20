@@ -2,23 +2,24 @@
 
 @{
     ViewData["Title"] = "Index";
-    //Uncomment currentDate in #dateControl to restrict management of sittings in the past. Note: this can be bypassed with direct typing.
-    string currentDate = DateTime.Now.Date.ToString("yyyy-MM-dd"); 
+    string currentDate = DateTime.Now.Date.ToString("yyyy-MM-dd"); //Add as min attribute value to restrict past in any datepicker
     string currentDateTime = DateTime.Now.Date.ToString("yyyy-MM-ddT00:00");
     string reversedDatePart = ViewData["LastSelectedDate"] == null ? currentDate : ViewData["LastSelectedDate"] as string;
     string reversedDateTimePart = ViewData["LastSelectedDateTime"] == null ? currentDateTime : ViewData["LastSelectedDateTime"] as string;
     var lastSelectedSitting = ViewData["LastSelectedSitting"] == null ? null : (SittingDto) ViewData["LastSelectedSitting"];
 }
 
-<h1>Index - Manage Sitting</h1>
 
 <div class="row">
 
     <div class="col-md-12 m-2">
-        <label for="dateControl">Start date:</label>
-        <input type="date" id="dateControl" name="trip-start" value="@reversedDatePart" @*min="@currentDate"*@>
 
         <div class="table-wrapper-scroll-y my-custom-scrollbar my-3 p-3">
+            
+            <div class="mb-3">
+                <label for="dateControl">Start date:</label>
+                <input type="date" id="dateControl" name="trip-start" value="@reversedDatePart">
+            </div>
 
             <table id="sittingsT" class="table table-hover">
                 <thead class="bg-info">
@@ -47,7 +48,7 @@
 
                 <div class="form-group">
                     <label for="startInput" class="form-label">Start: </label>
-                    <input asp-for="Start" class="form-control" id="startInput" value="" /> @*min="@currentDateTime" *@
+                    <input asp-for="Start" class="form-control" id="startInput" value="" />
                     <span asp-validation-for="Start" class="text-danger"></span>
                 </div>
 

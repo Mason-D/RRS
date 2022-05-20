@@ -16,3 +16,14 @@
 .table-wrapper-scroll-y {
     display: block;
 }
+#user-feedback{
+    width: 100%;
+}
+
+#user-feedback p {
+    border-radius: 0 !important;
+}
+
+#admin-navbar{
+    margin-bottom:0 !important;
+}
