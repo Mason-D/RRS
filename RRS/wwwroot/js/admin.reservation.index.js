@@ -27,7 +27,7 @@ function getReservation(newDate) {
                 `<tr>
                     <td>${formatTime(item.startTime)}</td>
                     <td>${item.resType}</td>
-                    <td>${item.firstName} ${item.lastName}</td>
+                    <td>${(item.firstName+' '+item.lastName).length < 25 ? item.firstName+' '+item.lastName : item.firstName.length < 25 ? item.firstName+'...' : shortenText(item.firstName)}</td>
                     <td>${item.phoneNumber}</td>
                     <td>${item.noOfGuests}</td>
                     <td>${item.resStatus}</td>

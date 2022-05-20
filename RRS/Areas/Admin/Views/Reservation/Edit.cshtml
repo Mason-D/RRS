@@ -89,6 +89,9 @@
     <a asp-action="Index" asp-route-date="@Model.Sitting.Start.ToString("MM-dd-yyyy")" class="btn btn-danger mt-2 w-25">Cancel</a>
 </div>
 
+    @*hide some data*@
+  <input type="datetime" id="startDateTime" value=@Model.StartTime />
+
 @section Scripts{
     <script src=~/js/admin.reservation.edit.js></script>
 }

@@ -2,12 +2,14 @@
 
     $("#dateControl").on('change', (e) => getSitting(
         e.target.value).then(
-            ()=> highlightStart($("#idInput").val())
+            () => highlightStart($("#idInput").val())
         )
     );
 
     getSitting($("#dateControl").val()).then(
-        ()=> highlightStart($("#idInput").val())
+        () => highlightStart($("#idInput").val()).then(
+            () => resDateTimeToList($("#idInput").val())
+        )
     );
 
 
@@ -34,26 +36,24 @@
 });
 
 function resDateTimeToList(id) {
-    let startDT = new Date($("#sittingsTBody").find(`#STB${id}`).data('sitting-start')).getTime();
-    let duration = $("#sittingsTBody").find(`#STB${id}`).data('sitting-duration') * 60000;
-    let interval = $("#sittingsTBody").find(`#STB${id}`).data('sitting-interval') * 60000;
-    let cutoff = $("#sittingsTBody").find(`#STB${id}`).data('sitting-cutoff') * 60000;
+    let tr = $("#sittingsTBody").find(`#STB${id}`)
+    let startDT = new Date(tr.data('sitting-start')).getTime();
+    let duration = tr.data('sitting-duration') * 60000;
+    let interval = tr.data('sitting-interval') * 60000;
+    let cutoff = tr.data('sitting-cutoff') * 60000;
     let endDT = duration + startDT
-    //let endDT = new Date(new Date(startDT).setMinutes(startDT.getMinutes()+duration)); gross
-    console.log(startDT);
-    console.log(endDT);
-    console.log(duration);
 
-    //$("#startTime").empty();
+    console.log($("#startDateTime").val())
+
+    $("#startTime").empty();
 
     for (let i = startDT; i <= endDT-cutoff; i += interval){
         let dateOption = new Date(i);
         $("#startTime").append(`<option value="${dateOption.toJSON()}">${formatTime(dateOption)}</option>`)
     }
-    console.log($("#startTime"));
 }
 
-function highlightStart(id){
+async function highlightStart(id){
     $('#sittingsTBody').find(`#STB${id}`).addClass('bg-secondary');
     $('#sittingsTBody').find(`#STB${id}`).addClass('text-white');
     $('#sittingsTBody').find(`#STB${id}`).removeAttr('role');
