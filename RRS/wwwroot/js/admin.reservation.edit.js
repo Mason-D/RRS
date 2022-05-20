@@ -14,7 +14,6 @@
 
 
     $("#sittingsTBody").on('click', 'tr', function (e) {
-        // working? I hope
         $('#sittingsTBody').find('.bg-secondary').attr('role', 'button');
         $('#sittingsTBody').find('.bg-secondary').removeClass('bg-secondary');
         $('#sittingsTBody').find('.text-white').removeClass('text-white');
@@ -36,6 +35,7 @@
 });
 
 function resDateTimeToList(id) {
+    let selectedStart = new Date($("#startDateTime").val()).getTime();
     let tr = $("#sittingsTBody").find(`#STB${id}`)
     let startDT = new Date(tr.data('sitting-start')).getTime();
     let duration = tr.data('sitting-duration') * 60000;
@@ -43,20 +43,21 @@ function resDateTimeToList(id) {
     let cutoff = tr.data('sitting-cutoff') * 60000;
     let endDT = duration + startDT
 
-    console.log($("#startDateTime").val())
+    console.log(selectedStart)
 
     $("#startTime").empty();
 
     for (let i = startDT; i <= endDT-cutoff; i += interval){
         let dateOption = new Date(i);
-        $("#startTime").append(`<option value="${dateOption.toJSON()}">${formatTime(dateOption)}</option>`)
+        $("#startTime").append(`<option ${selectedStart==i?"selected":""} value="${dateOption.toJSON()}">${formatTime(dateOption)}</option>`)
     }
 }
 
-async function highlightStart(id){
-    $('#sittingsTBody').find(`#STB${id}`).addClass('bg-secondary');
-    $('#sittingsTBody').find(`#STB${id}`).addClass('text-white');
-    $('#sittingsTBody').find(`#STB${id}`).removeAttr('role');
+async function highlightStart(id) {
+    let sTB = $('#sittingsTBody').find(`#STB${id}`) 
+    sTB.addClass('bg-secondary');
+    sTB.addClass('text-white');
+    sTB.removeAttr('role');
 }
 
 async function getSitting(newDate) {
@@ -68,25 +69,25 @@ async function getSitting(newDate) {
         $("#sittingsTBody").empty();
 
         data.forEach((item) => {
+            if (item.isOpen) {
+                $("#sittingsTBody").append(
 
-            $("#sittingsTBody").append(
-
-                `<tr 
-                    id="STB${item.id}"
-                    role="button"
-                    data-sitting-start="${item.start}"
-                    data-sitting-duration="${item.duration}"
-                    data-sitting-interval="${item.interval}"
-                    data-sitting-cutoff="${item.cutoff}"
-                >
-                    <td>${item.id}</td>
-                    <td>${formatTime(item.start)}</td>
-                    <td>${formatTime(item.start,item.duration)}</td>
-                    <td>${item.totalGuests}/${item.capacity}</td>
-                    <td>${item.isOpen}</td>
-                    <td>${item.sittingTypeDescription}</td>
-                </tr>`
-            );
+                    `<tr 
+                        id="STB${item.id}"
+                        role="button"
+                        data-sitting-start="${item.start}"
+                        data-sitting-duration="${item.duration}"
+                        data-sitting-interval="${item.interval}"
+                        data-sitting-cutoff="${item.cutoff}"
+                    >
+                        <td>${item.id}</td>
+                        <td>${formatTime(item.start)}</td>
+                        <td>${formatTime(item.start,item.duration)}</td>
+                        <td>${item.totalGuests}/${item.capacity}</td>
+                        <td>${item.sittingTypeDescription}</td>
+                    </tr>`
+                );
+            }
         })
 
     });

@@ -82,7 +82,7 @@ namespace RRS.Controllers.API
                             .Where(r => r.StartTime >= startLocal.Date && r.StartTime <= endLocal.Date.AddDays(1))
                             //.Where(r => r.Sitting.Start.Date == startLocal.Date)
                             .OrderBy(r => r.StartTime)
-                            //.AsNoTracking()
+                            .AsNoTracking()
                             .Select(r => new ReservationDto
                             {
                                 ReferenceNo = r.Id,

@@ -116,7 +116,6 @@ namespace RRS.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["ReservationOriginId"] = new SelectList(_context.ReservationOrigins, "Id", "Description", reservation.ReservationOrigin);
             ViewData["ReservationStatusId"] = new SelectList(_context.ReservationStatuses, "Id", "Description", reservation.ReservationStatus);
             return View(reservation);
         }
