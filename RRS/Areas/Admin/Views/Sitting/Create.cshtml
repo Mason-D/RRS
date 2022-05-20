@@ -78,9 +78,14 @@
                     <input id="NewSittingAreaInput" asp-for="NewSittingName" class="form-control" />
                     <span asp-validation-for="NewSittingName" class="text-danger"></span>
                 </div>
-                    <div>
-                        <input id="NewSittingBtn" type="button" class="btn-primary btn" value="New" />
-                    </div>
+                <div>
+                    <input id="NewSittingBtn" type="button" class="btn-primary btn" value="New" />
+                </div>
+                <div id="display-time-container" style="display:none">
+                    <p id="time-container-start"></p>
+                    <p id="time-container-end"></p>
+                    <p id="time-container-total"></p>
+                </div>
             </div>
         </div>
 

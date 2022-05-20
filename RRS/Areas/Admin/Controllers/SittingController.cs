@@ -106,13 +106,12 @@ namespace RRS.Areas.Admin.Controllers
             {
                 List<string> selectedDays = sitting.SelectedDays.Split(',').ToList();
                 var startDate = sitting.Start;
-                var endDate = sitting.EndDate;
-
-                var testOutPut = new List<DateTime>();
-
+                var endDate = sitting.EndDate.AddDays(1);
                 List<Sitting> sittings = new List<Sitting>();
 
-                for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+                Guid guid = Guid.NewGuid();
+
+                for (DateTime date = startDate; date  < endDate; date = date.AddDays(1))
                 {
                     var dayOfTheWeek = date.DayOfWeek;
 
@@ -129,7 +128,6 @@ namespace RRS.Areas.Admin.Controllers
                             Cutoff = sitting.CutOff,
                             Interval = sitting.Interval,
                             GroupId = null
-                            //change this 
                         }); ;
                     }
                 }
