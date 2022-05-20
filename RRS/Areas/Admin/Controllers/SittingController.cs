@@ -191,6 +191,7 @@ namespace RRS.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Edit), "Sitting", new { LastSelectedDate = sittingDto.Start.ToString("yyyy-MM-dd") });
             }
+            ViewData["LastSelectedDateTime"] = ModelState["Start"].ValidationState.ToString() == "Valid" ? sittingDto.Start.ToString("yyyy-MM-ddThh:mm:ss") : null;
             ViewData["LastSelectedDate"] = ModelState["Start"].ValidationState.ToString() == "Valid" ? sittingDto.Start.ToString("yyyy-MM-dd") : null;
             ViewData["LastSelectedSitting"] = sittingDto == null ? null : sittingDto;
             ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");

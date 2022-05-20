@@ -6,6 +6,7 @@
     string currentDate = DateTime.Now.Date.ToString("yyyy-MM-dd"); 
     string currentDateTime = DateTime.Now.Date.ToString("yyyy-MM-ddT00:00");
     string reversedDatePart = ViewData["LastSelectedDate"] == null ? currentDate : ViewData["LastSelectedDate"] as string;
+    string reversedDateTimePart = ViewData["LastSelectedDateTime"] == null ? currentDateTime : ViewData["LastSelectedDateTime"] as string;
     var lastSelectedSitting = ViewData["LastSelectedSitting"] == null ? null : (SittingDto) ViewData["LastSelectedSitting"];
 }
 
@@ -96,7 +97,7 @@
             {
                 <input type="hidden" id="lastSelectedSitting" value="@lastSelectedSitting"                     
                     data-sitting-id="@lastSelectedSitting.Id"
-                    data-sitting-start="@lastSelectedSitting.Start"
+                    data-sitting-start="@reversedDateTimePart"
                     data-sitting-duration="@lastSelectedSitting.Duration"
                     data-sitting-capacity="@lastSelectedSitting.Capacity"
                     data-sitting-interval="@lastSelectedSitting.Interval"
