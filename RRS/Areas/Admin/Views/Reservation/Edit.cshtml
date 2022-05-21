@@ -5,13 +5,9 @@
     string reversedDatePart = Model.Sitting.Start.Date.ToString("yyyy-MM-dd");
     string startDateTime = Model.StartTime.ToString("yyyy-MM-ddThh-mm-ss");
 }
-
-<h1>Edit</h1>
-
-<h4>Reservation</h4>
+ 
+<h1>Edit Reservation</h1>
 <hr />
-
-
 
 <div class="row">
     <div class="col-md-6">
@@ -90,7 +86,7 @@
 </div>
 
     @*hide some data*@
-  <input id="startDateTime" value="@Model.StartTime.ToString("yyyy-MM-ddThh:mm:ss")" />
+  <input type="hidden" id="startDateTime" value="@Model.StartTime.ToString("yyyy-MM-ddThh:mm:ss")" />
 
 @section Scripts{
     <script src=~/js/admin.reservation.edit.js></script>
