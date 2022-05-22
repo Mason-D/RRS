@@ -58,8 +58,10 @@ $(() => {
         $("#day-of-week-container").find(`#cb-day-${selectedDay}`).prop("checked", "checked");
         selectedDays = [selectedDay];
         $("#SelectedDays").val(selectedDays);
-        //add display in a better way like duration 
-        if($('Duration').val() != null)
+
+
+        console.log($('#Duration').val());
+        if($('#Duration').val() != "")
         {
             let start = new Date(e.target.value)
             let duration = $('#Duration').val();
@@ -69,11 +71,22 @@ $(() => {
     });
 
 
+    $("#Hours").change(function (e) { 
+        let hours = e.target.value
+        let minutes = $("#Minutes").val();
+        $("#Duration").val(CalculateDuration(hours, minutes)).trigger("change");
+    });
+
+
+    $("#Minutes").change(function (e) { 
+        let minutes = e.target.value
+        let hours = $("#Hours").val();
+        $("#Duration").val(CalculateDuration(hours, minutes)).trigger("change");
+    });
+
     //create a display that show the duration in a more readable way 
 
     $("#Duration").change(function (e) { 
-
-        // console.log($("#StartTime").val());
 
         if($("#StartTime").val() != "")
         {   
@@ -89,16 +102,19 @@ $(() => {
 
 
 
-
+CalculateDuration = (hours, minutes) =>{
+    return Number((hours * 60)) + Number(minutes)
+}
 
 DisplayDuration = (start, duration ) => {
-    let startTime = start.toLocaleTimeString();
-    let endTime = new Date(start.getTime() + duration * 60000).toLocaleTimeString()
-    let hours = Math.floor(duration / 60);
-    let minutes = duration % 60;
-    $('#time-container-start').html(`Start Time : ${startTime}`);
-    $('#time-container-end').html(`End Time: ${endTime}`);
-    $('#time-container-total').html(`Total sitting time:  ${hours} hours  ${minutes} minutes `);
+    let end = new Date(start.getTime() + duration * 60000)
+
+
+    let endTime = end.toLocaleTimeString()
+    let endDate = end.toLocaleDateString("en-au");
+
+    console.log(end);
+    $('#time-container-end').html(`End Time ${endDate} : ${endTime}`);
     $('#display-time-container').show();
 }
 

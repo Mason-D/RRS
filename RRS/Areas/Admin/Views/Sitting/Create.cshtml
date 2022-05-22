@@ -17,12 +17,19 @@
                     <input id="StartTime" asp-for="Start" class="form-control" />
                     <span asp-validation-for="Start" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Duration" class="control-label"></label>
-                    <input id="Duration" type="number" asp-for="Duration" class="form-control" />
-                    <span asp-validation-for="Duration" class="text-danger"></span>
+                <h5>Duration</h5>
+                <div class="form-group col-4">
+                    <label for="Hours" class="control-label">Hours</label>
+                    <input id="Hours" type="number"  class="form-control" />
                 </div>
 
+                <div class="form=-group col-4">
+                    <label for="Minutes" class="control-label">Minutes</label>
+                    <input id="Minutes" type="number"  class="form-control" />
+                </div>
+                <div id="display-time-container" style="display:none">
+                    <p id="time-container-end"></p>
+                </div>
                 <div class="form-group">
                     <label asp-for="Capacity" class="control-label"></label>
                     <input asp-for="Capacity" type="number" class="form-control" />
@@ -81,17 +88,13 @@
                 <div>
                     <input id="NewSittingBtn" type="button" class="btn-primary btn" value="New" />
                 </div>
-                <div id="display-time-container" style="display:none">
-                    <p id="time-container-start"></p>
-                    <p id="time-container-end"></p>
-                    <p id="time-container-total"></p>
-                </div>
             </div>
         </div>
 
                                                                 @*make this not hard coded*@
         <input type="hidden" asp-for="RestaurantId" value="1" />
         <input type="hidden" asp-for="Group" id="Group"  value=@null />
+        <input type="hidden" asp-for="Duration" id="Duration"  value=@null />
         <input type="hidden" asp-for="EndDate" id="EndDate" value="null" />
         <input type="hidden" asp-for="SelectedDays" id="SelectedDays" value="null" />
     </form>
