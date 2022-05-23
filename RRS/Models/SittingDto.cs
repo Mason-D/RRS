@@ -17,5 +17,10 @@ namespace RRS.Models
         public int Capacity { get; set; }
         public int SittingTypeId { get; set; }
         public string? SittingTypeDescription { get; set; }
+        public int TotalGuests { get; set; }
+        [Range(5, uint.MaxValue, ErrorMessage = "Interval between reservations must be atleast five minutes")]
+        public int Interval { get; set; }
+        [Range(0, uint.MaxValue, ErrorMessage = "Cutoff must be zero or higher")]
+        public int Cutoff { get; set; }
     }
 }

@@ -329,6 +329,9 @@ namespace RRS.Migrations
                     b.Property<int>("SittingId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
@@ -340,6 +343,108 @@ namespace RRS.Migrations
                     b.HasIndex("SittingId");
 
                     b.ToTable("Reservations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CustomerId = 1,
+                            NoOfGuests = 2,
+                            ReservationOriginId = 4,
+                            ReservationStatusId = 1,
+                            SittingId = 102,
+                            StartTime = new DateTime(2022, 5, 18, 9, 30, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CustomerId = 2,
+                            NoOfGuests = 4,
+                            ReservationOriginId = 4,
+                            ReservationStatusId = 1,
+                            SittingId = 103,
+                            StartTime = new DateTime(2022, 5, 19, 9, 30, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CustomerId = 3,
+                            NoOfGuests = 6,
+                            ReservationOriginId = 4,
+                            ReservationStatusId = 1,
+                            SittingId = 104,
+                            StartTime = new DateTime(2022, 5, 20, 9, 30, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CustomerId = 1,
+                            NoOfGuests = 8,
+                            ReservationOriginId = 4,
+                            ReservationStatusId = 1,
+                            SittingId = 105,
+                            StartTime = new DateTime(2022, 5, 21, 9, 30, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CustomerId = 1,
+                            NoOfGuests = 10,
+                            ReservationOriginId = 4,
+                            ReservationStatusId = 1,
+                            SittingId = 106,
+                            StartTime = new DateTime(2022, 5, 22, 9, 30, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CustomerId = 1,
+                            NoOfGuests = 12,
+                            ReservationOriginId = 4,
+                            ReservationStatusId = 1,
+                            SittingId = 107,
+                            StartTime = new DateTime(2022, 5, 23, 9, 30, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CustomerId = 1,
+                            NoOfGuests = 14,
+                            ReservationOriginId = 4,
+                            ReservationStatusId = 1,
+                            SittingId = 108,
+                            StartTime = new DateTime(2022, 5, 24, 9, 30, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CustomerId = 1,
+                            NoOfGuests = 16,
+                            ReservationOriginId = 4,
+                            ReservationStatusId = 1,
+                            SittingId = 109,
+                            StartTime = new DateTime(2022, 5, 25, 9, 30, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CustomerId = 1,
+                            NoOfGuests = 18,
+                            ReservationOriginId = 4,
+                            ReservationStatusId = 1,
+                            SittingId = 110,
+                            StartTime = new DateTime(2022, 5, 26, 9, 30, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CustomerId = 1,
+                            NoOfGuests = 20,
+                            ReservationOriginId = 4,
+                            ReservationStatusId = 1,
+                            SittingId = 111,
+                            StartTime = new DateTime(2022, 5, 27, 9, 30, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("RRS.Data.ReservationOrigin", b =>
@@ -1515,6 +1620,1350 @@ namespace RRS.Migrations
                             RestaurantId = 1,
                             SittingTypeId = 3,
                             Start = new DateTime(2022, 5, 3, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 85,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 1, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 86,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 2, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 87,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 3, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 88,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 4, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 89,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 5, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 90,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 6, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 91,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 7, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 92,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 8, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 93,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 9, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 94,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 10, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 95,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 11, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 96,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 12, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 97,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 13, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 98,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 14, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 99,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 15, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 100,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 16, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 101,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 17, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 102,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 18, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 103,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 19, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 104,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 20, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 105,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 21, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 106,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 22, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 107,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 23, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 108,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 24, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 109,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 110,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 111,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 27, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 112,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 5, 28, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 113,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 1, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 114,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 2, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 115,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 3, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 116,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 4, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 117,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 5, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 118,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 6, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 119,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 7, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 120,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 8, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 121,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 9, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 122,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 10, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 123,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 11, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 124,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 12, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 125,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 13, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 126,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 14, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 127,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 15, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 128,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 16, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 129,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 17, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 130,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 18, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 131,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 19, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 132,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 20, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 133,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 21, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 134,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 22, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 135,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 23, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 136,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 24, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 137,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 138,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 139,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 27, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 140,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 6, 28, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 141,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 1, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 142,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 2, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 143,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 3, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 144,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 4, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 145,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 5, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 146,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 6, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 147,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 7, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 148,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 8, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 149,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 9, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 150,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 10, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 151,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 11, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 152,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 12, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 153,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 13, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 154,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 14, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 155,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 15, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 156,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 16, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 157,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 17, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 158,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 18, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 159,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 19, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 160,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 20, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 161,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 21, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 162,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 22, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 163,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 23, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 164,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 24, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 165,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 166,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 167,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 27, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 168,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 7, 28, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 169,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 1, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 170,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 2, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 171,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 3, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 172,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 4, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 173,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 5, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 174,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 6, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 175,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 7, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 176,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 8, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 177,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 9, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 178,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 10, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 179,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 11, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 180,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 12, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 181,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 13, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 182,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 14, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 183,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 15, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 184,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 16, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 185,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 17, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 186,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 18, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 187,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 19, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 188,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 20, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 189,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 21, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 190,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 22, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 191,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 23, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 192,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 24, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 193,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 194,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 195,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 27, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 196,
+                            Capacity = 20,
+                            Cutoff = 30,
+                            Duration = 240,
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 8, 28, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -1764,6 +3213,38 @@ namespace RRS.Migrations
                         .HasColumnType("bit");
 
                     b.ToTable("Customers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "Seed@Person1.com",
+                            FirstName = "SeedPersonFN1",
+                            LastName = "SeedPersonLN1",
+                            PhoneNumber = "04100100",
+                            RestaurantId = 1,
+                            IsVIP = true
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "Seed@Person2.com",
+                            FirstName = "SeedPersonFN2",
+                            LastName = "SeedPersonLN2",
+                            PhoneNumber = "04200200",
+                            RestaurantId = 1,
+                            IsVIP = true
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "Seed@Person3.com",
+                            FirstName = "SeedPersonFN3",
+                            LastName = "SeedPersonLN3",
+                            PhoneNumber = "04300300",
+                            RestaurantId = 1,
+                            IsVIP = true
+                        });
                 });
 
             modelBuilder.Entity("RRS.Data.Employee", b =>

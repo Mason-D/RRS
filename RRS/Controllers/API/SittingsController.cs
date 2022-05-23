@@ -46,6 +46,8 @@ namespace RRS.Controllers.API
             var endLocal = end == new DateTime() ? startLocal : end.ToLocalTime();
 
             return await _context.Sittings
+                            .Include(s => s.Reservations)
+                                .ThenInclude(r => r.ReservationStatus)
                             .Where(s => s.Start.Date >= startLocal.Date && s.Start.Date <= endLocal.Date)
                             .Select(s => new SittingDto
                             {
@@ -53,9 +55,12 @@ namespace RRS.Controllers.API
                                 Start = s.Start,
                                 Duration = s.Duration,
                                 Capacity = s.Capacity,
+                                Interval = s.Interval,
+                                Cutoff = s.Cutoff,
                                 IsOpen = s.IsOpen,
                                 SittingTypeDescription = s.SittingType.Description,
-                                SittingTypeId = s.SittingType.Id
+                                SittingTypeId = s.SittingType.Id,
+                                TotalGuests = s.TotalGuests
                             })
                             .ToListAsync();
         }
@@ -78,9 +83,18 @@ namespace RRS.Controllers.API
 
         [HttpGet]
         [Route("day-types/{year}/{month}/{day}")]
-        public async Task<ActionResult<IEnumerable<SittingByDayDto>>> DayTypes(int year, int month, int day )
+        public async Task<ActionResult<IEnumerable<SittingByDayDto>>> DayTypes(int year, int month, int day)
         {
-            DateTime reservationDate = new DateTime(year, month, day);
+            DateTime reservationDate;
+            try
+            {
+                reservationDate = new DateTime(year, month, day);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return BadRequest();
+            }
+
             //var dateLocal = reservationDate.ToLocalTime();
 
             return await _context.Sittings
