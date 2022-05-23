@@ -127,7 +127,7 @@ namespace RRS.Areas.Admin.Controllers
                             SittingTypeId = sitting.SittingTypeId,
                             Cutoff = sitting.CutOff,
                             Interval = sitting.Interval,
-                            GroupId = null
+                            GroupId = guid
                         }); ;
                     }
                 }
