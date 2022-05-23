@@ -11,32 +11,52 @@
 }
 
 <div id="profile-row" class="row">
-    <div class="col-md-4 m-auto text-center">
-        <partial name="_ChangePassword" />
-    </div>
-    <div class="col-md-8 m-auto">
-        <div id="profile-upcoming-res-col" class="col-md-12 d-flex justify-content-center">
-            <div>         
+    <div id="profile-details-container" class="col-md-4 m-auto text-center">
+        @*Icon carousel, user prefence not stored*@
+        <div id="profile-icon-container" class="carousel slide" data-bs-ride="false" data-bs-interval="false">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <partial name="icons/_CoffeeBandana" />
+                </div>
+                <div class="carousel-item">
+                    <partial name="icons/_Bear" />
+                </div>
+            </div>
+            <button hidden class="carousel-control-prev" type="button" data-bs-target="#profile-icon-container" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button hidden class="carousel-control-next" type="button" data-bs-target="#profile-icon-container" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Next</span>
+            </button>           
+        </div>
+            <partial name="_UpdateDetails" />
+        </div>
+
+    <div id="profile-res-history-container" class="col-md-8 m-auto">
+        <div id="profile-upcoming-res-col" class="col-md-12 d-flex justify-content-center mb-5">
+            <div class="w-75 mt-2">         
                 <h5>Upcoming Reservations</h5>
                 @if(upcomingReservations.Count == 0)
                 {
                     <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <p class="card-text">No upcoming reservations.</p>
-                        </div>
+                        <div class="list-group-item">
+                            <span>No upcoming reservations.</span>
+                        </div>                        
                     </div>
                 }
                 else
                 {           
                     @foreach(var res in upcomingReservations)
                     {
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                                <p class="card-text">Reservation Id: @res.Id</p>
-                                <p class="card-text">Sitting Start: @res.Sitting.Start</p>
-                                <p class="card-text">Type: @res.Sitting.SittingType.Description</p>
-                                <p class="card-text">Guests: @res.NoOfGuests</p>
-                                <p class="card-text">Status: @res.ReservationStatus.Description</p>
+                        <div id="upcoming-res-container" class="card">
+                            <div class="card-body w-100">
+                                <span>@res.Sitting.SittingType.Description<br/>
+                                    @res.NoOfGuests 
+                                    @(res.NoOfGuests == 1 ? "Person" : "People")<br/>
+                                </span>
+                                <span>Status: @res.ReservationStatus.Description</span>
                             </div>
                         </div>
                     }
@@ -44,30 +64,35 @@
             </div>
         </div>
         <div id="profile-past-res-col" class="col-md-12 d-flex justify-content-center">
-            <div>
+            <div class="w-75 mt-2">
                 <h5>Past Reservations</h5>
                 @if(pastReservations.Count == 0)
                 {
                     <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <p class="card-text">No past reservations.</p>
-                        </div>
+                        <div class="list-group-item">
+                            <span>No past reservations.</span>
+                        </div>                        
                     </div>
                 }
                 else
                 {
-                    @foreach(var res in pastReservations)
-                    {
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                                <p class="card-text">Reservation Id: @res.Id</p>
-                                <p class="card-text">Sitting Start: @res.Sitting.Start</p>
-                                <p class="card-text">Type: @res.Sitting.SittingType.Description</p>
-                                <p class="card-text">Guests: @res.NoOfGuests</p>
-                                <p class="card-text">Status: @res.ReservationStatus.Description</p>
-                            </div>
-                        </div>
-                    }
+                    <div id="past-res-container" class="card">
+                        <ul class="list-group">
+                            @for(int i = 0; i < pastReservations.Count; i++)
+                            {
+                                <li id="past-list-group-item-@i" class="past-list-group-item list-group-item">
+                                    @pastReservations[i].StartTime
+                                    <div hidden id="past-item-card-body-@i" class="past-item-card-body mt-1">
+                                        <span>@pastReservations[i].Sitting.SittingType.Description<br/>
+                                            @pastReservations[i].NoOfGuests 
+                                            @(pastReservations[i].NoOfGuests == 1 ? "Person" : "People")<br/>
+                                        </span>
+                                        <span>Status: @pastReservations[i].ReservationStatus.Description</span>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
                 }
             </div>
         </div>
@@ -76,6 +101,7 @@
 
 @section Styles {
     <link rel="stylesheet" href="~/css/member.home.index.css" />
+    <link rel="stylesheet" href="~/css/member.home.index.icons.css" />
 }
 
 @section Scripts {

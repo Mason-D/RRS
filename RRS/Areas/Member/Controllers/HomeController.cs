@@ -25,6 +25,8 @@ namespace RRS.Areas.Member.Controllers
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
+            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+
             var hasPassword = await _userManager.HasPasswordAsync(user);
             if (!hasPassword)
             {
@@ -37,11 +39,11 @@ namespace RRS.Areas.Member.Controllers
             var past = reservations.Where(r => r.Sitting.Start < currentDate).ToList();
             var upcoming = reservations.Where(r => r.Sitting.Start >= currentDate).ToList();
 
-            return View(new ProfileVM { PastReservations = past, UpcomingReservations = upcoming});
+            return View(new ProfileVM { PastReservations = past, UpcomingReservations = upcoming, PhoneNumber = phoneNumber});
         }
 
         [HttpPost]
-        public async Task<IActionResult> ChangePassword(ProfileVM profile)
+        public async Task<IActionResult> UpdateDetails(ProfileVM profile)
         {           
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -52,6 +54,7 @@ namespace RRS.Areas.Member.Controllers
             //Maintain reservations state
             var currentDate = DateTime.Now;
             var reservations = getUserReservations(user.Id).Result;
+            ViewData["phoneNumber"] = await _userManager.GetPhoneNumberAsync(user);
             ViewData["past"] = reservations.Where(r => r.Sitting.Start < currentDate).ToList();
             ViewData["upcoming"] = reservations.Where(r => r.Sitting.Start >= currentDate).ToList();
 
@@ -60,14 +63,27 @@ namespace RRS.Areas.Member.Controllers
                 return View("Index", profile);
             }
 
-            var changePasswordResult = await _userManager.ChangePasswordAsync(user, profile.OldPassword, profile.NewPassword);
-            if (!changePasswordResult.Succeeded)
+            var phoneNumber = ViewData["phoneNumber"] as string;
+            if (profile.PhoneNumber != phoneNumber)
             {
-                foreach (var error in changePasswordResult.Errors)
+                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, profile.PhoneNumber);
+                if (!setPhoneResult.Succeeded)
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    return View("Index", profile);
                 }
-                return View("Index", profile);
+            }
+
+            if (profile.OldPassword != null && profile.NewPassword != null)
+            {
+                var changePasswordResult = await _userManager.ChangePasswordAsync(user, profile.OldPassword, profile.NewPassword);
+                if (!changePasswordResult.Succeeded)
+                {
+                    foreach (var error in changePasswordResult.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                    return View("Index", profile);
+                }
             }
 
             await _signInManager.RefreshSignInAsync(user);
