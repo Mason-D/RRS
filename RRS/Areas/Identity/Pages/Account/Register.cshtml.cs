@@ -129,6 +129,7 @@ namespace RRS.Areas.Identity.Pages.Account
                     bool wasCreated = (bool) type.GetProperty("WasCreated").GetValue(obj, null);
                     var person = (Person) type.GetProperty("Person").GetValue(obj, null);
                     person.UserId = user.Id;
+                    user.PhoneNumber = person.PhoneNumber; //TO DO: test through res SPA then create new acc 
 
                     if (wasCreated) { _context.People.Add(person); } //Existing person is already tracked, New person must be added
                     await _context.SaveChangesAsync();

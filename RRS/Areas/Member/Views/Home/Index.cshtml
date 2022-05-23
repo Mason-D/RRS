@@ -1,7 +1,85 @@
-﻿
+﻿@using RRS.Data
+@model RRS.Areas.Member.Data.ProfileVM
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Profile";
+    var upcomingReservations = Model.UpcomingReservations == null ? 
+                                ViewData["upcoming"] as List<Reservation> : Model.UpcomingReservations;
+
+    var pastReservations = Model.PastReservations == null ? 
+                            ViewData["past"] as List<Reservation> : Model.PastReservations;
 }
 
-<h1>Member Index</h1>
+<div id="profile-row" class="row">
+    <div class="col-md-4 m-auto text-center">
+        <partial name="_ChangePassword" />
+    </div>
+    <div class="col-md-8 m-auto">
+        <div id="profile-upcoming-res-col" class="col-md-12 d-flex justify-content-center">
+            <div>         
+                <h5>Upcoming Reservations</h5>
+                @if(upcomingReservations.Count == 0)
+                {
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <p class="card-text">No upcoming reservations.</p>
+                        </div>
+                    </div>
+                }
+                else
+                {           
+                    @foreach(var res in upcomingReservations)
+                    {
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <p class="card-text">Reservation Id: @res.Id</p>
+                                <p class="card-text">Sitting Start: @res.Sitting.Start</p>
+                                <p class="card-text">Type: @res.Sitting.SittingType.Description</p>
+                                <p class="card-text">Guests: @res.NoOfGuests</p>
+                                <p class="card-text">Status: @res.ReservationStatus.Description</p>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div id="profile-past-res-col" class="col-md-12 d-flex justify-content-center">
+            <div>
+                <h5>Past Reservations</h5>
+                @if(pastReservations.Count == 0)
+                {
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <p class="card-text">No past reservations.</p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    @foreach(var res in pastReservations)
+                    {
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <p class="card-text">Reservation Id: @res.Id</p>
+                                <p class="card-text">Sitting Start: @res.Sitting.Start</p>
+                                <p class="card-text">Type: @res.Sitting.SittingType.Description</p>
+                                <p class="card-text">Guests: @res.NoOfGuests</p>
+                                <p class="card-text">Status: @res.ReservationStatus.Description</p>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/member.home.index.css" />
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/member.home.js"></script>
+}
 
