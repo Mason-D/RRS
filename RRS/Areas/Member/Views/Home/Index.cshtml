@@ -42,26 +42,32 @@
                 <h5>Upcoming Reservations</h5>
                 @if(upcomingReservations.Count == 0)
                 {
-                    <div class="card" style="width: 18rem;">
-                        <div class="list-group-item">
+                    <ul class="list-group">
+                        <li class="list-group-item">
                             <span>No upcoming reservations.</span>
-                        </div>                        
-                    </div>
+                        </li>                        
+                    </ul>
                 }
                 else
-                {           
-                    @foreach(var res in upcomingReservations)
-                    {
-                        <div id="upcoming-res-container" class="card">
-                            <div class="card-body w-100">
-                                <span>@res.Sitting.SittingType.Description<br/>
-                                    @res.NoOfGuests 
-                                    @(res.NoOfGuests == 1 ? "Person" : "People")<br/>
-                                </span>
-                                <span>Status: @res.ReservationStatus.Description</span>
-                            </div>
-                        </div>
-                    }
+                {     
+                    <div id="upcoming-res-container">
+                        <ul class="list-group">
+                            @for(int i = 0; i < upcomingReservations.Count; i++)
+                            {
+                                <li id="upcoming-list-group-item-@i" class="upcoming-list-group-item list-group-item" role="button">
+                                    @upcomingReservations[i].StartTime
+                                    <div hidden id="upcoming-item-body-@i" class="upcoming-item-body mt-1"
+                                        data-upcoming-li-id="@i" data-type="upcoming">
+                                        <span>@upcomingReservations[i].Sitting.SittingType.Description<br/>
+                                            @upcomingReservations[i].NoOfGuests 
+                                            @(upcomingReservations[i].NoOfGuests == 1 ? "Person" : "People")<br/>
+                                        </span>
+                                        <span>Status: @upcomingReservations[i].ReservationStatus.Description</span>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
                 }
             </div>
         </div>
@@ -70,21 +76,22 @@
                 <h5>Past Reservations</h5>
                 @if(pastReservations.Count == 0)
                 {
-                    <div class="card" style="width: 18rem;">
-                        <div class="list-group-item">
+                    <ul class="list-group">
+                        <li class="list-group-item">
                             <span>No past reservations.</span>
-                        </div>                        
-                    </div>
+                        </li>                        
+                    </ul>
                 }
                 else
                 {
-                    <div id="past-res-container" class="card">
+                    <div id="past-res-container">
                         <ul class="list-group">
                             @for(int i = 0; i < pastReservations.Count; i++)
                             {
-                                <li id="past-list-group-item-@i" class="past-list-group-item list-group-item">
+                                <li id="past-list-group-item-@i" class="past-list-group-item list-group-item" role="button">
                                     @pastReservations[i].StartTime
-                                    <div hidden id="past-item-card-body-@i" class="past-item-card-body mt-1">
+                                    <div hidden id="past-item-body-@i" class="past-item-body mt-1" 
+                                        data-past-li-id="@i" data-type="past">
                                         <span>@pastReservations[i].Sitting.SittingType.Description<br/>
                                             @pastReservations[i].NoOfGuests 
                                             @(pastReservations[i].NoOfGuests == 1 ? "Person" : "People")<br/>

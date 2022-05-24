@@ -2,9 +2,20 @@
     toggleIconCarouselControls();
 
     $(".list-group-item").click((e) => {
-        $('#past-res-container').find('.past-item-card-body').attr('hidden', 'true');
-        let cardBody = e.currentTarget.children[0].id;
-        $(`#${cardBody}`).removeAttr('hidden');
+
+
+        let itemBody = e.currentTarget.children[0].id;
+
+        let type = $(`#${itemBody}`).data("type");
+
+        let isHidden = $(`.${type}-item-body`).is(":hidden");
+
+        if (isHidden) {
+            $(`#${itemBody}`).removeAttr('hidden');
+        }
+        else {
+            $(`#${itemBody}`).attr('hidden', 'true');
+        }
     });
 });
 
@@ -20,26 +31,3 @@ function toggleIconCarouselControls() {
         }
     });
 }
-
-//function toggleDisplayById(hide, show) {
-//    $(`#${hide}`).attr('hidden', true);
-//    $(`#${show}`).removeAttr('hidden');
-//}
-
-////    $(".form-btn").on("click", (e) => {
-////        let bttn = e.target.name;
-////        if (bttn == "ChangePassword") {
-////            $("#change-password-form").attr("action", `${bttn}`);
-////        }
-////        else if (bttn == "Delete") {
-////            if (confirm("Are you sure you want to delete the selected sitting?")) {
-////                $("#change-password-form").attr("action", `${bttn}`);
-////            }
-////            else {
-////                e.preventDefault();
-////            }
-////        }
-////        else {
-////            e.preventDefault();
-////        }
-////    });
