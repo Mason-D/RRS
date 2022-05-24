@@ -1,10 +1,9 @@
 ﻿$(() => {
 
-    $("#dateControl").on('change', (e) => getSitting(
-        e.target.value).then(
-            () => highlightStart($("#idInput").val())
-        )
-    );
+    $("#dateControl").on('change', (e) => {
+        getSitting(e.target.value).then(() => highlightStart($("#idInput").val()));
+
+    });
 
     getSitting($("#dateControl").val()).then(
         () => highlightStart($("#idInput").val()).then(
@@ -22,17 +21,43 @@
         $(this).removeAttr('role');
 
         $("#idInput").val(e.currentTarget.children[0].innerHTML)
-
-        //console.log($("#dateControl").val())
-
-        //$('#startTime').datepicker('setDate', new Date());
-        //$('#startTime').val(new Date);
-        //$('#startDate')
-        //console.log($('#startTime'))
         resDateTimeToList($("#idInput").val());
+        $("#sittingDate").val($("#dateControl").val());
+        toggleDisplayById("table-view", "resForm-col");
     });
 
+    $(".formBtn").on("click", (e) => {
+        let bttn = e.target.value;
+        if (bttn == "Change Sitting") {
+            toggleDisplayById("resForm-col", "table-view");
+        }
+        else if (bttn == "Delete") {
+            if (confirm("Are you sure you want to delete the selected sitting?")) {
+                $("#form").attr("action", `${bttn}`);
+            }
+            else {
+                e.preventDefault();
+            }
+        }
+        else if (bttn == "Update") {
+            $(".field-validation-error").empty();
+            toggleDisplayById("form", "sittingsT");
+        }
+        else {
+            e.preventDefault();
+        }
+
+        //HACK: Refer to: Mason-D/RRS/issues/11
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    });
 });
+
+function toggleDisplayById(hide, show) {
+    $(`#${hide}`).attr('hidden', true);
+    $(`#${show}`).removeAttr('hidden');
+}
 
 function resDateTimeToList(id) {
     let selectedStart = new Date($("#startDateTime").val()).getTime();
