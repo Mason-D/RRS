@@ -60,7 +60,8 @@ namespace RRS.Controllers.API
                                 IsOpen = s.IsOpen,
                                 SittingTypeDescription = s.SittingType.Description,
                                 SittingTypeId = s.SittingType.Id,
-                                TotalGuests = s.TotalGuests
+                                TotalGuests = s.TotalGuests,
+                                GroupId = s.GroupId
                             })
                             .ToListAsync();
         }

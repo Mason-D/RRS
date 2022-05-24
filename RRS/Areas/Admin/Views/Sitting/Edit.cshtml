@@ -81,6 +81,11 @@
                     <select asp-for="SittingTypeId" id="typeSelectList" class ="form-control" asp-items="ViewBag.SittingTypeId"></select>
                 </div>
 
+                <div hidden id="group-id-switch" class="form-check form-switch py-2">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                  <label class="form-check-label" for="flexSwitchCheckDefault">Apply to entire sittings group</label>
+                </div>
+
                 <button type="submit" value="Edit" class="formBtn btn btn-success my-3 px-3">Save</button>
                 <input type="submit" value="Delete" class="formBtn btn btn-danger my-3 px-3" />
                 <input value="Back" class="formBtn btn btn-info my-3 px-3" />
@@ -88,6 +93,8 @@
                 <input asp-for="Id" type="hidden" id="hiddenIdInput"/>
                 <input asp-for="SittingTypeId" type="hidden" id="hiddenTypeIdInput"/>
                 <input asp-for="IsOpen" type="hidden" id="isOpenInput" value="" /> 
+                <input asp-for="SelectAllGroupId" type="hidden" id="hiddenSelectAllGroupId" /> 
+                <input asp-for="GroupId" type="hidden" id="hiddenGroupId" /> 
             </form>
 
             @if (lastSelectedSitting == null)
