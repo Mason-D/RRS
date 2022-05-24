@@ -90,12 +90,15 @@ namespace RRS.Areas.Admin.Controllers
                     Duration = sitting.Duration,
                     IsOpen = sitting.IsOpen,
                     Capacity = sitting.Capacity,
-                    SittingTypeId = sitting.SittingTypeId
+                    SittingTypeId = sitting.SittingTypeId,
+                    Cutoff = sitting.CutOff,
+                    Interval = sitting.Interval,
+                    GroupId = null
                 };
 
                 _context.Add(SingleSitting);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Edit));
             }
 
 
@@ -103,13 +106,12 @@ namespace RRS.Areas.Admin.Controllers
             {
                 List<string> selectedDays = sitting.SelectedDays.Split(',').ToList();
                 var startDate = sitting.Start;
-                var endDate = sitting.EndDate;
-
-                var testOutPut = new List<DateTime>();
-
+                var endDate = sitting.EndDate.AddDays(1);
                 List<Sitting> sittings = new List<Sitting>();
 
-                for (DateTime date = startDate; date < endDate; date = date.AddDays(1))
+                Guid guid = Guid.NewGuid();
+
+                for (DateTime date = startDate; date  < endDate; date = date.AddDays(1))
                 {
                     var dayOfTheWeek = date.DayOfWeek;
 
@@ -122,13 +124,16 @@ namespace RRS.Areas.Admin.Controllers
                             Duration = sitting.Duration,
                             IsOpen = sitting.IsOpen,
                             Capacity = sitting.Capacity,
-                            SittingTypeId = sitting.SittingTypeId
-                        });
+                            SittingTypeId = sitting.SittingTypeId,
+                            Cutoff = sitting.CutOff,
+                            Interval = sitting.Interval,
+                            GroupId = guid
+                        }); ;
                     }
                 }
-                _context.Add(sittings);
-
-
+                _context.AddRange(sittings);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Edit));
             }
 
 

@@ -83,9 +83,18 @@ namespace RRS.Controllers.API
 
         [HttpGet]
         [Route("day-types/{year}/{month}/{day}")]
-        public async Task<ActionResult<IEnumerable<SittingByDayDto>>> DayTypes(int year, int month, int day )
+        public async Task<ActionResult<IEnumerable<SittingByDayDto>>> DayTypes(int year, int month, int day)
         {
-            DateTime reservationDate = new DateTime(year, month, day);
+            DateTime reservationDate;
+            try
+            {
+                reservationDate = new DateTime(year, month, day);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return BadRequest();
+            }
+
             //var dateLocal = reservationDate.ToLocalTime();
 
             return await _context.Sittings

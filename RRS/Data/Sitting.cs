@@ -8,7 +8,7 @@
         public DateTime End { get => Start.AddMinutes(Duration); }
         public bool IsOpen { get; set; }
         public int Capacity { get; set; }
-        public int? GroupId { get; set; } 
+        public Guid? GroupId { get; set; } 
         public int Interval { get; set; } //Gap between reservations
         public int Cutoff { get; set; } //How long before sitting ends should reservations not be accepted
         public int RestaurantId { get; set; }
