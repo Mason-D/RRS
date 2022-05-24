@@ -11,12 +11,17 @@
         <form id="resForm" asp-action="Edit" method="POST">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
           
-            <h4 class="mb-2">@Model.Customer.FirstName @Model.Customer.LastName</h4>
-            <h4 class="mb-2">#@Model.Customer.PhoneNumber</h4>
+            <h4 class="mb-2">Customer: @Model.Customer.FirstName @Model.Customer.LastName</h4>
+            <h4 class="mb-2">Phone: @Model.Customer.PhoneNumber</h4>
 
             <div class="form-group">
                 <label class="control-label">Date</label>
                 <input disabled id="sittingDate" value="@reversedDatePart" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Sitting Type</label>
+                <input disabled id="sittingType" value="@Model.Sitting.SittingType.Description" class="form-control" />
             </div>
 
             <label asp-for="StartTime" class="control-label"></label>

@@ -11,7 +11,6 @@
         )
     );
 
-
     $("#sittingsTBody").on('click', 'tr', function (e) {
         $('#sittingsTBody').find('.bg-secondary').attr('role', 'button');
         $('#sittingsTBody').find('.bg-secondary').removeClass('bg-secondary');
@@ -23,6 +22,7 @@
         $("#idInput").val(e.currentTarget.children[0].innerHTML)
         resDateTimeToList($("#idInput").val());
         $("#sittingDate").val($("#dateControl").val());
+        $("#sittingType").val(e.currentTarget.dataset.sittingType);
         toggleDisplayById("table-view", "resForm-col");
     });
 
@@ -104,6 +104,7 @@ async function getSitting(newDate) {
                         data-sitting-duration="${item.duration}"
                         data-sitting-interval="${item.interval}"
                         data-sitting-cutoff="${item.cutoff}"
+                        data-sitting-type="${item.sittingTypeDescription}"
                     >
                         <td>${item.id}</td>
                         <td>${formatTime(item.start)}</td>
