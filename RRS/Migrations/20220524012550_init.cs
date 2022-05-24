@@ -263,7 +263,7 @@ namespace RRS.Migrations
                     Duration = table.Column<int>(type: "int", nullable: false),
                     IsOpen = table.Column<bool>(type: "bit", nullable: false),
                     Capacity = table.Column<int>(type: "int", nullable: false),
-                    GroupId = table.Column<int>(type: "int", nullable: true),
+                    GroupId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Interval = table.Column<int>(type: "int", nullable: false),
                     Cutoff = table.Column<int>(type: "int", nullable: false),
                     RestaurantId = table.Column<int>(type: "int", nullable: false),
