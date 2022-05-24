@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RRS.Data;
+using RRS.Models;
 
 namespace RRS.Areas.Admin.Controllers
 {
@@ -21,7 +22,7 @@ namespace RRS.Areas.Admin.Controllers
         }
 
         // GET: Admin/Reservation
-        public async Task<IActionResult> Index(DateTime date)
+        public IActionResult Index(DateTime date)
         {
             if (date == new DateTime())
             {
@@ -30,19 +31,19 @@ namespace RRS.Areas.Admin.Controllers
 
             ViewData["getReservationsByDate"] = date.ToString("yyyy-MM-dd");
 
-            var applicationDbContext = _context.Reservations
-                .Include(r => r.Customer)
-                .Include(r => r.ReservationOrigin)
-                .Include(r => r.ReservationStatus)
-                .Include(r => r.Sitting)
-                    .ThenInclude(s => s.SittingType)
-                .Where(r => r.Sitting.Start.Date == date.Date)
-                .OrderBy(r=>r.Sitting.Start)
-                .AsNoTracking()
-                .ToArrayAsync();
+            //var applicationDbContext = _context.Reservations
+            //    .Include(r => r.Customer)
+            //    .Include(r => r.ReservationOrigin)
+            //    .Include(r => r.ReservationStatus)
+            //    .Include(r => r.Sitting)
+            //        .ThenInclude(s => s.SittingType)
+            //    .Where(r => r.Sitting.Start.Date == date.Date)
+            //    .OrderBy(r=>r.Sitting.Start)
+            //    .AsNoTracking()
+            //    .ToArrayAsync();
 
 
-            return View(await applicationDbContext);
+            return View();
         }
 
         // GET: Admin/Reservation/Details/5
@@ -116,9 +117,7 @@ namespace RRS.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["ReservationOriginId"] = new SelectList(_context.ReservationOrigins, "Id", "Description", reservation.ReservationOrigin);
             ViewData["ReservationStatusId"] = new SelectList(_context.ReservationStatuses, "Id", "Description", reservation.ReservationStatus);
-            //ViewData["SittingId"] = new SelectList(_context.Sittings, "Id", "Start", reservation.Sitting);
             return View(reservation);
         }
 
@@ -127,37 +126,56 @@ namespace RRS.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NoOfGuests,CustomerId,SittingId,ReservationStatusId,ReservationOriginId,CustomerNotes")] Reservation reservation)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NoOfGuests,CustomerId,SittingId,ReservationStatusId,ReservationOriginId,CustomerNotes,StartTime")] ReservationEditDto reservation)
         {
             if (id != reservation.Id)
             {
                 return NotFound();
             }
-            try
+            if (ModelState.IsValid)
             {
-                _context.Update(reservation);
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ReservationExists(reservation.Id))
+
+                try
                 {
-                    return NotFound();
+                    var r = _context.Reservations.Where(r => r.Id == reservation.Id).FirstOrDefaultAsync(); 
+                    
+                    if(r.Result is null)
+                    {
+                        return NotFound();
+                    }
+
+                    //Converts UTC time recieved from JS into local time format
+                    reservation.StartTime = reservation.StartTime.ToLocalTime();
+                 
+                    r.Result.Id = reservation.Id;
+                    r.Result.NoOfGuests = reservation.NoOfGuests;
+                    r.Result.CustomerId = reservation.CustomerId;
+                    r.Result.SittingId = reservation.SittingId;
+                    r.Result.ReservationStatusId = reservation.ReservationStatusId;
+                    r.Result.ReservationOriginId = reservation.ReservationOriginId;
+                    r.Result.CustomerNotes = reservation.CustomerNotes;
+                    r.Result.StartTime = reservation.StartTime;
+
+                    await _context.SaveChangesAsync();
                 }
-                else
+                catch (DbUpdateConcurrencyException)
                 {
-                    throw;
+                    if (!ReservationExists(reservation.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
+                var sitting = await _context.Sittings
+                    .FirstOrDefaultAsync(r => r.Id == reservation.SittingId);
+                return RedirectToAction("Index", new { date = sitting.Start });
             }
-            var sitting = await _context.Sittings
-                .FirstOrDefaultAsync(r => r.Id == reservation.SittingId);
-            return RedirectToAction("Index", new {date = sitting.Start});
-            
-            ViewData["CustomerId"] = new SelectList(_context.Set<Customer>(), "Id", "Id", reservation.CustomerId);
-            ViewData["ReservationOriginId"] = new SelectList(_context.ReservationOrigins, "Id", "Id", reservation.ReservationOriginId);
-            ViewData["ReservationStatusId"] = new SelectList(_context.ReservationStatuses, "Id", "Id", reservation.ReservationStatusId);
-            ViewData["SittingId"] = new SelectList(_context.Sittings, "Id", "Id", reservation.SittingId);
-            return View(reservation);
+
+            ViewData["ReservationStatusId"] = new SelectList(_context.ReservationStatuses, "Id", "Description");
+            return RedirectToAction("Edit", reservation.Id);
         }
 
         private bool ReservationExists(int id)
