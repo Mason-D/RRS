@@ -2,14 +2,9 @@
     toggleIconCarouselControls();
 
     $(".list-group-item").click((e) => {
-
-
         let itemBody = e.currentTarget.children[0].id;
-
         let type = $(`#${itemBody}`).data("type");
-
         let isHidden = $(`.${type}-item-body`).is(":hidden");
-
         if (isHidden) {
             $(`#${itemBody}`).removeAttr('hidden');
         }
