@@ -11,7 +11,7 @@
 }
 
 <div id="profile-row" class="row">
-    <div id="profile-details-container" class="col-md-4 m-auto text-center">
+    <div id="profile-details-container" class="col-md-6 m-auto text-center mb-5">
         @*Icon carousel, user prefence not stored*@
         <div id="profile-icon-container" class="carousel slide" data-bs-ride="false" data-bs-interval="false">
             <div class="carousel-inner">
@@ -31,11 +31,13 @@
                 <span class="visually-hidden">Next</span>
             </button>           
         </div>
-            <partial name="_UpdateDetails" />
+            <div class="my-custom-scrollbar">
+                <partial name="_UpdateDetails" />
+            </div>
         </div>
 
-    <div id="profile-res-history-container" class="col-md-8 m-auto">
-        <div id="profile-upcoming-res-col" class="col-md-12 d-flex justify-content-center mb-5">
+    <div id="profile-res-history-container" class="col-md-6 d-flex flex-column justify-content-between">
+        <div id="profile-upcoming-res-col" class="col-md-12 d-flex justify-content-center">
             <div class="w-75 mt-2">         
                 <h5>Upcoming Reservations</h5>
                 @if(upcomingReservations.Count == 0)

@@ -2,25 +2,25 @@
 
 <form id="change-password-form" method="post" asp-action="UpdateDetails">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div id="profile-old-password" class="form-floating ">
+    <div id="profile-old-password" class="form-floating py-1">
         <input asp-for="@Model.OldPassword" class="form-control" autocomplete="current-password" />
         <label asp-for="@Model.OldPassword" class="form-label"></label>
         <span asp-validation-for="@Model.OldPassword" class="text-danger"></span>
     </div>
-    <div id="profile-new-password" class="form-floating">
+    <div id="profile-new-password" class="form-floating py-1">
         <input asp-for="@Model.NewPassword" class="form-control" autocomplete="new-password" />
         <label asp-for="@Model.NewPassword" class="form-label"></label>
         <span asp-validation-for="@Model.NewPassword" class="text-danger"></span>
     </div>
-    <div id="profile-confirm-new-password" class="form-floating profile-new-password">
+    <div id="profile-confirm-new-password" class="form-floating py-1 profile-new-password">
         <input asp-for="@Model.ConfirmPassword" class="form-control" autocomplete="new-password" />
         <label asp-for="@Model.ConfirmPassword" class="form-label"></label>
         <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
     </div>
-    <div id="profile-phone-number" class="form-floating">
+    <div id="profile-phone-number" class="form-floating py-1">
         <input asp-for="@Model.PhoneNumber" class="form-control" />
         <label asp-for="@Model.PhoneNumber" class="form-label"></label>
         <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
     </div>
-    <button id="update-details-btn" type="submit" class="form-btn w-100 btn btn-lg btn-info text-white">Update Details</button>
+    <button id="update-details-btn" type="submit" class="form-btn w-100 btn btn-lg text-white mt-1 py-1">Update Details</button>
 </form>
