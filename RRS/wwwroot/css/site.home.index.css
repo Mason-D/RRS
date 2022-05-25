@@ -1,0 +1,7 @@
+﻿body {
+    /*background-color: lightblue;*/
+    background-image: url("../images/coffee-for-two.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
