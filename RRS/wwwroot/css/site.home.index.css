@@ -1,7 +1,7 @@
 ﻿body {
     /*S TIER*/
-    background-image: url("../images/horizontal/pexels-nida-11278638.jpg");
-    /*background-image: url("../images/horizontal/generic/close-up-hands-barista-make-latte-coffee-art-paint.jpg");*/
+    /*background-image: url("../images/horizontal/pexels-nida-11278638.jpg");*/
+    background-image: url("../images/horizontal/generic/close-up-hands-barista-make-latte-coffee-art-paint.jpg");
     /*A TIER*/
     /*background-image: url("../images/horizontal/nathan-dumlao-KixfBEdyp64-unsplash.jpg");*/
     /*background-image: url("../images/horizontal/coffee-3120750.jpg");*/
@@ -43,6 +43,13 @@
     color: black;
     background-color: white;
     margin-bottom: 10px;
+}
+
+.glass-container:hover {
+    color: black;
+    box-shadow: 0 2rem 1rem -1rem rgba(255, 255, 255, .25);
+    transform: translateY(-10px);
+    transition: all 0.15s ease;
 }
 
 #site-res-btn-container-text {
