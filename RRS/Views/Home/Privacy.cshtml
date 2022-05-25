@@ -1,6 +1,53 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div id="privacy-row" class="row">
+    <div id="privacy-left-col" class="col-12 col-lg-5 m-auto text-center my-2">
+        <div class="video-container">   
+            <video autoplay muted loop>
+                <source src="~/videos/oops-man.mp4" type="video/mp4" />
+            </video>
+            <div id="privacy-container">
+                <p id="privacy-slogan">Cool<br />beans</p>
+            </div>
+        </div>
+    </div>
+    <div id="privacy-right-col" class="col-12 col-lg-5 m-auto my-2">
+        <section>
+            <form id="privacy-form" method="post">
+                <h2>@ViewData["Title"]</h2>
+                <hr />
+                <div class="my-4">
+                    <label class="mb-2"><b>WHAT INFORMATION DO WE COLLECT?</b></label>
+                    <p>Ut eget tincidunt nibh, vitae vehicula eros. Mauris tempus tincidunt dolor hendrerit pellentesque. Donec dictum molestie purus. Morbi ultricies vestibulum ipsum, quis accumsan felis.</p>
+                    <p>ellentesque euismod faucibus nulla non commodo. Praesent tincidunt turpis elit, quis lacinia lectus lobortis nec.</p>
+                </div>
+                <div class="my-4">
+                    <label class="mb-2"><b>HOW DO WE USE THE INFORMATION?</b></label>
+                    <p>Etiam porttitor dui lectus, in vehicula neque vestibulum at. Praesent ac dui eu metus mattis varius ut et quam.</p>
+                    <p>Phasellus blandit in elit at pharetra.</p>
+                    <p>Sed accumsan risus eget urna aliquam ullamcorper.</p>
+                </div>
+                <div class="my-4">
+                    <label class="mb-2"><b>WHAT INFORMATION DO WE SHARE?</b></label>
+                    <p>Aenean commodo dolor tellus. Morbi lacinia mi id lobortis dapibus. Proin sit amet bibendum felis, ac placerat neque.</p>
+                    <p>Suspendisse ultricies odio laoreet odio ullamcorper hendrerit.</p>
+                    <p>Nunc in luctus elit. </p>
+                </div>
+                <div class="my-4">
+                    <button id="privacy-btn" class="btn btn-lg">RESERVATIONS</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/site.privacy.css" /> 
+}

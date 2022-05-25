@@ -1,0 +1,70 @@
+﻿#privacy-btn {
+    background-color: rgba(139,69,19, 1);
+    color: white;
+    font-family: SaolDisplay,ui-serif,Georgia,Cambria,"Times New Roman",Times,serif;
+    font-size: 25px;
+}
+
+#privacy-row {
+    height: 75vh;
+}
+
+.video-container #privacy-slogan {
+    color: sandybrown;
+    font-size: 50px;
+    font-family: 'Javanese Text';
+    font-weight: 500;
+    text-align: center;
+}
+
+.video-container {
+    position: relative;
+}
+
+#privacy-slogan-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 15px;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+#privacy-slogan {
+    margin-top: 50%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    position: relative;
+    z-index: 0;
+    filter: blur(1.5px);
+}
+
+#privacy-left-col {
+    overflow: hidden;
+    height: 100%;
+}
+
+#privacy-right-col {
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+    height: 100%;
+    padding: 20px;
+}
