@@ -4,16 +4,23 @@
     ViewData["Title"] = "Register";
 }
 
-<div id="register-row" class="row">
-    <div id="register-left-col" class="col-md-4 m-auto text-center">
-        <p id="register-slogan">I've bean<br />thinking about<br />you</p>
+<div id="register-row" class="row mt-5">
+    <div id="register-left-col" class="col-12 col-lg-5 m-auto text-center my-2">
+        <div class="video-container">   
+            <video autoplay muted loop>
+                <source src="~/videos/production ID_4820204.mp4" type="video/mp4" />
+            </video>
+            <div id="register-slogan-container">
+                <p id="register-slogan">You and I are<br />meant to<br />bean</p>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4 m-auto">
+    <div id="register-right-col" class="col-12 col-lg-5 m-auto my-2">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h2>Create a new account.</h2>
             <hr />
             @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
-            <div class="form-floating">
+            <div class="form-floating my-2">
                 <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
                 <label asp-for="Input.Email"></label>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
