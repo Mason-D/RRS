@@ -3,8 +3,10 @@
 
     $(".list-group-item").click((e) => {
         let itemBody = e.currentTarget.children[0].id;
+        //let type = $(`#${itemBody}`).data("type");
         let type = $(`#${itemBody}`).data("type");
-        let isHidden = $(`.${type}-item-body`).is(":hidden");
+        let id = type == "upcoming" ? e.currentTarget.children[0].dataset.upcomingLiId : e.currentTarget.children[0].dataset.pastLiId;
+        let isHidden = $(`#${type}-item-body-${id}`).is(":hidden");
         if (isHidden) {
             $(`#${itemBody}`).removeAttr('hidden');
         }
