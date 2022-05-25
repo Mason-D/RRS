@@ -4,10 +4,11 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>@ViewData["Title"]</h1>
-
-<div class="row">
-    <div class="col-md-4">
+<div id="register-row" class="row">
+    <div id="register-left-col" class="col-md-4 m-auto text-center">
+        <p id="register-slogan">I've bean<br />thinking about<br />you</p>
+    </div>
+    <div class="col-md-4 m-auto">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h2>Create a new account.</h2>
             <hr />
@@ -17,59 +18,21 @@
                 <label asp-for="Input.Email"></label>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
-            <div class="form-floating">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.Password"></label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-floating">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.ConfirmPassword"></label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            @if((bool)ViewData["PersonExists"])
+            @if(ViewData["PersonExists"] != null)
             {
-
-                <input type="hidden" asp-for="Input.NewFormReturned" value="false"/>
-            }
-            else
-            {
-                <span class="small text-danger">*First time customers must provide personal information</span>
-                <partial name="_PersonalInformation.cshtml" />
-                <input type="hidden" asp-for="Input.NewFormReturned" value="true"/>
-            }
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>          
-        </form>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to register.</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                @if((bool)ViewData["PersonExists"])
                 {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
-                    </div>
+                    <input type="hidden" asp-for="Input.NewFormReturned" value="true"/>
+                    <partial name="_ExistingCustRegistration.cshtml" />
                 }
                 else
                 {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
+                    <partial name="_NewCustRegistration.cshtml" />
+                    <input type="hidden" asp-for="Input.NewFormReturned" value="true"/>
+                }   
             }
-        </section>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>          
+        </form>
     </div>
 </div>
 
