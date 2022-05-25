@@ -14,7 +14,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
 
 builder.Services.AddScoped<PersonService>();
 
@@ -47,6 +49,8 @@ app.Use(async (context, next) =>
     }
 });
 
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -64,7 +68,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(name: "areas", pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
-app.MapControllerRoute(name: "default", pattern: "{area=Admin}/{controller=Home}/{action=Index}");
+app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}");
 
 app.MapRazorPages();
 

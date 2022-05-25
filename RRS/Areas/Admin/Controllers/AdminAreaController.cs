@@ -15,6 +15,7 @@ namespace RRS.Areas.Admin.Controllers
 
         protected readonly ApplicationDbContext _context;
         protected readonly UserManager<IdentityUser> _userManager;
+        
         public AdminAreaController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;

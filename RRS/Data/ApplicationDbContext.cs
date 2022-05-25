@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using RRS.Data;
 
 namespace RRS.Data
 {
@@ -27,5 +28,6 @@ namespace RRS.Data
         public DbSet<Table> Tables { get; set; }
         public DbSet<Person> People { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<RRS.Data.Employee>? Employee { get; set; }
     }
 }
