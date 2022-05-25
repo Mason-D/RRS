@@ -111,6 +111,7 @@ namespace RRS.Areas.Admin.Controllers
                 .Include(r => r.ReservationOrigin)
                 .Include(r => r.ReservationStatus)
                 .Include(r => r.Sitting)
+                    .ThenInclude(s => s.SittingType)
                 .FirstOrDefaultAsync(r => r.Id == id);
 
             if (reservation == null)
