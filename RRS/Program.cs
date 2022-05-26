@@ -45,6 +45,11 @@ app.Use(async (context, next) =>
         context.Request.Path = "/Home";
         await next();
     }
+    else if (context.Response.StatusCode == 404)
+	{
+        context.Request.Path = "/Home";
+        await next();
+	}
 });
 
 app.UseHttpsRedirection();
