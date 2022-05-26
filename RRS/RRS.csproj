@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!--<None Remove="Areas\Identity\Pages\Account\Login.cshtml.css" />
+    <None Remove="Areas\Identity\Pages\Account\Login.cshtml.css" />
     <None Remove="Areas\Identity\Pages\Account\Register.cshtml.css" />
   </ItemGroup>
 
@@ -23,7 +23,7 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup>-->
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.3" />
