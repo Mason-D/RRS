@@ -71,7 +71,7 @@ namespace RRS.Controllers.API
         {          
             var startLocal = start.ToLocalTime();
             var endLocal = end == new DateTime() ? startLocal.AddDays(28 * 3) : end.ToLocalTime();
-
+            //change to include time????????
             var sittings = await _context.Sittings.Where(s => s.IsOpen && s.Start.Date >= startLocal.Date && s.Start.Date <= endLocal.Date)
                                                     .Select( s => new { Start = s.Start})
                                                     .ToArrayAsync();
