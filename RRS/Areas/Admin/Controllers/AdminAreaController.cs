@@ -9,7 +9,7 @@ namespace RRS.Areas.Admin.Controllers
     [Area("Admin")]
 
     //UnComment after Accounts have been set up 
-    //[Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Manager","God")]
     public class AdminAreaController : Controller
     {
 

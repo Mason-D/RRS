@@ -9,10 +9,12 @@ namespace RRS.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         protected readonly RoleManager<IdentityRole> _roleManager;
-        public HomeController(ILogger<HomeController> logger, RoleManager<IdentityRole> roleManager)
+        protected readonly UserManager<IdentityUser> _userManager;
+        public HomeController(ILogger<HomeController> logger, RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
         {
             _logger = logger;
             _roleManager = roleManager;
+            _userManager = userManager;
         }
 
         public async Task<IActionResult> Index()
@@ -38,11 +40,11 @@ namespace RRS.Controllers
 
         private async Task CreateRoles()
         {
-            bool roleCheck = await _roleManager.RoleExistsAsync("Admin");
+            bool roleCheck = await _roleManager.RoleExistsAsync("God");
             if (!roleCheck)
             {
                 var role = new IdentityRole();
-                role.Name = "Admin";
+                role.Name = "God";
                 await _roleManager.CreateAsync(role);
             }
             roleCheck = await _roleManager.RoleExistsAsync("Manager");
@@ -66,7 +68,10 @@ namespace RRS.Controllers
                 role.Name = "Customer";
                 await _roleManager.CreateAsync(role);
             }
-
+            var user = new IdentityUser { UserName = "God@gmail.com", Email = "God@gmail.com" };
+            user.EmailConfirmed = true;
+            await _userManager.CreateAsync(user, "qwe");
+            await _userManager.AddToRoleAsync(user, "God");
         }
 
     }
