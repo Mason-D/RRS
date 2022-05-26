@@ -91,7 +91,7 @@ namespace RRS.Areas.Admin.Controllers
                     SittingTypeId = sitting.SittingTypeId,
                     Cutoff = sitting.CutOff,
                     Interval = sitting.Interval,
-                    GroupId = null
+                    GroupId = Guid.Empty
                 };
 
                 _context.Add(SingleSitting);
@@ -152,7 +152,7 @@ namespace RRS.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(
-            [Bind("Id,Start,Duration,Capacity,IsOpen,SittingTypeId,Interval,Cutoff, GroupId")] SittingDto sittingDto)
+            [Bind("Id,Start,Duration,Capacity,IsOpen,SittingTypeId,Interval,Cutoff")] SittingDto sittingDto)
         {
             if (sittingDto.Id <= 0)
             {
@@ -223,14 +223,14 @@ namespace RRS.Areas.Admin.Controllers
         // POST: Admin/Sitting/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id, DateTime start, Guid? groupId, bool selectAllGroupId = false)
+        public async Task<IActionResult> DeleteConfirmed(int id, DateTime start, Guid groupId, bool selectAllGroupId = false)
         {
             if (id <= 0)
             {
                 return NotFound();
             }
 
-            if (selectAllGroupId)
+            if (selectAllGroupId && groupId != Guid.Empty)
             {
                 var sittings = await _context.Sittings.Where(s => s.GroupId == groupId).ToListAsync();
                 if (sittings.Count == 0)

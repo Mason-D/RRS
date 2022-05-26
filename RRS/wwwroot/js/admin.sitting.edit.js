@@ -77,7 +77,7 @@
 });
 
 function validateGroupId(groupId) {
-    if (groupId != null || groupId != undefined) {
+    if (groupId != "00000000-0000-0000-0000-000000000000") {
         $("#group-id-switch").removeAttr("hidden");
     }
 }

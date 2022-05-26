@@ -22,7 +22,7 @@ namespace RRS.Models
         public int Interval { get; set; }
         [Range(0, uint.MaxValue, ErrorMessage = "Cutoff must be zero or higher")]
         public int Cutoff { get; set; }
-        public Guid? GroupId { get; set; }
+        public Guid GroupId { get; set; }
         public bool SelectAllGroupId { get; set; } = false;
     }
 }
