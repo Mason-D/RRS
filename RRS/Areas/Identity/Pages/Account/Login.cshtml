@@ -6,27 +6,34 @@
 }
 
 <div id="log-in-row" class="row">
-    <div id="log-in-left-col" class="col-md-4 m-auto text-center">
-        <p id="log-in-slogan">You and I are<br />meant to<br />bean</p>
+    <div id="log-in-left-col" class="col-12 col-lg-5 m-auto text-center my-2">
+        <div class="video-container">   
+            <video autoplay muted loop>
+                <source src="~/videos/broth-man.mp4" type="video/mp4" />
+            </video>
+            <div id="log-in-slogan-container">
+                <p id="log-in-slogan">I've bean<br />thinking about<br />you</p>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4 m-auto">
+    <div id="log-in-right-col" class="col-12 col-lg-5 m-auto my-2">
         <section>
             <form id="account" method="post">
                 <h2>@ViewData["Title"]</h2>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-floating">
+                <div class="form-floating my-2">
                     <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
                     <label asp-for="Input.Email" class="form-label"></label>
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
-                <div class="form-floating">
+                <div class="form-floating my-2">
                     <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
                     <label asp-for="Input.Password" class="form-label"></label>
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
                 <div>
-                    <div class="checkbox">
+                    <div class="checkbox my-2">
                         <label asp-for="Input.RememberMe" class="form-label">
                             <input class="form-check-input" asp-for="Input.RememberMe" />
                             @Html.DisplayNameFor(m => m.Input.RememberMe)
@@ -34,7 +41,7 @@
                     </div>
                 </div>
                 <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary mb-2">Log in</button>
                 </div>
                 <div>
                     <p>

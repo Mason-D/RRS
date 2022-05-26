@@ -23,6 +23,11 @@ namespace RRS.Controllers
             return View();
         }
 
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
         public IActionResult CustomNotFound()
         {
             return View();
