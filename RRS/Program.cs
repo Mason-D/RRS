@@ -46,10 +46,10 @@ app.Use(async (context, next) =>
         await next();
     }
     else if (context.Response.StatusCode == 404)
-	{
-        context.Request.Path = "/Home";
+    {
+        context.Request.Path = "/Home/BeanError"; 
         await next();
-	}
+    }
 });
 
 app.UseHttpsRedirection();
