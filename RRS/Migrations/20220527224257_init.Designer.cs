@@ -12,7 +12,7 @@ using RRS.Data;
 namespace RRS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220526133514_init")]
+    [Migration("20220527224257_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
