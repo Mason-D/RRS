@@ -386,6 +386,24 @@ namespace RRS.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "1337x1", "1337x1", "Admin", "ADMIN" },
+                    { "1337x2", "1337x2", "User", "USER" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "1337x1", 0, "1337x1", "a@e.com", true, false, null, "A@E.COM", "A@E.COM", "AQAAAAEAACcQAAAAEI1V6RD1zkolJ73BBRjobG/MPnZzM1GG/niMDBo7KpGomyGAAGxu5GJ+rxtgSqsCIw==", null, false, "a709afda-62d5-4228-af46-66e1fa08f4b8", false, "a@e.com" },
+                    { "1337x2", 0, "1337x2", "g@e.com", true, false, null, "G@E.COM", "G@E.COM", "AQAAAAEAACcQAAAAEJB9QmANNYL4SdXwSorLwL0HfETwERmDhfe4ZrM/F7inecXVqhxeBQetNe+dimXKIA==", null, false, "58102187-92f9-47ec-b1f1-cafd14f7745c", false, "g@e.com" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "ReservationOrigins",
                 columns: new[] { "Id", "Description" },
                 values: new object[,]
@@ -431,6 +449,15 @@ namespace RRS.Migrations
                     { 1, "Main", 1 },
                     { 2, "Outside", 1 },
                     { 3, "Balcony", 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[,]
+                {
+                    { "1337x1", "1337x1" },
+                    { "1337x2", "1337x2" }
                 });
 
             migrationBuilder.InsertData(
@@ -481,9 +508,7 @@ namespace RRS.Migrations
                     { 31, 40, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 4, 16, 7, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 32, 60, 30, 180, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 2, new DateTime(2022, 4, 16, 13, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 33, 80, 30, 300, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 3, new DateTime(2022, 4, 16, 18, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 34, 40, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 4, 17, 7, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 35, 60, 30, 180, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 2, new DateTime(2022, 4, 17, 13, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 36, 80, 30, 300, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 3, new DateTime(2022, 4, 17, 18, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 34, 40, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 4, 17, 7, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -491,6 +516,8 @@ namespace RRS.Migrations
                 columns: new[] { "Id", "Capacity", "Cutoff", "Duration", "GroupId", "Interval", "IsOpen", "RestaurantId", "SittingTypeId", "Start" },
                 values: new object[,]
                 {
+                    { 35, 60, 30, 180, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 2, new DateTime(2022, 4, 17, 13, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 36, 80, 30, 300, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 3, new DateTime(2022, 4, 17, 18, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 37, 40, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 4, 18, 7, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 38, 60, 30, 180, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 2, new DateTime(2022, 4, 18, 13, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 39, 80, 30, 300, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 3, new DateTime(2022, 4, 18, 18, 0, 0, 0, DateTimeKind.Unspecified) },
@@ -530,9 +557,7 @@ namespace RRS.Migrations
                     { 73, 40, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 4, 30, 7, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 74, 60, 30, 180, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 2, new DateTime(2022, 4, 30, 13, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 75, 80, 30, 300, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 3, new DateTime(2022, 4, 30, 18, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 76, 40, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 5, 1, 7, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 77, 60, 30, 180, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 2, new DateTime(2022, 5, 1, 13, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 78, 80, 30, 300, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 3, new DateTime(2022, 5, 1, 18, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 76, 40, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 5, 1, 7, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -540,6 +565,8 @@ namespace RRS.Migrations
                 columns: new[] { "Id", "Capacity", "Cutoff", "Duration", "GroupId", "Interval", "IsOpen", "RestaurantId", "SittingTypeId", "Start" },
                 values: new object[,]
                 {
+                    { 77, 60, 30, 180, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 2, new DateTime(2022, 5, 1, 13, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 78, 80, 30, 300, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 3, new DateTime(2022, 5, 1, 18, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 79, 40, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 5, 2, 7, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 80, 60, 30, 180, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 2, new DateTime(2022, 5, 2, 13, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 81, 80, 30, 300, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 3, new DateTime(2022, 5, 2, 18, 0, 0, 0, DateTimeKind.Unspecified) },
@@ -579,9 +606,7 @@ namespace RRS.Migrations
                     { 115, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 6, 3, 9, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 116, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 6, 4, 9, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 117, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 6, 5, 9, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 118, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 6, 6, 9, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 119, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 6, 7, 9, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 120, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 6, 8, 9, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 118, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 6, 6, 9, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -589,6 +614,8 @@ namespace RRS.Migrations
                 columns: new[] { "Id", "Capacity", "Cutoff", "Duration", "GroupId", "Interval", "IsOpen", "RestaurantId", "SittingTypeId", "Start" },
                 values: new object[,]
                 {
+                    { 119, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 6, 7, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 120, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 6, 8, 9, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 121, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 6, 9, 9, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 122, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 6, 10, 9, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 123, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 6, 11, 9, 0, 0, 0, DateTimeKind.Unspecified) },
@@ -628,9 +655,7 @@ namespace RRS.Migrations
                     { 157, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 7, 17, 9, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 158, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 7, 18, 9, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 159, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 7, 19, 9, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 160, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 7, 20, 9, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 161, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 7, 21, 9, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 162, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 7, 22, 9, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 160, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 7, 20, 9, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -638,6 +663,8 @@ namespace RRS.Migrations
                 columns: new[] { "Id", "Capacity", "Cutoff", "Duration", "GroupId", "Interval", "IsOpen", "RestaurantId", "SittingTypeId", "Start" },
                 values: new object[,]
                 {
+                    { 161, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 7, 21, 9, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 162, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 7, 22, 9, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 163, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 7, 23, 9, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 164, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 7, 24, 9, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 165, 20, 30, 240, new Guid("00000000-0000-0000-0000-000000000000"), 15, true, 1, 1, new DateTime(2022, 7, 25, 9, 0, 0, 0, DateTimeKind.Unspecified) },

@@ -18,6 +18,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddScoped<PersonService>();
@@ -94,7 +95,6 @@ else
 app.Use(async (context, next) =>
 {
     await next();
-    //
     string[] reactRoutes = {"/people","/date","/sitting","/details" ,"/Confirmation" }; 
 
     if (context.Response.StatusCode == 404 && reactRoutes.Any(p => p.Equals(context.Request.Path)))
