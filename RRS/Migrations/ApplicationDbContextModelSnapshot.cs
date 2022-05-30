@@ -60,8 +60,8 @@ namespace RRS.Migrations
                         {
                             Id = "1337x2",
                             ConcurrencyStamp = "1337x2",
-                            Name = "User",
-                            NormalizedName = "USER"
+                            Name = "Member",
+                            NormalizedName = "MEMBER"
                         });
                 });
 
@@ -165,9 +165,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "A@E.COM",
                             NormalizedUserName = "A@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEI1V6RD1zkolJ73BBRjobG/MPnZzM1GG/niMDBo7KpGomyGAAGxu5GJ+rxtgSqsCIw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHQ2Rww7qpb6127wfZje/XM1oqGoMEILeaZLEvdz4tWQhZMkrmbHUTxHXnzS4waMvg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a709afda-62d5-4228-af46-66e1fa08f4b8",
+                            SecurityStamp = "0cd29eab-34d1-4f9d-bb0a-0d2f08ea9672",
                             TwoFactorEnabled = false,
                             UserName = "a@e.com"
                         },
@@ -181,9 +181,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "G@E.COM",
                             NormalizedUserName = "G@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJB9QmANNYL4SdXwSorLwL0HfETwERmDhfe4ZrM/F7inecXVqhxeBQetNe+dimXKIA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHC2vBHnozlPba2UiQT7WDoWnyBQ5i3bCFRh4mdRcmJTv4Cs9o9q8rRNqBwKPMTENw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "58102187-92f9-47ec-b1f1-cafd14f7745c",
+                            SecurityStamp = "20b384f0-e0ec-4adc-a9a3-51d84849fd6b",
                             TwoFactorEnabled = false,
                             UserName = "g@e.com"
                         });

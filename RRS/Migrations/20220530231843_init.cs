@@ -391,7 +391,7 @@ namespace RRS.Migrations
                 values: new object[,]
                 {
                     { "1337x1", "1337x1", "Admin", "ADMIN" },
-                    { "1337x2", "1337x2", "User", "USER" }
+                    { "1337x2", "1337x2", "Member", "MEMBER" }
                 });
 
             migrationBuilder.InsertData(
@@ -399,8 +399,8 @@ namespace RRS.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1337x1", 0, "1337x1", "a@e.com", true, false, null, "A@E.COM", "A@E.COM", "AQAAAAEAACcQAAAAEI1V6RD1zkolJ73BBRjobG/MPnZzM1GG/niMDBo7KpGomyGAAGxu5GJ+rxtgSqsCIw==", null, false, "a709afda-62d5-4228-af46-66e1fa08f4b8", false, "a@e.com" },
-                    { "1337x2", 0, "1337x2", "g@e.com", true, false, null, "G@E.COM", "G@E.COM", "AQAAAAEAACcQAAAAEJB9QmANNYL4SdXwSorLwL0HfETwERmDhfe4ZrM/F7inecXVqhxeBQetNe+dimXKIA==", null, false, "58102187-92f9-47ec-b1f1-cafd14f7745c", false, "g@e.com" }
+                    { "1337x1", 0, "1337x1", "a@e.com", true, false, null, "A@E.COM", "A@E.COM", "AQAAAAEAACcQAAAAEHQ2Rww7qpb6127wfZje/XM1oqGoMEILeaZLEvdz4tWQhZMkrmbHUTxHXnzS4waMvg==", null, false, "0cd29eab-34d1-4f9d-bb0a-0d2f08ea9672", false, "a@e.com" },
+                    { "1337x2", 0, "1337x2", "g@e.com", true, false, null, "G@E.COM", "G@E.COM", "AQAAAAEAACcQAAAAEHC2vBHnozlPba2UiQT7WDoWnyBQ5i3bCFRh4mdRcmJTv4Cs9o9q8rRNqBwKPMTENw==", null, false, "20b384f0-e0ec-4adc-a9a3-51d84849fd6b", false, "g@e.com" }
                 });
 
             migrationBuilder.InsertData(
