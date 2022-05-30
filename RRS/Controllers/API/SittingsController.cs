@@ -50,7 +50,7 @@ namespace RRS.Controllers.API
                     $"{System.Environment.NewLine}" +
                     $"ATOLog: {DateTime.Now}" +
                     $"{System.Environment.NewLine}" +
-                    $"Endpoint: 'server/api/Reservations/resDTO'" +
+                    $"Endpoint: 'server/api/Sittings/resDTO'" +
                     $"{System.Environment.NewLine}" +
                     $"HTTP request successfully received.");
 
@@ -60,7 +60,7 @@ namespace RRS.Controllers.API
                     $"{System.Environment.NewLine}" +
                     $"ATOLog: {DateTime.Now}" +
                     $"{System.Environment.NewLine}" +
-                    $"Endpoint: 'server/api/Reservations/resDTO'" +
+                    $"Endpoint: 'server/api/Sittings/resDTO'" +
                     $"{System.Environment.NewLine}" +
                     $"Start time argument {start} localised to => {startLocal} | End time argument {end} localised to => {endLocal}");
 
@@ -89,7 +89,7 @@ namespace RRS.Controllers.API
                     $"{System.Environment.NewLine}" +
                     $"ATOLog: {DateTime.Now}" +
                     $"{System.Environment.NewLine}" +
-                    $"Endpoint: 'server/api/Reservations/resDTO'" +
+                    $"Endpoint: 'server/api/Sittings/resDTO'" +
                     $"{System.Environment.NewLine}" +
                     $"{ex.Message}");
                 throw;

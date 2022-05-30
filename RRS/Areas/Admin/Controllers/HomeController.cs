@@ -6,8 +6,11 @@ namespace RRS.Areas.Admin.Controllers
 {
     public class HomeController : AdminAreaController
     {
-        public HomeController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
-            : base(context, userManager)
+        public HomeController(
+            ApplicationDbContext context,
+            UserManager<IdentityUser> userManager,
+            ILogger<AdminAreaController> logger)
+            : base(context, userManager, logger)
         {
 
         }

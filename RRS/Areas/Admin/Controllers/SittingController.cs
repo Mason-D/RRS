@@ -164,7 +164,7 @@ namespace RRS.Areas.Admin.Controllers
                     $"{Environment.NewLine}" +
                     $"Endpoint: 'server/Admin/Sitting/Edit/sittingDto'" +
                     $"{Environment.NewLine}" +
-                    $"Invalid Sitting Id:${sittingDto.Id}.");
+                    $"Invalid Sitting Id:{sittingDto.Id}.");
                 return View("Edit");
             }
 
@@ -182,7 +182,7 @@ namespace RRS.Areas.Admin.Controllers
                             $"{Environment.NewLine}" +
                             $"Endpoint: 'server/Admin/Sitting/Edit/sittingDto'" +
                             $"{Environment.NewLine}" +
-                            $"No sitting found by Dto Id:${sittingDto.Id}.");
+                            $"No sitting found by Dto Id:{sittingDto.Id}.");
                         return NotFound();
                     }
 
@@ -201,7 +201,7 @@ namespace RRS.Areas.Admin.Controllers
                                 $"{Environment.NewLine}" +
                                 $"Endpoint: 'server/Admin/Sitting/Edit/sittingDto'" +
                                 $"{Environment.NewLine}" +
-                                $"Changes for sitting Id:${sittingDto.Id} was successfully persisted to the database.");
+                                $"Changes for sitting Id:{sittingDto.Id} was successfully persisted to the database.");
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
