@@ -23,7 +23,7 @@ namespace RRS.Controllers.API
         public async Task<ActionResult<IEnumerable<PersonDto>>> FindPeople(string data)
         {
             return await _context.Customers
-                .Where(c => (c.FirstName+c.LastName).Replace(" ", string.Empty).Contains(data))
+                .Where(c => (c.FirstName+c.LastName).Replace(" ", string.Empty).Contains(data) || c.Email.Contains(data) || c.PhoneNumber.Contains(data))
                 .Select(p => new PersonDto
                 {
                     Id = p.Id,
