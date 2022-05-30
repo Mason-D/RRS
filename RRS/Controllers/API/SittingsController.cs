@@ -11,10 +11,12 @@ namespace RRS.Controllers.API
     public class SittingsController : ControllerBase        
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<ReservationsController> _logger;
 
-        public SittingsController(ApplicationDbContext context)
+        public SittingsController(ApplicationDbContext context, ILogger<ReservationsController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -42,27 +44,56 @@ namespace RRS.Controllers.API
         [Route("any/{start}/{end?}")]
         public async Task<ActionResult<IEnumerable<SittingDto>>> Any(DateTime start, DateTime end = new DateTime())
         {
-            var startLocal = start.ToLocalTime();
-            var endLocal = end == new DateTime() ? startLocal : end.ToLocalTime();
+            try
+            {
+                _logger.LogInformation(
+                    $"{System.Environment.NewLine}" +
+                    $"ATOLog: {DateTime.Now}" +
+                    $"{System.Environment.NewLine}" +
+                    $"Endpoint: 'server/api/Reservations/resDTO'" +
+                    $"{System.Environment.NewLine}" +
+                    $"HTTP request successfully received.");
 
-            return await _context.Sittings
-                            .Include(s => s.Reservations)
-                                .ThenInclude(r => r.ReservationStatus)
-                            .Where(s => s.Start.Date >= startLocal.Date && s.Start.Date <= endLocal.Date)
-                            .Select(s => new SittingDto
-                            {
-                                Id = s.Id,
-                                Start = s.Start,
-                                Duration = s.Duration,
-                                Capacity = s.Capacity,
-                                Interval = s.Interval,
-                                Cutoff = s.Cutoff,
-                                IsOpen = s.IsOpen,
-                                SittingTypeDescription = s.SittingType.Description,
-                                SittingTypeId = s.SittingType.Id,
-                                TotalGuests = s.TotalGuests
-                            })
-                            .ToListAsync();
+                var startLocal = start.ToLocalTime();
+                var endLocal = end == new DateTime() ? startLocal : end.ToLocalTime();
+                _logger.LogInformation(
+                    $"{System.Environment.NewLine}" +
+                    $"ATOLog: {DateTime.Now}" +
+                    $"{System.Environment.NewLine}" +
+                    $"Endpoint: 'server/api/Reservations/resDTO'" +
+                    $"{System.Environment.NewLine}" +
+                    $"Start time argument {start} localised to => {startLocal} | End time argument {end} localised to => {endLocal}");
+
+                return await _context.Sittings
+                                .Include(s => s.Reservations)
+                                    .ThenInclude(r => r.ReservationStatus)
+                                .Where(s => s.Start.Date >= startLocal.Date && s.Start.Date <= endLocal.Date)
+                                .Select(s => new SittingDto
+                                {
+                                    Id = s.Id,
+                                    Start = s.Start,
+                                    Duration = s.Duration,
+                                    Capacity = s.Capacity,
+                                    Interval = s.Interval,
+                                    Cutoff = s.Cutoff,
+                                    IsOpen = s.IsOpen,
+                                    SittingTypeDescription = s.SittingType.Description,
+                                    SittingTypeId = s.SittingType.Id,
+                                    TotalGuests = s.TotalGuests
+                                })
+                                .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(
+                    $"{System.Environment.NewLine}" +
+                    $"ATOLog: {DateTime.Now}" +
+                    $"{System.Environment.NewLine}" +
+                    $"Endpoint: 'server/api/Reservations/resDTO'" +
+                    $"{System.Environment.NewLine}" +
+                    $"{ex.Message}");
+                throw;
+            }
         }
 
         [HttpGet]

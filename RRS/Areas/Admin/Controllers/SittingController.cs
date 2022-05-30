@@ -16,10 +16,12 @@ namespace RRS.Areas.Admin.Controllers
     public class SittingController : AdminAreaController
     {
       
-        public SittingController(ApplicationDbContext context, UserManager<IdentityUser> userManager) : base(context, userManager)
+        public SittingController(
+            ApplicationDbContext context, 
+            UserManager<IdentityUser> userManager,
+            ILogger<AdminAreaController> logger) 
+            : base(context, userManager, logger)
         {
-
-
         }
 
 
@@ -150,15 +152,19 @@ namespace RRS.Areas.Admin.Controllers
             return View(new SittingDto());
         }
 
-        // POST: Admin/Sitting/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit([Bind("Id,Start,Duration,Capacity,IsOpen,SittingTypeId,Interval,Cutoff")] SittingDto sittingDto)
         {
             if (sittingDto.Id <= 0)
             {
+                _logger.LogInformation(
+                    $"{Environment.NewLine}" +
+                    $"ATOLog: {DateTime.Now}" +
+                    $"{Environment.NewLine}" +
+                    $"Endpoint: 'server/Admin/Sitting/Edit/sittingDto'" +
+                    $"{Environment.NewLine}" +
+                    $"Invalid Sitting Id:${sittingDto.Id}.");
                 return View("Edit");
             }
 
@@ -170,6 +176,13 @@ namespace RRS.Areas.Admin.Controllers
 
                     if (s.Result == null) // When disabled id input is manipulated to a non-existent id
                     {
+                        _logger.LogInformation(
+                            $"{Environment.NewLine}" +
+                            $"ATOLog: {DateTime.Now}" +
+                            $"{Environment.NewLine}" +
+                            $"Endpoint: 'server/Admin/Sitting/Edit/sittingDto'" +
+                            $"{Environment.NewLine}" +
+                            $"No sitting found by Dto Id:${sittingDto.Id}.");
                         return NotFound();
                     }
 
@@ -182,8 +195,15 @@ namespace RRS.Areas.Admin.Controllers
                     s.Result.SittingTypeId= sittingDto.SittingTypeId;
 
                     await _context.SaveChangesAsync();
+                    _logger.LogInformation(
+                                $"{Environment.NewLine}" +
+                                $"ATOLog: {DateTime.Now}" +
+                                $"{Environment.NewLine}" +
+                                $"Endpoint: 'server/Admin/Sitting/Edit/sittingDto'" +
+                                $"{Environment.NewLine}" +
+                                $"Changes for sitting Id:${sittingDto.Id} was successfully persisted to the database.");
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateConcurrencyException ex)
                 {
                     if (!SittingExists(sittingDto.Id))
                     {
@@ -191,6 +211,13 @@ namespace RRS.Areas.Admin.Controllers
                     }
                     else
                     {
+                        _logger.LogCritical(
+                            $"{Environment.NewLine}" +
+                            $"ATOLog: {DateTime.Now}" +
+                            $"{Environment.NewLine}" +
+                            $"Endpoint: 'server/Admin/Sitting/Edit/sittingDto'" +
+                            $"{Environment.NewLine}" +
+                            $"{ex.Message}");
                         throw;
                     }
                 }
