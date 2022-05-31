@@ -51,7 +51,7 @@ namespace RRS.Areas.Admin.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("/Views/Shared/BeanError.cshtml");
             }
 
             var reservation = await _context.Reservations
@@ -62,7 +62,7 @@ namespace RRS.Areas.Admin.Controllers
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (reservation == null)
             {
-                return NotFound();
+                return View("/Views/Shared/BeanError.cshtml");
             }
 
             return View(reservation);
@@ -103,7 +103,7 @@ namespace RRS.Areas.Admin.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("/Views/Shared/BeanError.cshtml");
             }
 
             var reservation = await _context.Reservations
@@ -116,7 +116,7 @@ namespace RRS.Areas.Admin.Controllers
 
             if (reservation == null)
             {
-                return NotFound();
+                return View("/Views/Shared/BeanError.cshtml");
             }
             ViewData["ReservationStatusId"] = new SelectList(_context.ReservationStatuses, "Id", "Description", reservation.ReservationStatus);
             return View(reservation);
@@ -131,7 +131,7 @@ namespace RRS.Areas.Admin.Controllers
         {
             if (id != reservation.Id)
             {
-                return NotFound();
+                return View("/Views/Shared/BeanError.cshtml");
             }
             if (ModelState.IsValid)
             {
@@ -142,7 +142,7 @@ namespace RRS.Areas.Admin.Controllers
                     
                     if(r.Result is null)
                     {
-                        return NotFound();
+                        return View("/Views/Shared/BeanError.cshtml");
                     }
 
                     //Converts UTC time recieved from JS into local time format
@@ -163,7 +163,7 @@ namespace RRS.Areas.Admin.Controllers
                 {
                     if (!ReservationExists(reservation.Id))
                     {
-                        return NotFound();
+                        return View("/Views/Shared/BeanError.cshtml");
                     }
                     else
                     {

@@ -35,9 +35,10 @@ namespace RRS.Areas.Admin.Controllers
         // GET: Admin/Sitting/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            id = null;
             if (id == null)
             {
-                return NotFound();
+                return View("/Views/Shared/BeanError.cshtml");
             }
 
             var sitting = await _context.Sittings
@@ -46,7 +47,7 @@ namespace RRS.Areas.Admin.Controllers
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (sitting == null)
             {
-                return NotFound();
+                return View("/Views/Shared/BeanError.cshtml");
             }
 
             ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Id");
@@ -167,7 +168,7 @@ namespace RRS.Areas.Admin.Controllers
 
                     if (s.Result == null) // When disabled id input is manipulated to a non-existent id
                     {
-                        return NotFound();
+                        return View("/Views/Shared/BeanError.cshtml");
                     }
 
                     s.Result.Start = sittingDto.Start;
@@ -184,7 +185,7 @@ namespace RRS.Areas.Admin.Controllers
                 {
                     if (!SittingExists(sittingDto.Id))
                     {
-                        return NotFound();
+                        return View("/Views/Shared/BeanError.cshtml"); ;
                     }
                     else
                     {
@@ -205,7 +206,7 @@ namespace RRS.Areas.Admin.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("/Views/Shared/BeanError.cshtml");
             }
 
             var sitting = await _context.Sittings
@@ -214,7 +215,7 @@ namespace RRS.Areas.Admin.Controllers
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (sitting == null)
             {
-                return NotFound();
+                return View("/Views/Shared/BeanError.cshtml");
             }
 
             return View(sitting);
@@ -227,7 +228,7 @@ namespace RRS.Areas.Admin.Controllers
         {
             if (id <= 0)
             {
-                return NotFound();
+                return View("/Views/Shared/BeanError.cshtml");
             }
 
             if (selectAllGroupId && groupId != Guid.Empty)
@@ -235,7 +236,7 @@ namespace RRS.Areas.Admin.Controllers
                 var sittings = await _context.Sittings.Where(s => s.GroupId == groupId).ToListAsync();
                 if (sittings.Count == 0)
                 {
-                    return NotFound();
+                    return View("/Views/Shared/BeanError.cshtml");
                 }
                 foreach (var s in sittings) 
                 {
@@ -258,7 +259,7 @@ namespace RRS.Areas.Admin.Controllers
                 var sitting = await _context.Sittings.Where(s => s.Id == id).FirstOrDefaultAsync();
                 if (sitting == null)
                 {
-                    return NotFound();
+                    return View("/Views/Shared/BeanError.cshtml");
                 }
                 var reservations = await _context.Reservations
                                             .Include(r => r.ReservationStatus)
