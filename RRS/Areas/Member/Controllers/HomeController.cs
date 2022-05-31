@@ -22,7 +22,8 @@ namespace RRS.Areas.Member.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return View("/Views/Shared/BeanError.cshtml", "");
+                //return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
@@ -48,7 +49,8 @@ namespace RRS.Areas.Member.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                //return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return View("/Views/Shared/BeanError.cshtml");
             }
 
             //Maintain reservations state
