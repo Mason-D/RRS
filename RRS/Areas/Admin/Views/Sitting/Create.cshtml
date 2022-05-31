@@ -7,9 +7,9 @@
 <h1>Create Sitting </h1>
 
 <hr />
-<div class="container " >
+<div class="container" >
     <form asp-action="Create">
-        <div class="row ">
+        <div class="row">
             <div class="col-7" >
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
@@ -19,13 +19,13 @@
                 </div>
                 <h5>Duration</h5>
                 <div class="form-group">
-                    <label for="Hours" class="control-label">Hours</label>
-                    <input id="Hours" type="number"  class="form-control" />
+                    <label asp-for="Hours" class="control-label">Hours</label>
+                    <input asp-for="Hours" type="number"  class="form-control" />
+                     <span asp-validation-for="Hours" class="text-danger"></span>
                 </div>
-
                 <div class="form=-group">
-                    <label for="Minutes" class="control-label">Minutes</label>
-                    <input id="Minutes" type="number"  class="form-control" />
+                    <label asp-for="Minutes" class="control-label">Minutes</label>
+                    <input id="Minutes" asp-for="Minutes" type="number"  class="form-control" />
                 </div>
                 <div id="display-time-container" style="display:none">
                     <h5 id="time-container-end"></h5>
@@ -45,7 +45,6 @@
                     <input asp-for="CutOff" type="number" class="form-control" />
                     <span asp-validation-for="CutOff" class="text-danger"></span>
                 </div>
-
                 <div class="form-group" id="SittingTypeSelect">
                     <label asp-for="SittingTypeId" class="control-label"></label>
                     <select asp-for="SittingTypeId" class="form-control" asp-items="ViewBag.SittingTypeId"></select>
@@ -53,20 +52,15 @@
                 <div id="NewSittingArea" style="display:none">
                     <label asp-for="NewSittingName"  class="control-label"></label>
                     <input id="NewSittingAreaInput" asp-for="NewSittingName" class="form-control" />
-                    <span asp-validation-for="NewSittingName" class="text-danger"></span>
+                    <span asp-validation-for="NewSittingName" class="text-danger"></span> 
                 </div>
                 <div>
                     <input id="NewSittingBtn" type="button" class="btn-primary btn m-1" value="New" />
                 </div>
-
                 <div>
                     <input id="RepeatSittingBtnWeeks" class="btn btn-primary m-1" value="Repeat Sitting" />
                 </div>
-
-
                 <div id="RepeatWeeksContainer"  style="display:none" class="form-group">
-
-
                     <div id="day-of-week-container">
                         @foreach (var day in Enum.GetValues(typeof(DayOfWeek)))
                         {
@@ -74,35 +68,25 @@
                             <label class="btn btn-outline-primary m-1" for="cb-day-@(day)">@(day)</label>
                         }
                     </div>
-
                     <div>
                         <label for="EndDateInput" class="control-label"> Repeat Until </label>
                         <input type="date" id="EndDateInput" class="form-control"/>
                     </div>
-
                 </div>
                 <div class="form-group">
-
-
                     <input type="submit" value="Create" class="btn btn-primary m-3" />
                 </div>
             </div>
-
-           
         </div>
 
         <input type="hidden" asp-for="RestaurantId" value="@ViewBag.RestaurantId" />
         <input type="hidden" asp-for="Group" id="Group"  value=@null />
         <input type="hidden" asp-for="Duration" id="Duration"  value=@null />
-        <input type="hidden" asp-for="EndDate" id="EndDate" value="null" />
-        <input type="hidden" asp-for="SelectedDays" id="SelectedDays" value="null" />
+        <input type="hidden" asp-for="EndDate" id="EndDate" value=@null />
+        <input type="hidden" asp-for="SelectedDays" id="SelectedDays" value=@null />
     </form>
 
 </div>
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts{
 
 <script src="~/js/admin.sitting.create.js"></script>

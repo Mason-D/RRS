@@ -31,8 +31,6 @@ namespace RRS.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-
-
             return View();
         }
 
