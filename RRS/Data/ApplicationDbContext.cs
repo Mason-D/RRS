@@ -48,8 +48,8 @@ namespace RRS.Data
                 {
                     Id = "1337x2",
                     ConcurrencyStamp = "1337x2",
-                    Name = "User",
-                    NormalizedName = "USER"
+                    Name = "Member",
+                    NormalizedName = "Member"
                 }
             );
 

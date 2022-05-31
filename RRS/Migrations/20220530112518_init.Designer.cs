@@ -12,7 +12,7 @@ using RRS.Data;
 namespace RRS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220529011634_init")]
+    [Migration("20220530112518_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,8 +62,8 @@ namespace RRS.Migrations
                         {
                             Id = "1337x2",
                             ConcurrencyStamp = "1337x2",
-                            Name = "User",
-                            NormalizedName = "USER"
+                            Name = "Member",
+                            NormalizedName = "Member"
                         });
                 });
 
@@ -167,9 +167,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "A@E.COM",
                             NormalizedUserName = "A@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEI1V6RD1zkolJ73BBRjobG/MPnZzM1GG/niMDBo7KpGomyGAAGxu5GJ+rxtgSqsCIw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEI5435gpSuo8Felk13a4gKcMlPdWl1mpeyX952LFs0jeo5mZQ3yVIlw09YhACrQBDA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a709afda-62d5-4228-af46-66e1fa08f4b8",
+                            SecurityStamp = "6ca61f3c-848c-4ad9-82d6-d387205077f9",
                             TwoFactorEnabled = false,
                             UserName = "a@e.com"
                         },
@@ -183,9 +183,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "G@E.COM",
                             NormalizedUserName = "G@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJB9QmANNYL4SdXwSorLwL0HfETwERmDhfe4ZrM/F7inecXVqhxeBQetNe+dimXKIA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBOdTAuUIsrKyKHdlY8sztdu7OAbD5Z9qkzAFtSKTOACPvoCJZphF/8l2QC0nJK/XA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "58102187-92f9-47ec-b1f1-cafd14f7745c",
+                            SecurityStamp = "aab282d9-9b73-4190-9d7e-c9aba85227b6",
                             TwoFactorEnabled = false,
                             UserName = "g@e.com"
                         });
