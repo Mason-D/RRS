@@ -17,7 +17,7 @@ namespace RRS.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.4")
+                .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -47,22 +47,6 @@ namespace RRS.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "1337x1",
-                            ConcurrencyStamp = "1337x1",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "1337x2",
-                            ConcurrencyStamp = "1337x2",
-                            Name = "Member",
-                            NormalizedName = "MEMBER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -153,40 +137,6 @@ namespace RRS.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "1337x1",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "1337x1",
-                            Email = "a@e.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "A@E.COM",
-                            NormalizedUserName = "A@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHoL6DkJYLJU3B+wvvQN5SWkzYbp9z29r4UCVAP4uBj2FEjYKM0UETJUDl9y7Nn9Mg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "4f486086-eb26-4bc8-a138-38bc5ed0412c",
-                            TwoFactorEnabled = false,
-                            UserName = "a@e.com"
-                        },
-                        new
-                        {
-                            Id = "1337x2",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "1337x2",
-                            Email = "g@e.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "G@E.COM",
-                            NormalizedUserName = "G@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEf+4qG1965dTJNNbKFptj7bSmC9KSYdJrKlZfR2gofaRCs9rvZbmCHpFvgXYnq0YA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "6e47edee-b41c-409d-8dfe-16e2c72473ba",
-                            TwoFactorEnabled = false,
-                            UserName = "g@e.com"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -251,18 +201,6 @@ namespace RRS.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "1337x1",
-                            RoleId = "1337x1"
-                        },
-                        new
-                        {
-                            UserId = "1337x2",
-                            RoleId = "1337x2"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

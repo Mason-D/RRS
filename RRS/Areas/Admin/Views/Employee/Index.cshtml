@@ -1,0 +1,46 @@
+﻿@model IEnumerable<RRS.Data.Employee>;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+ <div class="row justify-content-center" >
+        <a class="btn btn-success col-3 m-4" asp-area="Admin" asp-controller="Employee" asp-action="Register">Register Employees</a>
+ </div>
+
+
+
+     
+
+     @if(Model.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach(var e in Model)
+                {
+                    <tr>
+                        <td> @e.FirstName @e.LastName</td>
+                        <td> @e.PhoneNumber</td>
+                        <td> @e.Email</td>
+                        <td> <a asp-area="Admin" asp-controller="Employee" asp-action="Edit" asp-route-id="@e.Id"  class="btn btn-primary">Edit</a></td>
+                    </tr>
+                }   
+
+            </tbody>
+        </table>
+    }
+
+
+
+
+
