@@ -386,24 +386,26 @@ namespace RRS.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ReservationTable",
+                name: "ReservationTables",
                 columns: table => new
                 {
-                    ReservationsId = table.Column<int>(type: "int", nullable: false),
-                    TablesId = table.Column<int>(type: "int", nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ReservationId = table.Column<int>(type: "int", nullable: false),
+                    TableId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ReservationTable", x => new { x.ReservationsId, x.TablesId });
+                    table.PrimaryKey("PK_ReservationTables", x => x.id);
                     table.ForeignKey(
-                        name: "FK_ReservationTable_Reservations_ReservationsId",
-                        column: x => x.ReservationsId,
+                        name: "FK_ReservationTables_Reservations_ReservationId",
+                        column: x => x.ReservationId,
                         principalTable: "Reservations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ReservationTable_Tables_TablesId",
-                        column: x => x.TablesId,
+                        name: "FK_ReservationTables_Tables_TableId",
+                        column: x => x.TableId,
                         principalTable: "Tables",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -832,9 +834,14 @@ namespace RRS.Migrations
                 column: "SittingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReservationTable_TablesId",
-                table: "ReservationTable",
-                column: "TablesId");
+                name: "IX_ReservationTables_ReservationId",
+                table: "ReservationTables",
+                column: "ReservationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ReservationTables_TableId",
+                table: "ReservationTables",
+                column: "TableId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Sittings_RestaurantId",
@@ -873,7 +880,7 @@ namespace RRS.Migrations
                 name: "Employees");
 
             migrationBuilder.DropTable(
-                name: "ReservationTable");
+                name: "ReservationTables");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

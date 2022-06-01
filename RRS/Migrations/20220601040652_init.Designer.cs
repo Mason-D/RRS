@@ -12,7 +12,7 @@ using RRS.Data;
 namespace RRS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220601021113_init")]
+    [Migration("20220601040652_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -224,21 +224,6 @@ namespace RRS.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("ReservationTable", b =>
-                {
-                    b.Property<int>("ReservationsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TablesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ReservationsId", "TablesId");
-
-                    b.HasIndex("TablesId");
-
-                    b.ToTable("ReservationTable");
                 });
 
             modelBuilder.Entity("RRS.Data.Area", b =>
@@ -545,6 +530,29 @@ namespace RRS.Migrations
                             Id = 5,
                             Description = "Completed"
                         });
+                });
+
+            modelBuilder.Entity("RRS.Data.ReservationTable", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<int>("ReservationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TableId")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("ReservationId");
+
+                    b.HasIndex("TableId");
+
+                    b.ToTable("ReservationTables");
                 });
 
             modelBuilder.Entity("RRS.Data.Restaurant", b =>
@@ -3333,21 +3341,6 @@ namespace RRS.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ReservationTable", b =>
-                {
-                    b.HasOne("RRS.Data.Reservation", null)
-                        .WithMany()
-                        .HasForeignKey("ReservationsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RRS.Data.Table", null)
-                        .WithMany()
-                        .HasForeignKey("TablesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("RRS.Data.Area", b =>
                 {
                     b.HasOne("RRS.Data.Restaurant", "Restaurant")
@@ -3403,6 +3396,25 @@ namespace RRS.Migrations
                     b.Navigation("ReservationStatus");
 
                     b.Navigation("Sitting");
+                });
+
+            modelBuilder.Entity("RRS.Data.ReservationTable", b =>
+                {
+                    b.HasOne("RRS.Data.Reservation", "Reservation")
+                        .WithMany()
+                        .HasForeignKey("ReservationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RRS.Data.Table", "Table")
+                        .WithMany()
+                        .HasForeignKey("TableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Reservation");
+
+                    b.Navigation("Table");
                 });
 
             modelBuilder.Entity("RRS.Data.Sitting", b =>

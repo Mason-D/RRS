@@ -16,20 +16,26 @@ namespace RRS.Controllers.API
             _context = context;
         }
 
-        [HttpGet]
-        //[Route("AddReservation/")]
-        public Task<IActionResult> AddReservation()
+        [HttpPost]
+        [Route("AddReservation/{tableId}/{resId}")]
+        public async Task<ReservationTable> AddReservation(int tableId, int resId)
         {
-
-            return null;
+            var resTable = new ReservationTable { TableId = tableId, ReservationId = resId };
+            await _context.AddAsync(resTable);
+            _context.SaveChanges();
+            return resTable;
         }
 
         [HttpPost]
-        //[Route("RemoveReservation")]
+        [Route("RemoveReservation/{tableId}/{resId}")]
 
-        public Task<IActionResult> RemoveResevation()
+        public async Task<ReservationTable> RemoveResevation( int tableId, int resId)
         {
-            return null;
+            ReservationTable reservation =  _context.ReservationTables.Where(rt => rt.TableId == tableId && rt.ReservationId == resId).FirstOrDefault();
+            _context.Remove(reservation);
+            _context.SaveChanges();
+
+            return reservation;
         }
 
 
@@ -39,17 +45,17 @@ namespace RRS.Controllers.API
         public async Task<ActionResult<IEnumerable<TablesDto>>> Area(int id)
         {
 
-            var result =  await _context.Tables
+            var result = await _context.Tables
                 .Where(t => t.AreaId == id)
-                .Select(t => new TablesDto 
-                { 
-                    Id=t.Id, 
-                    AreaId = t.AreaId, 
-                    Description=t.Description
+                .Include(t => t.Reservations)
+                .Select(t => new TablesDto
+                {
+                    Id = t.Id,
+                    AreaId = t.AreaId,
+                    Description = t.Description,
+                    ReservationId = t.Reservations.FirstOrDefault().Id
                 })
                 .ToListAsync();
-
-
 
             return result;
         }

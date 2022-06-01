@@ -15,6 +15,12 @@ namespace RRS.Data
             base.OnModelCreating(builder);
             new ModelConfiguration(builder);
             new ModelDataSeeder(builder);
+
+
+            builder.Entity<Table>()
+                .HasMany(t => t.Reservations)
+                .WithMany(r => r.Tables)
+                .UsingEntity<ReservationTable>();
         }
 
         public DbSet<Restaurant> Restaurants { get; set; }
@@ -27,6 +33,7 @@ namespace RRS.Data
         public DbSet<Table> Tables { get; set; }
         public DbSet<Person> People { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<ReservationTable> ReservationTables { get; set; }
 
     }
 }
