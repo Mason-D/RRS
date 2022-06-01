@@ -39,7 +39,14 @@ namespace RRS.Controllers.API
         public async Task<ActionResult<IEnumerable<TablesDto>>> Area(int id)
         {
 
-            var result =  await _context.Tables.Where(t => t.AreaId == id).Select(t => new TablesDto { Id=t.Id, AreaId = t.AreaId , Description=t.Description})
+            var result =  await _context.Tables
+                .Where(t => t.AreaId == id)
+                .Select(t => new TablesDto 
+                { 
+                    Id=t.Id, 
+                    AreaId = t.AreaId, 
+                    Description=t.Description
+                })
                 .ToListAsync();
 
 
