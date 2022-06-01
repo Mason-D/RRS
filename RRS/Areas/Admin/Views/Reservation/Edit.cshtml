@@ -1,31 +1,33 @@
 ﻿@model RRS.Data.Reservation
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Reservation";
     string reversedDatePart = Model.Sitting.Start.Date.ToString("yyyy-MM-dd");
     string startDateTime = Model.StartTime.ToString("yyyy-MM-ddThh-mm-ss");
 }
- 
-<h1>Edit Reservation</h1>
-<hr />
 
-<div class="row">
-    <div class="col-md-6">
+<div class="row d-flex justify-content-center ">
+    <div id="resForm-col" class="col-md-12">
         <form id="resForm" asp-action="Edit" method="POST">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            
+          
             <h4 class="mb-2">Customer: @Model.Customer.FirstName @Model.Customer.LastName</h4>
-            <h4 class="mb-2">Contact: @Model.Customer.PhoneNumber</h4>
+            <h4 class="mb-2">Phone: @Model.Customer.PhoneNumber</h4>
 
             <div class="form-group">
-                <input type="hidden" asp-for="CustomerId" class="form-control" />
-                <span asp-validation-for="CustomerId" class="text-danger"></span>
+                <label class="control-label">Date</label>
+                <input disabled id="sittingDate" value="@reversedDatePart" class="form-control" />
             </div>
 
             <div class="form-group">
-                <label asp-for="StartTime" class="control-label"></label>
+                <label class="control-label">Sitting Type</label>
+                <input disabled id="sittingType" value="@Model.Sitting.SittingType.Description" class="form-control" />
+            </div>
+
+            <label asp-for="StartTime" class="control-label"></label>
+            <div class="form-group input-group">
                 <select asp-for="StartTime" id="startTime" class="form-control"></select>
+                <input value="Change Sitting" class="btn btn-primary formBtn" />
             </div>
 
             <div class="form-group">
@@ -41,27 +43,28 @@
             </div>
 
             <div class="form-group">
-                <input type="hidden" asp-for="SittingId" class="form-control" id="idInput"/>
-                <span asp-validation-for="SittingId" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <input type="hidden" asp-for="ReservationOriginId" class="form-control"></input>
-                <span type="hidden" asp-validation-for="ReservationOriginId" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
                 <label asp-for="CustomerNotes" class="control-label"></label>
                 <textarea asp-for="CustomerNotes" class="form-control"></textarea>
                 <span asp-validation-for="CustomerNotes" class="text-danger"></span>
             </div>
 
+            <div>
+                <input type="submit" form="resForm" value="Update" class="btn btn-primary mt-2 w-25 formBtn" />
+                <a asp-action="Index" asp-route-date="@Model.Sitting.Start.ToString("MM-dd-yyyy")" class="btn btn-danger mt-2 w-25">Cancel</a>
+            </div>
+
+            @*hide some data*@
+            <input type="hidden" id="startDateTime" value="@Model.StartTime.ToString("yyyy-MM-ddThh:mm:ss")" />
+            <input type="hidden" asp-for="CustomerId" class="form-control" />
+            <input type="hidden" asp-for="Id" />          
+            <input type="hidden" asp-for="SittingId" class="form-control" id="idInput"/>
+            <input type="hidden" asp-for="ReservationOriginId" class="form-control"></input>
         </form>
     </div>
 
-    <div class="col-md-6">
-            <label class="fw-bold" for="dateControl">Sitting date:</label>
-            <input type="date" id="dateControl" value=@reversedDatePart />
+    <div id="table-view" class="col-md-12" hidden>
+        <label class="fw-bold" for="dateControl">Sitting date:</label>
+        <input type="date" id="dateControl" value=@reversedDatePart />
 
         <table id="sittingsT" class="table table-hover">
             <thead>
@@ -76,17 +79,11 @@
             <tbody id="sittingsTBody"></tbody>
         </table>
     </div>
-
-
 </div>
 
-<div>
-    <input type="submit" form="resForm" value="Update" class="btn btn-primary mt-2 w-25" />
-    <a asp-action="Index" asp-route-date="@Model.Sitting.Start.ToString("MM-dd-yyyy")" class="btn btn-danger mt-2 w-25">Cancel</a>
-</div>
-
-    @*hide some data*@
-  <input type="hidden" id="startDateTime" value="@Model.StartTime.ToString("yyyy-MM-ddThh:mm:ss")" />
+@section Styles{
+    <link rel="stylesheet" href="~/css/admin.reservation.edit.css"/>
+}
 
 @section Scripts{
     <script src=~/js/admin.reservation.edit.js></script>

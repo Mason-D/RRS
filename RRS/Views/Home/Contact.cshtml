@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Contact";
+}
+
+<div id="contact-row" class="row">
+    <div id="contact-left-col" class="col-12 col-lg-5 m-auto text-center my-2">
+        <div class="video-container">   
+            <video autoplay muted loop>
+                <source src="~/videos/detective.mp4" type="video/mp4" />
+            </video>
+            <div id="contact-container">
+                <p id="contact-slogan">Spill<br />the<br />beans</p>
+            </div>
+        </div>
+    </div>
+    <div id="contact-right-col" class="col-12 col-lg-5 m-auto my-2">
+        <section>
+            <form id="contact-form" method="post">
+                <h2>@ViewData["Title"]</h2>
+                <hr />
+                <div class="my-4">
+                    <label class="mb-2"><b>OPEN HOURS</b></label>
+                    <p>Mon-Thu 5:00 pm - Late</p>
+                    <p>Fri-Sun 12:00 pm - Late</p>
+                </div>
+                <div class="my-4">
+                    <label class="mb-2"><b>VISIT US</b></label>
+                    <p>Location</p>
+                    <p>5 Malcolm Street</p>
+                    <p>Erskineville</p>
+                </div>
+                <div class="my-4">
+                    <label class="mb-2"><b>CONTACT US</b></label>
+                    <p>Enquiries</p>
+                    <p>02 4229 7813</p>
+                    <p>enquiries@beanscene.com.au</p>
+                </div>
+                <div class="my-4">
+                    <button id="contact-btn" class="btn btn-lg">Book Now</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/site.contact.css" /> 
+}

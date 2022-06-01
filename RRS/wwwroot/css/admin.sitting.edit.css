@@ -16,6 +16,7 @@
 .table-wrapper-scroll-y {
     display: block;
 }
+
 #user-feedback{
     width: 100%;
 }
@@ -26,4 +27,8 @@
 
 #admin-navbar{
     margin-bottom:0 !important;
+}
+
+svg {
+    width: 30px;
 }

@@ -3,8 +3,10 @@
     $("#dateControl").on('change', (e) => getReservation(e.target.value));
     getReservation($("#dateControl").val());
 
-
-
+    $("#reservationsTBody").on('click', 'tr', (e) => {
+        let id = e.currentTarget.dataset.referenceNo;
+        window.location.href = `https://localhost:7271/Admin/Reservation/Edit/${id}`;
+    });
 });
 
 function getReservation(newDate) {
@@ -24,7 +26,7 @@ function getReservation(newDate) {
 
             $("#reservationsTBody").append(
 
-                `<tr>
+                `<tr data-reference-no=${item.referenceNo} >
                     <td>${formatTime(item.startTime)}</td>
                     <td>${item.resType}</td>
                     <td>${(item.firstName+' '+item.lastName).length < 25 ? item.firstName+' '+item.lastName : item.firstName.length < 25 ? item.firstName+'...' : shortenText(item.firstName)}</td>
@@ -33,7 +35,6 @@ function getReservation(newDate) {
                     <td>${item.resStatus}</td>
                     <td>${shortenText(item.customerNotes)}</td>
                     <td>
-                        <a type="button" class="btn btn-primary" href="/Admin/Reservation/Edit/${item.referenceNo}"> Edit </a>
                         <a type="button" class="btn btn-success" href="/Admin/Reservation/Details/${item.referenceNo}">Details</a>
                     </td>
                 </tr>`

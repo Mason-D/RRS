@@ -62,8 +62,6 @@ namespace RRS.Areas.Admin.Controllers
         }
 
         // POST: Admin/Sitting/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(SittingsVm sitting)
@@ -101,7 +99,7 @@ namespace RRS.Areas.Admin.Controllers
                     SittingTypeId = sitting.SittingTypeId,
                     Cutoff = sitting.CutOff,
                     Interval = sitting.Interval,
-                    GroupId = null
+                    GroupId = Guid.Empty
                 };
 
                 _context.Add(SingleSitting);
@@ -166,11 +164,10 @@ namespace RRS.Areas.Admin.Controllers
         }
 
         // POST: Admin/Sitting/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([Bind("Id,Start,Duration,Capacity,IsOpen,SittingTypeId,Interval,Cutoff")] SittingDto sittingDto)
+        public async Task<IActionResult> Edit(
+            [Bind("Id,Start,Duration,Capacity,IsOpen,SittingTypeId,Interval,Cutoff")] SittingDto sittingDto)
         {
             if (sittingDto.Id <= 0)
             {
@@ -241,33 +238,53 @@ namespace RRS.Areas.Admin.Controllers
         // POST: Admin/Sitting/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id, DateTime start)
+        public async Task<IActionResult> DeleteConfirmed(int id, DateTime start, Guid groupId, bool selectAllGroupId = false)
         {
             if (id <= 0)
             {
                 return NotFound();
             }
 
-            var sitting = await _context.Sittings
-                                    .Where(s => s.Id == id)
-                                    .FirstOrDefaultAsync();
-
-            if (sitting == null)
+            if (selectAllGroupId && groupId != Guid.Empty)
             {
-                return NotFound();
+                var sittings = await _context.Sittings.Where(s => s.GroupId == groupId).ToListAsync();
+                if (sittings.Count == 0)
+                {
+                    return NotFound();
+                }
+                foreach (var s in sittings) 
+                {
+                    var reservations = await _context.Reservations
+                                                .Include(r => r.ReservationStatus)
+                                                .Where(r => r.SittingId == id && r.ReservationStatus.Description != "Cancelled")
+                                                .ToListAsync();
+                    if (reservations.Count > 0)
+                    {
+                        return View("SittingHasReservationError");
+                    }
+                }
+                foreach (var validS in sittings)
+                {
+                    _context.Sittings.Remove(validS);
+                }
             }
-
-            var reservations = await _context.Reservations
-                                        .Include(r => r.ReservationStatus)
-                                        .Where(r => r.SittingId == id && r.ReservationStatus.Description != "Cancelled")
-                                        .ToListAsync();
-
-            if (reservations.Count > 0)
+            else
             {
-                return View("SittingHasReservationError");
+                var sitting = await _context.Sittings.Where(s => s.Id == id).FirstOrDefaultAsync();
+                if (sitting == null)
+                {
+                    return NotFound();
+                }
+                var reservations = await _context.Reservations
+                                            .Include(r => r.ReservationStatus)
+                                            .Where(r => r.SittingId == id && r.ReservationStatus.Description != "Cancelled")
+                                            .ToListAsync();
+                if (reservations.Count > 0)
+                {
+                    return View("SittingHasReservationError");
+                }
+                _context.Sittings.Remove(sitting);
             }
-
-            _context.Sittings.Remove(sitting);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Edit), "Sitting", new { LastSelectedDate = start.ToString("yyyy-MM-dd") });
         }

@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RRS.styles.css" asp-append-version="true" />
     @await RenderSectionAsync("Styles", required: false)
+    @*Inject custom razor pages css. Reference: https://www.mikesdotnetting.com/article/355/css-isolation-in-razor-pages*@
+    <link rel="stylesheet" href="@(nameof(RRS)).styles.css)" /> 
+
 </head>
 <body>
     <header>

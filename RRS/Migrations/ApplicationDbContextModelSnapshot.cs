@@ -47,6 +47,22 @@ namespace RRS.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1337x1",
+                            ConcurrencyStamp = "1337x1",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "1337x2",
+                            ConcurrencyStamp = "1337x2",
+                            Name = "Member",
+                            NormalizedName = "Member"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -137,6 +153,40 @@ namespace RRS.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1337x1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1337x1",
+                            Email = "a@e.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "A@E.COM",
+                            NormalizedUserName = "A@E.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEI5435gpSuo8Felk13a4gKcMlPdWl1mpeyX952LFs0jeo5mZQ3yVIlw09YhACrQBDA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "6ca61f3c-848c-4ad9-82d6-d387205077f9",
+                            TwoFactorEnabled = false,
+                            UserName = "a@e.com"
+                        },
+                        new
+                        {
+                            Id = "1337x2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1337x2",
+                            Email = "g@e.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "G@E.COM",
+                            NormalizedUserName = "G@E.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBOdTAuUIsrKyKHdlY8sztdu7OAbD5Z9qkzAFtSKTOACPvoCJZphF/8l2QC0nJK/XA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "aab282d9-9b73-4190-9d7e-c9aba85227b6",
+                            TwoFactorEnabled = false,
+                            UserName = "g@e.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -201,6 +251,18 @@ namespace RRS.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "1337x1",
+                            RoleId = "1337x1"
+                        },
+                        new
+                        {
+                            UserId = "1337x2",
+                            RoleId = "1337x2"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -530,6 +592,29 @@ namespace RRS.Migrations
                         });
                 });
 
+            modelBuilder.Entity("RRS.Data.ReservationTable", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<int>("ReservationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TableId")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("ReservationId");
+
+                    b.HasIndex("TableId");
+
+                    b.ToTable("ReservationTables");
+                });
+
             modelBuilder.Entity("RRS.Data.Restaurant", b =>
                 {
                     b.Property<int>("Id")
@@ -586,7 +671,7 @@ namespace RRS.Migrations
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("GroupId")
+                    b.Property<Guid>("GroupId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Interval")
@@ -619,6 +704,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -631,6 +717,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -643,6 +730,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -655,6 +743,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -667,6 +756,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -679,6 +769,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -691,6 +782,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -703,6 +795,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -715,6 +808,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -727,6 +821,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -739,6 +834,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -751,6 +847,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -763,6 +860,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -775,6 +873,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -787,6 +886,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -799,6 +899,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -811,6 +912,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -823,6 +925,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -835,6 +938,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -847,6 +951,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -859,6 +964,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -871,6 +977,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -883,6 +990,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -895,6 +1003,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -907,6 +1016,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -919,6 +1029,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -931,6 +1042,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -943,6 +1055,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -955,6 +1068,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -967,6 +1081,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -979,6 +1094,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -991,6 +1107,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1003,6 +1120,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1015,6 +1133,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1027,6 +1146,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1039,6 +1159,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1051,6 +1172,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1063,6 +1185,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1075,6 +1198,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1087,6 +1211,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1099,6 +1224,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1111,6 +1237,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1123,6 +1250,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1135,6 +1263,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1147,6 +1276,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1159,6 +1289,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1171,6 +1302,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1183,6 +1315,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1195,6 +1328,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1207,6 +1341,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1219,6 +1354,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1231,6 +1367,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1243,6 +1380,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1255,6 +1393,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1267,6 +1406,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1279,6 +1419,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1291,6 +1432,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1303,6 +1445,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1315,6 +1458,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1327,6 +1471,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1339,6 +1484,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1351,6 +1497,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1363,6 +1510,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1375,6 +1523,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1387,6 +1536,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1399,6 +1549,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1411,6 +1562,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1423,6 +1575,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1435,6 +1588,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1447,6 +1601,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1459,6 +1614,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1471,6 +1627,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1483,6 +1640,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1495,6 +1653,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1507,6 +1666,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1519,6 +1679,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1531,6 +1692,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1543,6 +1705,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1555,6 +1718,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1567,6 +1731,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1579,6 +1744,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1591,6 +1757,7 @@ namespace RRS.Migrations
                             Capacity = 40,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1603,6 +1770,7 @@ namespace RRS.Migrations
                             Capacity = 60,
                             Cutoff = 30,
                             Duration = 180,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1615,6 +1783,7 @@ namespace RRS.Migrations
                             Capacity = 80,
                             Cutoff = 30,
                             Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1627,6 +1796,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1639,6 +1809,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1651,6 +1822,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1663,6 +1835,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1675,6 +1848,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1687,6 +1861,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1699,6 +1874,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1711,6 +1887,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1723,6 +1900,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1735,6 +1913,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1747,6 +1926,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1759,6 +1939,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1771,6 +1952,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1783,6 +1965,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1795,6 +1978,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1807,6 +1991,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1819,6 +2004,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1831,6 +2017,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1843,6 +2030,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1855,6 +2043,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1867,6 +2056,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1879,6 +2069,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1891,6 +2082,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1903,6 +2095,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1915,6 +2108,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1927,6 +2121,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1939,6 +2134,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1951,6 +2147,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1963,6 +2160,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1975,6 +2173,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1987,6 +2186,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -1999,6 +2199,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2011,6 +2212,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2023,6 +2225,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2035,6 +2238,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2047,6 +2251,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2059,6 +2264,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2071,6 +2277,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2083,6 +2290,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2095,6 +2303,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2107,6 +2316,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2119,6 +2329,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2131,6 +2342,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2143,6 +2355,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2155,6 +2368,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2167,6 +2381,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2179,6 +2394,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2191,6 +2407,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2203,6 +2420,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2215,6 +2433,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2227,6 +2446,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2239,6 +2459,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2251,6 +2472,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2263,6 +2485,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2275,6 +2498,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2287,6 +2511,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2299,6 +2524,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2311,6 +2537,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2323,6 +2550,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2335,6 +2563,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2347,6 +2576,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2359,6 +2589,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2371,6 +2602,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2383,6 +2615,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2395,6 +2628,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2407,6 +2641,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2419,6 +2654,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2431,6 +2667,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2443,6 +2680,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2455,6 +2693,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2467,6 +2706,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2479,6 +2719,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2491,6 +2732,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2503,6 +2745,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2515,6 +2758,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2527,6 +2771,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2539,6 +2784,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2551,6 +2797,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2563,6 +2810,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2575,6 +2823,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2587,6 +2836,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2599,6 +2849,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2611,6 +2862,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2623,6 +2875,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2635,6 +2888,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2647,6 +2901,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2659,6 +2914,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2671,6 +2927,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2683,6 +2940,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2695,6 +2953,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2707,6 +2966,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2719,6 +2979,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2731,6 +2992,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2743,6 +3005,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2755,6 +3018,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2767,6 +3031,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2779,6 +3044,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2791,6 +3057,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2803,6 +3070,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2815,6 +3083,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2827,6 +3096,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2839,6 +3109,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2851,6 +3122,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2863,6 +3135,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2875,6 +3148,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2887,6 +3161,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2899,6 +3174,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2911,6 +3187,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2923,6 +3200,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2935,6 +3213,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2947,6 +3226,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -2959,6 +3239,7 @@ namespace RRS.Migrations
                             Capacity = 20,
                             Cutoff = 30,
                             Duration = 240,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
@@ -3016,6 +3297,9 @@ namespace RRS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Seats")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AreaId");
@@ -3027,181 +3311,211 @@ namespace RRS.Migrations
                         {
                             Id = 1,
                             AreaId = 1,
-                            Description = "M1"
+                            Description = "M1",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 2,
                             AreaId = 1,
-                            Description = "M2"
+                            Description = "M2",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 3,
                             AreaId = 1,
-                            Description = "M3"
+                            Description = "M3",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 4,
                             AreaId = 1,
-                            Description = "M4"
+                            Description = "M4",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 5,
                             AreaId = 1,
-                            Description = "M5"
+                            Description = "M5",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 6,
                             AreaId = 1,
-                            Description = "M6"
+                            Description = "M6",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 7,
                             AreaId = 1,
-                            Description = "M7"
+                            Description = "M7",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 8,
                             AreaId = 1,
-                            Description = "M8"
+                            Description = "M8",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 9,
                             AreaId = 1,
-                            Description = "M9"
+                            Description = "M9",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 10,
                             AreaId = 1,
-                            Description = "M10"
+                            Description = "M10",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 11,
                             AreaId = 2,
-                            Description = "O1"
+                            Description = "O1",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 12,
                             AreaId = 2,
-                            Description = "O2"
+                            Description = "O2",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 13,
                             AreaId = 2,
-                            Description = "O3"
+                            Description = "O3",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 14,
                             AreaId = 2,
-                            Description = "O4"
+                            Description = "O4",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 15,
                             AreaId = 2,
-                            Description = "O5"
+                            Description = "O5",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 16,
                             AreaId = 2,
-                            Description = "O6"
+                            Description = "O6",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 17,
                             AreaId = 2,
-                            Description = "O7"
+                            Description = "O7",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 18,
                             AreaId = 2,
-                            Description = "O8"
+                            Description = "O8",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 19,
                             AreaId = 2,
-                            Description = "O9"
+                            Description = "O9",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 20,
                             AreaId = 2,
-                            Description = "O10"
+                            Description = "O10",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 21,
                             AreaId = 3,
-                            Description = "B1"
+                            Description = "B1",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 22,
                             AreaId = 3,
-                            Description = "B2"
+                            Description = "B2",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 23,
                             AreaId = 3,
-                            Description = "B3"
+                            Description = "B3",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 24,
                             AreaId = 3,
-                            Description = "B4"
+                            Description = "B4",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 25,
                             AreaId = 3,
-                            Description = "B5"
+                            Description = "B5",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 26,
                             AreaId = 3,
-                            Description = "B6"
+                            Description = "B6",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 27,
                             AreaId = 3,
-                            Description = "B7"
+                            Description = "B7",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 28,
                             AreaId = 3,
-                            Description = "B8"
+                            Description = "B8",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 29,
                             AreaId = 3,
-                            Description = "B9"
+                            Description = "B9",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 30,
                             AreaId = 3,
-                            Description = "B10"
+                            Description = "B10",
+                            Seats = 0
                         });
                 });
 
@@ -3371,6 +3685,25 @@ namespace RRS.Migrations
                     b.Navigation("ReservationStatus");
 
                     b.Navigation("Sitting");
+                });
+
+            modelBuilder.Entity("RRS.Data.ReservationTable", b =>
+                {
+                    b.HasOne("RRS.Data.Reservation", "Reservation")
+                        .WithMany()
+                        .HasForeignKey("ReservationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RRS.Data.Table", "Table")
+                        .WithMany()
+                        .HasForeignKey("TableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Reservation");
+
+                    b.Navigation("Table");
                 });
 
             modelBuilder.Entity("RRS.Data.Sitting", b =>

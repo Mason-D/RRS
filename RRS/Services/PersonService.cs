@@ -35,10 +35,5 @@ namespace RRS.Services
                 return new { Person = person, WasCreated = true };
             }
         }
-
-        public bool NamesAreValid(string firstName, string lastName)
-        {
-            return firstName != null && lastName != null;
-        }
     }
 }
