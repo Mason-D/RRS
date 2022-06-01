@@ -15,5 +15,7 @@
         public string? CustomerNotes { get; set; }
         public DateTime StartTime { get; set; }
 
+        public Table MyProperty { get; set; }
+
     }
 }
