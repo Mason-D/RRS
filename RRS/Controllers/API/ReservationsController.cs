@@ -113,7 +113,7 @@ namespace RRS.Controllers.API
 
         [HttpGet]
         [Route("all/{email}")]
-        [Authorize(Roles = "Member")]
+        //[Authorize(Roles = "Member")]
         public async Task<ActionResult<CustomerReservationDto>> All(string email)
         {
 
