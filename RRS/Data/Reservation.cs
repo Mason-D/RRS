@@ -14,6 +14,7 @@
         public ReservationOrigin ReservationOrigin { get; set; }
         public string? CustomerNotes { get; set; }
         public DateTime StartTime { get; set; }
+        public ICollection<Table> Tables { get; set; }
 
     }
 }
