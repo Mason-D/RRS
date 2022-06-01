@@ -31,7 +31,7 @@ namespace RRS.Controllers.API
 
         public async Task<ReservationTable> RemoveResevation( int tableId, int resId)
         {
-            ReservationTable reservation =  _context.ReservationTables.Where(rt => rt.TableId == tableId && rt.ReservationId == resId).FirstOrDefault();
+            ReservationTable reservation = _context.ReservationTables.Where(rt => rt.TableId == tableId && rt.ReservationId == resId).FirstOrDefault();
             _context.Remove(reservation);
             _context.SaveChanges();
 
