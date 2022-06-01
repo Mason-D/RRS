@@ -1,0 +1,27 @@
+﻿body {
+    background-image: url("../images/404/bean.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    color: black;
+}
+
+#bean-error-container {
+    height: 250px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#main-header {
+    font-family: SaolDisplay,ui-serif,Georgia,Cambria,"Times New Roman",Times,serif;
+    font-size: 200px;
+    letter-spacing: -.015em;
+    line-height: .85;
+}
+
+p {
+    font-size: 25px;
+}

@@ -43,9 +43,7 @@
     });
 
     $("#sittingsTBody").on('dblclick', 'tr', function (e) {
-
         onRowSelect(this);
-
         //Posted
         $("#hiddenIdInput").val(`${$(e.currentTarget).data('sitting-id')}`);
         $("#hiddenTypeIdInput").val(`${$(e.currentTarget).data('sitting-type-id')}`);
@@ -55,15 +53,34 @@
         $("#intervalInput").val(`${$(e.currentTarget).data('sitting-interval')}`);
         $("#cutoffInput").val(`${$(e.currentTarget).data('sitting-cutoff')}`);
         $("#typeSelectList").val(`${$(e.currentTarget).data('sitting-type-id')}`);
+        $("#hiddenGroupId").val(`${$(e.currentTarget).data('sitting-group-id')}`);
         // Match checkbox state to selected sitting isOpen value
         let open = true == $(e.currentTarget).data('sitting-is-open');
         $("#isOpenInput").val(`${open}`);
+
+        validateGroupId($(e.currentTarget).data('sitting-group-id'));
         //Posted End
 
         //Purely Visual
         $("#idInput").val(`${$(e.currentTarget).data('sitting-id')}`);
     });
+
+    $("#group-id-switch").on("change", (e) => {
+        if (e.target.checked) {
+            setUserFeedback("WARNING: Changes will impact more then one sitting", 10000);
+            $("#hiddenSelectAllGroupId").val("True");
+        }
+        else {
+            $("#hiddenSelectAllGroupId").val("False");
+        }
+    });
 });
+
+function validateGroupId(groupId) {
+    if (groupId != "00000000-0000-0000-0000-000000000000") {
+        $("#group-id-switch").removeAttr("hidden");
+    }
+}
 
 function populateSittingsTable(newDate) {
     //Sittings by selected day
@@ -95,6 +112,7 @@ function populateSittingsTable(newDate) {
                     data-sitting-is-open="${item.isOpen}"
                     data-sitting-type-id="${item.sittingTypeId}"
                     data-sitting-type-description="${item.sittingTypeDescription}"
+                    data-sitting-group-id="${item.groupId}"
                     class="sittingsTBody-row"
                     value="${index}" 
                     id="sittingsTBody-row-${index}"
@@ -132,7 +150,7 @@ function populateSittingsTable(newDate) {
 
                 $("#isOpenInput").val(`${data.isOpen}`);
 
-                setUserFeedback(`Sitting: ${sittingId} is now '${buttonHtml}'`);
+                setUserFeedback(`Sitting: ${sittingId} is now '${buttonHtml}'`, 5000);
             });
         });
     });
@@ -148,6 +166,7 @@ function clearForm() {
     $("#cutoffInput").val("");
     $("#isOpenInput").val("");
     $("#idInput").val("");
+    $("#hiddenGroupId").val("");
 }
 
 function onRowSelect(row) {
@@ -195,6 +214,7 @@ function restoreInvalidForm(s) {
     $("#intervalInput").val(`${s.data('sitting-interval')}`);
     $("#cutoffInput").val(`${s.data('sitting-cutoff')}`);
     $("#typeSelectList").val(`${s.data('sitting-type-id')}`);
+    $("#hiddenGroupId").val(`${s.data('sitting-group-id')}`);
     // Match checkbox state to selected sitting isOpen value
     let open = true == s.data('sitting-is-open');
     $("#isOpenInput").val(`${open}`);
@@ -204,11 +224,11 @@ function restoreInvalidForm(s) {
     $("#idInput").val(`${s.data('sitting-id')}`);
 }
 
-function setUserFeedback(msg) {
+function setUserFeedback(msg, delay) {
     let index = $("#user-feedback p").length;
     $("#user-feedback").append(`<p id="user-feedback-item-${index}" class="alert alert-danger mb-0 p-1 border-top-0">${msg}</p>`);
     setTimeout(() => {
         $(`#user-feedback-item-${index}`).remove();
-    }, 5000);
+    }, delay);
 }
 

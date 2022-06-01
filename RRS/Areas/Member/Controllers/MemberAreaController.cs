@@ -11,8 +11,14 @@ namespace RRS.Areas.Member.Controllers
     {
         protected readonly ApplicationDbContext _context;
         protected readonly UserManager<IdentityUser> _userManager;
-        public MemberAreaController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        protected readonly SignInManager<IdentityUser> _signInManager;
+
+        public MemberAreaController(
+            ApplicationDbContext context, 
+            UserManager<IdentityUser> userManager, 
+            SignInManager<IdentityUser> signInManager)
         {
+            _signInManager = signInManager;
             _context = context;
             _userManager = userManager;
         }
