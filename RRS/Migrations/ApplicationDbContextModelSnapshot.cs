@@ -47,6 +47,22 @@ namespace RRS.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1337x1",
+                            ConcurrencyStamp = "1337x1",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "1337x2",
+                            ConcurrencyStamp = "1337x2",
+                            Name = "Member",
+                            NormalizedName = "Member"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -137,6 +153,40 @@ namespace RRS.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1337x1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1337x1",
+                            Email = "a@e.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "A@E.COM",
+                            NormalizedUserName = "A@E.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEI5435gpSuo8Felk13a4gKcMlPdWl1mpeyX952LFs0jeo5mZQ3yVIlw09YhACrQBDA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "6ca61f3c-848c-4ad9-82d6-d387205077f9",
+                            TwoFactorEnabled = false,
+                            UserName = "a@e.com"
+                        },
+                        new
+                        {
+                            Id = "1337x2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1337x2",
+                            Email = "g@e.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "G@E.COM",
+                            NormalizedUserName = "G@E.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBOdTAuUIsrKyKHdlY8sztdu7OAbD5Z9qkzAFtSKTOACPvoCJZphF/8l2QC0nJK/XA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "aab282d9-9b73-4190-9d7e-c9aba85227b6",
+                            TwoFactorEnabled = false,
+                            UserName = "g@e.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -201,6 +251,18 @@ namespace RRS.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "1337x1",
+                            RoleId = "1337x1"
+                        },
+                        new
+                        {
+                            UserId = "1337x2",
+                            RoleId = "1337x2"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
