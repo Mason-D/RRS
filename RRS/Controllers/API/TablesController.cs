@@ -58,17 +58,40 @@ namespace RRS.Controllers.API
         [Route("available-dates/{start?}")]
         public async Task<ActionResult<IEnumerable<DateTime>>> AvailableDates(DateTime start = new DateTime())
         {
-            var available = await _context.Sittings
-                .Where(s => s.Start >= start)
+            var startLocal = start.ToLocalTime();
+            return await _context.Sittings
+                .Where(s => s.Start.Date >= startLocal.Date)
                 .Select(s => s.Start)
                 .ToListAsync();
+        }
 
-            return available;
+        [HttpGet]
+        [Route("available-sittings/{date}")]
+        public async Task<ActionResult<IEnumerable<SittingByDateDto>>> AvailableSittings(DateTime date)
+        {
+            var dateLocal = date.ToLocalTime();
+            return await _context.Sittings
+                .Include(s => s.SittingType)
+                .Where(s => s.Start.Date == dateLocal.Date)
+                .Select(s => new SittingByDateDto
+                {
+                    Id = s.Id,
+                    Type = s.SittingType.Description
+                })
+                .ToListAsync();
         }
 
 
+        //[HttpGet]
+        //[Route("available-reservations/{sittingId}")]
+        //public async Task<ActionResult<IEnumerable<ReservationBySittingIdDto>>> getReservations(int sittingId)
+        //{
 
+        //    return await _context.Reservations
+        //        .Include(r => r.ReservationStatus)
+        //        .Where(r => r.SittingId == sittingId && )
 
+        //}
 
     }
 }
