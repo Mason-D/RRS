@@ -1,0 +1,93 @@
+﻿body {
+    /*S TIER*/
+    /*background-image: url("../images/horizontal/pexels-nida-11278638.jpg");*/
+    background-image: url("../images/horizontal/generic/close-up-hands-barista-make-latte-coffee-art-paint.jpg");
+    /*A TIER*/
+    /*background-image: url("../images/horizontal/nathan-dumlao-KixfBEdyp64-unsplash.jpg");*/
+    /*background-image: url("../images/horizontal/coffee-3120750.jpg");*/
+    /*background-image: url("../images/horizontal/4Ghcvbc.jpg");*/
+    /*background-image: url("../images/horizontal/pexels-valeria-boltneva-1510684.jpg");*/
+    /*B TIER*/
+    /*background-image: url("../images/horizontal/tyler-nix-6W9nMvUD3iw-unsplash.jpg");*/
+    /*background-image: url("../images/horizontal/generic/fahmi-fakhrudin-nzyzAUsbV0M-unsplash.jpg");*/
+    /*background-image: url("../images/horizontal/emre-NZMeJsrMC8U-unsplash.jpg");*/
+    /*background-image: url("../images/horizontal/Ia7I0OU.jpg");*/
+    /*background-image: url("../images/horizontal/coffee-for-two.jpg");*/
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+#site-home-container {
+    height: 90vh;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.site-main-header {
+    font-family: SaolDisplay,ui-serif,Georgia,Cambria,"Times New Roman",Times,serif;
+    font-size: 200px;
+    letter-spacing: -.015em;
+    line-height: .85;
+}
+
+#site-res-btn-container {
+    border-radius: 10px;
+    padding: 1px;
+    color: black;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+.glass-container:hover {
+    color: black;
+    box-shadow: 0 2rem 1rem -1rem rgba(255, 255, 255, .25);
+    transform: translateY(-10px);
+    transition: all .2s ease;
+}
+
+#site-res-btn-container-text {
+    padding: 10px;
+    padding-top: 0px;
+    margin-bottom: 0px !important;
+    color: white;
+}
+/*GLASS CONTAINER START*/
+.glass-container {
+    width: auto;
+    height: auto;
+    padding: 10px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+    background: inherit;
+    overflow: hidden;
+    align-items: center;
+    display: flex;
+    font-family: SaolDisplay,ui-serif,Georgia,Cambria,"Times New Roman",Times,serif;
+    font-size: 50px;
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.glass-container:before {
+    content: "";
+    position: absolute;
+    background: inherit;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 2000px rgba(139,69,19, 1);
+    filter: blur(10px);
+    margin: -20px;
+}
+/*GLASS CONTAINER END*/

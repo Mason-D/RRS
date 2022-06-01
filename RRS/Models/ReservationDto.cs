@@ -13,5 +13,8 @@
         public string? Email { get; set; }
         public int RestaurantId { get; set; }
         public DateTime StartTime { get; set; }
+        public string? ResStatus { get; set; }
+        public string? ResOrigin { get; set; }
+        public string? ResType { get; set; }
     }
 }
