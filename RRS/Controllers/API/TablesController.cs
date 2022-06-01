@@ -95,7 +95,7 @@ namespace RRS.Controllers.API
         public async Task<ActionResult<IEnumerable<AreaDto>>> AvailableAreas(int RestaurantId)
         {
             return await _context.Areas
-                .Where(a => a.Id == RestaurantId)
+                .Where(a => a.RestaurantId == RestaurantId)
                 .OrderBy(a => a.Description)
                 .Select(a => new AreaDto
                 {
