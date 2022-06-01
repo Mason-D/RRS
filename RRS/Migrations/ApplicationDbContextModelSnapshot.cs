@@ -61,7 +61,7 @@ namespace RRS.Migrations
                             Id = "1337x2",
                             ConcurrencyStamp = "1337x2",
                             Name = "Member",
-                            NormalizedName = "Member"
+                            NormalizedName = "MEMBER"
                         });
                 });
 
@@ -165,9 +165,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "A@E.COM",
                             NormalizedUserName = "A@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEI5435gpSuo8Felk13a4gKcMlPdWl1mpeyX952LFs0jeo5mZQ3yVIlw09YhACrQBDA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHoL6DkJYLJU3B+wvvQN5SWkzYbp9z29r4UCVAP4uBj2FEjYKM0UETJUDl9y7Nn9Mg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6ca61f3c-848c-4ad9-82d6-d387205077f9",
+                            SecurityStamp = "4f486086-eb26-4bc8-a138-38bc5ed0412c",
                             TwoFactorEnabled = false,
                             UserName = "a@e.com"
                         },
@@ -181,9 +181,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "G@E.COM",
                             NormalizedUserName = "G@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBOdTAuUIsrKyKHdlY8sztdu7OAbD5Z9qkzAFtSKTOACPvoCJZphF/8l2QC0nJK/XA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEf+4qG1965dTJNNbKFptj7bSmC9KSYdJrKlZfR2gofaRCs9rvZbmCHpFvgXYnq0YA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "aab282d9-9b73-4190-9d7e-c9aba85227b6",
+                            SecurityStamp = "6e47edee-b41c-409d-8dfe-16e2c72473ba",
                             TwoFactorEnabled = false,
                             UserName = "g@e.com"
                         });
