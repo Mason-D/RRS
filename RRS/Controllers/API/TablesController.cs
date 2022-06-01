@@ -61,5 +61,17 @@ namespace RRS.Controllers.API
         }
 
 
+        [HttpGet]
+        [Route("available-dates/{start}")]
+        public async Task<ActionResult<IEnumerable<DateTime>>> AvailableDates(DateTime start = new DateTime())
+        {
+            var available = await _context.Sittings
+                .Where(s => s.Start >= start)
+                .Select(s => s.Start.Date)
+                .ToListAsync();
+
+            return available;
+        }
+
     }
 }
