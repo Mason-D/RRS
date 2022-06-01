@@ -21,6 +21,16 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.Configure<IdentityOptions>(o =>
+{
+    o.Password.RequireNonAlphanumeric = false;
+    o.Password.RequireUppercase = false;
+    o.Password.RequireLowercase= false;
+    o.Password.RequireDigit= false;
+    o.Password.RequiredLength = 2;
+});
+
+
 builder.Services.AddScoped<PersonService>();
 
 builder.Services.AddControllersWithViews();
@@ -108,6 +118,8 @@ app.Use(async (context, next) =>
         await next();
     }
 });
+
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
