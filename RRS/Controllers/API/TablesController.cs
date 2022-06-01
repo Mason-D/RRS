@@ -65,6 +65,7 @@ namespace RRS.Controllers.API
                 .ToListAsync();
         }
 
+
         [HttpGet]
         [Route("available-sittings/{date}")]
         public async Task<ActionResult<IEnumerable<SittingByDateDto>>> AvailableSittings(DateTime date)
@@ -73,6 +74,7 @@ namespace RRS.Controllers.API
             return await _context.Sittings
                 .Include(s => s.SittingType)
                 .Where(s => s.Start.Date == dateLocal.Date)
+                .OrderBy(s => s.Start)
                 .Select(s => new SittingByDateDto
                 {
                     Id = s.Id,
@@ -81,17 +83,44 @@ namespace RRS.Controllers.API
                 .ToListAsync();
         }
 
+        [HttpGet]
+        [Route("available-areas/{RestaurantId}")]
+        public async Task<ActionResult<IEnumerable<AreaDto>>> AvailableAreas(int RestaurantId)
+        {
+            return await _context.Areas
+                .Where(a => a.Id == RestaurantId)
+                .OrderBy(a => a.Description)
+                .Select(a => new AreaDto
+                {
+                    Id = a.Id,
+                    Type = a.Description
+                })
+                .ToListAsync();
+        }
 
-        //[HttpGet]
-        //[Route("available-reservations/{sittingId}")]
-        //public async Task<ActionResult<IEnumerable<ReservationBySittingIdDto>>> getReservations(int sittingId)
-        //{
 
-        //    return await _context.Reservations
-        //        .Include(r => r.ReservationStatus)
-        //        .Where(r => r.SittingId == sittingId && )
+        [HttpGet]
+        [Route("available-reservations/{sittingId}")]
+        public async Task<ActionResult<IEnumerable<ReservationBySittingIdDto>>> getReservations(int sittingId)
+        {
 
-        //}
+            return await _context.Reservations
+                .Include(r => r.ReservationStatus)
+                .Include(r => r.Customer)
+                .Where(r => r.SittingId == sittingId && r.ReservationStatus.Description != "Cancelled" && r.ReservationStatus.Description != "Completed")
+                .Select(r => new ReservationBySittingIdDto
+                {
+                    NoOfGuests = r.NoOfGuests,
+                    ReservationStatus = r.ReservationStatus.Description,
+                    CustomerNotes = r.CustomerNotes,
+                    FirstName = r.Customer.FirstName,
+                    LastName = r.Customer.LastName,
+                    PhoneNumber = r.Customer.PhoneNumber,
+                    Email = r.Customer.Email,
+                    StartTime = r.StartTime
+                })
+                .ToListAsync();
+        }
 
     }
 }

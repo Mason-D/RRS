@@ -4,7 +4,7 @@
     {
         public int? ReferenceNo { get; set; }
         public int NoOfGuests { get; set; }
-        public int ReservationOriginId { get; set; }
+        public string ReservationStatus { get; set; }
         public string CustomerNotes { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
