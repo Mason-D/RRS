@@ -12,7 +12,7 @@ using RRS.Data;
 namespace RRS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220601010819_init")]
+    [Migration("20220601021113_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -224,6 +224,21 @@ namespace RRS.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("ReservationTable", b =>
+                {
+                    b.Property<int>("ReservationsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TablesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ReservationsId", "TablesId");
+
+                    b.HasIndex("TablesId");
+
+                    b.ToTable("ReservationTable");
                 });
 
             modelBuilder.Entity("RRS.Data.Area", b =>
@@ -3314,6 +3329,21 @@ namespace RRS.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ReservationTable", b =>
+                {
+                    b.HasOne("RRS.Data.Reservation", null)
+                        .WithMany()
+                        .HasForeignKey("ReservationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RRS.Data.Table", null)
+                        .WithMany()
+                        .HasForeignKey("TablesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

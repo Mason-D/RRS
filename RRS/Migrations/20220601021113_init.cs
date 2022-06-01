@@ -385,6 +385,30 @@ namespace RRS.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ReservationTable",
+                columns: table => new
+                {
+                    ReservationsId = table.Column<int>(type: "int", nullable: false),
+                    TablesId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReservationTable", x => new { x.ReservationsId, x.TablesId });
+                    table.ForeignKey(
+                        name: "FK_ReservationTable_Reservations_ReservationsId",
+                        column: x => x.ReservationsId,
+                        principalTable: "Reservations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ReservationTable_Tables_TablesId",
+                        column: x => x.TablesId,
+                        principalTable: "Tables",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "ReservationOrigins",
                 columns: new[] { "Id", "Description" },
@@ -808,6 +832,11 @@ namespace RRS.Migrations
                 column: "SittingId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ReservationTable_TablesId",
+                table: "ReservationTable",
+                column: "TablesId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Sittings_RestaurantId",
                 table: "Sittings",
                 column: "RestaurantId");
@@ -844,16 +873,19 @@ namespace RRS.Migrations
                 name: "Employees");
 
             migrationBuilder.DropTable(
-                name: "Reservations");
-
-            migrationBuilder.DropTable(
-                name: "Tables");
+                name: "ReservationTable");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Reservations");
+
+            migrationBuilder.DropTable(
+                name: "Tables");
 
             migrationBuilder.DropTable(
                 name: "Customers");
