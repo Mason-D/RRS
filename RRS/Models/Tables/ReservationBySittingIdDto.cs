@@ -2,6 +2,7 @@
 {
     public class ReservationBySittingIdDto
     {
+        public int Id { get; set; }
         public int? ReferenceNo { get; set; }
         public int NoOfGuests { get; set; }
         public string ReservationStatus { get; set; }

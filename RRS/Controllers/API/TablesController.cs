@@ -117,6 +117,7 @@ namespace RRS.Controllers.API
                 .Where(r => r.SittingId == sittingId && r.ReservationStatus.Description != "Cancelled" && r.ReservationStatus.Description != "Completed")
                 .Select(r => new ReservationBySittingIdDto
                 {
+                    Id = r.Id,  
                     NoOfGuests = r.NoOfGuests,
                     ReservationStatus = r.ReservationStatus.Description,
                     CustomerNotes = r.CustomerNotes,
