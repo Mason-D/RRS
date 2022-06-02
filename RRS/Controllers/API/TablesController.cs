@@ -38,16 +38,15 @@ namespace RRS.Controllers.API
             return reservation;
         }
 
-
-
         [HttpGet]
-        [Route("area/{id}")]
-        public async Task<ActionResult<IEnumerable<TablesDto>>> Area(int id)
+        [Route("area/{areaId}/{sittingId}")]
+        public async Task<ActionResult<IEnumerable<TablesDto>>> Area(int areaId, int sittingId)
         {
 
             var result = await _context.Tables
-                .Where(t => t.AreaId == id)
+                .Where(t => t.AreaId == areaId)
                 .Include(t => t.Reservations)
+                .Where(t => t.Reservations.All(r => r.SittingId == sittingId))
                 .Select(t => new TablesDto
                 {
                     Id = t.Id,
@@ -59,7 +58,6 @@ namespace RRS.Controllers.API
 
             return result;
         }
-
 
         [HttpGet]
         [Route("available-dates/{start?}")]
