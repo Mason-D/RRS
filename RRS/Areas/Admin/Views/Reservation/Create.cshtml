@@ -4,20 +4,21 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>Reservation</h4>
+<h2>Create - Reservation</h2>
 <hr />
 
-<div>
-    <div id='root'></div>
-    <div>
-        <a asp-action="Index">Back to List</a>  
+<div class="main-div">
+    <div class="SPA-container">
+        <div id='root'></div>
     </div>
+
 </div>
 
 
-@section Scripts{
+@section Styles{
     <link rel='stylesheet' href='~/css/adminCreateReservationSPA.css' />
+    <link rel="stylesheet" href="~/css/admin.reservation.create.css"/>
+}
+@section Scripts{
     <script src='~/js/adminCreateReservationSPA.js'></script>
 }
