@@ -1,4 +1,8 @@
-﻿#profile-row {
+﻿.{
+    color:white !important;
+}
+
+#profile-row {
     height: 80vh;
     width: 100%;
 }

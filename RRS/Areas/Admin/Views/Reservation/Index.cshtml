@@ -5,12 +5,13 @@
     var reversedDatePart = ViewData["getReservationsByDate"];
 }
 
-<h1>Index</h1>
+<h2>Reservations</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create Reservation</a>
 </p>
 
+<hr />
 @*<form method="get" asp-action="Index">
     <label for="selectDate">Date:</label>
     <input type="date" id="selectDate" value="@ViewData["getReservationsByDate"]" name="date" onchange="this.form.submit()" />
