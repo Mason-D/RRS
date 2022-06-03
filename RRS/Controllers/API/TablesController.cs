@@ -38,28 +38,36 @@ namespace RRS.Controllers.API
             return reservation;
         }
 
-
-
         [HttpGet]
-        [Route("area/{id}")]
-        public async Task<ActionResult<IEnumerable<TablesDto>>> Area(int id)
+        [Route("area/{areaId}/{sittingId}")]
+        public async Task<ActionResult<IEnumerable<TablesDto>>> Area(int areaId, int sittingId)
         {
 
-            var result = await _context.Tables
-                .Where(t => t.AreaId == id)
+            var result = await _context.Tables.Where(t => t.AreaId == areaId)
                 .Include(t => t.Reservations)
-                .Select(t => new TablesDto
-                {
+                .Select(t => new TablesDto {
                     Id = t.Id,
                     AreaId = t.AreaId,
                     Description = t.Description,
-                    ReservationId = t.Reservations.FirstOrDefault().Id
+                    ReservationId = t.Reservations.Where(r => r.SittingId == sittingId).Select(r=> r.Id).FirstOrDefault()
                 })
                 .ToListAsync();
 
+            //var result = await _context.Tables
+            //    .Where(t => t.AreaId == areaId)
+            //    .Include(t => t.Reservations)
+            //    .Where(t => t.Reservations.All(r => r.SittingId == sittingId))
+            //    .Select(t => new TablesDto
+            //    {
+            //        Id = t.Id,
+            //        AreaId = t.AreaId,
+            //        Description = t.Description,
+            //        ReservationId = t.Reservations.FirstOrDefault().Id
+            //    })
+            //    .ToListAsync();
+
             return result;
         }
-
 
         [HttpGet]
         [Route("available-dates/{start?}")]
@@ -117,6 +125,7 @@ namespace RRS.Controllers.API
                 .Where(r => r.SittingId == sittingId && r.ReservationStatus.Description != "Cancelled" && r.ReservationStatus.Description != "Completed")
                 .Select(r => new ReservationBySittingIdDto
                 {
+                    Id = r.Id,  
                     NoOfGuests = r.NoOfGuests,
                     ReservationStatus = r.ReservationStatus.Description,
                     CustomerNotes = r.CustomerNotes,
@@ -128,6 +137,5 @@ namespace RRS.Controllers.API
                 })
                 .ToListAsync();
         }
-
     }
 }

@@ -70,12 +70,12 @@ namespace RRS.Areas.Admin.Controllers
             var test = ModelState.ErrorCount;
             var test2 = ModelState.ValidationState;
 
-            if(ModelState.ErrorCount > 5 || ModelState.ErrorCount == 6 && sitting.Minutes == null)
-            {
-                ViewData["RestaurantId"] = 1;
-                ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
-                return View(sitting);
-            }
+            //if(ModelState.ErrorCount > 5 || ModelState.ErrorCount == 6 && sitting.Minutes == null)
+            //{
+            //    ViewData["RestaurantId"] = 1;
+            //    ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
+            //    return View(sitting);
+            //}
 
             if(sitting.NewSittingName !=null)
             {
