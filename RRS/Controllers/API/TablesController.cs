@@ -43,18 +43,28 @@ namespace RRS.Controllers.API
         public async Task<ActionResult<IEnumerable<TablesDto>>> Area(int areaId, int sittingId)
         {
 
-            var result = await _context.Tables
-                .Where(t => t.AreaId == areaId)
+            var result = await _context.Tables.Where(t => t.AreaId == areaId)
                 .Include(t => t.Reservations)
-                .Where(t => t.Reservations.All(r => r.SittingId == sittingId))
-                .Select(t => new TablesDto
-                {
+                .Select(t => new TablesDto {
                     Id = t.Id,
                     AreaId = t.AreaId,
                     Description = t.Description,
-                    ReservationId = t.Reservations.FirstOrDefault().Id
+                    ReservationId = t.Reservations.Where(r => r.SittingId == sittingId).Select(r=> r.Id).FirstOrDefault()
                 })
                 .ToListAsync();
+
+            //var result = await _context.Tables
+            //    .Where(t => t.AreaId == areaId)
+            //    .Include(t => t.Reservations)
+            //    .Where(t => t.Reservations.All(r => r.SittingId == sittingId))
+            //    .Select(t => new TablesDto
+            //    {
+            //        Id = t.Id,
+            //        AreaId = t.AreaId,
+            //        Description = t.Description,
+            //        ReservationId = t.Reservations.FirstOrDefault().Id
+            //    })
+            //    .ToListAsync();
 
             return result;
         }
@@ -127,6 +137,5 @@ namespace RRS.Controllers.API
                 })
                 .ToListAsync();
         }
-
     }
 }
