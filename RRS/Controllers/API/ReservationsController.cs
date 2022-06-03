@@ -55,7 +55,7 @@ namespace RRS.Controllers.API
                 NoOfGuests = resDTO.NoOfGuests,
                 SittingId = resDTO.SittingId,
                 ReservationOriginId = resDTO.ReservationOriginId,
-                ReservationStatusId = 1,
+                ReservationStatusId = resDTO.ReservationStatusId,
                 Customer = customerTemp,
                 CustomerId = customerTemp.Id,
                 StartTime = resDTO.StartTime
@@ -103,8 +103,7 @@ namespace RRS.Controllers.API
                                 Email = r.Customer.Email,
                                 RestaurantId = r.Sitting.RestaurantId,
                                 StartTime = r.StartTime,
-                                ResStatus = r.ReservationStatus.Description,
-                                ResOrigin = r.ReservationOrigin.Description,
+                                ReservationStatusId = r.ReservationStatusId,
                                 ResType = r.Sitting.SittingType.Description
 
                             })
