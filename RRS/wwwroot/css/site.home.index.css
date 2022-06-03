@@ -28,6 +28,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
 }
 
 .site-main-header {
@@ -91,3 +92,30 @@
     margin: -20px;
 }
 /*GLASS CONTAINER END*/
+
+.SPA-container {
+    display: inline-block;
+    flex-wrap: wrap;
+    background-color: rgba(255,255,255, 0.33);
+    border-radius: 5px;
+    padding: 20px;
+    width: 90%;
+    position: absolute;
+    top: 380px;
+
+
+}
+
+.close-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    height: 34px;
+    width: 34px;
+    padding: 4px;
+}
+
+.close-icon:hover{
+   cursor:pointer;
+}
