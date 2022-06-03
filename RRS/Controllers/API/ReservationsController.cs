@@ -104,6 +104,7 @@ namespace RRS.Controllers.API
                                 RestaurantId = r.Sitting.RestaurantId,
                                 StartTime = r.StartTime,
                                 ReservationStatusId = r.ReservationStatusId,
+                                ResStatus = r.ReservationStatus.Description,
                                 ResType = r.Sitting.SittingType.Description
 
                             })

@@ -14,6 +14,7 @@
         public int RestaurantId { get; set; }
         public DateTime StartTime { get; set; }
         public int ReservationStatusId { get; set; }
+        public string? ResStatus { get; set; }
         public string? ResType { get; set; }
     }
 }
