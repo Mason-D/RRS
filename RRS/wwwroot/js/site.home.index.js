@@ -35,4 +35,6 @@ $(() => {
         });
     });
 
+    $("#contact-us-link").on(load)
+
 });
