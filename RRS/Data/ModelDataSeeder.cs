@@ -230,7 +230,8 @@ namespace RRS.Data
                     PhoneNumber = $"04{i}00{i}00",
                     Email = $"Seed@Person{i}.com",
                     IsVIP = true,
-                    RestaurantId = 1
+                    RestaurantId = 1,
+                    UserId = i == 1 ? "1337x4" : null
                 });
             }
         }
