@@ -76,7 +76,7 @@ namespace RRS.Data
                 NewUser("1337x1", "god@e.com"),
                 NewUser("1337x2", "man@e.com"),
                 NewUser("1337x3", "emp@e.com"),
-                NewUser("1337x4", "mem@e.com")
+                NewUser("1337x4", "Seed@Person1.com")
             );
 
             builder.Entity<IdentityUserRole<string>>().HasData(

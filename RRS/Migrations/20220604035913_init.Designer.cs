@@ -12,7 +12,7 @@ using RRS.Data;
 namespace RRS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220604035638_init")]
+    [Migration("20220604035913_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -181,9 +181,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "GOD@E.COM",
                             NormalizedUserName = "GOD@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEL1DgOd4jL0GP2gFAVcjYc5OmMQI/2lUrxBdb6rzAJsqcb3n3pPMK2Nt3NohrPEdbA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJMPzA6i04imClZv43tcdwRSzaCbl4wUGMAXIxCQdgDA6L9OKrijc0vkITcE5+GHGQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "950e67ed-5490-4ae7-bc14-a569d05c959e",
+                            SecurityStamp = "6a43831b-1092-45f2-ab76-46ce9be7e116",
                             TwoFactorEnabled = false,
                             UserName = "god@e.com"
                         },
@@ -197,9 +197,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MAN@E.COM",
                             NormalizedUserName = "MAN@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEI0ZsQMQyiQ44Q+Ue4JaSJWxX2/ZRuBh+Y8wozNVAG2EEr0jIVfi93bc9rUU+zgyYw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECychpK0xbRxtkvZen8jla7GRxCbZcqShmj3mfNIvLfcq+vE+5XTJyI6Din3K1zxGA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1b95e130-0768-4db4-96db-3b95b8fc616a",
+                            SecurityStamp = "814c4c33-ae26-4d52-9a59-9775bfe4d1e1",
                             TwoFactorEnabled = false,
                             UserName = "man@e.com"
                         },
@@ -213,9 +213,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "EMP@E.COM",
                             NormalizedUserName = "EMP@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG24MayKt2ZHnqj38JHn5LKBg+io3jrTdSxx1EvYIQmbbkhKbSoxmDxxgk+FLSMKmg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDD1BckJV6utsqkSfdnVfhVAUT2KcOEdXlJ5rbwYPmF4l3fPRqg5l4Gq2Q/7xIpqpw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5637b4e7-c6f5-476c-be5d-6a9e6e8f2219",
+                            SecurityStamp = "cc049377-304a-4415-a9f8-d45ac22385d9",
                             TwoFactorEnabled = false,
                             UserName = "emp@e.com"
                         },
@@ -224,16 +224,16 @@ namespace RRS.Migrations
                             Id = "1337x4",
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "1337x4",
-                            Email = "mem@e.com",
+                            Email = "Seed@Person1.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "MEM@E.COM",
-                            NormalizedUserName = "MEM@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAELTm0YPLvN45AEMbrq9o4ALx5U2rCMlSKb5oLXLgqFhgnB3bW/wJ5OyXrvSGCEfFww==",
+                            NormalizedEmail = "SEED@PERSON1.COM",
+                            NormalizedUserName = "SEED@PERSON1.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMQ5u3Upwbq8sXbZAC7YeQsh9BjvJKmkYnR2M9CIYLMsIKzX3nRjGBZoEqFLojSEdw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ce8e061b-8dcf-4eb5-9870-886a532176f4",
+                            SecurityStamp = "1f670223-cd24-48cb-8a59-de7306715fe5",
                             TwoFactorEnabled = false,
-                            UserName = "mem@e.com"
+                            UserName = "Seed@Person1.com"
                         });
                 });
 
