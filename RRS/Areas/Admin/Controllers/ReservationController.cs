@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -127,27 +128,55 @@ namespace RRS.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NoOfGuests,CustomerId,SittingId,ReservationStatusId,ReservationOriginId,CustomerNotes,StartTime")] ReservationEditDto reservation)
+        public async Task<IActionResult> Edit(int id,
+            [Bind("Id,NoOfGuests,CustomerId,SittingId,ReservationStatusId,ReservationOriginId,CustomerNotes,StartTime")] ReservationEditDto reservation)
         {
+            Trace.Listeners.Add(new TextWriterTraceListener("AdminReservationEdit.log"));
+            Debug.WriteLine("Debugging in Admin/ReservationController/Edit Post");
+            Debug.WriteLine("Checking that the passed Reservation data object exists");
+            Debug.Assert(reservation != null, "ReservationEditDto is null");
+            Debug.WriteLine("Checking that the passed Id is the same as the model's Id");
+            Debug.Assert(reservation.Id == id, "Ids do not match");
             if (id != reservation.Id)
             {
+                Debug.WriteLine("Exiting post to error screen");
+                Trace.Close();
                 return View("/Views/Shared/BeanError.cshtml");
             }
+            Debug.WriteLine("Checking that the number of people passed is an acceptable amount");
+            Debug.Assert(reservation.NoOfGuests > 0, $"{reservation.NoOfGuests} is less than 1");
+            Debug.Assert(reservation.NoOfGuests < 2147483647, $"{reservation.NoOfGuests} breaks the database integer data type limit");
+            if (reservation.NoOfGuests < 0 || reservation.NoOfGuests >= 2147483647)
+            {
+                Debug.WriteLine("Exiting post to error screen");
+                Trace.Close();
+                return View("/Views/Shared/BeanError.cshtml");
+            }
+            Debug.WriteLine("Checking that the ModelState is valid");
+            Debug.Assert(ModelState.IsValid, "ReservationEditDto is invalid");
             if (ModelState.IsValid)
             {
-
+                Debug.WriteLine($"Attempting to post a new reservation with the ReservationEditDto of: {reservation}");
                 try
                 {
-                    var r = _context.Reservations.Where(r => r.Id == reservation.Id).FirstOrDefaultAsync(); 
-                    
-                    if(r.Result is null)
+                    Debug.WriteLine("Searching for reservation in the data base with matching Id as passed model");
+                    var r = _context.Reservations.Where(r => r.Id == reservation.Id).FirstOrDefaultAsync();
+                    Debug.Assert(r.Result is not null, "Could not find reservation matching model to edit in database");
+                    if (r.Result is null)
                     {
+                        Debug.WriteLine("Exiting post to error screen");
+                        Trace.Close();
                         return View("/Views/Shared/BeanError.cshtml");
                     }
 
+                    Debug.WriteLine("Converting UTC time to local time format");
+                    Debug.WriteLine($"UTC date time ({reservation.StartTime})");
                     //Converts UTC time recieved from JS into local time format
-                    reservation.StartTime = reservation.StartTime.ToLocalTime();
-                 
+                    DateTime localDateTime = reservation.StartTime.ToLocalTime();
+                    Debug.WriteLine($"Local date time ({localDateTime})");
+
+
+                    Debug.WriteLine("Updating reservation in data base with passed model and converted start datetime");
                     r.Result.Id = reservation.Id;
                     r.Result.NoOfGuests = reservation.NoOfGuests;
                     r.Result.CustomerId = reservation.CustomerId;
@@ -155,12 +184,15 @@ namespace RRS.Areas.Admin.Controllers
                     r.Result.ReservationStatusId = reservation.ReservationStatusId;
                     r.Result.ReservationOriginId = reservation.ReservationOriginId;
                     r.Result.CustomerNotes = reservation.CustomerNotes;
-                    r.Result.StartTime = reservation.StartTime;
+                    r.Result.StartTime = localDateTime;
+
 
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
+                    Debug.WriteLine("Error caught and exiting Post");
+                    Trace.Close();
                     if (!ReservationExists(reservation.Id))
                     {
                         return View("/Views/Shared/BeanError.cshtml");
@@ -170,11 +202,14 @@ namespace RRS.Areas.Admin.Controllers
                         throw;
                     }
                 }
+                Debug.WriteLine("Reservation successfully edited in database");
+                Trace.Close();
                 var sitting = await _context.Sittings
-                    .FirstOrDefaultAsync(r => r.Id == reservation.SittingId);
+                    .FirstOrDefaultAsync(s => s.Id == reservation.SittingId);
                 return RedirectToAction("Index", new { date = sitting.Start });
             }
-
+            Debug.WriteLine("Returning to Edit Reservation page");
+            Trace.Close();
             ViewData["ReservationStatusId"] = new SelectList(_context.ReservationStatuses, "Id", "Description");
             return RedirectToAction("Edit", reservation.Id);
         }

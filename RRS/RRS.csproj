@@ -41,6 +41,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Member\Data\" />
     <Folder Include="Areas\Member\Models\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
