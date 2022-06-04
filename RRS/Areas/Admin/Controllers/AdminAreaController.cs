@@ -7,8 +7,7 @@ namespace RRS.Areas.Admin.Controllers
 {
 
     [Area("Admin")]
-    [Authorize(Roles = "Admin , God")]
-    //TEST User: a@e.com Password: Abc123!@#
+    [Authorize(Roles = "Employee , God")]
     public class AdminAreaController : Controller
     {
 
