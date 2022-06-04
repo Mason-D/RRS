@@ -12,7 +12,7 @@ using RRS.Data;
 namespace RRS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220604040318_init")]
+    [Migration("20220604050106_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -181,9 +181,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "GOD@E.COM",
                             NormalizedUserName = "GOD@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEH/hQE0jShiveQpvl4607L5whuRkjoZsfaqoK3xjcyYMTgE7Adjz67O75t/0AWAugw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPWDRCKDgy+KwIJ5umDuE7LS+h0eYUpJ2Oqk8IWCoICWp4/FWpXBhPb8HUJ6fTufnA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fba573fd-6f2b-45fb-9220-b580766a858f",
+                            SecurityStamp = "3e29778b-1239-48b8-a68e-fe4307283603",
                             TwoFactorEnabled = false,
                             UserName = "god@e.com"
                         },
@@ -197,9 +197,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MAN@E.COM",
                             NormalizedUserName = "MAN@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPAuXw5upRjhkx4tD6tqAbNhu5FGDjpUiMwVHRY8URdY5+nHtG2yED1dv/rGgFyaCw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDjX609f5mgnvL2kcsEZSodbdw1RYHMzBEGX9bdog8a2UAxSw6MFk59eZ2Qv+deUXQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b9315f97-9f17-418d-93e2-e8617f83c0a4",
+                            SecurityStamp = "88c7755c-5c8e-4e28-8606-84f7db656f76",
                             TwoFactorEnabled = false,
                             UserName = "man@e.com"
                         },
@@ -213,9 +213,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "EMP@E.COM",
                             NormalizedUserName = "EMP@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAENdWsCIF9b+rY1ehqRKmyU0hramuGtLAVO4knVlEfNmtV4b4byFxOl1iUASnjcc89Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDOhZTNdpg994R2LNwgBKxhpy1XPXw/Uhm6CMbyjWZUjT3rfu99IdEnbdgZqGfsfuA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "af95c0ad-4136-40e9-b590-8e86f631a5f7",
+                            SecurityStamp = "64326638-7c61-4d5c-b15a-424b17975ef5",
                             TwoFactorEnabled = false,
                             UserName = "emp@e.com"
                         },
@@ -229,9 +229,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SEED@PERSON1.COM",
                             NormalizedUserName = "SEED@PERSON1.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAELNRc/zVbTkY7/MZT8M1hcLIQExyom7tHiH2HUnT76ePXsuceQozGG0bhgenok98Pg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDnHCqrBm5pdwAM/lTEzr7U6sv4GkK0fabo23l+BuzIc8kvjrFS1G0sCtOOlrs+skw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1a8c4542-7c26-4773-bb54-2931c35c41ad",
+                            SecurityStamp = "c9115290-78b9-4be1-9fe9-a5d003039730",
                             TwoFactorEnabled = false,
                             UserName = "Seed@Person1.com"
                         });
@@ -310,6 +310,11 @@ namespace RRS.Migrations
                         {
                             UserId = "1337x2",
                             RoleId = "1337x2"
+                        },
+                        new
+                        {
+                            UserId = "1337x2",
+                            RoleId = "1337x3"
                         },
                         new
                         {

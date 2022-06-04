@@ -93,6 +93,11 @@ namespace RRS.Data
                 new IdentityUserRole<string>
                 {
                     RoleId = "1337x3",
+                    UserId = "1337x2"
+                },
+                new IdentityUserRole<string>
+                {
+                    RoleId = "1337x3",
                     UserId = "1337x3"
                 },
                 new IdentityUserRole<string>

@@ -90,19 +90,15 @@ namespace RRS.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    var user = User;
-                    var t1 = await _userManager.GetUsersInRoleAsync("Member");
-                    var t2 = await _userManager.GetUsersInRoleAsync("God");
-                    var t3 = await _userManager.GetUsersInRoleAsync("Employee");
-                    var t4 = await _userManager.GetUsersInRoleAsync("Manager");
-                    var t5 = await _userManager.GetUserAsync(User);
+                    IdentityUser user = await _userManager.FindByEmailAsync(Input.Email);
+                    var roles = await _userManager.GetRolesAsync(user);
 
                     _logger.LogInformation("User logged in.");
-                    if (user.IsInRole("Member"))
+                    if (roles.Contains("Member"))
                     {
                         return RedirectToAction("Index", "Home", new { Area = "Member" });
                     }
-                    else if (user.IsInRole("Employee") || user.IsInRole("God"))
+                    else if (roles.Contains("Employee") || roles.Contains("God"))
                     {
                         return RedirectToAction("Index", "Home", new { Area = "Admin" });
                     }
