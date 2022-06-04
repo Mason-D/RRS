@@ -428,10 +428,10 @@ namespace RRS.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1337x1", 0, "1337x1", "god@e.com", true, false, null, "GOD@E.COM", "GOD@E.COM", "AQAAAAEAACcQAAAAEPWDRCKDgy+KwIJ5umDuE7LS+h0eYUpJ2Oqk8IWCoICWp4/FWpXBhPb8HUJ6fTufnA==", null, false, "3e29778b-1239-48b8-a68e-fe4307283603", false, "god@e.com" },
-                    { "1337x2", 0, "1337x2", "man@e.com", true, false, null, "MAN@E.COM", "MAN@E.COM", "AQAAAAEAACcQAAAAEDjX609f5mgnvL2kcsEZSodbdw1RYHMzBEGX9bdog8a2UAxSw6MFk59eZ2Qv+deUXQ==", null, false, "88c7755c-5c8e-4e28-8606-84f7db656f76", false, "man@e.com" },
-                    { "1337x3", 0, "1337x3", "emp@e.com", true, false, null, "EMP@E.COM", "EMP@E.COM", "AQAAAAEAACcQAAAAEDOhZTNdpg994R2LNwgBKxhpy1XPXw/Uhm6CMbyjWZUjT3rfu99IdEnbdgZqGfsfuA==", null, false, "64326638-7c61-4d5c-b15a-424b17975ef5", false, "emp@e.com" },
-                    { "1337x4", 0, "1337x4", "Seed@Person1.com", true, false, null, "SEED@PERSON1.COM", "SEED@PERSON1.COM", "AQAAAAEAACcQAAAAEDnHCqrBm5pdwAM/lTEzr7U6sv4GkK0fabo23l+BuzIc8kvjrFS1G0sCtOOlrs+skw==", null, false, "c9115290-78b9-4be1-9fe9-a5d003039730", false, "Seed@Person1.com" }
+                    { "1337x1", 0, "1337x1", "god@e.com", true, false, null, "GOD@E.COM", "GOD@E.COM", "AQAAAAEAACcQAAAAELq9WlizMqkd8jKcBtoREeB6gU+qlTWZiwSaTYh4a4jT4McCqiuO6hoaEcL0YJKyaA==", null, false, "11923fdb-0afd-41af-ab40-ee49046a9aba", false, "god@e.com" },
+                    { "1337x2", 0, "1337x2", "man@e.com", true, false, null, "MAN@E.COM", "MAN@E.COM", "AQAAAAEAACcQAAAAEF6ED1uRrI0sNBTvxUiH4whBKndK1dt4rTLP3Vwykh7GfaHxmvyHP2DWhaiJkbFDsw==", null, false, "7748d5aa-e1ff-42d5-84d3-ee85102c5116", false, "man@e.com" },
+                    { "1337x3", 0, "1337x3", "emp@e.com", true, false, null, "EMP@E.COM", "EMP@E.COM", "AQAAAAEAACcQAAAAEJi1f5MhHZcN0DijdKK8PMLcDN33LM9c5JlbFT+QvnTltlgMg/+YXqN6ZM6xfjcQPQ==", null, false, "40a1297b-20c0-49ed-8062-403a43fb8417", false, "emp@e.com" },
+                    { "1337x4", 0, "1337x4", "Seed@Person1.com", true, false, null, "SEED@PERSON1.COM", "SEED@PERSON1.COM", "AQAAAAEAACcQAAAAELFZoxn5SCgwIu4MQEkUGHbfcALdmdnNMVMmJWj6VCak8BwPpdkFsD2eWkBXAOaHpg==", null, false, "b5d4bd5d-25b8-4462-9c6d-cb77a8a53ab5", false, "Seed@Person1.com" }
                 });
 
             migrationBuilder.InsertData(
