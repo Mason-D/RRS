@@ -173,5 +173,32 @@ namespace RRS.Controllers.API
 
             return Ok(new CustomerReservationDto { Upcoming = upcoming, Past = past });
         }
+
+        //getList
+        [HttpGet]
+        [Route("getList")]
+        public async Task<ActionResult<IEnumerable<ResStatus>>> GetList()
+        {
+            var resList =  await _context.ReservationStatuses
+                            .AsNoTracking()
+                            .Select(r => new ResStatus
+                            {
+                                Id = r.Id,
+                                Description = r.Description
+                            })
+                            .ToListAsync();
+            return resList;
+        }
+
+        [Route("updateReservationStatus/{resId}/{statusId}")]
+        public async Task<ActionResult<Reservation>> updateReservationStatus(int resId, int statusId)
+        {
+            var reservation = await _context.Reservations
+                        .Where(r => r.Id == resId).FirstOrDefaultAsync();
+            reservation.ReservationStatusId = statusId;
+            await _context.SaveChangesAsync();
+            return Ok(reservation);
+        }
+
     }
 }
