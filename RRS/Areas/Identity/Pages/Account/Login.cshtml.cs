@@ -14,17 +14,25 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Security.Claims;
 
 namespace RRS.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager,ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<IdentityUser> signInManager,
+            UserManager<IdentityUser> userManager,
+            RoleManager<IdentityRole> roleManager,
+            ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
+            _roleManager = roleManager;
             _logger = logger;
         }
 
@@ -82,12 +90,19 @@ namespace RRS.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    var user = User;
+                    var t1 = await _userManager.GetUsersInRoleAsync("Member");
+                    var t2 = await _userManager.GetUsersInRoleAsync("God");
+                    var t3 = await _userManager.GetUsersInRoleAsync("Employee");
+                    var t4 = await _userManager.GetUsersInRoleAsync("Manager");
+                    var t5 = await _userManager.GetUserAsync(User);
+
                     _logger.LogInformation("User logged in.");
-                    if (User.IsInRole("Member"))
+                    if (user.IsInRole("Member"))
                     {
                         return RedirectToAction("Index", "Home", new { Area = "Member" });
                     }
-                    else if (User.IsInRole("Employee") || User.IsInRole("God"))
+                    else if (user.IsInRole("Employee") || user.IsInRole("God"))
                     {
                         return RedirectToAction("Index", "Home", new { Area = "Admin" });
                     }
