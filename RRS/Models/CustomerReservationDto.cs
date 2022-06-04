@@ -19,7 +19,7 @@ namespace RRS.Models
         public string Email { get; set; }
         public DateTime StartTime { get; set; }
         public string Time => StartTime.ToShortTimeString();
-        public string Date => StartTime.ToString("D");
+        public string Date => StartTime.ToString("dddd, dd MMM yyyy");
         public string Status { get; set; }
         public string Origin { get; set; }
         public string Type { get; set; }
