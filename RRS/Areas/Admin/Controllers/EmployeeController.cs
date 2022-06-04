@@ -70,9 +70,6 @@ namespace RRS.Areas.Admin.Controllers
             return View(m);
         }
 
-
-
-
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {

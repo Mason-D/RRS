@@ -22,7 +22,7 @@ namespace RRS.Areas.Identity.Pages.Account
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<IdentityUser> signInManager,ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
             _logger = logger;
@@ -83,7 +83,15 @@ namespace RRS.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToAction("Index", "Home", new { Area = "Member" });
+                    if (User.IsInRole("Member"))
+                    {
+                        return RedirectToAction("Index", "Home", new { Area = "Member" });
+                    }
+                    else if (User.IsInRole("Employee") || User.IsInRole("God"))
+                    {
+                        return RedirectToAction("Index", "Home", new { Area = "Admin" });
+                    }
+                    await _signInManager.SignOutAsync(); // Issue with roles if reaches this far
                 }
                 if (result.RequiresTwoFactor)
                 {

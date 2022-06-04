@@ -18,10 +18,7 @@ namespace RRS.Data
         {
             base.OnModelCreating(builder);
             new ModelConfiguration(builder);
-            new ModelDataSeeder(builder);
-
-         
-
+            new ModelDataSeeder(builder);     
 
             builder.Entity<Table>()
                 .HasMany(t => t.Reservations)
