@@ -42,7 +42,12 @@
         }
     });
 
-    $("#sittingsTBody").on('dblclick', 'tr', function (e) {
+    $("#sittingsTBody").on('click', 'tr', function (e) {
+
+        /*Refer to: Mason-D/RRS/issues/13*/
+        if (e.target.className.includes("sittingsTBody-row-bttn")) {
+            return;
+        }
         onRowSelect(this);
         //Posted
         $("#hiddenIdInput").val(`${$(e.currentTarget).data('sitting-id')}`);
