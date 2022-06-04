@@ -10,7 +10,7 @@
 <div class="container" >
     <form asp-action="Create">
         <div class="row">
-            <div class="col-7" >
+            <div class="col-md-12 m-2" >
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Start" class="control-label"></label>
@@ -35,16 +35,45 @@
                     <input asp-for="Capacity" type="number" class="form-control" />
                     <span asp-validation-for="Capacity" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+
+                @*Old version without info icon*@
+@*                <div class="form-group">
                     <label asp-for="Interval" class="control-label"></label>
                     <input asp-for="Interval" type="number" class="form-control" />
                     <span asp-validation-for="Interval" class="text-danger"></span>
+                </div>*@
+
+                <label asp-for="Interval" class="control-label"></label> 
+                <div class="input-group">        
+                    <input asp-for="Interval" type="number" class="form-control" />
+                    <span asp-validation-for="Interval" class="text-danger"></span>  
+                    <div class="input-group-append">
+                        <div class="input-group-text" 
+                            title="In minutes, gap between advertised online reservations, e.g., interval of 10 is 9:00AM, 9:10AM, 9:20AM...">
+                            <partial name="/Views/Shared/icons/_Info.cshtml" />
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
+
+                @*Old version without info icon*@
+@*                <div class="form-group">
                     <label asp-for="CutOff" class="control-label"></label>
                     <input asp-for="CutOff" type="number" class="form-control" />
                     <span asp-validation-for="CutOff" class="text-danger"></span>
+                </div>*@
+
+                <label asp-for="CutOff" class="control-label"></label> 
+                <div class="input-group">        
+                    <input asp-for="CutOff" type="number" class="form-control" />
+                    <span asp-validation-for="CutOff" class="text-danger"></span>  
+                    <div class="input-group-append">
+                        <div class="input-group-text" 
+                            title="Minutes prior to the sitting end time that online reservations will be advertised e.g., 9:30AM end time can latest be booked for 9:00AM">
+                            <partial name="/Views/Shared/icons/_Info.cshtml" />
+                        </div>
+                    </div>
                 </div>
+
                 <div class="form-group" id="SittingTypeSelect">
                     <label asp-for="SittingTypeId" class="control-label"></label>
                     <select asp-for="SittingTypeId" class="form-control form-select" asp-items="ViewBag.SittingTypeId"></select>
@@ -57,6 +86,15 @@
                 <div>
                     <input id="NewSittingBtn" type="button" class="btn-primary btn m-1" value="New" />
                 </div>
+
+                @*Partially working, appends btn to end of dropdown*@
+@*                <label asp-for="SittingTypeId" class="control-label"></label>
+                <div class="form-group input-group" id="NewSittingArea">
+                    <select asp-for="SittingTypeId" class="form-control form-select" asp-items="ViewBag.SittingTypeId"></select>
+                    <span asp-validation-for="NewSittingName" class="text-danger"></span> 
+                    <input id="NewSittingBtn" class="btn-primary btn" value="New" />
+                </div>*@
+
                 <div>
                     <input id="RepeatSittingBtnWeeks" class="btn btn-primary m-1" value="Repeat Sitting" />
                 </div>
@@ -87,7 +125,11 @@
     </form>
 
 </div>
-@section Scripts{
 
-<script src="~/js/admin.sitting.create.js"></script>
+@section Styles{
+    <link rel="stylesheet" href="~/css/admin.sitting.create.css"/>
+}
+
+@section Scripts{
+    <script src="~/js/admin.sitting.create.js"></script>
 }
