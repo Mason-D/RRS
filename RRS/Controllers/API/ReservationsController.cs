@@ -129,9 +129,6 @@ namespace RRS.Controllers.API
                 return BadRequest();
             }
 
-            //await _manager.AddToRoleAsync(user, "Member");
-            //await _context.SaveChangesAsync();
-
             var dateNow = DateTime.Now;
 
             var upcoming = await _context.Reservations
@@ -151,6 +148,7 @@ namespace RRS.Controllers.API
                     Origin = r.ReservationOrigin.Description,
                     Type = r.Sitting.SittingType.Description
                 })
+                .OrderBy(r => r.StartTime)
                 .ToListAsync();
 
             var past = await _context.Reservations
@@ -170,6 +168,7 @@ namespace RRS.Controllers.API
                     Origin = r.ReservationOrigin.Description,
                     Type = r.Sitting.SittingType.Description
                 })
+                .OrderByDescending(r => r.StartTime)
                 .ToListAsync();
 
             return Ok(new CustomerReservationDto { Upcoming = upcoming, Past = past });

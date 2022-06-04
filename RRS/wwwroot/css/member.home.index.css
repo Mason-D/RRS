@@ -17,7 +17,8 @@
     background: rgba(255, 255, 255, 0.1);
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-left: 1px solid rgba(255, 255, 255, 0.5);
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #profile-upcoming-res-col, #profile-past-res-col {
@@ -66,4 +67,27 @@ svg {
 
 .list-group-item {
     border-bottom: solid 2px black;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+#validationMsg {
+    margin-top: 8px;
+    color: green;
+    font-size: 20px;
+    width: 100%;
+    background-color: rgba(0,255,0,0.25);
+    border: solid 2px darkgreen;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 20px grey;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .25);
+    border-radius: 10px;
 }

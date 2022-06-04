@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RRS.Areas.Member.Data;
 using RRS.Data;
+using RRS.Models;
 
 namespace RRS.Areas.Member.Controllers
 {
@@ -33,11 +34,48 @@ namespace RRS.Areas.Member.Controllers
                 return RedirectToPage("./SetPassword");
             }
 
-            var currentDate = DateTime.Now;
+            var dateNow = DateTime.Now;
             var reservations = getUserReservations(user.Id).Result;
 
-            var past = reservations.Where(r => r.Sitting.Start < currentDate).ToList();
-            var upcoming = reservations.Where(r => r.Sitting.Start >= currentDate).ToList();
+            var upcoming = await _context.Reservations
+                .Where(r => r.Customer.UserId == user.Id
+                    && r.StartTime >= dateNow)
+                .Select(r => new ResVM
+                {
+                    StartTime = r.StartTime,
+                    Email = r.Customer.Email,
+                    PhoneNumber = r.Customer.PhoneNumber,
+                    NoOfGuests = r.NoOfGuests,
+                    CustomerNotes = r.CustomerNotes,
+                    ReferenceNo = r.Id,
+                    FirstName = r.Customer.FirstName,
+                    LastName = r.Customer.LastName,
+                    Status = r.ReservationStatus.Description,
+                    Origin = r.ReservationOrigin.Description,
+                    Type = r.Sitting.SittingType.Description
+                })
+                .OrderBy(r => r.StartTime)
+                .ToListAsync();
+
+            var past = await _context.Reservations
+                .Where(r => r.Customer.UserId == user.Id
+                    && r.StartTime < dateNow)
+                .Select(r => new ResVM
+                {
+                    StartTime = r.StartTime,
+                    Email = r.Customer.Email,
+                    PhoneNumber = r.Customer.PhoneNumber,
+                    NoOfGuests = r.NoOfGuests,
+                    CustomerNotes = r.CustomerNotes,
+                    ReferenceNo = r.Id,
+                    FirstName = r.Customer.FirstName,
+                    LastName = r.Customer.LastName,
+                    Status = r.ReservationStatus.Description,
+                    Origin = r.ReservationOrigin.Description,
+                    Type = r.Sitting.SittingType.Description
+                })
+                .OrderByDescending(r => r.StartTime)
+                .ToListAsync();
 
             return View(new ProfileVM { PastReservations = past, UpcomingReservations = upcoming, PhoneNumber = phoneNumber});
         }
@@ -55,8 +93,43 @@ namespace RRS.Areas.Member.Controllers
             var currentDate = DateTime.Now;
             var reservations = getUserReservations(user.Id).Result;
             ViewData["phoneNumber"] = await _userManager.GetPhoneNumberAsync(user);
-            ViewData["past"] = reservations.Where(r => r.Sitting.Start < currentDate).ToList();
-            ViewData["upcoming"] = reservations.Where(r => r.Sitting.Start >= currentDate).ToList();
+            ViewData["past"] = reservations
+                .Where(r => r.StartTime < currentDate)
+                .Select(r => new ResVM
+                {
+                    StartTime = r.StartTime,
+                    Email = r.Customer.Email,
+                    PhoneNumber = r.Customer.PhoneNumber,
+                    NoOfGuests = r.NoOfGuests,
+                    CustomerNotes = r.CustomerNotes,
+                    ReferenceNo = r.Id,
+                    FirstName = r.Customer.FirstName,
+                    LastName = r.Customer.LastName,
+                    Status = r.ReservationStatus.Description,
+                    Origin = r.ReservationOrigin.Description,
+                    Type = r.Sitting.SittingType.Description
+                })
+                .OrderBy(r => r.StartTime)
+                .ToList();
+
+            ViewData["upcoming"] = reservations
+                .Where(r => r.StartTime >= currentDate)
+                .Select(r => new ResVM
+                {
+                    StartTime = r.StartTime,
+                    Email = r.Customer.Email,
+                    PhoneNumber = r.Customer.PhoneNumber,
+                    NoOfGuests = r.NoOfGuests,
+                    CustomerNotes = r.CustomerNotes,
+                    ReferenceNo = r.Id,
+                    FirstName = r.Customer.FirstName,
+                    LastName = r.Customer.LastName,
+                    Status = r.ReservationStatus.Description,
+                    Origin = r.ReservationOrigin.Description,
+                    Type = r.Sitting.SittingType.Description
+                })
+                .OrderByDescending(r => r.StartTime)
+                .ToList();
 
             if (!ModelState.IsValid)
             {
@@ -88,6 +161,7 @@ namespace RRS.Areas.Member.Controllers
 
             await _signInManager.RefreshSignInAsync(user);
 
+            profile.ValidationMessage = true;
             return View("Index", profile);
         }
 
