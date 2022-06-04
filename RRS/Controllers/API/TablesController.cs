@@ -49,22 +49,9 @@ namespace RRS.Controllers.API
                     Id = t.Id,
                     AreaId = t.AreaId,
                     Description = t.Description,
-                    ReservationId = t.Reservations.Where(r => r.SittingId == sittingId).Select(r=> r.Id).FirstOrDefault()
+                    ReservationId = t.Reservations.Where(r => r.SittingId == sittingId).Select(r => r.Id).ToArray()
                 })
                 .ToListAsync();
-
-            //var result = await _context.Tables
-            //    .Where(t => t.AreaId == areaId)
-            //    .Include(t => t.Reservations)
-            //    .Where(t => t.Reservations.All(r => r.SittingId == sittingId))
-            //    .Select(t => new TablesDto
-            //    {
-            //        Id = t.Id,
-            //        AreaId = t.AreaId,
-            //        Description = t.Description,
-            //        ReservationId = t.Reservations.FirstOrDefault().Id
-            //    })
-            //    .ToListAsync();
 
             return result;
         }
@@ -118,14 +105,14 @@ namespace RRS.Controllers.API
         [Route("available-reservations/{sittingId}")]
         public async Task<ActionResult<IEnumerable<ReservationBySittingIdDto>>> getReservations(int sittingId)
         {
-
+           
             return await _context.Reservations
                 .Include(r => r.ReservationStatus)
                 .Include(r => r.Customer)
                 .Where(r => r.SittingId == sittingId && r.ReservationStatus.Description != "Cancelled" && r.ReservationStatus.Description != "Completed")
                 .Select(r => new ReservationBySittingIdDto
                 {
-                    Id = r.Id,  
+                    Id = r.Id,
                     NoOfGuests = r.NoOfGuests,
                     ReservationStatus = r.ReservationStatus.Description,
                     CustomerNotes = r.CustomerNotes,
@@ -133,7 +120,7 @@ namespace RRS.Controllers.API
                     LastName = r.Customer.LastName,
                     PhoneNumber = r.Customer.PhoneNumber,
                     Email = r.Customer.Email,
-                    StartTime = r.StartTime
+                    StartTime = r.StartTime.ToShortTimeString()
                 })
                 .ToListAsync();
         }
