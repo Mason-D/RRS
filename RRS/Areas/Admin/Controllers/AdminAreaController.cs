@@ -7,14 +7,13 @@ namespace RRS.Areas.Admin.Controllers
 {
 
     [Area("Admin")]
-
-    //UnComment after Accounts have been set up 
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Employee , God")]
     public class AdminAreaController : Controller
     {
 
         protected readonly ApplicationDbContext _context;
         protected readonly UserManager<IdentityUser> _userManager;
+        
         public AdminAreaController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;

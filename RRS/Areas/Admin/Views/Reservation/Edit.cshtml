@@ -6,6 +6,14 @@
     string startDateTime = Model.StartTime.ToString("yyyy-MM-ddThh-mm-ss");
 }
 
+<h2>Reservations - Edit</h2>
+
+<p>
+    <a asp-action="Index" asp-route-date="@Model.Sitting.Start.ToString("MM-dd-yyyy")">View Reservations</a>
+</p>
+
+<hr />
+
 <div class="row d-flex justify-content-center ">
     <div id="resForm-col" class="col-md-12">
         <form id="resForm" asp-action="Edit" method="POST">

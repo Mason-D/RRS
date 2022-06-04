@@ -23,4 +23,8 @@
         <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
     </div>
     <button id="update-details-btn" type="submit" class="form-btn w-100 btn btn-lg text-white mt-1 py-1">Update Details</button>
+    @if (Model.ValidationMessage)
+    {
+        <div id="validationMsg">Success &#10004;</div>
+    }
 </form>

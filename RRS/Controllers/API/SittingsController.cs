@@ -99,9 +99,16 @@ namespace RRS.Controllers.API
             //var dateLocal = reservationDate.ToLocalTime();
 
             return await _context.Sittings
-                            .Where(s => s.IsOpen
-                                    && s.Start.Date == reservationDate.Date)
-                            .Select(s => new SittingByDayDto { Id = s.Id, Type = s.SittingType.Description, Duration = s.Duration, Start = s.Start.ToString("HH:mm") })
+                            .Where(s => s.IsOpen && s.Start.Date == reservationDate.Date)
+                            .Include(s => s.Reservations)
+                                .ThenInclude(r => r.ReservationStatus)
+                            .Select(s => new SittingByDayDto { 
+                                Id = s.Id, 
+                                Type = s.SittingType.Description, 
+                                Duration = s.Duration, Start = s.Start.ToString("HH:mm"),
+                                Capacity = s.Capacity,
+                                TotalGuests = s.TotalGuests
+                            })
                             .ToListAsync();
         }
 

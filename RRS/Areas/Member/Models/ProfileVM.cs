@@ -1,4 +1,5 @@
 ﻿using RRS.Data;
+using RRS.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace RRS.Areas.Member.Data
@@ -21,12 +22,15 @@ namespace RRS.Areas.Member.Data
         public string? ConfirmPassword { get; set; }
 
         //Change Phone Number
+        [Required]
         [Phone]
         [Display(Name = "Phone number")]
         public string? PhoneNumber { get; set; }
 
         //Readonly reservations
-        public List<Reservation>? UpcomingReservations { get; set; }
-        public List<Reservation>? PastReservations { get; set; }
+        public List<ResVM>? UpcomingReservations { get; set; }
+        public List<ResVM>? PastReservations { get; set; }
+
+        public bool ValidationMessage { get; set; } = false;
     }
 }

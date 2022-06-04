@@ -12,14 +12,14 @@ using RRS.Data;
 namespace RRS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220527224257_init")]
+    [Migration("20220604050106_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.4")
+                .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -49,6 +49,36 @@ namespace RRS.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1337x1",
+                            ConcurrencyStamp = "1337x1",
+                            Name = "God",
+                            NormalizedName = "GOD"
+                        },
+                        new
+                        {
+                            Id = "1337x2",
+                            ConcurrencyStamp = "1337x2",
+                            Name = "Manager",
+                            NormalizedName = "MANAGER"
+                        },
+                        new
+                        {
+                            Id = "1337x3",
+                            ConcurrencyStamp = "1337x3",
+                            Name = "Employee",
+                            NormalizedName = "EMPLOYEE"
+                        },
+                        new
+                        {
+                            Id = "1337x4",
+                            ConcurrencyStamp = "1337x4",
+                            Name = "Member",
+                            NormalizedName = "MEMBER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -139,6 +169,72 @@ namespace RRS.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1337x1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1337x1",
+                            Email = "god@e.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "GOD@E.COM",
+                            NormalizedUserName = "GOD@E.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPWDRCKDgy+KwIJ5umDuE7LS+h0eYUpJ2Oqk8IWCoICWp4/FWpXBhPb8HUJ6fTufnA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "3e29778b-1239-48b8-a68e-fe4307283603",
+                            TwoFactorEnabled = false,
+                            UserName = "god@e.com"
+                        },
+                        new
+                        {
+                            Id = "1337x2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1337x2",
+                            Email = "man@e.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MAN@E.COM",
+                            NormalizedUserName = "MAN@E.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDjX609f5mgnvL2kcsEZSodbdw1RYHMzBEGX9bdog8a2UAxSw6MFk59eZ2Qv+deUXQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "88c7755c-5c8e-4e28-8606-84f7db656f76",
+                            TwoFactorEnabled = false,
+                            UserName = "man@e.com"
+                        },
+                        new
+                        {
+                            Id = "1337x3",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1337x3",
+                            Email = "emp@e.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "EMP@E.COM",
+                            NormalizedUserName = "EMP@E.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDOhZTNdpg994R2LNwgBKxhpy1XPXw/Uhm6CMbyjWZUjT3rfu99IdEnbdgZqGfsfuA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "64326638-7c61-4d5c-b15a-424b17975ef5",
+                            TwoFactorEnabled = false,
+                            UserName = "emp@e.com"
+                        },
+                        new
+                        {
+                            Id = "1337x4",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1337x4",
+                            Email = "Seed@Person1.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "SEED@PERSON1.COM",
+                            NormalizedUserName = "SEED@PERSON1.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDnHCqrBm5pdwAM/lTEzr7U6sv4GkK0fabo23l+BuzIc8kvjrFS1G0sCtOOlrs+skw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "c9115290-78b9-4be1-9fe9-a5d003039730",
+                            TwoFactorEnabled = false,
+                            UserName = "Seed@Person1.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -203,6 +299,33 @@ namespace RRS.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "1337x1",
+                            RoleId = "1337x1"
+                        },
+                        new
+                        {
+                            UserId = "1337x2",
+                            RoleId = "1337x2"
+                        },
+                        new
+                        {
+                            UserId = "1337x2",
+                            RoleId = "1337x3"
+                        },
+                        new
+                        {
+                            UserId = "1337x3",
+                            RoleId = "1337x3"
+                        },
+                        new
+                        {
+                            UserId = "1337x4",
+                            RoleId = "1337x4"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -530,6 +653,29 @@ namespace RRS.Migrations
                             Id = 5,
                             Description = "Completed"
                         });
+                });
+
+            modelBuilder.Entity("RRS.Data.ReservationTable", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<int>("ReservationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TableId")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("ReservationId");
+
+                    b.HasIndex("TableId");
+
+                    b.ToTable("ReservationTables");
                 });
 
             modelBuilder.Entity("RRS.Data.Restaurant", b =>
@@ -3214,6 +3360,9 @@ namespace RRS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Seats")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AreaId");
@@ -3225,181 +3374,211 @@ namespace RRS.Migrations
                         {
                             Id = 1,
                             AreaId = 1,
-                            Description = "M1"
+                            Description = "M1",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 2,
                             AreaId = 1,
-                            Description = "M2"
+                            Description = "M2",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 3,
                             AreaId = 1,
-                            Description = "M3"
+                            Description = "M3",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 4,
                             AreaId = 1,
-                            Description = "M4"
+                            Description = "M4",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 5,
                             AreaId = 1,
-                            Description = "M5"
+                            Description = "M5",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 6,
                             AreaId = 1,
-                            Description = "M6"
+                            Description = "M6",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 7,
                             AreaId = 1,
-                            Description = "M7"
+                            Description = "M7",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 8,
                             AreaId = 1,
-                            Description = "M8"
+                            Description = "M8",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 9,
                             AreaId = 1,
-                            Description = "M9"
+                            Description = "M9",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 10,
                             AreaId = 1,
-                            Description = "M10"
+                            Description = "M10",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 11,
                             AreaId = 2,
-                            Description = "O1"
+                            Description = "O1",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 12,
                             AreaId = 2,
-                            Description = "O2"
+                            Description = "O2",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 13,
                             AreaId = 2,
-                            Description = "O3"
+                            Description = "O3",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 14,
                             AreaId = 2,
-                            Description = "O4"
+                            Description = "O4",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 15,
                             AreaId = 2,
-                            Description = "O5"
+                            Description = "O5",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 16,
                             AreaId = 2,
-                            Description = "O6"
+                            Description = "O6",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 17,
                             AreaId = 2,
-                            Description = "O7"
+                            Description = "O7",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 18,
                             AreaId = 2,
-                            Description = "O8"
+                            Description = "O8",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 19,
                             AreaId = 2,
-                            Description = "O9"
+                            Description = "O9",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 20,
                             AreaId = 2,
-                            Description = "O10"
+                            Description = "O10",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 21,
                             AreaId = 3,
-                            Description = "B1"
+                            Description = "B1",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 22,
                             AreaId = 3,
-                            Description = "B2"
+                            Description = "B2",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 23,
                             AreaId = 3,
-                            Description = "B3"
+                            Description = "B3",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 24,
                             AreaId = 3,
-                            Description = "B4"
+                            Description = "B4",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 25,
                             AreaId = 3,
-                            Description = "B5"
+                            Description = "B5",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 26,
                             AreaId = 3,
-                            Description = "B6"
+                            Description = "B6",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 27,
                             AreaId = 3,
-                            Description = "B7"
+                            Description = "B7",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 28,
                             AreaId = 3,
-                            Description = "B8"
+                            Description = "B8",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 29,
                             AreaId = 3,
-                            Description = "B9"
+                            Description = "B9",
+                            Seats = 0
                         },
                         new
                         {
                             Id = 30,
                             AreaId = 3,
-                            Description = "B10"
+                            Description = "B10",
+                            Seats = 0
                         });
                 });
 
@@ -3421,6 +3600,7 @@ namespace RRS.Migrations
                             LastName = "SeedPersonLN1",
                             PhoneNumber = "04100100",
                             RestaurantId = 1,
+                            UserId = "1337x4",
                             IsVIP = true
                         },
                         new
@@ -3569,6 +3749,25 @@ namespace RRS.Migrations
                     b.Navigation("ReservationStatus");
 
                     b.Navigation("Sitting");
+                });
+
+            modelBuilder.Entity("RRS.Data.ReservationTable", b =>
+                {
+                    b.HasOne("RRS.Data.Reservation", "Reservation")
+                        .WithMany()
+                        .HasForeignKey("ReservationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RRS.Data.Table", "Table")
+                        .WithMany()
+                        .HasForeignKey("TableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Reservation");
+
+                    b.Navigation("Table");
                 });
 
             modelBuilder.Entity("RRS.Data.Sitting", b =>

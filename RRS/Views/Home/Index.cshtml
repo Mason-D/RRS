@@ -5,12 +5,22 @@
 
 <div id="site-home-container" class="">
     <span class="site-main-header">Bean<br/><em>Scene</em></span>
+ 
+    <div class="SPA-container" id="SPA-container">
+        <img class="close-icon" id="close-icon" src="~/images/close.png"/>
+        <div id='root'></div>
+    </div>
 
-    <div class="glass-container">
+    <div class="glass-container" id="glass-container">
         <p role="button" id="site-res-btn-container-text">Book Now</p>
     </div>
 </div>
 
 @section Styles {
     <link rel="stylesheet" href="~/css/site.home.index.css" /> 
+    <link rel="stylesheet" href="~/css/customerCreateReservationSPA.css" />
+}
+@section Scripts{
+    <script src='~/js/customerCreateReservationSPA.js'></script>
+    <script src='~/js/site.home.index.js'></script>
 }

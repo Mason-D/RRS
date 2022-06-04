@@ -22,6 +22,12 @@
                 <h2>@ViewData["Title"]</h2>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div>
+                    (God) User: god@e.com Password: Abc123!@@#<br/>
+                    (Manager) User: man@e.com Password: Abc123!@@#<br/>
+                    (Employee) User: emp@e.com Password: Abc123!@@#<br/>
+                    (Member) User: Seed@Person1.com Password: Abc123!@@#<br/>
+                </div>
                 <div class="form-floating my-2">
                     <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
                     <label asp-for="Input.Email" class="form-label"></label>

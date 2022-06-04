@@ -26,7 +26,7 @@ function getReservation(newDate) {
 
             $("#reservationsTBody").append(
 
-                `<tr data-reference-no=${item.referenceNo} >
+                `<tr class="res-row" data-reference-no=${item.referenceNo}>
                     <td>${formatTime(item.startTime)}</td>
                     <td>${item.resType}</td>
                     <td>${(item.firstName+' '+item.lastName).length < 25 ? item.firstName+' '+item.lastName : item.firstName.length < 25 ? item.firstName+'...' : shortenText(item.firstName)}</td>

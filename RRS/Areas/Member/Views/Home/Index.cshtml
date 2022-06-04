@@ -4,10 +4,10 @@
 @{
     ViewData["Title"] = "Profile";
     var upcomingReservations = Model.UpcomingReservations == null ? 
-                                ViewData["upcoming"] as List<Reservation> : Model.UpcomingReservations;
+                                ViewData["upcoming"] as List<ResVM> : Model.UpcomingReservations;
 
     var pastReservations = Model.PastReservations == null ? 
-                            ViewData["past"] as List<Reservation> : Model.PastReservations;
+                            ViewData["past"] as List<ResVM> : Model.PastReservations;
 }
 
 <div id="profile-row" class="row">
@@ -39,7 +39,7 @@
     <div id="profile-res-history-container" class="col-md-6 d-flex flex-column justify-content-between">
         <div id="profile-upcoming-res-col" class="col-md-12 d-flex justify-content-center">
             <div class="w-75 mt-2">         
-                <h5>Upcoming Reservations</h5>
+                <h4>Upcoming Reservations</h4>
                 @if(upcomingReservations.Count == 0)
                 {
                     <ul class="list-group">
@@ -55,14 +55,14 @@
                             @for(int i = 0; i < upcomingReservations.Count; i++)
                             {
                                 <li id="upcoming-list-group-item-@i" class="upcoming-list-group-item list-group-item" role="button">
-                                    @upcomingReservations[i].StartTime
-                                    <div hidden id="upcoming-item-body-@i" class="upcoming-item-body mt-1"
+                                    <b>@upcomingReservations[i].Date</b>
+                                    <div @(i == 0 ? "" : "hidden") id="upcoming-item-body-@i" class="upcoming-item-body mt-1"
                                         data-upcoming-li-id="@i" data-type="upcoming">
-                                        <span>@upcomingReservations[i].Sitting.SittingType.Description<br/>
-                                            @upcomingReservations[i].NoOfGuests 
-                                            @(upcomingReservations[i].NoOfGuests == 1 ? "Person" : "People")<br/>
-                                        </span>
-                                        <span>Status: @upcomingReservations[i].ReservationStatus.Description</span>
+                                        <span><b>Time&nbsp;</b>@upcomingReservations[i].Time<br/></span>
+                                        <span><b>Type&nbsp;</b>@upcomingReservations[i].Type<br/></span>
+                                        <span><b>Guests&nbsp;</b>@upcomingReservations[i].NoOfGuests<br/></span>
+                                        <span><b>Status&nbsp;</b>@upcomingReservations[i].Status<br/></span>
+                                        <span><b>Ref#&nbsp;</b>@upcomingReservations[i].ReferenceNo<br/></span>
                                     </div>
                                 </li>
                             }
@@ -73,7 +73,7 @@
         </div>
         <div id="profile-past-res-col" class="col-md-12 d-flex justify-content-center">
             <div class="w-75 mt-2">
-                <h5>Past Reservations</h5>
+                <h4>Past Reservations</h4>
                 @if(pastReservations.Count == 0)
                 {
                     <ul class="list-group">
@@ -89,14 +89,14 @@
                             @for(int i = 0; i < pastReservations.Count; i++)
                             {
                                 <li id="past-list-group-item-@i" class="past-list-group-item list-group-item" role="button">
-                                    @pastReservations[i].StartTime
+                                    <b>@pastReservations[i].Date</b>
                                     <div hidden id="past-item-body-@i" class="past-item-body mt-1" 
                                         data-past-li-id="@i" data-type="past">
-                                        <span>@pastReservations[i].Sitting.SittingType.Description<br/>
-                                            @pastReservations[i].NoOfGuests 
-                                            @(pastReservations[i].NoOfGuests == 1 ? "Person" : "People")<br/>
-                                        </span>
-                                        <span>Status: @pastReservations[i].ReservationStatus.Description</span>
+                                        <span><b>Time&nbsp;</b>@pastReservations[i].Time<br/></span>
+                                        <span><b>Type&nbsp;</b>@pastReservations[i].Type<br/></span>
+                                        <span><b>Guests&nbsp;</b>@pastReservations[i].NoOfGuests<br/></span>
+                                        <span><b>Status&nbsp;</b>@pastReservations[i].Status<br/></span>
+                                        <span><b>Ref#&nbsp;</b>@pastReservations[i].ReferenceNo<br/></span>
                                     </div>
                                 </li>
                             }

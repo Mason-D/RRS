@@ -1,0 +1,9 @@
+﻿
+.res-row {
+
+}
+
+.res-row:hover {
+    cursor: pointer;
+    background-color: #ccc !important;
+}

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RRS.Data;
@@ -13,11 +15,16 @@ namespace RRS.Controllers.API
     {
         private readonly ApplicationDbContext _context;
         private readonly PersonService _personService;
+        private readonly UserManager<IdentityUser> _manager;
 
-        public ReservationsController(ApplicationDbContext context, PersonService personService)
+        public ReservationsController(
+            ApplicationDbContext context, 
+            PersonService personService,
+            UserManager<IdentityUser> manager)
         {
             _context = context;
             _personService = personService;
+            _manager = manager;
         }
 
         [HttpPost]
@@ -48,7 +55,7 @@ namespace RRS.Controllers.API
                 NoOfGuests = resDTO.NoOfGuests,
                 SittingId = resDTO.SittingId,
                 ReservationOriginId = resDTO.ReservationOriginId,
-                ReservationStatusId = 1,
+                ReservationStatusId = resDTO.ReservationStatusId,
                 Customer = customerTemp,
                 CustomerId = customerTemp.Id,
                 StartTime = resDTO.StartTime
@@ -96,12 +103,75 @@ namespace RRS.Controllers.API
                                 Email = r.Customer.Email,
                                 RestaurantId = r.Sitting.RestaurantId,
                                 StartTime = r.StartTime,
+                                ReservationStatusId = r.ReservationStatusId,
                                 ResStatus = r.ReservationStatus.Description,
-                                ResOrigin = r.ReservationOrigin.Description,
                                 ResType = r.Sitting.SittingType.Description
 
                             })
                             .ToListAsync();
+        }
+
+        [HttpGet]
+        [Route("all/{email}")]
+        //[Authorize(Roles = "Member")]
+        public async Task<ActionResult<CustomerReservationDto>> All(string email)
+        {
+
+            if (email == null)
+            {
+                return BadRequest();
+            }
+
+            var user = await _manager.FindByEmailAsync(email);
+
+            if (user == null)
+            {
+                return BadRequest();
+            }
+
+            var dateNow = DateTime.Now;
+
+            var upcoming = await _context.Reservations
+                .Where(r => r.Customer.UserId == user.Id
+                    && r.StartTime >= dateNow)
+                .Select(r => new ResVM
+                {
+                    StartTime = r.StartTime,
+                    Email = r.Customer.Email,
+                    PhoneNumber = r.Customer.PhoneNumber,
+                    NoOfGuests = r.NoOfGuests,
+                    CustomerNotes = r.CustomerNotes,
+                    ReferenceNo = r.Id,
+                    FirstName = r.Customer.FirstName,
+                    LastName = r.Customer.LastName,
+                    Status = r.ReservationStatus.Description,
+                    Origin = r.ReservationOrigin.Description,
+                    Type = r.Sitting.SittingType.Description
+                })
+                .OrderBy(r => r.StartTime)
+                .ToListAsync();
+
+            var past = await _context.Reservations
+                .Where(r => r.Customer.UserId == user.Id
+                    && r.StartTime < dateNow)
+                .Select(r => new ResVM
+                {
+                    StartTime = r.StartTime,
+                    Email = r.Customer.Email,
+                    PhoneNumber = r.Customer.PhoneNumber,
+                    NoOfGuests = r.NoOfGuests,
+                    CustomerNotes = r.CustomerNotes,
+                    ReferenceNo = r.Id,
+                    FirstName = r.Customer.FirstName,
+                    LastName = r.Customer.LastName,
+                    Status = r.ReservationStatus.Description,
+                    Origin = r.ReservationOrigin.Description,
+                    Type = r.Sitting.SittingType.Description
+                })
+                .OrderByDescending(r => r.StartTime)
+                .ToListAsync();
+
+            return Ok(new CustomerReservationDto { Upcoming = upcoming, Past = past });
         }
     }
 }

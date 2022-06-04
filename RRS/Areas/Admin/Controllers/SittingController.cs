@@ -57,7 +57,6 @@ namespace RRS.Areas.Admin.Controllers
         // GET: Admin/Sitting/Create
         public IActionResult Create()
         {
-            //ViewData["RestaurantId"] = new SelectList(_context.Restaurants, "Id", "Name");
             ViewData["RestaurantId"] = 1;
             ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
             return View();
@@ -66,10 +65,19 @@ namespace RRS.Areas.Admin.Controllers
         // POST: Admin/Sitting/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Start,Duration,Capacity,RestaurantId,SittingTypeId,Interval,CutOff, NewSitting, NewSittingName, Group, WeeksToRepeat ,SelectedDays , EndDate")] SittingsVm sitting)
+        public async Task<IActionResult> Create(SittingsVm sitting)
         {
- 
-            
+
+            var test = ModelState.ErrorCount;
+            var test2 = ModelState.ValidationState;
+
+            //if(ModelState.ErrorCount > 5 || ModelState.ErrorCount == 6 && sitting.Minutes == null)
+            //{
+            //    ViewData["RestaurantId"] = 1;
+            //    ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
+            //    return View(sitting);
+            //}
+
             if(sitting.NewSittingName !=null)
             {
                 SittingType st = new SittingType { Description = sitting.NewSittingName };
@@ -86,7 +94,7 @@ namespace RRS.Areas.Admin.Controllers
                 {
                     RestaurantId = sitting.RestaurantId,
                     Start = sitting.Start,
-                    Duration = sitting.Duration,
+                    Duration = (int)sitting.Duration,
                     IsOpen = sitting.IsOpen,
                     Capacity = sitting.Capacity,
                     SittingTypeId = sitting.SittingTypeId,
@@ -100,6 +108,13 @@ namespace RRS.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Edit));
             }
 
+
+            if(sitting.EndDate == null)
+            {
+                ViewData["RestaurantId"] = 1;
+                ViewData["SittingTypeId"] = new SelectList(_context.SittingTypes, "Id", "Description");
+                return View(sitting);
+            }
 
             if(sitting.Group == "Weeks")
             {
@@ -120,7 +135,7 @@ namespace RRS.Areas.Admin.Controllers
                         {
                             RestaurantId = sitting.RestaurantId,
                             Start = date,
-                            Duration = sitting.Duration,
+                            Duration = (int)sitting.Duration,
                             IsOpen = sitting.IsOpen,
                             Capacity = sitting.Capacity,
                             SittingTypeId = sitting.SittingTypeId,
