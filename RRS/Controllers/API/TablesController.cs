@@ -106,27 +106,6 @@ namespace RRS.Controllers.API
         public async Task<ActionResult<IEnumerable<ReservationBySittingIdDto>>> getReservations(int sittingId)
         {
 
-
-            var test = await _context.Reservations
-                            .Include(r => r.ReservationStatus)
-                            .Include(r => r.Customer)
-                            .OrderBy(r => r.StartTime)
-                            .Where(r => r.SittingId == sittingId && r.ReservationStatus.Description != "Cancelled" && r.ReservationStatus.Description != "Completed")
-                            .Select(r => new ReservationBySittingIdDto
-                            {
-                                Id = r.Id,
-                                NoOfGuests = r.NoOfGuests,
-                                ReservationStatus = r.ReservationStatus.Description,
-                                CustomerNotes = r.CustomerNotes,
-                                FirstName = r.Customer.FirstName,
-                                LastName = r.Customer.LastName,
-                                PhoneNumber = r.Customer.PhoneNumber,
-                                Email = r.Customer.Email,
-                                StartTime = r.StartTime.ToShortTimeString()
-                            })
-                            .ToListAsync();
-            
-
             return await _context.Reservations
                 .Include(r => r.ReservationStatus)
                 .Include(r => r.Customer)
