@@ -107,7 +107,9 @@ namespace RRS.Controllers.API
                                 Type = s.SittingType.Description, 
                                 Duration = s.Duration, Start = s.Start.ToString("HH:mm"),
                                 Capacity = s.Capacity,
-                                TotalGuests = s.TotalGuests
+                                TotalGuests = s.TotalGuests,
+                                Cutoff = s.Cutoff,
+                                Interval = s.Interval
                             })
                             .ToListAsync();
         }
