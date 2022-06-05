@@ -8,5 +8,8 @@
         public string Start { get; set; }
         public int Capacity { get; set; }
         public int TotalGuests { get; set; }
+        public int? Cutoff { get; set; }
+        public int? Interval { get; set; }
+
     }
 }
