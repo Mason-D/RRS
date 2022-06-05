@@ -26,6 +26,24 @@ function getStatusList() {
     return newList;
 }
 
+function setStatusColor(id) {
+    id = +id;
+    switch (id) {
+        case 1:
+            return "btn-warning";
+        case 2:
+            return "btn-success";
+        case 3:
+            return "btn-danger";
+        case 4:
+            return "btn-info";
+        case 5:
+            return "btn-primary";
+        default:
+            return "";
+    }
+}
+
 function getReservation(newDate) {
 
     var statusList = getStatusList();
@@ -40,27 +58,10 @@ function getReservation(newDate) {
             return;
         }
 
-        data.forEach((item) => {
-            //let statusClass;
-            //switch (item.reservationStatusId) {
-            //    case 1:
-            //        statusClass = "btn-warning"
-            //        break;
-            //    case 2:
-            //        statusClass = "btn-success"
-            //        break;
-            //    case 3:
-            //        statusClass = "btn-danger"
-            //        break;
-            //    case 4:
-            //        statusClass = "btn-info"
-            //        break;
-            //    case 5:
-            //        statusClass = "btn-primary"
-            //        break;
-            //}
 
-            let selectStatusList = statusList.reduce((p, c) => p + `<option value='${c.id}' ${item.reservationStatusId == c.id ? 'selected' : ''}>${c.status}</option> `, '')
+        data.forEach((item) => {
+
+            let selectStatusList = statusList.reduce((p, c) => p + `<option class="bg-light text-dark" value='${c.id}' ${item.reservationStatusId == c.id ? 'selected' : ''}>${c.status}</option> `, '')
 
             $("#reservationsTBody").append(
 
@@ -71,7 +72,7 @@ function getReservation(newDate) {
                     <td>${item.phoneNumber}</td>
                     <td>${item.noOfGuests}</td>
                     <td>    
-                    <select id="selectStatus-${item.referenceNo}" class="select-list-btn form-select" aria-label="Default select example">
+                    <select id="selectStatus-${item.referenceNo}" class="select-list-btn form-select ${setStatusColor(item.reservationStatusId)}" aria-label="Default select example">
                         ${selectStatusList}
                     </select>
                     </td>
@@ -87,6 +88,7 @@ function getReservation(newDate) {
             let resId = e.currentTarget.id.split("-")[1];
             let statusId = e.currentTarget.value;
             $.get(`https://localhost:7271/api/Reservations/updateReservationStatus/${resId}/${statusId}`)
+            $(`#selectStatus-${resId}`).removeClass("btn-warning btn-success btn-danger btn-info btn-primary").addClass(setStatusColor(statusId));
         });
 
     });
