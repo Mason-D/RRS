@@ -119,7 +119,6 @@ namespace RRS.Data
         public DbSet<Person> People { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<ReservationTable> ReservationTables { get; set; }
-
         public DbSet<RRS.Data.Employee>? Employee { get; set; }
     }
 }

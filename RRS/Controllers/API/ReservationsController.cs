@@ -43,12 +43,8 @@ namespace RRS.Controllers.API
 
             //Unpack anonymous object
             Type type = obj.GetType();
-            var customer = (Person)type.GetProperty("Person").GetValue(obj, null);
-
-
-            var customerTemp = (Customer)customer;
+            var customer = (Customer)type.GetProperty("Person").GetValue(obj, null);
             
-
             var reservation = new Reservation
             {
                 CustomerNotes = resDTO.CustomerNotes,
@@ -56,8 +52,8 @@ namespace RRS.Controllers.API
                 SittingId = resDTO.SittingId,
                 ReservationOriginId = resDTO.ReservationOriginId,
                 ReservationStatusId = resDTO.ReservationStatusId,
-                Customer = customerTemp,
-                CustomerId = customerTemp.Id,
+                Customer = customer,
+                CustomerId = customer.Id,
                 StartTime = resDTO.StartTime
             };
 
