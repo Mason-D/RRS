@@ -109,6 +109,7 @@ namespace RRS.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                //This persists user to database, if no details provided this bypasses details requirement.
                 var result = await _userManager.CreateAsync(user, Input.Password); //this process won't create duplicate user                
 
                 if (result.Succeeded)
