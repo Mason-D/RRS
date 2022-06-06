@@ -12,11 +12,6 @@
 </p>
 
 <hr />
-@*<form method="get" asp-action="Index">
-    <label for="selectDate">Date:</label>
-    <input type="date" id="selectDate" value="@ViewData["getReservationsByDate"]" name="date" onchange="this.form.submit()" />
-    <input type="submit" value="Search" class="btn btn-primary" />
-</form>*@
 
 
 <label class="fw-bold" for="dateControl">Sitting date:</label>
@@ -31,7 +26,7 @@
                     <th class="col-2">Customer</th>
                     <th class="col-1">Phone</th>
                     <th class="col-1">Guests</th>
-                    <th class="col-1">Status</th>
+                    <th class="col-2">Status</th>
                     <th class="col-2">Notes</th>
                     <th class="col-1"></th>
                 </tr>
@@ -39,79 +34,7 @@
             <tbody id="reservationsTBody"></tbody>
         </table>
 
-@*<table class="table container-fluid">
-    <thead>
-        <tr>
-            <th class="col-1">
-                Time
-            </th>
 
-            <th class="col-1">
-                Type
-            </th>
-
-            <th class="col-2">
-                Customer
-            </th>
-
-            <th class="col-1">
-                Contact
-            </th>
-
-            <th class="col-1">
-                Guests
-            </th>
-
-            <th class="col-1">
-                Status
-            </th>
-
-            <th class="col-1">
-                Origin
-            </th>
-
-            <th class="col-2">
-                Notes
-            </th>
-            <th class="col-2"></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var res in Model) {
-        <tr>
-            <td>
-                @res.StartTime.ToString("h:mm tt")
-            </td>
-            <td>
-                @res.Sitting.SittingType.Description
-            </td>
-            <td>
-                @res.Customer.FirstName
-                @res.Customer.LastName
-            </td>
-            <td>
-                @res.Customer.PhoneNumber
-            </td>
-            <td>
-                @res.NoOfGuests
-            </td>
-            <td>
-                @res.ReservationStatus.Description
-            </td>
-            <td>
-                @res.ReservationOrigin.Description
-            </td>
-            <td>
-                @res.CustomerNotes
-            </td>
-            <td>
-                <a type="button" class="btn btn-primary" asp-action="Edit" asp-route-id="@res.Id"> Edit </a>
-                <a type="button" class="btn btn-success" asp-action="Details" asp-route-id="@res.Id">Details</a>   
-            </td>
-        </tr>
-}
-    </tbody>
-</table>*@
 
 @section Styles{
     <link rel="stylesheet" href="~/css/admin.reservation.index.css"/>

@@ -105,10 +105,11 @@ namespace RRS.Controllers.API
         [Route("available-reservations/{sittingId}")]
         public async Task<ActionResult<IEnumerable<ReservationBySittingIdDto>>> getReservations(int sittingId)
         {
-           
+
             return await _context.Reservations
                 .Include(r => r.ReservationStatus)
                 .Include(r => r.Customer)
+                .OrderBy(r => r.StartTime)
                 .Where(r => r.SittingId == sittingId && r.ReservationStatus.Description != "Cancelled" && r.ReservationStatus.Description != "Completed")
                 .Select(r => new ReservationBySittingIdDto
                 {

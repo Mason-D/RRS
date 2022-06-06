@@ -60,7 +60,7 @@ $(() => {
         $("#SelectedDays").val(selectedDays);
 
 
-        console.log($('#Duration').val());
+        //console.log($('#Duration').val());
         if($('#Duration').val() != "")
         {
             let start = new Date(e.target.value)
@@ -113,7 +113,7 @@ DisplayDuration = (start, duration ) => {
     let endTime = end.toLocaleTimeString()
     let endDate = end.toLocaleDateString("en-au");
 
-    console.log(end);
+    //console.log(end);
     $('#time-container-end').html(`End Time ${endDate} : ${endTime}`);
     $('#display-time-container').show();
 }

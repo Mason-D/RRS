@@ -1,6 +1,5 @@
 ﻿$(() => {
 
-
     $("#dateControl").on('change', (e) => {
         populateSittingsTable(e.target.value);
         clearForm();

@@ -68,7 +68,6 @@ function resDateTimeToList(id) {
     let cutoff = tr.data('sitting-cutoff') * 60000;
     let endDT = duration + startDT
 
-    console.log(selectedStart)
 
     $("#startTime").empty();
 
