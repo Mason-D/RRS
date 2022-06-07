@@ -34,7 +34,7 @@
     z-index: 1;
 }
 
-.video-container video, #video-static {
+.video-container video {
     width: 100%;
     height: 100%;
     object-fit: cover;
