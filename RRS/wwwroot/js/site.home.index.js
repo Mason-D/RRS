@@ -8,13 +8,14 @@ $(() => {
 
         $(document).ready(function () {
             $('#SPA-container').css('pointer-events', 'all');
-            $('#SPA-container').css('top', '380px');
+            $('#SPA-container').css('top', '200px');
             $('#SPA-container').css('width', '90%');
             $('#SPA-container').css('opacity', '1');
             $('#SPA-container').css('max-height', '1000px');
             //glass-container
             $('#glass-container').css('opacity', '0');
             $('#glass-container').css('pointer-events', 'none');
+            $('.site-main-header').css('font-size', '100px');
         });
     });
 
@@ -32,6 +33,7 @@ $(() => {
             //glass-container
             $('#glass-container').css('opacity', '1');
             $('#glass-container').css('pointer-events', 'all');
+            $('.site-main-header').css('font-size', '200px');
         });
     });
 
