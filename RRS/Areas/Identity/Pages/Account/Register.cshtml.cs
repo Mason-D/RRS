@@ -106,7 +106,7 @@ namespace RRS.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-
+                await _userManager.AddToRoleAsync(user, "Member");
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 //This persists user to database, if no details provided this bypasses details requirement.
@@ -132,7 +132,7 @@ namespace RRS.Areas.Identity.Pages.Account
                     person.UserId = user.Id;
                     user.PhoneNumber = person.PhoneNumber; //TO DO: test through res SPA then create new acc 
 
-                    if (wasCreated) { _context.People.Add(person); } //Existing person is already tracked, New person must be added
+                    if (wasCreated) { _context.People.Add(person); } //Existing person is already tracked, New person must be added                   
                     await _context.SaveChangesAsync();
 
                     _logger.LogInformation("User created a new account with password.");
