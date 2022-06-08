@@ -1,5 +1,19 @@
-﻿.{
-    color:white !important;
+﻿/*
+    Mason font: font-family: SaolDisplay,ui-serif,Georgia,Cambria,"Times New Roman",Times,serif;
+    Opacity: .6
+*/
+
+
+h4 {
+    color: white;
+}
+
+input {
+    background-color: rgba(217, 199, 178, 0.6) !important;
+}
+
+input:focus {
+    background-color: rgba(217, 199, 178, 1) !important;
 }
 
 #profile-row {
@@ -31,25 +45,22 @@
     height: 75vh;
 }
 
-#profile-upcoming-res-col h5, #profile-past-res-col h5 {
-    color: black;
-}
-
 svg {
-    margin-top: 5px;
+    margin-top: 10px;
     margin-bottom: 5px;
     width: 100%;
     max-height: 200px !important;
-    background-color: whitesmoke;
-    border-radius: 15px;
+    background-color: #604434;
 }
 
 #update-details-btn {
-    background-color: rgba(255, 0, 0, 0.6);
+    background-color: #d9c7b2;
+    color: black;
 }
 
 #update-details-btn:hover {
-    background-color: rgba(255, 0, 0, 0.8);
+    background-color: #604434;
+    color: white;
 }
 
 .carousel-control-next-icon {
