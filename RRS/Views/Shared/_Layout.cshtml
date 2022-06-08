@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RRS.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/shared.layout.css" asp-append-version="true" />
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
@@ -23,21 +24,21 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
                         @if(User.IsInRole("Employee") || User.IsInRole("Manager"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
+                                <a class="nav-link text-light" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
                             </li> 
                         }
                         @if(User.IsInRole("Member"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Member" asp-controller="Home" asp-action="Index">Member</a>
+                                <a class="nav-link text-light" asp-area="Member" asp-controller="Home" asp-action="Index">Member</a>
                             </li>  
                         }
                     </ul>
@@ -53,8 +54,8 @@
     </div>
 
     <footer class="footer">
-        <div id="footer-container" class="container">
-            &copy; 2022 JAM <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-black">Privacy</a>
+        <div id="footer-container" class="container text-white">
+            &copy; 2022 JAM <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-light">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
