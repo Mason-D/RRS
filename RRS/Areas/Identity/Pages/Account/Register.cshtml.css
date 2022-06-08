@@ -64,6 +64,18 @@
     padding: 20px;
 }
 
+#register-btn {
+    background-color: #824620;
+    color: white;
+    font-family: SaolDisplay,ui-serif,Georgia,Cambria,"Times New Roman",Times,serif;
+    font-size: 25px;
+}
+
+#register-btn:hover, #register-btn:focus {
+    border-color: #604434;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.075), 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
 #register-right-col::-webkit-scrollbar {
     width: 10px;
 }
