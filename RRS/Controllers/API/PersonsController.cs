@@ -48,6 +48,7 @@ namespace RRS.Controllers.API
         {
 
             var userId = _userManager.GetUserId(HttpContext.User);
+            var user = await _userManager.FindByIdAsync(User.Identity.Name);
 
             var email = _context.Users
                 .Where(u => u.Id == userId)
