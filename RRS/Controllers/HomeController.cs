@@ -23,6 +23,8 @@ namespace RRS.Controllers
             {
                 await Task.Run(() => CreateRoles());
             }
+            //Get logged in User Id
+            ViewBag.userid = _userManager.GetUserId(HttpContext.User);
             return View();
         }
 
