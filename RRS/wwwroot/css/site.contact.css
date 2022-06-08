@@ -1,8 +1,13 @@
 ﻿#contact-btn {
-    background-color: rgba(139,69,19, 1);
+    background-color: #824620;
     color: white;
     font-family: SaolDisplay,ui-serif,Georgia,Cambria,"Times New Roman",Times,serif;
     font-size: 25px;
+}
+
+#contact-btn:hover, #contact-btn:focus {
+    border-color: #604434;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.075), 0 0 8px rgba(255, 255, 255, 0.6);
 }
 
 #contact-row {
@@ -25,7 +30,6 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    border-radius: 15px;
     top: 0;
     left: 0;
     z-index: 1;
@@ -45,7 +49,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 15px;
     position: relative;
     z-index: 0;
     filter: blur(1.5px);
@@ -59,9 +62,6 @@
 
 #contact-right-col {
     box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
-    border-radius: 15px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
     background: rgba(255, 255, 255, 0.1);
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-left: 1px solid rgba(255, 255, 255, 0.5);
@@ -70,6 +70,7 @@
     height: 100%;
     padding: 20px;
     max-height: 713px;
+    color: white;
 }
 
 #contact-right-col::-webkit-scrollbar {
@@ -82,5 +83,4 @@
 
 #contact-right-col::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, .25);
-    border-radius: 10px;
 }
