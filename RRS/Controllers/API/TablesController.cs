@@ -62,7 +62,8 @@ namespace RRS.Controllers.API
         {
             var startLocal = start.ToLocalTime();
             return await _context.Sittings
-                .Where(s => s.Start.Date >= startLocal.Date)
+                .Include(s => s.Reservations)
+                .Where(s => s.Start.Date >= startLocal.Date && s.Reservations.Count() > 0)
                 .Select(s => s.Start)
                 .ToListAsync();
         }
