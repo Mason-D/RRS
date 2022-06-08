@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RRS.Data;
@@ -12,10 +13,12 @@ namespace RRS.Controllers.API
     public class PersonsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IUserService _userService;
 
-        public PersonsController(ApplicationDbContext context)
+        public PersonsController(ApplicationDbContext context, IUserService userService)
         {
             _context = context;
+            _userService = userService;
         }
 
         [HttpGet]
@@ -34,6 +37,33 @@ namespace RRS.Controllers.API
                 })
                 .ToListAsync();
         }
+
+
+        [HttpGet]
+        [Route("get-user")]
+        public async Task<ActionResult<PersonDto>> GetUser()
+        {
+            if (_userService.IsAuthenticated())
+            {
+                var person = _context.Customers
+                    .Where(c => c.Email == _userService.GetUserEmail())
+                    .Select(p => new PersonDto
+                    {
+                        Id = p.Id,
+                        FirstName = p.FirstName,
+                        LastName = p.LastName,
+                        PhoneNumber = p.PhoneNumber,
+                        Email = p.Email
+                    });
+                return person;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
 
     }
 }

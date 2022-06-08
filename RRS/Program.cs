@@ -35,6 +35,9 @@ builder.Services.AddScoped<PersonService>();
 
 builder.Services.AddControllersWithViews();
 
+//Adding scope for getting logged in user ID
+builder.Services.AddScoped<IUserService, UserService>();
+
 // Adds both cookie and JWT Bearer token based authentication, so that you can still sign in using the website.
 // The policy scheme is used to determine which authentication scheme should be used so that both will work.
 builder.Services.AddAuthentication(o =>
