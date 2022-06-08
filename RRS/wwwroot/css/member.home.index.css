@@ -67,14 +67,18 @@ svg {
 
 #update-details-btn {
     /*background-color: #d9c7b2;*/
+    transition: .5s;
     background-color: #824620;
     color: white;
     font-size: 24px;
 }
 
-#update-details-btn:hover {
-    background-color: #604434;
-    color: white;
+#update-details-btn:hover, #update-details-btn:focus {
+    padding: 5px !important;
+    transition: .5s;
+    font-size: 26px;
+    border-color: #604434;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.075), 0 0 8px rgba(255, 255, 255, 0.6);
 }
 
 .carousel-control-next-icon {
@@ -97,7 +101,7 @@ svg {
 
 #validationMsg {
     margin-top: 8px;
-    color: green;
+    color: white;
     font-size: 20px;
     width: 100%;
     background-color: rgba(0,255,0,0.25);
