@@ -2,6 +2,10 @@
     color: white;
 }
 
+.form-floating {
+    color: black;
+}
+
 #register-row {
     height: 75vh;
 }
@@ -62,6 +66,7 @@
     height: 100%;
     max-height: 713px;
     padding: 20px;
+    color: white;
 }
 
 #register-btn {
