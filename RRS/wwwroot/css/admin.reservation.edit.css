@@ -2,19 +2,6 @@
     color:white;
 }
 
-#reservationsT thead tr{
-    color: white;
-}
-
-td {
-    color: white;
-}
-
-.res-row:hover {
-    cursor: pointer;
-    background-color: rgba(0,0,0,0.25) !important;
-}
-
 a {
     text-decoration: none;
     color: white;
