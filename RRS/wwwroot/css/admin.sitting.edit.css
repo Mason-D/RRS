@@ -1,4 +1,21 @@
-﻿#sittingsT thead {
+﻿body {
+    color: white;
+}
+
+#sittingsT thead tr {
+    color: white;
+}
+
+td {
+    color: white;
+}
+
+.res-row:hover {
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.25) !important;
+}
+
+#sittingsT thead {
     position: sticky;
     top: 0;
     z-index: 1;
@@ -11,9 +28,6 @@
 .my-custom-scrollbar {
     position: relative;
     overflow: auto;
-    /*border-color: black;*/
-    /*border-style: solid;*/
-    /*border-width: medium;*/
 }
 
 .table-wrapper-scroll-y {
@@ -35,4 +49,16 @@
 svg {
     width: 30px;
     height: 30px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 20px grey;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .25);
 }
