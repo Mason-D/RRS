@@ -62,6 +62,21 @@
     height: 100%;
     max-height: 713px;
     padding: 20px;
+    color: white;
+}
+
+.form-floating {
+    color: black;
+}
+
+a {
+    text-decoration: none !important;
+    color: white;
+}
+
+a:hover {
+    text-decoration: underline !important;
+    color: white;
 }
 
 #login-btn {
