@@ -2,6 +2,14 @@
     color:white;
 }
 
+#sittingsT thead tr {
+    color: white;
+}
+
+td {
+    color: white;
+}
+
 a {
     text-decoration: none;
     color: white;
