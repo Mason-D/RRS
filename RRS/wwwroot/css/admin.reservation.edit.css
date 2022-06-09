@@ -11,3 +11,15 @@ a:hover {
     text-decoration: underline;
     color: white;
 }
+
+
+#sittingsT thead tr {
+    color: white;
+}
+
+td {
+    color: white;
+}
+
+#sittingsTBody tr:hover{
+}
