@@ -47,15 +47,10 @@ namespace RRS.Controllers.API
         public async Task<IQueryable<PersonDto>> GetUser()
         {
 
-            var userId = _userManager.GetUserId(HttpContext.User);
-            var user = await _userManager.FindByIdAsync(User.Identity.Name);
-
-            var email = _context.Users
-                .Where(u => u.Id == userId)
-                .Select(u => u.Email).ToString();
+            var userEmail = _userManager.GetUserName(HttpContext.User);
 
             return _context.Customers
-                .Where(c => c.Email == email)
+                .Where(c => c.Email == userEmail)
                 .Select(c => new PersonDto
                 {
                     FirstName = c.FirstName,
