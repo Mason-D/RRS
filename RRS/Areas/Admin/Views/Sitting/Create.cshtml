@@ -74,18 +74,21 @@
                     </div>
                 </div>
 
-                <div class="form-group" id="SittingTypeSelect">
-                    <label asp-for="SittingTypeId" class="control-label"></label>
-                    <select asp-for="SittingTypeId" class="form-control form-select" asp-items="ViewBag.SittingTypeId"></select>
+                <div class="row">
+                    <div class="form-group col-md-11" id="SittingTypeSelect">
+                        <label asp-for="SittingTypeId" class="control-label"></label>
+                        <select asp-for="SittingTypeId" class="form-control form-select" asp-items="ViewBag.SittingTypeId"></select>
+                    </div>
+                    <div id="NewSittingArea" class="col-md-11" style="display:none">
+                        <label asp-for="NewSittingName"  class="control-label"></label>
+                        <input id="NewSittingAreaInput" asp-for="NewSittingName" class="form-control" />
+                        <span asp-validation-for="NewSittingName" class="text-danger"></span> 
+                    </div>
+                    <div class="col-md-1">
+                        <input id="NewSittingBtn" type="button" class="btn-primary btn" value="New" />
+                    </div>
                 </div>
-                <div id="NewSittingArea" style="display:none">
-                    <label asp-for="NewSittingName"  class="control-label"></label>
-                    <input id="NewSittingAreaInput" asp-for="NewSittingName" class="form-control" />
-                    <span asp-validation-for="NewSittingName" class="text-danger"></span> 
-                </div>
-                <div>
-                    <input id="NewSittingBtn" type="button" class="btn-primary btn m-1" value="New" />
-                </div>
+
 
                 @*Partially working, appends btn to end of dropdown*@
 @*                <label asp-for="SittingTypeId" class="control-label"></label>

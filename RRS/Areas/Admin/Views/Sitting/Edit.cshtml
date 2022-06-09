@@ -9,19 +9,24 @@
     var lastSelectedSitting = ViewData["LastSelectedSitting"] == null ? null : (SittingDto) ViewData["LastSelectedSitting"];
 }
 
-
 <div class="row">
 
-    <div class="col-md-12 m-2">
+    <div class="col-md-12">
 
-        <div class="table-wrapper-scroll-y my-custom-scrollbar my-3 p-3">
-            
-            <div class="mb-3">
-                <label for="dateControl">Start date:</label>
-                <input type="date" id="dateControl" name="trip-start" value="@reversedDatePart">
-            </div>
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">           
+            <h2>Sittings</h2>
 
-            <table id="sittingsT" class="table table-hover">
+            <p>
+                <a asp-area="Admin" asp-controller="Sitting" asp-action="Create">Create Sitting</a>
+            </p>
+
+            <hr />
+
+
+            <label class="fw-bold" for="dateControl">Start date:</label>
+            <input type="date" id="dateControl" name="trip-start" value=@reversedDatePart />
+
+            <table id="sittingsT" class="table table-hover container-fluid">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -31,7 +36,7 @@
                         <th scope="col">Interval</th>
                         <th scope="col">Cutoff</th>
                         <th scope="col">Type</th>
-                        <th scope="col">Sitting Availability</th>
+                        <th scope="col">Availability</th>
                     </tr>
                 </thead>
                 <tbody id="sittingsTBody"></tbody>
@@ -52,12 +57,17 @@
                     <span asp-validation-for="Start" class="text-danger"></span>
                 </div>
 
-                <div class="form-group">
-                    <label for="durationInput" class="form-label">Duration: </label>
+                <label for="durationInput" class="form-label">Duration: <br/></label> 
+                <div class="input-group">        
                     <input asp-for="Duration" class="form-control" id="durationInput" value="" />
-                    <span asp-validation-for="Duration" class="text-danger"></span>
+                    <span asp-validation-for="Duration" class="text-danger"></span>  
+                    <div class="input-group-append">
+                        <div class="input-group-text" 
+                            title="In minutes, how long the sitting will be available for. E.g., Sitting 10:00AM start with 60 minute duration will end at 11:00AM">
+                            <partial name="/Views/Shared/icons/_Info.cshtml" />
+                        </div>
+                    </div>
                 </div>
-
                 
                 <div class="form-group">
                     <label for="capacityInput" class="form-label">Capacity: </label>
@@ -101,7 +111,7 @@
 
                 <button type="submit" value="Edit" class="formBtn btn btn-success my-3 px-3">Save</button>
                 <input type="submit" value="Delete" class="formBtn btn btn-danger my-3 px-3" />
-                <input value="Back" class="formBtn btn btn-info my-3 px-3" />
+                <input id="back-btn" value="Back" class="formBtn btn btn-primary my-3 px-3" />
 
                 <input asp-for="Id" type="hidden" id="hiddenIdInput"/>
                 <input asp-for="SittingTypeId" type="hidden" id="hiddenTypeIdInput"/>
