@@ -52,7 +52,6 @@ namespace RRS.Controllers.API
                     PhoneNumber = c.PhoneNumber,
                     Email = c.Email
                 });
-
         }
     }
 }
