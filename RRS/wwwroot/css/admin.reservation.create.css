@@ -10,3 +10,16 @@
     width: 100%;
     background-color: #182737 !important;
 }
+
+.back-link a {
+    color: white;
+    text-decoration: none;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
+}
+
+h2{
+    color: white;
+}
