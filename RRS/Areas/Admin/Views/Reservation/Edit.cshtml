@@ -23,7 +23,7 @@
             <h4 class="mb-2">Phone: @Model.Customer.PhoneNumber</h4>
 
             <div class="form-group">
-                <label class="control-label">Date</label>
+                <label class="control-label">Datez</label>
                 <input disabled id="sittingDate" value="@reversedDatePart" class="form-control" />
             </div>
 
@@ -57,7 +57,7 @@
             </div>
 
             <div>
-                <input type="submit" form="resForm" value="Update" class="btn btn-primary mt-2 w-25 formBtn" />
+                <input type="submit" form="resForm" value="Update" class="btn btn-success mt-2 w-25 formBtn" />
                 <a asp-action="Index" asp-route-date="@Model.Sitting.Start.ToString("MM-dd-yyyy")" class="btn btn-danger mt-2 w-25">Cancel</a>
             </div>
 
