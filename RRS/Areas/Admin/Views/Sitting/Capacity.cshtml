@@ -1,0 +1,48 @@
+﻿@model RRS.Models.SittingDto
+
+@{
+    ViewData["Title"] = "Capacity Warnings";
+}
+
+<div class="row">
+
+    <div class="col-md-12">
+
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">           
+            <h2>Capacity Warnings</h2>
+
+            <p>
+                <a asp-area="Admin" asp-controller="Sitting" asp-action="Edit">Edit Sitting</a>
+            </p>
+
+            <hr />
+
+            <table id="sittingsT" class="table table-hover container-fluid">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Start date</th>
+                        <th scope="col">Start time</th>
+                        <th scope="col">End date</th>
+                        <th scope="col">End time</th>
+                        <th scope="col">Capacity</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Availability</th>
+                    </tr>
+                </thead>
+                <tbody id="sittingsTBody"></tbody>
+            </table>
+
+           
+        </div>
+    </div>
+</div>
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/admin.sitting.capacity.css"/>
+}
+
+@section Scripts{
+    <script src=~/js/admin.sitting.capacity.js></script>
+}
+

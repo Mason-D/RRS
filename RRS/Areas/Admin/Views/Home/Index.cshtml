@@ -32,6 +32,7 @@
                 <div class="card-body">
                 <a asp-area="Admin" asp-controller="Sitting" asp-action="Edit">Manage Sittings</a><br />
                 <a asp-area="Admin" asp-controller="Sitting" asp-action="Create">Create Sittings</a><br />
+                <a asp-area="Admin" asp-controller="Sitting" asp-action="Capacity" id=capacity-warning>Capacity Warnings</a><br />
                 </div>
             </div>
         </div>
@@ -47,9 +48,15 @@
     </div>
 </div>
 
+
 @section Styles {
     <link rel="stylesheet" href="~/css/admin.home.index.css" />
 }
+
+@section Scripts{
+    <script src="~/js/admin.home.index.js"></script>
+}
+
 
 @*<div class="container-fluid justify-content-evenly">
     <div class="row">
@@ -83,7 +90,6 @@
     </div>
 
 </div>*@
-
 
 
 
