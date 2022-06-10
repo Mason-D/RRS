@@ -12,7 +12,7 @@ using RRS.Data;
 namespace RRS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220606000003_init")]
+    [Migration("20220610161451_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -181,9 +181,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "GOD@E.COM",
                             NormalizedUserName = "GOD@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEA0ms2CMwGZjIUdMevzF30KOmzfAG6pd8Y3UI9QDU0dEXh5SlDuOLWXq8wLKipKeLA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEANqO+q7gyhEQGjotg5oXML78P+jzsOqZ1NMQ2HJyzka7mz2pJ2NgUA5rT7uS0J7wQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "68e53ce7-1b59-477e-9edc-dba0b283a4c4",
+                            SecurityStamp = "01b1cb78-87e7-4118-b94d-fa39398e72b2",
                             TwoFactorEnabled = false,
                             UserName = "god@e.com"
                         },
@@ -197,9 +197,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MAN@E.COM",
                             NormalizedUserName = "MAN@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGmNovUZ9hs8b2Wv0NIy744knb8ZwprpvJXNnvKyKwRyxAz8BvziPwG08w3M7CE0gQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELIIczOvdb5Cu+5Zu6O93y9nsYkeSH5NhwRP+mYvc/3NUm4meskgtPtAdEwqh1DGbQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "eb6a3af6-f915-47a2-b98f-1f11ea82dfc0",
+                            SecurityStamp = "02e29e1b-c969-480a-b887-002d008c3ed1",
                             TwoFactorEnabled = false,
                             UserName = "man@e.com"
                         },
@@ -213,9 +213,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "EMP@E.COM",
                             NormalizedUserName = "EMP@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEB3ZdG8fsIl633cx3NUyAwUzB1LtXJKwQNAhP6vOrHzRH+hU75JHr9yVDppFzNmrMQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ8tj8cevQ4tlQUbMPPbXg4+Nv6OOlhUgDp0zfe1IqUN8e2NtmkNEUlHr9nefHsF3A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7e93ff6f-522d-4123-93b5-093b9b7c1f43",
+                            SecurityStamp = "a768d2d6-50af-4444-959d-2d46dd0a4a4d",
                             TwoFactorEnabled = false,
                             UserName = "emp@e.com"
                         },
@@ -229,9 +229,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SEED@PERSON1.COM",
                             NormalizedUserName = "SEED@PERSON1.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIkW2+Z0jaLls5Bj04dnIF9y5IRMsr2bL/4aeCo84mBKR7jNCPpf/lTaVcSNfWKmKA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHvByy3E6nivU6zC5rBD2qZtqTE8D7oEfNPDqt/C6pJkDCGi7cUtvuNp++7XpTHYJg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9941e241-3445-4f55-a5b3-5eee62e06ece",
+                            SecurityStamp = "d7fbc905-1165-446f-a2bd-7d7b1dc9193e",
                             TwoFactorEnabled = false,
                             UserName = "Seed@Person1.com"
                         });
