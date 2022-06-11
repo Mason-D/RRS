@@ -7,7 +7,7 @@ namespace RRS.Areas.Admin.Controllers
 {
 
     [Area("Admin")]
-    [Authorize(Roles = "Employee , God")]
+    [Authorize(Roles = "Employee ,God")]
     public class AdminAreaController : Controller
     {
 
