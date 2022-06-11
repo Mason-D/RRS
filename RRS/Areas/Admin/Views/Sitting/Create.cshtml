@@ -97,17 +97,17 @@
                 </div>*@
 
                 <div class="mx-0">
-                    <input id="RepeatSittingBtnWeeks" class="btn btn-primary mt-1 w-25" value="Repeat Sitting" />
+                    <input id="RepeatSittingBtnWeeks" class="btn btn-primary mt-3 w-25" value="Repeat Sitting" />
                 </div>
                 <div id="RepeatWeeksContainer"  style="display:none" class="form-group">
-                    <div id="day-of-week-container">
+                    <div id="day-of-week-container" class="row mx-0 mt-1">
                         @foreach (var day in Enum.GetValues(typeof(DayOfWeek)))
                         {
                             <input type="checkbox" class="btn-check" id="cb-day-@(day)" name="cb-day-@(day)" data-day="@(day)" autocomplete="off" />
-                            <label class="btn btn-outline-light m-1" for="cb-day-@(day)">@(day)</label>
+                            <label class="btn btn-outline-light mt-1 col-md mx-1" for="cb-day-@(day)">@(day)</label>
                         }
                     </div>
-                    <div>
+                    <div class="mt-1">
                         <label for="EndDateInput" class="control-label"> Repeat Until </label>
                         <input type="date" id="EndDateInput" class="form-control"/>
                     </div>
