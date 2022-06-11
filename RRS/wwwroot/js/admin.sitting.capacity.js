@@ -47,8 +47,8 @@ function populateSittingsTable(newDate) {
                         <td>${formatTime(item.start)}</td>
                         <td>${formattedEnd}</td>
                         <td>${formatTime(item.start, item.duration)}</td>
-                        <td>${item.totalGuests}/${item.capacity}</td>
                         <td>${item.sittingTypeDescription}</td>
+                        <td class="${capacityWarningLevel(item.totalGuests, item.capacity)}" >${item.totalGuests}/${item.capacity}</td>
                         <td>
                             <button class="sittingsTBody-row-bttn ${bttnBootstrap}" id="sittingsTBody-row-bttn-${index}" title="${bttnTitle}">
                                 ${buttonHtml}
@@ -81,6 +81,30 @@ function populateSittingsTable(newDate) {
     });
 };
 
+function capacityWarningLevel(total, capacity) {
+    let capPer = total / capacity
+    if (capPer <= 0.95) {
+        return "warning1";
+    }
+    else if (capPer <= 1) {
+        return "warning2";
+    }
+    else if (capPer <= 1.05) {
+        return "warning3";
+    }
+    else if (capPer <= 1.1) {
+        return "warning4";
+    }
+    else if (capPer <= 1.15) {
+        return "warning5";
+    }
+    else if (capPer <= 1.2) {
+        return "warning6";
+    }
+    else{
+        return "warning7";
+    }
+}
 
 function formatTime(dateString, addMins) {
     let date = new Date(dateString)
