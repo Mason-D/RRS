@@ -27,3 +27,7 @@ a:hover {
     text-decoration: underline;
     color: black;
 }
+
+#capacity-warning{
+    color: black;
+}

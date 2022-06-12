@@ -123,5 +123,47 @@ namespace RRS.Controllers.API
             await _context.SaveChangesAsync();
             return Ok(sitting);
         }
+
+
+        [HttpGet]
+        [Route("capacity-warnings")]
+        public async Task<ActionResult<IEnumerable<SittingDto>>> CapacityWarnings()
+        {
+            var warning =  await _context.Sittings
+                .Include(s => s.Reservations)
+                    .ThenInclude(r => r.ReservationStatus)
+                .Where(s => s.Start.Date >= DateTime.UtcNow.Date && s.IsOpen == true && s.Reservations.Sum(r => r.ReservationStatus.Description == "Cancelled" ? 0 : r.NoOfGuests) >= s.Capacity*0.9)
+                .OrderByDescending(s => (double)s.Reservations.Sum(r => r.ReservationStatus.Description == "Cancelled" ? 0 : r.NoOfGuests)/s.Capacity)   
+                .Select(s => new SittingDto
+                {
+                    Id = s.Id,
+                    Start = s.Start,
+                    Duration = s.Duration,
+                    Capacity = s.Capacity,
+                    Interval = s.Interval,
+                    Cutoff = s.Cutoff,
+                    IsOpen = s.IsOpen,
+                    SittingTypeDescription = s.SittingType.Description,
+                    SittingTypeId = s.SittingType.Id,
+                    TotalGuests = s.TotalGuests,
+                    GroupId = s.GroupId
+                })
+                .ToListAsync();
+            return warning;
+        }
+
+
+        [HttpGet]
+        [Route("any-capacity-warnings")]
+        public ActionResult<bool> AnyCapacityWarnings()
+        {
+            var warning = _context.Sittings
+                .Include(s => s.Reservations)
+                    .ThenInclude(r => r.ReservationStatus)
+                .FirstOrDefault(s => s.Start.Date >= DateTime.UtcNow.Date && s.IsOpen == true && s.Reservations.Sum(r => r.ReservationStatus.Description == "Cancelled" ? 0 : r.NoOfGuests) >= s.Capacity * 0.9);
+               
+            return warning is null?false:true;
+        }
+
     }
 }

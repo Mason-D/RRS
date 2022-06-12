@@ -6,7 +6,7 @@ using RRS.Data;
 namespace RRS.Areas.Member.Controllers
 {
     [Area("Member")] 
-    [Authorize(Roles = "Member")]
+    [Authorize(Roles = "Member, God")]
     public class MemberAreaController : Controller
     {
         protected readonly ApplicationDbContext _context;

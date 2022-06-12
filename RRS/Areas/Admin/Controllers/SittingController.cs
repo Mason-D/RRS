@@ -294,5 +294,14 @@ namespace RRS.Areas.Admin.Controllers
         {
             return _context.Sittings.Any(e => e.Id == id);
         }
+
+
+        // GET: Admin/Sitting/Capacity
+        public IActionResult Capacity()
+        {
+            ViewData["RestaurantId"] = 1;
+            return View();
+        }
+
     }
 }

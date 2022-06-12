@@ -29,13 +29,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
-                        @if(User.IsInRole("Employee") || User.IsInRole("Manager"))
+                        @if(User.IsInRole("Employee") || User.IsInRole("Manager") || User.IsInRole("God"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
                             </li> 
                         }
-                        @if(User.IsInRole("Member"))
+                        @if(User.IsInRole("Member") || User.IsInRole("God"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="Member" asp-controller="Home" asp-action="Index">Member</a>

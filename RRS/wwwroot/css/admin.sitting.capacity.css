@@ -1,0 +1,93 @@
+﻿
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: white;
+}
+
+body {
+    color: white;
+}
+
+#sittingsT thead tr {
+    color: white;
+}
+
+td {
+    color: white;
+}
+
+#sittingsT thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.input-group-text {
+    background-color: white;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+#user-feedback{
+    width: 100%;
+}
+
+#user-feedback p {
+    border-radius: 0 !important;
+}
+
+#admin-navbar{
+    margin-bottom:0 !important;
+}
+
+svg {
+    width: 30px;
+    height: 30px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 20px grey;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .25);
+}
+
+
+.warning1 {
+    color: rgb(255, 240, 0)
+}
+.warning2 {
+    color: rgb(255, 200, 0)
+}
+.warning3 {
+    color: rgb(255, 160, 0)
+}
+.warning4 {
+    color: rgb(255, 120, 0)
+}
+.warning5 {
+    color: rgb(255, 80, 0)
+}
+.warning6 {
+    color: rgb(255, 40, 0)
+}
+.warning7 {
+    color: rgb(255, 0, 0)
+}

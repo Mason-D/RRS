@@ -5,51 +5,70 @@
 
 
 <div>
-    <div class="row g-2">
-        <div class="p-3 col-6 col-lg-3 ">
-            <div class="card">
-                <img class="card-img-top" src="~/images/horizontal/admin-portal-employees.jpg" alt="Card image cap">
-                <h5 class="card-header">Employees</h5>
-                <div class="card-body">
-                    <a asp-area="Admin" asp-controller="Employee" asp-action="Index">Manage Employees</a><br />
+    <div class="row d-flex justify-content-center g-2">
+        @if (User.IsInRole("Manager") || User.IsInRole("God"))
+        {
+            <div class="p-3 col-6 col-lg-3 ">
+                <div class="card">
+                    <img class="card-img-top" src="~/images/horizontal/admin-portal-employees.jpg" alt="Card image cap">
+                    <h5 class="card-header">Employees</h5>
+                    <div class="card-body">
+                        <a asp-area="Admin" asp-controller="Employee" asp-action="Index">Manage Employees</a><br />
+                    </div>
+                </div>
+            </div> 
+        }
+        @if (User.IsInRole("Manager") || User.IsInRole("Employee") || User.IsInRole("God"))
+        {
+            <div class="p-3 col-6 col-lg-3 ">
+                <div class="card">
+                    <img class="card-img-top" src="~/images/horizontal/admin-portal-reservations.jpg" alt="Card image cap">
+                    <h5 class="card-header">Reservations</h5>
+                    <div class="card-body">
+                        <a asp-area="Admin" asp-controller="Reservation" asp-action="Index">Manage Reservations</a><br />
+                        <a asp-area="Admin" asp-controller="Reservation" asp-action="Create">Create Reservations</a><br />
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="p-3 col-6 col-lg-3 ">
-            <div class="card">
-                <img class="card-img-top" src="~/images/horizontal/admin-portal-reservations.jpg" alt="Card image cap">
-                <h5 class="card-header">Reservations</h5>
-                <div class="card-body">
-                    <a asp-area="Admin" asp-controller="Reservation" asp-action="Index">Manage Reservations</a><br />
-                    <a asp-area="Admin" asp-controller="Reservation" asp-action="Create">Create Reservations</a><br />
+        }
+        @if (User.IsInRole("Manager") || User.IsInRole("God"))
+        {
+            <div class="p-3 col-6 col-lg-3 ">
+                <div class="card">
+                    <img class="card-img-top" src="~/images/horizontal/admin-portal-sittings.jpg" alt="Card image cap">
+                    <h5 class="card-header">Sittings</h5>
+                    <div class="card-body">
+                        <a asp-area="Admin" asp-controller="Sitting" asp-action="Edit">Manage Sittings</a><br />
+                        <a asp-area="Admin" asp-controller="Sitting" asp-action="Create">Create Sittings</a><br />
+                        <a asp-area="Admin" asp-controller="Sitting" asp-action="Capacity" id=capacity-warning>Capacity Warnings</a><br />
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="p-3 col-6 col-lg-3 ">
-            <div class="card">
-                <img class="card-img-top" src="~/images/horizontal/admin-portal-sittings.jpg" alt="Card image cap">
-                <h5 class="card-header">Sittings</h5>
-                <div class="card-body">
-                <a asp-area="Admin" asp-controller="Sitting" asp-action="Edit">Manage Sittings</a><br />
-                <a asp-area="Admin" asp-controller="Sitting" asp-action="Create">Create Sittings</a><br />
+        }
+        @if (User.IsInRole("Manager") || User.IsInRole("Employee") || User.IsInRole("God"))
+        {
+            <div class="p-3 col-6 col-lg-3 ">
+                <div class="card">
+                    <img class="card-img-top" src="~/images/horizontal/admin-portal-tables.jpg" alt="Card image cap">
+                    <h5 class="card-header">Tables</h5>
+                    <div class="card-body">
+                        <a asp-area="Admin" asp-controller="Table" asp-action="Index">Reserve Tables</a><br />
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="p-3 col-6 col-lg-3 ">
-            <div class="card">
-                <img class="card-img-top" src="~/images/horizontal/admin-portal-tables.jpg" alt="Card image cap">
-                <h5 class="card-header">Tables</h5>
-                <div class="card-body">
-                    <a asp-area="Admin" asp-controller="Table" asp-action="Index">Reserve Tables</a><br />
-                </div>
-            </div>
-        </div>
+        }
     </div>
 </div>
+
 
 @section Styles {
     <link rel="stylesheet" href="~/css/admin.home.index.css" />
 }
+
+@section Scripts{
+    <script src="~/js/admin.home.index.js"></script>
+}
+
 
 @*<div class="container-fluid justify-content-evenly">
     <div class="row">
@@ -83,7 +102,6 @@
     </div>
 
 </div>*@
-
 
 
 
