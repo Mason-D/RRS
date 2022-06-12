@@ -179,9 +179,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "GOD@E.COM",
                             NormalizedUserName = "GOD@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEANqO+q7gyhEQGjotg5oXML78P+jzsOqZ1NMQ2HJyzka7mz2pJ2NgUA5rT7uS0J7wQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIZfGY9GSiSh0865lNWTC2O6aeLl2wsdmCjVBfc5pz2n85dG0gWL9Kg92Hvm84MBKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "01b1cb78-87e7-4118-b94d-fa39398e72b2",
+                            SecurityStamp = "9900b51b-b1e2-441d-bec5-e5d3b484f5cf",
                             TwoFactorEnabled = false,
                             UserName = "god@e.com"
                         },
@@ -195,9 +195,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MAN@E.COM",
                             NormalizedUserName = "MAN@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAELIIczOvdb5Cu+5Zu6O93y9nsYkeSH5NhwRP+mYvc/3NUm4meskgtPtAdEwqh1DGbQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJLIERy0ZakLgAdbU/r4+ZB/5ICZL8LM6U8t0Di1ZHjWhuJQsKQXJkK1TymBZDDmiQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "02e29e1b-c969-480a-b887-002d008c3ed1",
+                            SecurityStamp = "98a3a550-83d9-4835-85b5-bca365110465",
                             TwoFactorEnabled = false,
                             UserName = "man@e.com"
                         },
@@ -211,9 +211,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "EMP@E.COM",
                             NormalizedUserName = "EMP@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ8tj8cevQ4tlQUbMPPbXg4+Nv6OOlhUgDp0zfe1IqUN8e2NtmkNEUlHr9nefHsF3A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP882v2BkqlLqulXzuWcQLoFxgCU4WL2ezlf3FURx2v+0sv/nr3t9gKkF8oOybTPPg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a768d2d6-50af-4444-959d-2d46dd0a4a4d",
+                            SecurityStamp = "35946f00-e831-49c5-bd8a-ecdee1a08513",
                             TwoFactorEnabled = false,
                             UserName = "emp@e.com"
                         },
@@ -227,9 +227,9 @@ namespace RRS.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SEED@PERSON1.COM",
                             NormalizedUserName = "SEED@PERSON1.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHvByy3E6nivU6zC5rBD2qZtqTE8D7oEfNPDqt/C6pJkDCGi7cUtvuNp++7XpTHYJg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENzNRpIuswT/wFgCf428MM6i+T9uazOJn3X9yr9hT5pZ3TfVDPSfw7aXwOCLRjWJiQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d7fbc905-1165-446f-a2bd-7d7b1dc9193e",
+                            SecurityStamp = "9707c9db-673c-4f60-830c-b7efd2981e0a",
                             TwoFactorEnabled = false,
                             UserName = "Seed@Person1.com"
                         });
@@ -470,103 +470,13 @@ namespace RRS.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            Id = 10000,
                             CustomerId = 1,
                             NoOfGuests = 2,
                             ReservationOriginId = 4,
                             ReservationStatusId = 1,
-                            SittingId = 102,
-                            StartTime = new DateTime(2022, 5, 18, 9, 30, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CustomerId = 2,
-                            NoOfGuests = 4,
-                            ReservationOriginId = 4,
-                            ReservationStatusId = 1,
-                            SittingId = 103,
-                            StartTime = new DateTime(2022, 5, 19, 9, 30, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CustomerId = 3,
-                            NoOfGuests = 6,
-                            ReservationOriginId = 4,
-                            ReservationStatusId = 1,
-                            SittingId = 104,
-                            StartTime = new DateTime(2022, 5, 20, 9, 30, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CustomerId = 1,
-                            NoOfGuests = 8,
-                            ReservationOriginId = 4,
-                            ReservationStatusId = 1,
-                            SittingId = 105,
-                            StartTime = new DateTime(2022, 5, 21, 9, 30, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CustomerId = 1,
-                            NoOfGuests = 10,
-                            ReservationOriginId = 4,
-                            ReservationStatusId = 1,
-                            SittingId = 106,
-                            StartTime = new DateTime(2022, 5, 22, 9, 30, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CustomerId = 1,
-                            NoOfGuests = 12,
-                            ReservationOriginId = 4,
-                            ReservationStatusId = 1,
-                            SittingId = 107,
-                            StartTime = new DateTime(2022, 5, 23, 9, 30, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CustomerId = 1,
-                            NoOfGuests = 14,
-                            ReservationOriginId = 4,
-                            ReservationStatusId = 1,
-                            SittingId = 108,
-                            StartTime = new DateTime(2022, 5, 24, 9, 30, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CustomerId = 1,
-                            NoOfGuests = 16,
-                            ReservationOriginId = 4,
-                            ReservationStatusId = 1,
-                            SittingId = 109,
-                            StartTime = new DateTime(2022, 5, 25, 9, 30, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CustomerId = 1,
-                            NoOfGuests = 18,
-                            ReservationOriginId = 4,
-                            ReservationStatusId = 1,
-                            SittingId = 110,
-                            StartTime = new DateTime(2022, 5, 26, 9, 30, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CustomerId = 1,
-                            NoOfGuests = 20,
-                            ReservationOriginId = 4,
-                            ReservationStatusId = 1,
-                            SittingId = 111,
-                            StartTime = new DateTime(2022, 5, 27, 9, 30, 0, 0, DateTimeKind.Unspecified)
+                            SittingId = 1,
+                            StartTime = new DateTime(2022, 6, 12, 9, 30, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
