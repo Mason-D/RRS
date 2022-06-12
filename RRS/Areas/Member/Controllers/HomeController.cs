@@ -146,6 +146,12 @@ namespace RRS.Areas.Member.Controllers
                 {
                     return View("Index", profile);
                 }
+                var person = await _context.People.Where(p => p.Email == user.Email).FirstOrDefaultAsync();
+                if(person != null)
+                {
+                    person.PhoneNumber = profile.PhoneNumber;
+                    await _context.SaveChangesAsync();
+                }
             }
 
             if (profile.OldPassword != null && profile.NewPassword != null)
