@@ -238,24 +238,16 @@ namespace RRS.Data
 
         private void seedReservation()
         {
-            int id = 102;
-            int month = 5;
-            int day = 18;
-            for (int i = 1; i <= 10; i++)
+            _builder.Entity<Reservation>().HasData(new Reservation
             {
-                _builder.Entity<Reservation>().HasData(new Reservation
-                {
-                    SittingId = id,
-                    StartTime = new DateTime(2022, month, day, 9, 30, 0),
-                    CustomerId = i > 3 ? 1 : i,
-                    NoOfGuests = i * 2,
-                    ReservationOriginId = 4,
-                    Id = i,
-                    ReservationStatusId = 1
-                });
-                id++;
-                day++;
-            }
+                SittingId = 1,
+                StartTime = new DateTime(2022, 6, 12, 9, 30, 0),
+                CustomerId = 1,
+                NoOfGuests = 2,
+                ReservationOriginId = 4,
+                Id = 10000,
+                ReservationStatusId = 1
+            });        
         }
     }
 }

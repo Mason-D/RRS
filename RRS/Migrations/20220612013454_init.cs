@@ -428,10 +428,10 @@ namespace RRS.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1337x1", 0, "1337x1", "god@e.com", true, false, null, "GOD@E.COM", "GOD@E.COM", "AQAAAAEAACcQAAAAEA0ms2CMwGZjIUdMevzF30KOmzfAG6pd8Y3UI9QDU0dEXh5SlDuOLWXq8wLKipKeLA==", null, false, "68e53ce7-1b59-477e-9edc-dba0b283a4c4", false, "god@e.com" },
-                    { "1337x2", 0, "1337x2", "man@e.com", true, false, null, "MAN@E.COM", "MAN@E.COM", "AQAAAAEAACcQAAAAEGmNovUZ9hs8b2Wv0NIy744knb8ZwprpvJXNnvKyKwRyxAz8BvziPwG08w3M7CE0gQ==", null, false, "eb6a3af6-f915-47a2-b98f-1f11ea82dfc0", false, "man@e.com" },
-                    { "1337x3", 0, "1337x3", "emp@e.com", true, false, null, "EMP@E.COM", "EMP@E.COM", "AQAAAAEAACcQAAAAEB3ZdG8fsIl633cx3NUyAwUzB1LtXJKwQNAhP6vOrHzRH+hU75JHr9yVDppFzNmrMQ==", null, false, "7e93ff6f-522d-4123-93b5-093b9b7c1f43", false, "emp@e.com" },
-                    { "1337x4", 0, "1337x4", "Seed@Person1.com", true, false, null, "SEED@PERSON1.COM", "SEED@PERSON1.COM", "AQAAAAEAACcQAAAAEIkW2+Z0jaLls5Bj04dnIF9y5IRMsr2bL/4aeCo84mBKR7jNCPpf/lTaVcSNfWKmKA==", null, false, "9941e241-3445-4f55-a5b3-5eee62e06ece", false, "Seed@Person1.com" }
+                    { "1337x1", 0, "1337x1", "god@e.com", true, false, null, "GOD@E.COM", "GOD@E.COM", "AQAAAAEAACcQAAAAEIZfGY9GSiSh0865lNWTC2O6aeLl2wsdmCjVBfc5pz2n85dG0gWL9Kg92Hvm84MBKA==", null, false, "9900b51b-b1e2-441d-bec5-e5d3b484f5cf", false, "god@e.com" },
+                    { "1337x2", 0, "1337x2", "man@e.com", true, false, null, "MAN@E.COM", "MAN@E.COM", "AQAAAAEAACcQAAAAEJLIERy0ZakLgAdbU/r4+ZB/5ICZL8LM6U8t0Di1ZHjWhuJQsKQXJkK1TymBZDDmiQ==", null, false, "98a3a550-83d9-4835-85b5-bca365110465", false, "man@e.com" },
+                    { "1337x3", 0, "1337x3", "emp@e.com", true, false, null, "EMP@E.COM", "EMP@E.COM", "AQAAAAEAACcQAAAAEP882v2BkqlLqulXzuWcQLoFxgCU4WL2ezlf3FURx2v+0sv/nr3t9gKkF8oOybTPPg==", null, false, "35946f00-e831-49c5-bd8a-ecdee1a08513", false, "emp@e.com" },
+                    { "1337x4", 0, "1337x4", "Seed@Person1.com", true, false, null, "SEED@PERSON1.COM", "SEED@PERSON1.COM", "AQAAAAEAACcQAAAAENzNRpIuswT/wFgCf428MM6i+T9uazOJn3X9yr9hT5pZ3TfVDPSfw7aXwOCLRjWJiQ==", null, false, "9707c9db-673c-4f60-830c-b7efd2981e0a", false, "Seed@Person1.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -785,19 +785,7 @@ namespace RRS.Migrations
             migrationBuilder.InsertData(
                 table: "Reservations",
                 columns: new[] { "Id", "CustomerId", "CustomerNotes", "NoOfGuests", "ReservationOriginId", "ReservationStatusId", "SittingId", "StartTime" },
-                values: new object[,]
-                {
-                    { 1, 1, null, 2, 4, 1, 102, new DateTime(2022, 5, 18, 9, 30, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, 2, null, 4, 4, 1, 103, new DateTime(2022, 5, 19, 9, 30, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, 3, null, 6, 4, 1, 104, new DateTime(2022, 5, 20, 9, 30, 0, 0, DateTimeKind.Unspecified) },
-                    { 4, 1, null, 8, 4, 1, 105, new DateTime(2022, 5, 21, 9, 30, 0, 0, DateTimeKind.Unspecified) },
-                    { 5, 1, null, 10, 4, 1, 106, new DateTime(2022, 5, 22, 9, 30, 0, 0, DateTimeKind.Unspecified) },
-                    { 6, 1, null, 12, 4, 1, 107, new DateTime(2022, 5, 23, 9, 30, 0, 0, DateTimeKind.Unspecified) },
-                    { 7, 1, null, 14, 4, 1, 108, new DateTime(2022, 5, 24, 9, 30, 0, 0, DateTimeKind.Unspecified) },
-                    { 8, 1, null, 16, 4, 1, 109, new DateTime(2022, 5, 25, 9, 30, 0, 0, DateTimeKind.Unspecified) },
-                    { 9, 1, null, 18, 4, 1, 110, new DateTime(2022, 5, 26, 9, 30, 0, 0, DateTimeKind.Unspecified) },
-                    { 10, 1, null, 20, 4, 1, 111, new DateTime(2022, 5, 27, 9, 30, 0, 0, DateTimeKind.Unspecified) }
-                });
+                values: new object[] { 10000, 1, null, 2, 4, 1, 1, new DateTime(2022, 6, 12, 9, 30, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Areas_RestaurantId",
