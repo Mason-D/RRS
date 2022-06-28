@@ -47,36 +47,6 @@ namespace RRS.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "1337x1",
-                            ConcurrencyStamp = "1337x1",
-                            Name = "God",
-                            NormalizedName = "GOD"
-                        },
-                        new
-                        {
-                            Id = "1337x2",
-                            ConcurrencyStamp = "1337x2",
-                            Name = "Manager",
-                            NormalizedName = "MANAGER"
-                        },
-                        new
-                        {
-                            Id = "1337x3",
-                            ConcurrencyStamp = "1337x3",
-                            Name = "Employee",
-                            NormalizedName = "EMPLOYEE"
-                        },
-                        new
-                        {
-                            Id = "1337x4",
-                            ConcurrencyStamp = "1337x4",
-                            Name = "Member",
-                            NormalizedName = "MEMBER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -167,72 +137,6 @@ namespace RRS.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "1337x1",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "1337x1",
-                            Email = "god@e.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "GOD@E.COM",
-                            NormalizedUserName = "GOD@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOfEkaEvGlz/J6P2pX2lecUCvlKiY33uWZsD5RS8c61U6Td6XQPLkHxv4ZorAFYuYA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "27e11246-d519-4051-a2ee-00a31c00b444",
-                            TwoFactorEnabled = false,
-                            UserName = "god@e.com"
-                        },
-                        new
-                        {
-                            Id = "1337x2",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "1337x2",
-                            Email = "man@e.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "MAN@E.COM",
-                            NormalizedUserName = "MAN@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPYwmR+lmpnS3+BzSexnHaXwRgLtvWaGEpvupZgKHlox+mOKw3msJjniVP+/OBNcaQ==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "0b904309-5f56-452e-ac0f-e517cc622c32",
-                            TwoFactorEnabled = false,
-                            UserName = "man@e.com"
-                        },
-                        new
-                        {
-                            Id = "1337x3",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "1337x3",
-                            Email = "emp@e.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "EMP@E.COM",
-                            NormalizedUserName = "EMP@E.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHhC5zQMIon4Okyq4JmCdCWH0BFbBzUwkTdGwGzjIGtZpEnijAZTQYzNwV4MfiAKXA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "5259b561-2f96-46f4-9878-a56894eae06e",
-                            TwoFactorEnabled = false,
-                            UserName = "emp@e.com"
-                        },
-                        new
-                        {
-                            Id = "1337x4",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "1337x4",
-                            Email = "Seed@Person1.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "SEED@PERSON1.COM",
-                            NormalizedUserName = "SEED@PERSON1.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEkHxmmtAe5qXA7Gpfxn9vznI7j8bRPXI1I4cmaINCB3bymh6rLJY0T2nk/AwhQCDw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "74326e38-d37e-4783-92fd-dd0f3d15616f",
-                            TwoFactorEnabled = false,
-                            UserName = "Seed@Person1.com"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -297,33 +201,6 @@ namespace RRS.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "1337x1",
-                            RoleId = "1337x1"
-                        },
-                        new
-                        {
-                            UserId = "1337x2",
-                            RoleId = "1337x2"
-                        },
-                        new
-                        {
-                            UserId = "1337x2",
-                            RoleId = "1337x3"
-                        },
-                        new
-                        {
-                            UserId = "1337x3",
-                            RoleId = "1337x3"
-                        },
-                        new
-                        {
-                            UserId = "1337x4",
-                            RoleId = "1337x4"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -672,33 +549,33 @@ namespace RRS.Migrations
                         new
                         {
                             Id = 1,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 6, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 6, 29, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 6, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 6, 29, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -706,38 +583,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 6, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 6, 29, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 4,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 7, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 6, 30, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 5,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 7, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 6, 30, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 6,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -745,38 +622,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 7, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 6, 30, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 7,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 8, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 1, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 8,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 8, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 1, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 9,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -784,38 +661,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 8, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 1, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 10,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 9, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 2, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 11,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 9, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 2, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 12,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -823,38 +700,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 9, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 2, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 13,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 10, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 3, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 14,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 10, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 3, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 15,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -862,38 +739,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 10, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 3, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 16,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 11, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 4, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 17,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 11, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 4, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 18,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -901,38 +778,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 11, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 4, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 19,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 12, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 5, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 20,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 12, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 5, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 21,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -940,38 +817,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 12, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 5, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 22,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 13, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 6, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 23,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 13, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 6, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 24,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -979,38 +856,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 13, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 6, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 25,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 14, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 7, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 26,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 14, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 7, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 27,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1018,38 +895,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 14, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 7, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 28,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 15, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 8, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 29,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 15, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 8, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 30,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1057,38 +934,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 15, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 8, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 31,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 16, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 9, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 32,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 16, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 9, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 33,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1096,38 +973,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 16, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 9, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 34,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 17, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 10, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 35,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 17, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 10, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 36,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1135,38 +1012,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 17, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 10, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 37,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 18, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 11, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 38,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 18, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 11, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 39,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1174,38 +1051,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 18, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 11, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 40,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 19, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 12, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 41,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 19, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 12, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 42,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1213,38 +1090,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 19, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 12, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 43,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 20, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 13, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 44,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 20, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 13, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 45,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1252,38 +1129,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 20, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 13, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 46,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 21, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 14, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 47,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 21, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 14, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 48,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1291,38 +1168,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 21, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 14, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 49,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 22, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 15, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 50,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 22, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 15, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 51,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1330,38 +1207,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 22, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 15, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 52,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 23, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 16, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 53,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 23, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 16, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 54,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1369,38 +1246,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 23, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 16, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 55,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 24, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 17, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 56,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 24, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 17, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 57,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1408,38 +1285,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 24, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 17, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 58,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 25, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 18, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 59,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 25, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 18, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 60,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1447,38 +1324,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 25, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 18, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 61,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 26, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 19, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 62,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 26, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 19, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 63,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1486,38 +1363,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 26, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 19, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 64,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 27, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 20, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 65,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 27, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 20, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 66,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1525,38 +1402,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 27, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 20, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 67,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 28, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 21, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 68,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 28, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 21, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 69,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1564,38 +1441,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 28, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 21, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 70,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 29, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 22, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 71,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 29, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 22, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 72,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1603,38 +1480,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 29, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 22, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 73,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 4, 30, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 23, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 74,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 4, 30, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 23, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 75,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1642,38 +1519,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 4, 30, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 23, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 76,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 1, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 24, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 77,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 5, 1, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 24, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 78,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1681,38 +1558,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 5, 1, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 24, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 79,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 2, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 25, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 80,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 5, 2, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 25, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 81,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1720,38 +1597,38 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 5, 2, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 25, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 82,
-                            Capacity = 40,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 3, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 26, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 83,
-                            Capacity = 60,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 180,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 2,
-                            Start = new DateTime(2022, 5, 3, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 26, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 84,
-                            Capacity = 80,
+                            Capacity = 100,
                             Cutoff = 30,
                             Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1759,1463 +1636,2425 @@ namespace RRS.Migrations
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 3,
-                            Start = new DateTime(2022, 5, 3, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 26, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 85,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 1, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 27, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 86,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 2, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 7, 27, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 87,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 3, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 7, 27, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 88,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 4, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 28, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 89,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 5, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 7, 28, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 90,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 6, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 7, 28, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 91,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 7, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 29, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 92,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 8, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 7, 29, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 93,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 9, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 7, 29, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 94,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 10, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 30, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 95,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 11, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 7, 30, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 96,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 12, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 7, 30, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 97,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 13, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 7, 31, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 98,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 14, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 7, 31, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 99,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 15, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 7, 31, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 100,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 16, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 1, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 101,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 17, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 1, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 102,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 18, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 1, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 103,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 19, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 2, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 104,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 20, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 2, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 105,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 21, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 2, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 106,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 22, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 3, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 107,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 23, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 3, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 108,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 24, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 3, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 109,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 4, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 110,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 4, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 111,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 27, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 4, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 112,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 5, 28, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 5, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 113,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 1, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 5, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 114,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 2, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 5, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 115,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 3, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 6, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 116,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 4, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 6, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 117,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 5, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 6, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 118,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 6, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 7, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 119,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 7, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 7, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 120,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 8, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 7, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 121,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 9, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 8, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 122,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 10, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 8, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 123,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 11, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 8, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 124,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 12, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 9, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 125,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 13, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 9, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 126,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 14, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 9, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 127,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 15, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 10, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 128,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 16, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 10, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 129,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 17, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 10, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 130,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 18, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 11, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 131,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 19, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 11, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 132,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 20, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 11, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 133,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 21, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 12, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 134,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 22, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 12, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 135,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 23, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 12, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 136,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 24, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 13, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 137,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 13, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 138,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 13, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 139,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 27, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 14, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 140,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 6, 28, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 14, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 141,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 1, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 14, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 142,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 2, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 15, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 143,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 3, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 15, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 144,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 4, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 15, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 145,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 5, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 16, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 146,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 6, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 16, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 147,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 7, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 16, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 148,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 8, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 17, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 149,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 9, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 17, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 150,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 10, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 17, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 151,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 11, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 18, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 152,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 12, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 18, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 153,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 13, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 18, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 154,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 14, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 19, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 155,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 15, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 19, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 156,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 16, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 19, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 157,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 17, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 20, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 158,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 18, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 20, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 159,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 19, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 20, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 160,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 20, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 21, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 161,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 21, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 21, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 162,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 22, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 21, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 163,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 23, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 22, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 164,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 24, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 22, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 165,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 22, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 166,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 23, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 167,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 27, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 23, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 168,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 7, 28, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 23, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 169,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 1, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 24, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 170,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 2, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 24, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 171,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 3, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 24, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 172,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 4, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 25, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 173,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 5, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 25, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 174,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 6, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 25, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 175,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 7, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 26, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 176,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 8, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 26, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 177,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 9, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 26, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 178,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 10, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 27, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 179,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 11, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 27, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 180,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 12, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 27, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 181,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 13, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 28, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 182,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 14, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 28, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 183,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 15, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 28, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 184,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 16, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 29, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 185,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 17, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 29, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 186,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 18, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 29, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 187,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 19, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 30, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 188,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 20, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 30, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 189,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 21, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 30, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 190,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 22, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 8, 31, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 191,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 23, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 8, 31, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 192,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 24, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 8, 31, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 193,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 25, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 9, 1, 7, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 194,
-                            Capacity = 20,
+                            Capacity = 75,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 210,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 26, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 1, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 195,
-                            Capacity = 20,
+                            Capacity = 100,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 300,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
-                            SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 27, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 1, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 196,
-                            Capacity = 20,
+                            Capacity = 60,
                             Cutoff = 30,
-                            Duration = 240,
+                            Duration = 120,
                             GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Interval = 15,
                             IsOpen = true,
                             RestaurantId = 1,
                             SittingTypeId = 1,
-                            Start = new DateTime(2022, 8, 28, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                            Start = new DateTime(2022, 9, 2, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 197,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 2, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 198,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 2, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 199,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 3, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 200,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 3, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 201,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 3, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 202,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 4, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 203,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 4, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 204,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 4, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 205,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 5, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 206,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 5, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 207,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 5, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 208,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 6, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 209,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 6, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 210,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 6, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 211,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 7, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 212,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 7, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 213,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 7, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 214,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 8, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 215,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 8, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 216,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 8, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 217,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 9, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 218,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 9, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 219,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 9, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 220,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 10, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 221,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 10, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 222,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 10, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 223,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 11, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 224,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 11, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 225,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 11, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 226,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 12, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 227,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 12, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 228,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 12, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 229,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 13, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 230,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 13, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 231,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 13, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 232,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 14, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 233,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 14, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 234,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 14, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 235,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 15, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 236,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 15, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 237,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 15, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 238,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 16, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 239,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 16, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 240,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 16, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 241,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 17, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 242,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 17, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 243,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 17, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 244,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 18, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 245,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 18, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 246,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 18, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 247,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 19, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 248,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 19, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 249,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 19, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 250,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 20, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 251,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 20, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 252,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 20, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 253,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 21, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 254,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 21, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 255,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 21, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 256,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 22, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 257,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 22, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 258,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 22, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 259,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 23, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 260,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 23, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 261,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 23, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 262,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 24, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 263,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 24, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 264,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 24, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 265,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 25, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 266,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 25, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 267,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 25, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 268,
+                            Capacity = 60,
+                            Cutoff = 30,
+                            Duration = 120,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 1,
+                            Start = new DateTime(2022, 9, 26, 7, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 269,
+                            Capacity = 75,
+                            Cutoff = 30,
+                            Duration = 210,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 2,
+                            Start = new DateTime(2022, 9, 26, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 270,
+                            Capacity = 100,
+                            Cutoff = 30,
+                            Duration = 300,
+                            GroupId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Interval = 15,
+                            IsOpen = true,
+                            RestaurantId = 1,
+                            SittingTypeId = 3,
+                            Start = new DateTime(2022, 9, 26, 18, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -3283,210 +4122,210 @@ namespace RRS.Migrations
                             Id = 1,
                             AreaId = 1,
                             Description = "M1",
-                            Seats = 0
+                            Seats = 3
                         },
                         new
                         {
                             Id = 2,
                             AreaId = 1,
                             Description = "M2",
-                            Seats = 0
+                            Seats = 7
                         },
                         new
                         {
                             Id = 3,
                             AreaId = 1,
                             Description = "M3",
-                            Seats = 0
+                            Seats = 5
                         },
                         new
                         {
                             Id = 4,
                             AreaId = 1,
                             Description = "M4",
-                            Seats = 0
+                            Seats = 3
                         },
                         new
                         {
                             Id = 5,
                             AreaId = 1,
                             Description = "M5",
-                            Seats = 0
+                            Seats = 5
                         },
                         new
                         {
                             Id = 6,
                             AreaId = 1,
                             Description = "M6",
-                            Seats = 0
+                            Seats = 6
                         },
                         new
                         {
                             Id = 7,
                             AreaId = 1,
                             Description = "M7",
-                            Seats = 0
+                            Seats = 7
                         },
                         new
                         {
                             Id = 8,
                             AreaId = 1,
                             Description = "M8",
-                            Seats = 0
+                            Seats = 5
                         },
                         new
                         {
                             Id = 9,
                             AreaId = 1,
                             Description = "M9",
-                            Seats = 0
+                            Seats = 4
                         },
                         new
                         {
                             Id = 10,
                             AreaId = 1,
                             Description = "M10",
-                            Seats = 0
+                            Seats = 4
                         },
                         new
                         {
                             Id = 11,
                             AreaId = 2,
                             Description = "O1",
-                            Seats = 0
+                            Seats = 2
                         },
                         new
                         {
                             Id = 12,
                             AreaId = 2,
                             Description = "O2",
-                            Seats = 0
+                            Seats = 5
                         },
                         new
                         {
                             Id = 13,
                             AreaId = 2,
                             Description = "O3",
-                            Seats = 0
+                            Seats = 2
                         },
                         new
                         {
                             Id = 14,
                             AreaId = 2,
                             Description = "O4",
-                            Seats = 0
+                            Seats = 2
                         },
                         new
                         {
                             Id = 15,
                             AreaId = 2,
                             Description = "O5",
-                            Seats = 0
+                            Seats = 4
                         },
                         new
                         {
                             Id = 16,
                             AreaId = 2,
                             Description = "O6",
-                            Seats = 0
+                            Seats = 7
                         },
                         new
                         {
                             Id = 17,
                             AreaId = 2,
                             Description = "O7",
-                            Seats = 0
+                            Seats = 2
                         },
                         new
                         {
                             Id = 18,
                             AreaId = 2,
                             Description = "O8",
-                            Seats = 0
+                            Seats = 7
                         },
                         new
                         {
                             Id = 19,
                             AreaId = 2,
                             Description = "O9",
-                            Seats = 0
+                            Seats = 2
                         },
                         new
                         {
                             Id = 20,
                             AreaId = 2,
                             Description = "O10",
-                            Seats = 0
+                            Seats = 3
                         },
                         new
                         {
                             Id = 21,
                             AreaId = 3,
                             Description = "B1",
-                            Seats = 0
+                            Seats = 9
                         },
                         new
                         {
                             Id = 22,
                             AreaId = 3,
                             Description = "B2",
-                            Seats = 0
+                            Seats = 4
                         },
                         new
                         {
                             Id = 23,
                             AreaId = 3,
                             Description = "B3",
-                            Seats = 0
+                            Seats = 4
                         },
                         new
                         {
                             Id = 24,
                             AreaId = 3,
                             Description = "B4",
-                            Seats = 0
+                            Seats = 6
                         },
                         new
                         {
                             Id = 25,
                             AreaId = 3,
                             Description = "B5",
-                            Seats = 0
+                            Seats = 6
                         },
                         new
                         {
                             Id = 26,
                             AreaId = 3,
                             Description = "B6",
-                            Seats = 0
+                            Seats = 8
                         },
                         new
                         {
                             Id = 27,
                             AreaId = 3,
                             Description = "B7",
-                            Seats = 0
+                            Seats = 4
                         },
                         new
                         {
                             Id = 28,
                             AreaId = 3,
                             Description = "B8",
-                            Seats = 0
+                            Seats = 3
                         },
                         new
                         {
                             Id = 29,
                             AreaId = 3,
                             Description = "B9",
-                            Seats = 0
+                            Seats = 5
                         },
                         new
                         {
                             Id = 30,
                             AreaId = 3,
                             Description = "B10",
-                            Seats = 0
+                            Seats = 3
                         });
                 });
 

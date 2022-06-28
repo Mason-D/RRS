@@ -55,38 +55,20 @@ namespace RRS.Controllers
 
         private async Task CreateRoles()
         {
-            bool roleCheck = await _roleManager.RoleExistsAsync("God");
-            if (!roleCheck)
+
+            string[] roles = { "God", "Manager", "Employee", "Member" };
+
+            foreach(var r in roles )
             {
                 var role = new IdentityRole();
-                role.Name = "God";
+                role.Name = r;
                 await _roleManager.CreateAsync(role);
+                var user = new IdentityUser { UserName = $"{r}@gmail.com", Email = $"{r}@gmail.com" };
+                user.EmailConfirmed = true;
+                await _userManager.CreateAsync(user, "123");
+                await _userManager.AddToRoleAsync(user, r);
             }
-            roleCheck = await _roleManager.RoleExistsAsync("Manager");
-            if (!roleCheck)
-            {
-                var role = new IdentityRole();
-                role.Name = "Manager";
-                await _roleManager.CreateAsync(role);
-            }
-            roleCheck = await _roleManager.RoleExistsAsync("Employee");
-            if(!roleCheck)
-            {
-                var role = new IdentityRole();
-                role.Name = "Employee";
-                await _roleManager.CreateAsync(role);
-            }
-            roleCheck = await _roleManager.RoleExistsAsync("Customer");
-            if (!roleCheck)
-            {
-                var role = new IdentityRole();
-                role.Name = "Customer";
-                await _roleManager.CreateAsync(role);
-            }
-            var user = new IdentityUser { UserName = "God@gmail.com", Email = "God@gmail.com" };
-            user.EmailConfirmed = true;
-            await _userManager.CreateAsync(user, "qwe");
-            await _userManager.AddToRoleAsync(user, "God");
+
         }
 
     }
